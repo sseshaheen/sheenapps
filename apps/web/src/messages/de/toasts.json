@@ -1,0 +1,19 @@
+{
+  "actions": {
+    "undo": "Rückgängig",
+    "undoing": "Rückgängig machen...",
+    "dismiss": "Schließen"
+  },
+  "projectRenamed": "Projekt umbenannt",
+  "projectDuplicated": "Projekt dupliziert",
+  "projectArchived": "Projekt archiviert",
+  "projectRestored": "Projekt wiederhergestellt",
+  "renameUndone": "Umbenennung rückgängig gemacht",
+  "archiveUndone": "Archivierung rückgängig gemacht",
+  "restoreUndone": "Wiederherstellung rückgängig gemacht",
+  "failedToRename": "Fehler beim Umbenennen des Projekts",
+  "failedToDuplicate": "Fehler beim Duplizieren des Projekts",
+  "failedToArchive": "Fehler beim Archivieren des Projekts",
+  "failedToRestore": "Fehler beim Wiederherstellen des Projekts",
+  "copiedPrefix": "Kopie von"
+}

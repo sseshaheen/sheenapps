@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-01-24T00:11:30.035Z",
+  "packages": [
+    {
+      "name": "@sheenapps/auth",
+      "version": "0.1.0",
+      "methods": [
+        "signUp",
+        "signIn",
+        "createMagicLink",
+        "verifyMagicLink",
+        "getUser",
+        "signOut"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/db",
+      "version": "0.1.0",
+      "methods": [
+        "getSchema",
+        "healthCheck"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/cms",
+      "version": "0.1.0",
+      "methods": [
+        "listContentTypes",
+        "createContentType",
+        "listEntries",
+        "listMedia",
+        "getEntry",
+        "createEntry",
+        "updateEntry"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/storage",
+      "version": "1.0.0",
+      "methods": [
+        "createSignedUploadUrl",
+        "createSignedDownloadUrl",
+        "getPublicUrl",
+        "list",
+        "getMetadata",
+        "upload"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/jobs",
+      "version": "1.0.0",
+      "methods": [
+        "enqueue",
+        "schedule",
+        "listSchedules",
+        "updateSchedule",
+        "deleteSchedule",
+        "get",
+        "list",
+        "cancel",
+        "retry"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/secrets",
+      "version": "0.1.0",
+      "methods": [
+        "create",
+        "get",
+        "getMultiple",
+        "update",
+        "list",
+        "exists"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/email",
+      "version": "1.0.0",
+      "methods": [
+        "send",
+        "get",
+        "list"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/payments",
+      "version": "1.0.0",
+      "methods": [
+        "createCheckoutSession",
+        "createCustomer",
+        "getCustomer",
+        "getSubscription",
+        "cancelSubscription",
+        "listSubscriptions",
+        "createPortalSession",
+        "verifyWebhook",
+        "listEvents"
+      ],
+      "types": []
+    },
+    {
+      "name": "@sheenapps/analytics",
+      "version": "1.0.0",
+      "methods": [
+        "track",
+        "page",
+        "identify",
+        "listEvents",
+        "getCounts",
+        "getUser"
+      ],
+      "types": []
+    }
+  ]
+}

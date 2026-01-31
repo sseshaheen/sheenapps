@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Auth Persistence Test</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .step { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; }
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 250px; }
+        #logs { background: #000; color: #0f0; padding: 10px; font-family: monospace; font-size: 12px; max-height: 400px; overflow-y: scroll; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Browser Authentication Persistence Test</h1>
+    
+    <div class="step">
+        <h3>Step 1: Login</h3>
+        <form id="loginForm" action="http://localhost:3000/api/auth/sign-in" method="POST">
+            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="returnTo" value="/en/dashboard">
+            
+            <div>
+                <input type="email" name="email" value="shady.anwar1@gmail.com" required placeholder="Email">
+            </div>
+            <div>
+                <input type="password" name="password" required placeholder="Password">
+            </div>
+            <button type="submit">🔐 Sign In</button>
+        </form>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Test Auth Status</h3>
+        <button onclick="checkAuth()">📊 Check Auth Status</button>
+        <button onclick="testDashboard()">🏠 Test Dashboard Access</button>
+        <button onclick="checkCookies()">🍪 Check Cookies</button>
+    </div>
+
+    <div class="step warning">
+        <h3>Step 3: The Critical Test</h3>
+        <p><strong>After login, refresh this page</strong> and check if auth persists:</p>
+        <button onclick="location.reload()">🔄 Refresh Page</button>
+        <p><em>If the fix works, auth should persist after refresh!</em></p>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Open Dashboard in New Tab</h3>
+        <button onclick="openDashboard()">🎯 Open Dashboard</button>
+        <p><em>Should open authenticated without redirect to login</em></p>
+    </div>
+
+    <div id="results"></div>
+    
+    <h3>Debug Logs:</h3>
+    <div id="logs"></div>
+
+    <script>
+        function log(message) {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toISOString();
+            logs.innerHTML += `[${timestamp}] ${message}\n`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+
+        function showResult(message, type = 'success') {
+            const results = document.getElementById('results');
+            results.innerHTML = `<div class="step ${type}"><strong>${message}</strong></div>`;
+            log(message);
+        }
+
+        async function checkAuth() {
+            log('🔍 Checking authentication status...');
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                if (data.isAuthenticated) {
+                    showResult(`✅ AUTHENTICATED: ${data.user.name} (${data.user.email})`, 'success');
+                    log(`✅ User authenticated: ${JSON.stringify(data.user, null, 2)}`);
+                } else {
+                    showResult('❌ NOT AUTHENTICATED', 'error');
+                    log('❌ User not authenticated');
+                }
+            } catch (error) {
+                showResult(`❌ AUTH CHECK FAILED: ${error.message}`, 'error');
+                log(`❌ Auth check error: ${error}`);
+            }
+        }
+
+        async function testDashboard() {
+            log('🏠 Testing dashboard access...');
+            try {
+                const response = await fetch('/en/dashboard', {
+                    method: 'HEAD',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    showResult('✅ DASHBOARD ACCESSIBLE', 'success');
+                    log('✅ Dashboard is accessible');
+                } else if (response.status === 302 || response.status === 307) {
+                    showResult('❌ REDIRECTED TO LOGIN', 'error');
+                    log('❌ Dashboard access redirected to login');
+                } else {
+                    showResult(`⚠️ DASHBOARD STATUS: ${response.status}`, 'warning');
+                    log(`⚠️ Dashboard returned status: ${response.status}`);
+                }
+            } catch (error) {
+                showResult(`❌ DASHBOARD TEST FAILED: ${error.message}`, 'error');
+                log(`❌ Dashboard test error: ${error}`);
+            }
+        }
+
+        async function checkCookies() {
+            log('🍪 Checking cookies...');
+            
+            // Check if we can see non-HttpOnly cookies
+            const allCookies = document.cookie;
+            log(`🍪 Visible cookies: ${allCookies || 'none'}`);
+            
+            // Check server-side cookie status
+            try {
+                const response = await fetch('/api/auth/debugauth', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                if (data.cookies && data.cookies.length > 0) {
+                    showResult(`✅ AUTH COOKIES PRESENT: ${data.cookies.length} cookies`, 'success');
+                    log(`✅ Server sees cookies: ${JSON.stringify(data.cookies, null, 2)}`);
+                } else {
+                    showResult('❌ NO AUTH COOKIES', 'error');
+                    log('❌ Server sees no auth cookies');
+                }
+            } catch (error) {
+                showResult(`❌ COOKIE CHECK FAILED: ${error.message}`, 'error');
+                log(`❌ Cookie check error: ${error}`);
+            }
+        }
+
+        function openDashboard() {
+            log('🎯 Opening dashboard in new tab...');
+            window.open('/en/dashboard', '_blank');
+        }
+
+        // Auto-check auth status when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 Page loaded, checking initial auth status...');
+            checkAuth();
+        });
+
+        // Log form submissions
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            log('🔐 Login form submitted');
+        });
+
+        // Log page visibility changes (helps detect refresh)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                log('👁️ Page became visible (possible refresh or tab switch)');
+                setTimeout(checkAuth, 1000); // Check auth after page becomes visible
+            }
+        });
+
+        log('📱 Browser test page initialized');
+    </script>
+</body>
+</html>

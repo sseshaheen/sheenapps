@@ -1,0 +1,19 @@
+{
+  "CHAT_CONNECTION_ESTABLISHED": "[Ĉöññéçţéđ ţö ÅÎ åššîšţåñţ one two]",
+  "CHAT_TOOL_READ_FILE": "[Ŕéåđîñĝ {file}... one]",
+  "CHAT_TOOL_SEARCH_CODE": "[Šéåŕçĥîñĝ föŕ '{pattern}'... one two]",
+  "CHAT_TOOL_FIND_FILES": "[Fîñđîñĝ fîļéš måţçĥîñĝ '{pattern}'... one two three]",
+  "CHAT_TOOL_WRITE_FILE": "[Ŵŕîţîñĝ ţö {file}... one two]",
+  "CHAT_TOOL_EDIT_FILE": "[Éđîţîñĝ {file}... one]",
+  "CHAT_TOOL_GENERIC": "[Ûšîñĝ {tool}... one]",
+  "CHAT_ANALYZING": "[Åñåļýžîñĝ ýöûŕ ŕéqûéšţ... one two three]",
+  "CHAT_PROCESSING": "[Þŕöçéššîñĝ... one]",
+  "CHAT_FINALIZING": "[Fîñåļîžîñĝ ŕéšþöñšé... one two]",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE": "[Îñšûffîçîéñţ ÅÎ ţîmé båļåñçé. Ýöû ñééđ {required} mîñûţéš bûţ öñļý ĥåvé {available} mîñûţéš åvåîļåbļé. Þļéåšé þûŕçĥåšé möŕé ÅÎ ţîmé ţö çöñţîñûé. one two three four five six seven eight nine ten]",
+  "CHAT_ERROR_TIMEOUT": "[Ţĥé ŕéqûéšţ ţîméđ öûţ. Þļéåšé ţŕý åĝåîñ ŵîţĥ å šîmþļéŕ ŕéqûéšţ öŕ bŕéåķ îţ îñţö šmåļļéŕ þåŕţš. one two three four five six seven eight]",
+  "CHAT_ERROR_GENERAL": "[Åñ éŕŕöŕ öççûŕŕéđ: {message} one two three]",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE_SIMPLE": "Insufficient AI time balance. Please purchase more AI time to continue.",
+  "CHAT_STREAM_ERROR": "Connection error occurred. Please try again.",
+  "STREAM_ERROR": "Connection error occurred. Please try again.",
+  "CHAT_COMPLETE_SUCCESS": "[Ŕéšþöñšé çömþļéţé one two]"
+}

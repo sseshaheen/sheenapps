@@ -1,0 +1,97 @@
+{
+  "contact": {
+    "title": "Ajouter un formulaire de contact",
+    "description": "Permettez aux visiteurs de vous joindre facilement avec un formulaire professionnel",
+    "prompt": "Ajouter un formulaire de contact avec les champs nom, email et message"
+  },
+  "pricing": {
+    "title": "Ajouter une section tarifs",
+    "description": "Affichez vos plans tarifaires pour aider les clients à décider",
+    "prompt": "Ajouter une section tarifs avec différentes options de forfaits"
+  },
+  "faq": {
+    "title": "Ajouter une section FAQ",
+    "description": "Répondez aux questions courantes pour réduire les demandes de support",
+    "prompt": "Ajouter une section questions fréquemment posées"
+  },
+  "testimonials": {
+    "title": "Ajouter des témoignages",
+    "description": "Renforcez la confiance avec les avis et témoignages clients",
+    "prompt": "Ajouter une section témoignages avec les avis clients"
+  },
+  "about": {
+    "title": "Ajouter une section À propos",
+    "description": "Racontez votre histoire et connectez-vous avec les visiteurs",
+    "prompt": "Ajouter une section à propos décrivant l'entreprise ou l'équipe"
+  },
+  "services": {
+    "title": "Ajouter une section Services",
+    "description": "Présentez ce que vous offrez aux clients potentiels",
+    "prompt": "Ajouter une section services mettant en avant les offres clés"
+  },
+  "portfolio": {
+    "title": "Ajouter un portfolio",
+    "description": "Montrez vos meilleurs travaux pour attirer de nouveaux clients",
+    "prompt": "Ajouter une section portfolio présentant les projets précédents"
+  },
+  "team": {
+    "title": "Ajouter une section Équipe",
+    "description": "Présentez votre équipe pour créer des liens personnels",
+    "prompt": "Ajouter une section équipe avec les profils des membres"
+  },
+  "booking": {
+    "title": "Ajouter un système de réservation",
+    "description": "Permettez aux clients de prendre rendez-vous en ligne",
+    "prompt": "Ajouter une fonctionnalité de réservation ou prise de rendez-vous"
+  },
+  "payment": {
+    "title": "Ajouter des options de paiement",
+    "description": "Acceptez les paiements directement sur votre site",
+    "prompt": "Ajouter le traitement des paiements avec fonction de checkout"
+  },
+  "gallery": {
+    "title": "Ajouter une galerie d'images",
+    "description": "Présentez vos photos dans une mise en page attractive",
+    "prompt": "Ajouter une galerie d'images avec fonctionnalité lightbox"
+  },
+  "newsletter": {
+    "title": "Ajouter inscription newsletter",
+    "description": "Développez votre liste email avec un formulaire d'inscription",
+    "prompt": "Ajouter un formulaire d'inscription à la newsletter"
+  },
+  "blog": {
+    "title": "Ajouter une section Blog",
+    "description": "Partagez des actualités et améliorez le SEO avec un blog",
+    "prompt": "Ajouter une section blog pour articles et actualités"
+  },
+  "social": {
+    "title": "Ajouter des liens sociaux",
+    "description": "Connectez vos profils de réseaux sociaux",
+    "prompt": "Ajouter des liens réseaux sociaux et boutons de partage"
+  },
+  "seo": {
+    "title": "Améliorer le SEO",
+    "description": "Optimisez pour les moteurs de recherche pour plus de visiteurs",
+    "prompt": "Ajouter les balises meta appropriées, données structurées et optimisation SEO"
+  },
+  "analytics": {
+    "title": "Ajouter des analytics",
+    "description": "Suivez le comportement des visiteurs et mesurez les performances",
+    "prompt": "Ajouter le suivi analytics pour surveiller le trafic du site"
+  },
+  "mobile": {
+    "title": "Optimiser pour mobile",
+    "description": "Assurez une excellente expérience sur tous les appareils",
+    "prompt": "Améliorer la réactivité mobile et les interactions tactiles"
+  },
+  "accessibility": {
+    "title": "Améliorer l'accessibilité",
+    "description": "Rendez le site utilisable par tous",
+    "prompt": "Ajouter les fonctionnalités d'accessibilité appropriées et labels ARIA"
+  },
+  "darkMode": {
+    "title": "Ajouter le mode sombre",
+    "description": "Permettez aux utilisateurs de basculer entre thèmes clair et sombre",
+    "prompt": "Ajouter un bouton mode sombre avec changement de thème"
+  }
+}

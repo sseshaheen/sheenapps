@@ -1,0 +1,58 @@
+{
+  "badge": "Humanos reales, soporte real",
+  "title": "Conoce Tu Equipo Técnico",
+  "subtitle": "Asesores dedicados que conocen tu negocio. Disponibles en tu idioma.",
+  "subtitleSecond": "Construyendo tus funciones mientras duermes.",
+  "advisors": {
+    "ahmed": {
+      "name": "Ahmed Hassan",
+      "role": "Líder Técnico Árabe",
+      "language": "العربية",
+      "specialties": [
+        "Desarrollo RTL",
+        "Mercado MENA",
+        "Pasarelas de Pago"
+      ],
+      "availability": "Disponible ahora"
+    },
+    "sarah": {
+      "name": "Sarah Chen",
+      "role": "Especialista en Funciones",
+      "language": "English",
+      "specialties": [
+        "E-commerce",
+        "SaaS",
+        "Integraciones API"
+      ],
+      "availability": "Próximo slot: 2:00 PM"
+    },
+    "pierre": {
+      "name": "Pierre Dubois",
+      "role": "Asesor de Crecimiento",
+      "language": "Français",
+      "specialties": [
+        "Escalamiento",
+        "Rendimiento",
+        "Analíticas"
+      ],
+      "availability": "Próximo slot: 3:30 PM"
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona Tu Equipo Técnico",
+    "instantChat": {
+      "title": "Chat Instantáneo",
+      "description": "Envía mensajes a tu equipo cuando quieras. Respuestas en minutos, no horas."
+    },
+    "scheduledCalls": {
+      "title": "Llamadas Programadas",
+      "description": "Reserva sesiones de estrategia de 10 minutos. Planifica funciones, resuelve problemas."
+    },
+    "proactiveUpdates": {
+      "title": "Actualizaciones Proactivas",
+      "description": "Sugerimos mejoras y nuevas funciones para hacer crecer tu negocio."
+    }
+  },
+  "scheduleCall": "Programa Tu Primera Llamada",
+  "includedInPlans": "Incluido en todos los planes • Sin costo extra"
+}

@@ -1,0 +1,51 @@
+{
+  "loading": "Cargando...",
+  "error": "Algo salió mal",
+  "retry": "Intentar de nuevo",
+  "close": "Cerrar",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "continue": "Continuar",
+  "back": "Atrás",
+  "next": "Next",
+  "chooseLanguage": "Elegir idioma",
+  "pricesInLocalCurrency": "Precios mostrados en moneda local",
+  "comingSoon": "Próximamente",
+  "authLayout": {
+    "backToHome": "Volver al inicio",
+    "brand": {
+      "name": "SheenApps",
+      "tagline": "Crea sitios web multilingües impresionantes con el poder de la IA. No se requiere programación."
+    },
+    "features": {
+      "aiPowered": {
+        "title": "Potenciado por IA",
+        "description": "Genera sitios web hermosos en minutos con IA avanzada"
+      },
+      "globalReady": {
+        "title": "Listo para el mundo",
+        "description": "Internacionalización integrada para más de 7 idiomas"
+      },
+      "enterpriseSecurity": {
+        "title": "Seguridad empresarial",
+        "description": "Seguridad de nivel bancario con cifrado de extremo a extremo"
+      },
+      "lightningFast": {
+        "title": "Ultra rápido",
+        "description": "Optimizado para velocidad con edge computing"
+      }
+    },
+    "socialProof": {
+      "trustedBy": "Confiado por creadores de todo el mundo",
+      "creatorsCount": "2,000+",
+      "creatorsLabel": "creadores",
+      "joinCreators": "Únete a más de 2,000 creadores construyendo con IA"
+    },
+    "mobileFeatures": {
+      "aiPowered": "Potenciado por IA",
+      "secure": "Seguro",
+      "fast": "Rápido"
+    }
+  },
+  "advisorDashboard": "Advisor Dashboard"
+}

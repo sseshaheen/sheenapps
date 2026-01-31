@@ -1,0 +1,30 @@
+{
+  "title": "[Ḗṽḗřẏŧħḯƞɠ Ẏȯŭ Ƞḗḗḓ ŧȯ Şŭƈƈḗḗḓ]",
+  "subtitle": "[Ẇḗ'řḗ ƞȯŧ ĵŭşŧ ȧƞȯŧħḗř ȦḮ ƀŭḯŀḓḗř. Ẇḗ'řḗ ẏȯŭř ƥḗřḿȧƞḗƞŧ ŧḗƈħ ḓḗƥȧřŧḿḗƞŧ.]",
+  "list": [
+    {
+      "title": "Instant Generation",
+      "description": "Describe your idea, watch it build in real-time with AI + human expertise"
+    },
+    {
+      "title": "Your Tech Team",
+      "description": "Dedicated advisors who know your business and grow with you"
+    },
+    {
+      "title": "Full Ownership",
+      "description": "Export your code and data anytime. No vendor lock-in, ever"
+    },
+    {
+      "title": "Multi-Language",
+      "description": "Arabic (Multiple dialects), French, English - we speak your language"
+    },
+    {
+      "title": "Always Supported",
+      "description": "Real humans + AI supporting you 24/7, not just a chatbot"
+    },
+    {
+      "title": "Continuous Development",
+      "description": "Request features in the morning, get them live by afternoon"
+    }
+  ]
+}

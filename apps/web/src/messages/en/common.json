@@ -1,0 +1,51 @@
+{
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "retry": "Try again",
+  "close": "Close",
+  "save": "Save",
+  "cancel": "Cancel",
+  "continue": "Continue",
+  "back": "Back",
+  "next": "Next",
+  "advisorDashboard": "Advisor Dashboard",
+  "chooseLanguage": "Choose your language",
+  "pricesInLocalCurrency": "Prices shown in local currency",
+  "comingSoon": "Coming Soon",
+  "authLayout": {
+    "backToHome": "Back to home",
+    "brand": {
+      "name": "SheenApps",
+      "tagline": "Build stunning, multilingual websites with the power of AI. No coding required."
+    },
+    "features": {
+      "aiPowered": {
+        "title": "AI-Powered",
+        "description": "Generate beautiful websites in minutes with advanced AI"
+      },
+      "globalReady": {
+        "title": "Global Ready", 
+        "description": "Built-in internationalization for 7+ languages"
+      },
+      "enterpriseSecurity": {
+        "title": "Enterprise Security",
+        "description": "Bank-grade security with end-to-end encryption"
+      },
+      "lightningFast": {
+        "title": "Lightning Fast",
+        "description": "Optimized for speed with edge computing"
+      }
+    },
+    "socialProof": {
+      "trustedBy": "Trusted by creators worldwide",
+      "creatorsCount": "2,000+",
+      "creatorsLabel": "creators",
+      "joinCreators": "Join 2,000+ creators building with AI"
+    },
+    "mobileFeatures": {
+      "aiPowered": "AI-Powered",
+      "secure": "Secure", 
+      "fast": "Fast"
+    }
+  }
+}

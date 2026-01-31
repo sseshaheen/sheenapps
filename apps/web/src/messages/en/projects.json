@@ -1,0 +1,13 @@
+{
+  "rename": "Rename",
+  "duplicate": "Duplicate",
+  "archive": "Archive",
+  "restore": "Restore",
+  "publish": "Publish",
+  "unpublish": "Unpublish",
+  "openBuilder": "Open Builder",
+  "projectRenamed": "Project renamed successfully",
+  "projectDuplicated": "Project duplicated successfully",
+  "projectArchived": "Project archived successfully",
+  "projectRestored": "Project restored successfully"
+}

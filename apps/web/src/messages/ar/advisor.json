@@ -1,0 +1,982 @@
+{
+  "landing": {
+    "hero": {
+      "title": "اخرج من المأزق في 15 دقيقة",
+      "subtitle": "اكسب من خلال إرشاد البناة بخبرتك",
+      "cta": "كن استشاري",
+      "badge": "انضم إلى شبكة المستشارين الخبراء لدينا"
+    },
+    "howItWorks": {
+      "title": "كيف يعمل",
+      "steps": [
+        "تقدم بخبرتك",
+        "احصل على موافقة فريقنا",
+        "قم بحصص استشارية مدفوعة الأجر"
+      ]
+    },
+    "earnings": {
+      "title": "اكسب 70% من كل جلسة",
+      "rates": "6.30$ / 13.30$ / 24.50$",
+      "description": "تكسب 70% من كل جلسة",
+      "sessionTypes": {
+        "quick": "أسئلة سريعة",
+        "review": "مراجعة الكود",
+        "deep": "استشارة متعمقة"
+      }
+    },
+    "trust": {
+      "payments": "مدفوعات Stripe آمنة",
+      "calendar": "تكامل التقويم",
+      "policy": "جميع المدفوعات تتم عبر SheenApps؛ لا توجد مدفوعات مباشرة",
+      "paymentsDescription": "مدفوعات آمنة معالجة عبر Stripe مع دفعات أسبوعية",
+      "calendarDescription": "حجز سلس من خلال تكامل Cal.com",
+      "policyTitle": "سياسة المنصة"
+    },
+    "cta": {
+      "title": "مستعد لبدء الكسب؟",
+      "description": "انضم إلى شبكة المستشارين الخبراء واساعد البناة على النجاح بينما تكسب أموالاً رائعة",
+      "quickApplication": "عملية تقديم سريعة"
+    },
+    "dashboard": {
+      "buttonText": "لوحة تحكم المستشار"
+    },
+    "auth": {
+      "signInRequired": "ستحتاج إلى تسجيل الدخول أو إنشاء حساب للتقديم"
+    }
+  },
+  "client": {
+    "hero": {
+      "title": "احصل على المساعدة في 15-60 دقيقة من المهندسين المخضرمين",
+      "subtitle": "قرارات الهندسة المعمارية ومراجعة الكود وإصلاح الأخطاء - يتم حلها في جلسات مركزة",
+      "badge": "مساعدة خبراء هندسة البرمجيات",
+      "trustBar": "مهندسون أكفاء • مدفوعات آمنة عبر Stripe • تقييم 4.8/5",
+      "findExpert": "ابحث عن خبير الآن",
+      "describeChalenge": "صف تحديك",
+      "pricing": "15 دقيقة $9 · 30 دقيقة $19 · 60 دقيقة $35 — يتم الدفع بأمان عبر SheenApps"
+    },
+    "problems": {
+      "title": "مألوف؟",
+      "scenarios": [
+        "عالق في قرار معمارية معقد لأيام؟",
+        "تراكم مراجعة الكود يعطل فريقك بالكامل؟",
+        "تحتاج شخصًا ليتحقق من منطقية نهجك؟",
+        "الموعد النهائي يقترب لكن غير متأكد إن كنت على المسار الصحيح؟"
+      ]
+    },
+    "solutions": {
+      "title": "هكذا يساعدك خبراؤنا",
+      "services": [
+        {
+          "title": "مراجعات المعمارية",
+          "description": "احصل على تصميم نظامك مُصدق عليه من مهندسين بنوا على نطاق واسع",
+          "example": "سارة وفرت 3 أسابيع بعد اكتشاف مشكلة قابلية التوسع مبكرًا"
+        },
+        {
+          "title": "مراجعات الكود",
+          "description": "مراجعات كود احترافية تعلمك الأنماط، ليس فقط الإصلاحات",
+          "example": "قللت الديون التقنية بنسبة 40% في جلسة واحدة"
+        },
+        {
+          "title": "جلسات تصحيح الأخطاء",
+          "description": "اقترن مع خبراء يمكنهم رؤية مشاكل فاتتك",
+          "example": "أصلح تسرب ذاكرة كان يكلف $2K/شهريًا في تكاليف الخادم"
+        },
+        {
+          "title": "إرشاد تقني",
+          "description": "اختر الأدوات والإطارات المناسبة لمشروعك",
+          "example": "تجنب 6 أشهر من إعادة البناء بالاختيار التقني الصحيح"
+        }
+      ]
+    },
+    "advisorShowcase": {
+      "title": "قابل مستشاريك المحتملين",
+      "subtitle": "ملفات مستشارين مميزة",
+      "error": "غير قادر على تحميل المستشارين في الوقت الحالي.",
+      "browseAll": "تصفح جميع المستشارين",
+      "noAdvisors": "لا يوجد مستشارون متاحون في الوقت الحالي.",
+      "checkBack": "نحن نعمل على جلب أفضل الخبراء لك. تحقق مرة أخرى قريباً!"
+    },
+    "process": {
+      "title": "كيف يعمل",
+      "steps": [
+        {
+          "title": "صف تحديك",
+          "description": "نموذج مطابقة ذكي"
+        },
+        {
+          "title": "اربط مع الخبراء",
+          "description": "توصيات مدعومة بالذكاء الاصطناعي"
+        },
+        {
+          "title": "احجز جلستك",
+          "description": "تكامل التقويم"
+        },
+        {
+          "title": "تخلص من العقبات بسرعة",
+          "description": "مشاركة الشاشة، مراجعة الكود، أو تعاون في مساحة العمل"
+        },
+        {
+          "title": "موارد المتابعة",
+          "description": "ملاحظات الجلسة، التوصيات"
+        }
+      ]
+    },
+    "trust": {
+      "title": "لماذا يثق البناؤون في مستشارينا المحترفين",
+      "points": [
+        {
+          "title": "خبراء مُحققون",
+          "description": "جميع المستشارين يجتازون مقابلات تقنية"
+        },
+        {
+          "title": "مدفوعات آمنة",
+          "description": "مدعوم من Stripe مع ضمان استرداد الأموال"
+        },
+        {
+          "title": "دعم 24/7",
+          "description": "دعم بشري لأي مشاكل"
+        },
+        {
+          "title": "ضمان الجودة",
+          "description": "غير راضي؟ الجلسة الأولى مجانية"
+        },
+        {
+          "title": "سجل حافل",
+          "description": "95% من الجلسات مُقيمة بـ 5 نجوم"
+        }
+      ]
+    },
+    "faq": {
+      "title": "الأسئلة المطروحة بكثرة",
+      "items": [
+        {
+          "question": "ماذا إن لم أستطع شرح مشكلتي بوضوح؟",
+          "answer": "مستشارونا ماهرون في فهم التحديات التقنية. سيطرحون الأسئلة الصحيحة لمساعدة في توضيح موقفك وتقديم إرشاد مركز."
+        },
+        {
+          "question": "كيف أعلم أن المستشار مؤهل؟",
+          "answer": "جميع مستشارينا يجتازون مقابلات تقنية ولديهم خبرة صناعية مثبتة. يمكنك رؤية خلفياتهم وتخصصاتهم ومراجعاتهم قبل الحجز."
+        },
+        {
+          "question": "ماذا إن لم ننته في الوقت المحدد؟",
+          "answer": "يمكن تمديد الجلسات إذا وافق الطرفان، أو يمكنك حجز جلسة متابعة. نحن مرنون لضمان حصولك على المساعدة التي تحتاجها."
+        },
+        {
+          "question": "هل يمكنني الحصول على استرداد إن لم أكن راضيًا؟",
+          "answer": "نعم، نقدم ضمان الرضا. إن لم تكن سعيدًا بجلستك، اتصل بفريق الدعم خلال 24 ساعة للحصول على استرداد كامل."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "مستعد للتوقف عن كونك عالقًا؟",
+      "subtitle": "انضم إلى أكثر من 5000 مطور يتخلصون من العقبات أسرع",
+      "guarantee": "جرب جلستك الأولى بدون مخاطر"
+    },
+    "recruitment": {
+      "text": "هل أنت مهندس كبير يحب مساعدة المطورين الآخرين؟",
+      "cta": "انضم إلى شبكة مستشارينا"
+    },
+    "quickMatcher": {
+      "title": "ابحث عن مستشارك المثالي",
+      "challengeSelection": {
+        "title": "ما هو تحديك الرئيسي؟",
+        "subtitle": "اختر الفئة التي تصف أفضل ما تواجهه من صعوبات",
+        "challenges": {
+          "architecture": {
+            "title": "قرار معمارية النظام",
+            "description": "تحتاج إرشاد في تصميم أنظمة قابلة للتوسع، اختيار أنماط المعمارية المناسبة، أو إعادة تنظيم الكود الموجود"
+          },
+          "performance": {
+            "title": "مشاكل الأداء",
+            "description": "التطبيق بطيء، تسرب في الذاكرة، استفسارات قاعدة البيانات تستغرق وقتًا طويلاً، أو تحتاج إرشاد في التحسين"
+          },
+          "debugging": {
+            "title": "تحقيق خطأ معقد",
+            "description": "عالق في خطأ صعب، مشاكل متقطعة، أو تحتاج مساعدة في استراتيجيات وأدوات تصحيح الأخطاء"
+          },
+          "code-review": {
+            "title": "مراجعة الكود والممارسات الأفضل",
+            "description": "تريد تعليقات خبراء على جودة الكود، أنماط التصميم، الأمان، أو ممارسات تطوير الفريق"
+          },
+          "technology": {
+            "title": "اختيار التقنية",
+            "description": "الاختيار بين الإطارات، قواعد البيانات، مقدمي السحابة، أو قرارات تقنية أخرى في مجموعة التقنيات"
+          },
+          "career": {
+            "title": "المسيرة المهنية والنمو التقني",
+            "description": "إرشاد في تطوير المسيرة المهنية، تطوير المهارات، القيادة التقنية، أو أفضل ممارسات الصناعة"
+          }
+        },
+        "urgentBadge": "عاجل"
+      },
+      "challengeDetails": {
+        "backButton": "رجوع",
+        "subtitle": "أخبرنا المزيد عن وضعك المحدد",
+        "descriptionLabel": "صف تحديك (اختياري)",
+        "descriptionPlaceholder": "مثال: أقوم ببناء تطبيق React مع 100 ألف مستخدم ولوحة التحكم تحمّل ببطء. جربت التحسينات الأساسية لكن أحتاج إرشاد خبراء في تقنيات الأداء المتقدمة...",
+        "descriptionHelp": "اختياري: المزيد من التفاصيل يساعدنا في إيجاد مطابقات أفضل، لكن يمكنك أيضًا مناقشة هذا مباشرة مع المستشارين",
+        "timelineLabel": "متى تحتاج المساعدة؟",
+        "timelineOptions": {
+          "urgent": {
+            "label": "في أسرع وقت",
+            "description": "اليوم/غدًا"
+          },
+          "week": {
+            "label": "هذا الأسبوع",
+            "description": "خلال 7 أيام"
+          },
+          "month": {
+            "label": "هذا الشهر",
+            "description": "خلال 30 يومًا"
+          }
+        },
+        "recommendedSkills": "مهارات المستشار المطلوبة:",
+        "findMatchesButton": "ابحث عن مستشارين مطابقين"
+      },
+      "matches": {
+        "loading": {
+          "title": "نبحث عن مطابقاتك المثالية...",
+          "subtitle": "نحلل مهارات المستشارين والتوفر"
+        },
+        "backButton": "رجوع",
+        "resultsTitle": "{count} مستشار يطابق تحديك",
+        "resultsSubtitle": "خبراء في {challenge}",
+        "noMatches": {
+          "title": "لم نجد مطابقات",
+          "subtitle": "جرب اختيار نوع تحدي مختلف أو تصفح جميع المستشارين",
+          "browseButton": "تصفح جميع المستشارين"
+        },
+        "advisorCard": {
+          "availableNow": "متاح الآن",
+          "notAccepting": "لا يقبل حجوزات",
+          "yearsExperience": "{years}+ سنوات",
+          "bookButton": "احجز جلسة",
+          "moreSkills": "+{count} المزيد"
+        },
+        "seeAllButton": "عرض جميع المستشارين"
+      }
+    }
+  },
+  "cards": {
+    "rating": "تقييم",
+    "reviews": "مراجعات",
+    "review": "مراجعة",
+    "bookNow": "احجز الآن",
+    "viewProfile": "عرض الملف الشخصي",
+    "available": "متاح",
+    "busy": "مشغول"
+  },
+  "advisors": {
+    "title": "الاستشاريون الخبراء",
+    "navTitle": "المستشارون",
+    "subtitle": "احصل على إرشاد شخصي من مهندسي برمجيات ذوي خبرة",
+    "meta": {
+      "title": "الاستشاريون الخبراء - SheenApps",
+      "description": "تواصل مع مهندسي برمجيات ذوي خبرة للحصول على إرشاد وحصص استشارية بمساعدة الذكاء الاصطناعي."
+    },
+    "search": {
+      "placeholder": "ابحث عن الاستشاريين بالاسم أو المهارات أو التخصص...",
+      "filters": {
+        "skills": "المهارات",
+        "specialties": "التخصصات",
+        "languages": "اللغات",
+        "rating": "أقل تقييم",
+        "availability": "متاح الآن",
+        "allSpecialties": "جميع التخصصات",
+        "anyExperience": "أي خبرة",
+        "specialtyOptions": {
+          "web-development": "تطوير الويب",
+          "mobile-development": "تطوير الجوال",
+          "backend-development": "تطوير الخادم",
+          "devops": "DevOps",
+          "data-science": "علوم البيانات",
+          "ui-ux": "تصميم واجهة المستخدم"
+        },
+        "experienceOptions": {
+          "1": "سنة أو أكثر",
+          "3": "3 سنوات أو أكثر",
+          "5": "5 سنوات أو أكثر",
+          "10": "10 سنوات أو أكثر"
+        }
+      }
+    },
+    "cards": {
+      "rating": "تقييم",
+      "reviews": "مراجعات",
+      "review": "مراجعة",
+      "bookNow": "احجز استشارة",
+      "viewProfile": "عرض الملف الشخصي",
+      "available": "متاح",
+      "busy": "مشغول"
+    },
+    "empty": {
+      "title": "لم يتم العثور على استشاريين",
+      "description": "حاول تعديل مرشحات البحث للعثور على المزيد من الاستشاريين"
+    }
+  },
+  "profile": {
+    "title": "تحرير الملف الشخصي",
+    "subtitle": "تحديث ملفك الشخصي كاستشاري وتفضيلاتك",
+    "about": "نبذة",
+    "skills": "المهارات والتقنيات",
+    "specialties": "مجالات الخبرة",
+    "languages": "اللغات",
+    "experience": "الخبرة",
+    "reviews": "المراجعات والتقييمات",
+    "portfolio": "المعرض",
+    "availability": "التوفر",
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "displayName": "الاسم المعروض",
+      "displayNamePlaceholder": "اسمك المهني",
+      "bio": "السيرة المهنية",
+      "bioPlaceholder": "أخبر العملاء عن خبرتك ومجال خبرتك...",
+      "avatar": "صورة الملف الشخصي",
+      "location": "الموقع",
+      "languages": "اللغات"
+    },
+    "expertise": {
+      "title": "الخبرة والمهارات",
+      "skills": "المهارات التقنية",
+      "skillsPlaceholder": "أضف مهاراتك التقنية...",
+      "specialties": "التخصصات",
+      "specialtiesPlaceholder": "ما هي مجالات خبرتك؟",
+      "experience": "سنوات الخبرة",
+      "experienceHelp": "خبرة تطوير البرمجيات المهنية"
+    },
+    "pricing": {
+      "title": "التسعير والتوفر",
+      "hourlyRate": "الأجر بالساعة",
+      "hourlyRateHelp": "أجرك للاستشارة بالدولار الأمريكي",
+      "availability": "التوفر",
+      "availabilityHelp": "متى تكون متاحاً عادة للاستشارات؟",
+      "timezone": "المنطقة الزمنية"
+    },
+    "integrations": {
+      "title": "التكاملات",
+      "calcom": "تكامل Cal.com",
+      "calcomUrl": "رابط Cal.com",
+      "calcomPlaceholder": "https://cal.com/your-username/consultation",
+      "calcomHelp": "سيستخدم العملاء هذا الرابط لحجز الاستشارات",
+      "stripe": "حساب Stripe",
+      "stripeStatus": "حالة الدفع",
+      "connectStripe": "ربط حساب Stripe",
+      "stripeConnected": "مُتصل"
+    },
+    "actions": {
+      "save": "حفظ التغييرات",
+      "saving": "جارٍ الحفظ...",
+      "cancel": "إلغاء",
+      "preview": "معاينة الملف العام"
+    }
+  },
+  "dashboard": {
+    "title": "لوحة تحكم الاستشاري",
+    "welcome": "مرحباً بك مرة أخرى",
+    "earnings": {
+      "title": "الأرباح",
+      "thisMonth": "هذا الشهر",
+      "lastMonth": "الشهر الماضي",
+      "lifetime": "الإجمالي",
+      "pendingPayout": "دفعة معلقة",
+      "nextPayout": "الدفعة التالية",
+      "consultations": "الاستشارات"
+    },
+    "availability": {
+      "title": "حالة التوفر",
+      "schedule": "الجدول الأسبوعي",
+      "timezone": "المنطقة الزمنية",
+      "blackoutDates": "التواريخ المحجوبة",
+      "preferences": "تفضيلات الحجز",
+      "calendarSync": "مزامنة التقويم",
+      "days": {
+        "monday": "الاثنين",
+        "tuesday": "الثلاثاء",
+        "wednesday": "الأربعاء",
+        "thursday": "الخميس",
+        "friday": "الجمعة",
+        "saturday": "السبت",
+        "sunday": "الأحد"
+      },
+      "fields": {
+        "minNoticeHours": "الحد الأدنى للإشعار (ساعات)",
+        "maxAdvanceDays": "الحد الأقصى للحجز المسبق (أيام)",
+        "bufferMinutes": "الفاصل بين الاستشارات (دقائق)",
+        "addTimeSlot": "إضافة فترة زمنية",
+        "removeTimeSlot": "إزالة",
+        "startTime": "وقت البدء",
+        "endTime": "وقت الانتهاء",
+        "addBlackoutDate": "إضافة تاريخ تعطيل",
+        "selectTimezone": "اختر المنطقة الزمنية"
+      },
+      "sync": {
+        "lastSynced": "آخر مزامنة",
+        "status": "الحالة",
+        "success": "نجح",
+        "failed": "فشل",
+        "pending": "قيد الانتظار",
+        "syncNow": "مزامنة الآن"
+      },
+      "validation": {
+        "invalidTime": "تنسيق الوقت غير صالح",
+        "overlappingSlots": "الفترات الزمنية لا يمكن أن تتداخل",
+        "startAfterEnd": "وقت البدء يجب أن يكون قبل وقت الانتهاء"
+      },
+      "accepting": "يقبل الحجوزات",
+      "paused": "متوقف",
+      "toggle": "تبديل التوفر"
+    },
+    "onboarding": {
+      "title": "أكمل إعدادك",
+      "stripe": "ربط Stripe للمدفوعات",
+      "calcom": "ربط Cal.com للجدولة",
+      "profile": "أكمل ملفك الشخصي"
+    },
+    "consultations": {
+      "title": "الاستشارات القادمة",
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "all": "All",
+      "empty": "لا توجد استشارات قادمة",
+      "viewAll": "عرض جميع الاستشارات",
+      "client": "Client",
+      "duration": "Duration",
+      "status": "Status",
+      "scheduled": "Scheduled",
+      "free": "مجاني",
+      "paid": "مدفوع",
+      "viewDetails": "View Details",
+      "notes": "Notes",
+      "addNotes": "Add Notes",
+      "loadMore": "Load More"
+    },
+    "navigation": {
+      "dashboard": "لوحة التحكم",
+      "profile": "الملف الشخصي",
+      "consultations": "الاستشارات",
+      "availability": "التوفر",
+      "earnings": "الأرباح",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "more": "المزيد",
+      "overview": "Overview"
+    },
+    "layout": {
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "viewPublicProfile": "عرض الملف الشخصي العام",
+      "quickStats": "إحصائيات سريعة",
+      "status": "الحالة",
+      "rating": "التقييم",
+      "reviews": "المراجعات",
+      "available": "متاح",
+      "unavailable": "غير متاح"
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "overview": "نظرة عامة على الأداء",
+      "consultations": "الاستشارات",
+      "earnings": "الأرباح",
+      "performance": "الأداء",
+      "trends": "الاتجاهات",
+      "period": {
+        "30d": "آخر 30 يوماً",
+        "90d": "آخر 90 يوماً",
+        "1y": "آخر سنة"
+      },
+      "metrics": {
+        "totalConsultations": "إجمالي الاستشارات",
+        "totalEarnings": "إجمالي الأرباح",
+        "averageRating": "متوسط التقييم",
+        "profileViews": "مشاهدات الملف",
+        "conversionRate": "معدل التحويل",
+        "freeConsultations": "استشارات مجانية",
+        "paidConsultations": "استشارات مدفوعة",
+        "consultationGrowth": "نمو الاستشارات",
+        "earningsGrowth": "نمو الأرباح"
+      },
+      "charts": {
+        "consultationsByDuration": "الاستشارات حسب المدة",
+        "consultationsByType": "الاستشارات حسب النوع",
+        "earningsOverTime": "الأرباح عبر الوقت",
+        "ratingsTrend": "اتجاه التقييمات"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "pricing": "Pricing Settings",
+      "consultations": "Consultation Settings",
+      "pricingModel": {
+        "title": "Pricing Model",
+        "description": "Choose how you want to price your consultations",
+        "platformFixed": {
+          "title": "Platform Fixed",
+          "description": "Use platform-set prices for all consultations"
+        },
+        "freeOnly": {
+          "title": "Free Only",
+          "description": "Offer only free consultations"
+        },
+        "hybrid": {
+          "title": "Hybrid",
+          "description": "Mix of free and paid consultations"
+        }
+      },
+      "freeConsultations": {
+        "title": "Free Consultation Durations",
+        "description": "Select which consultation durations you want to offer for free",
+        "duration15": "15 minutes",
+        "duration30": "30 minutes",
+        "duration60": "60 minutes",
+        "note": "Free consultations help build trust and can lead to paid sessions"
+      }
+    }
+  },
+  "application": {
+    "title": "التقدم لتصبح استشاري",
+    "subtitle": "شارك خبرتك وساعد الآخرين في بناء مشاريع مذهلة",
+    "steps": {
+      "personal": {
+        "title": "المعلومات الشخصية",
+        "description": "أخبرنا عن نفسك وخلفيتك المهنية",
+        "fields": {
+          "displayName": {
+            "label": "الاسم المعروض",
+            "placeholder": "كيف تريد أن يراك العملاء",
+            "help": "هكذا سيرى العملاء اسمك"
+          },
+          "bio": {
+            "label": "السيرة المهنية",
+            "placeholder": "أخبر العملاء عن خلفيتك وخبرتك...",
+            "help": "اوصف خبرتك وتخصصاتك وما يجعلك استشاري ممتاز"
+          },
+          "experience": {
+            "label": "سنوات الخبرة",
+            "help": "كم سنة من خبرة تطوير البرمجيات المهنية لديك؟"
+          },
+          "portfolio": {
+            "label": "رابط المعرض (اختياري)",
+            "placeholder": "https://yourportfolio.com",
+            "help": "رابط لأعمالك أو GitHub أو موقعك المهني"
+          }
+        }
+      },
+      "professional": {
+        "title": "المهارات والخبرة",
+        "description": "ساعد العملاء في العثور عليك من خلال عرض مهاراتك التقنية ومجالات خبرتك",
+        "fields": {
+          "skills": {
+            "label": "المهارات التقنية",
+            "help": "اذكر التقنيات والإطارات التي تتقنها"
+          },
+          "specialties": {
+            "label": "مجالات الخبرة",
+            "help": "في أي أنواع من المشاريع تتخصص؟"
+          },
+          "languages": {
+            "label": "لغات التواصل",
+            "help": "بأي لغات يمكنك التواصل مع العملاء؟",
+            "placeholder": "إضافة لغة..."
+          },
+          "linkedin": {
+            "label": "رابط LinkedIn (اختياري)",
+            "placeholder": "https://linkedin.com/in/yourprofile",
+            "help": "ملف LinkedIn الخاص بك للتحقق المهني"
+          },
+          "github": {
+            "label": "رابط GitHub (اختياري)",
+            "placeholder": "https://github.com/yourusername",
+            "help": "ملف GitHub الخاص بك لعرض أكوادك"
+          }
+        }
+      },
+      "consultation": {
+        "title": "تفضيلات الاستشارة",
+        "description": "حدد توفرك وتفضيلات الاستشارة لمساعدة العملاء في حجز الجلسات",
+        "fields": {
+          "availability": {
+            "label": "الأيام المتاحة",
+            "help": "في أي أيام من الأسبوع أنت متاح للاستشارات؟"
+          },
+          "consultationTypes": {
+            "label": "أنواع الاستشارة",
+            "help": "ما أنواع خدمات الاستشارة التي تقدمها؟"
+          },
+          "timeZones": {
+            "label": "المناطق الزمنية المفضلة",
+            "help": "أي مناطق زمنية تناسبك أكثر؟",
+            "placeholder": "إضافة منطقة زمنية..."
+          },
+          "maxSessions": {
+            "label": "أقصى جلسات أسبوعياً",
+            "help": "كم جلسة استشارية يمكنك التعامل معها أسبوعياً؟",
+            "placeholder": "10"
+          }
+        }
+      }
+    },
+    "navigation": {
+      "next": "الخطوة التالية",
+      "previous": "السابق",
+      "submit": "تقديم الطلب",
+      "saveDraft": "حفظ المسودة",
+      "cancel": "إلغاء"
+    },
+    "progress": {
+      "step": "خطوة",
+      "of": "من",
+      "complete": "مكتمل"
+    },
+    "draft": {
+      "saved": "تم حفظ المسودة",
+      "saving": "جارٍ الحفظ...",
+      "autoSave": "الحفظ التلقائي مفعل"
+    },
+    "auth": {
+      "guestMessage": "يمكنك البدء في ملء النموذج - المصادقة مطلوبة فقط عند التقديم",
+      "authenticatedMessage": "مصادق عليك - يمكنك تقديم طلبك"
+    }
+  },
+  "onboarding": {
+    "title": "أكمل إعداد حسابك كاستشاري",
+    "subtitle": "خطوات قليلة أخرى لبدء الكسب",
+    "progress": "التقدم",
+    "gates": {
+      "stripe": {
+        "title": "ربط حساب Stripe",
+        "description": "إعداد المدفوعات لاستلام أرباح الاستشارات",
+        "connected": "Stripe مربوط",
+        "action": "ربط Stripe",
+        "policy": "جميع المدفوعات تتم معالجتها بأمان عبر SheenApps"
+      },
+      "calcom": {
+        "title": "إعداد تكامل التقويم",
+        "description": "ربط Cal.com لإدارة جدولة الاستشارات",
+        "connected": "التقويم مربوط",
+        "action": "إعداد التقويم",
+        "helpText": "يمكنك تعديل توفرك مباشرة في Cal.com"
+      },
+      "profile": {
+        "title": "أكمل ملفك الشخصي",
+        "description": "أضف سيرتك الذاتية والمهارات وصورة الملف لجذب العملاء",
+        "completed": "الملف مكتمل",
+        "action": "تحرير الملف",
+        "requirements": [
+          "سيرة ذاتية مهنية (100 حرف على الأقل)",
+          "صورة الملف الشخصي",
+          "المهارات والتخصصات",
+          "سنوات الخبرة"
+        ]
+      }
+    },
+    "goLive": {
+      "title": "جاهز للبدء!",
+      "description": "الإعداد مكتمل. ابدأ قبول الاستشارات الآن.",
+      "action": "تفعيل ملف الاستشاري",
+      "loading": "جارٍ التفعيل...",
+      "success": "تهانينا! ملفك الاستشاري أصبح نشطاً الآن."
+    },
+    "status": {
+      "complete": "مكتمل",
+      "pending": "إعداد مطلوب",
+      "inProgress": "قيد التنفيذ"
+    },
+    "loading": {
+      "profile": "جارٍ تحميل ملف الاستشاري..."
+    },
+    "errors": {
+      "profileNotFound": "الملف الشخصي غير موجود",
+      "profileNotFoundDescription": "لم نتمكن من العثور على ملفك الاستشاري. يرجى إكمال طلبك أولاً.",
+      "completeApplication": "إكمال الطلب"
+    },
+    "help": {
+      "title": "تحتاج مساعدة في الإعداد؟",
+      "description": "تواجه مشكلة في أي من خطوات الإعداد؟ فريق الدعم لدينا هنا للمساعدة.",
+      "contactSupport": "تواصل مع الدعم"
+    },
+    "ui": {
+      "requirements": "المتطلبات:",
+      "redirecting": "جارٍ التوجيه إلى لوحة التحكم...",
+      "percentComplete": "% مكتمل",
+      "of": "من",
+      "complete": "مكتمل"
+    }
+  },
+  "consultations": {
+    "title": "الاستشارات",
+    "book": {
+      "title": "حجز استشارة",
+      "selectDuration": "اختر المدة",
+      "selectTime": "اختر الوقت",
+      "pricing": {
+        "15min": "استشارة 15 دقيقة",
+        "30min": "استشارة 30 دقيقة",
+        "60min": "استشارة 60 دقيقة",
+        "clientPays": "تدفع",
+        "advisorEarns": "الاستشاري يكسب (70%)",
+        "descriptions": {
+          "15min": "مثالية للأسئلة السريعة",
+          "30min": "مثالية للمناقشات المركزة",
+          "60min": "مثالية للإرشاد المتعمق"
+        }
+      },
+      "policies": {
+        "title": "سياسات الحجز",
+        "cancellation": "إلغاء مجاني حتى 24 ساعة قبل الاستشارة",
+        "ownership": "أنت تملك جميع الأكواد والأصول المنتجة أثناء الاستشارة",
+        "refund": "المبالغ المسترجعة تلقائية للإلغاءات التي تتم قبل أكثر من 24 ساعة"
+      },
+      "form": {
+        "notes": {
+          "label": "ملاحظات الاستشارة (اختياري)",
+          "placeholder": "ما الذي تريد مناقشته أو الحصول على مساعدة فيه؟",
+          "help": "ساعد استشاريك في التحضير بمشاركة تفاصيل حول مشروعك أو أسئلتك"
+        },
+        "project": {
+          "label": "المشروع المرتبط (اختياري)",
+          "help": "اربط هذه الاستشارة بأحد مشاريعك في SheenApps"
+        }
+      },
+      "payment": {
+        "title": "تفاصيل الدفع",
+        "secure": "دفع آمن بواسطة Stripe",
+        "processing": "معالجة الدفع...",
+        "success": "تم الدفع بنجاح!"
+      },
+      "confirmation": {
+        "title": "تم حجز الاستشارة!",
+        "details": "تفاصيل الاستشارة",
+        "advisor": "الاستشاري",
+        "duration": "المدة",
+        "dateTime": "التاريخ والوقت",
+        "price": "السعر",
+        "videoLink": "رابط الفيديو",
+        "calendar": "إضافة إلى التقويم",
+        "email": "ستستلم رسالة تأكيد بالبريد الإلكتروني تحتوي على جميع التفاصيل"
+      }
+    },
+    "list": {
+      "upcoming": "القادمة",
+      "completed": "المكتملة",
+      "cancelled": "الملغية",
+      "all": "جميع الاستشارات",
+      "empty": {
+        "upcoming": "لا توجد استشارات قادمة",
+        "completed": "لا توجد استشارات مكتملة",
+        "cancelled": "لا توجد استشارات ملغية"
+      }
+    },
+    "card": {
+      "duration": "المدة",
+      "status": {
+        "scheduled": "مجدولة",
+        "in_progress": "جاري",
+        "completed": "مكتملة",
+        "cancelled": "ملغية",
+        "no_show": "لم يحضر"
+      },
+      "actions": {
+        "join": "انضم للمكالمة",
+        "cancel": "إلغاء",
+        "reschedule": "إعادة جدولة",
+        "review": "ترك مراجعة",
+        "viewRecording": "عرض التسجيل"
+      }
+    },
+    "cancel": {
+      "title": "إلغاء الاستشارة",
+      "reason": "سبب الإلغاء",
+      "reasons": {
+        "schedule_conflict": "تعارض في المواعيد",
+        "no_longer_needed": "لم تعد مطلوبة",
+        "technical_issue": "مشكلة تقنية",
+        "other": "أخرى"
+      },
+      "refundInfo": "ألغيت قبل أكثر من 24 ساعة؟ ستحصل على استرداد كامل تلقائياً.",
+      "noRefundInfo": "ألغيت خلال 24 ساعة؟ لن يتم استرداد المبلغ حسب سياستنا.",
+      "confirm": "نعم، ألغ الاستشارة",
+      "success": {
+        "title": "تم إلغاء الاستشارة",
+        "withRefund": "تم إلغاء استشارتك وسيتم معالجة استرداد كامل خلال 3-5 أيام عمل.",
+        "noRefund": "تم إلغاء استشارتك. لن يتم استرداد المبلغ حسب سياسة الـ 24 ساعة."
+      }
+    },
+    "review": {
+      "title": "قيم استشارتك",
+      "rating": {
+        "label": "التقييم العام",
+        "help": "كيف تقيم هذه الاستشارة بشكل عام؟"
+      },
+      "detailed": {
+        "expertise": "الخبرة التقنية",
+        "communication": "التواصل",
+        "helpfulness": "المساعدة"
+      },
+      "comment": {
+        "label": "المراجعة (اختياري)",
+        "placeholder": "شارك تجربتك لمساعدة العملاء الآخرين...",
+        "help": "مراجعتك ستكون عامة وتساعد العملاء الآخرين في اختيار الاستشاريين"
+      },
+      "submit": "إرسال المراجعة",
+      "success": {
+        "title": "تم إرسال المراجعة!",
+        "description": "شكراً لك على ملاحظاتك. مراجعتك تساعد العملاء الآخرين في العثور على استشاريين رائعين."
+      }
+    }
+  },
+  "pricing": {
+    "from": "من",
+    "consultation": "استشارة",
+    "perConsultation": "لكل استشارة",
+    "currency": {
+      "usd": "$",
+      "eur": "€",
+      "gbp": "£",
+      "egp": "EGP",
+      "sar": "SAR",
+      "aed": "AED",
+      "mad": "MAD"
+    }
+  },
+  "admin": {
+    "advisors": {
+      "title": "طلبات الاستشاريين",
+      "subtitle": "مراجعة وإدارة طلبات الاستشاريين",
+      "tabs": {
+        "pending": "قيد المراجعة",
+        "approved": "موافق عليها",
+        "rejected": "مرفوضة",
+        "all": "جميع الطلبات"
+      },
+      "table": {
+        "applicant": "المتقدم",
+        "appliedDate": "تاريخ التقدم",
+        "experience": "الخبرة",
+        "skills": "المهارات",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "approve": "موافقة",
+        "reject": "رفض",
+        "viewProfile": "عرض الملف الشخصي",
+        "addNotes": "إضافة ملاحظات"
+      },
+      "stats": {
+        "total": "إجمالي الطلبات",
+        "pending": "قيد المراجعة",
+        "approved": "موافق عليها",
+        "rejected": "مرفوضة"
+      },
+      "review": {
+        "title": "مراجعة الطلب",
+        "approveConfirm": "الموافقة على طلب الاستشاري هذا؟",
+        "rejectConfirm": "رفض طلب الاستشاري هذا؟",
+        "adminNotes": "ملاحظات الإدارة",
+        "adminNotesPlaceholder": "إضافة ملاحظات حول هذا الطلب..."
+      },
+      "empty": {
+        "title": "لم يتم العثور على طلبات",
+        "description": "لا توجد طلبات استشاريين تطابق المرشح الحالي."
+      },
+      "applications": {
+        "title": "طلبات الاستشاريين",
+        "pending": "قيد المراجعة",
+        "approved": "موافق عليها",
+        "rejected": "مرفوضة",
+        "review": "مراجعة الطلب",
+        "approve": "موافقة",
+        "reject": "رفض",
+        "notes": {
+          "label": "ملاحظات الإدارة",
+          "placeholder": "ملاحظات حول هذا الطلب..."
+        }
+      },
+      "list": {
+        "title": "جميع الاستشاريين",
+        "active": "نشط",
+        "suspended": "موقوف",
+        "actions": {
+          "suspend": "إيقاف",
+          "reactivate": "إعادة تنشيط",
+          "viewProfile": "عرض الملف الشخصي",
+          "editProfile": "تحرير الملف الشخصي"
+        }
+      }
+    },
+    "consultations": {
+      "title": "إدارة الاستشارات",
+      "list": "جميع الاستشارات",
+      "filters": {
+        "status": "الحالة",
+        "advisor": "الاستشاري",
+        "dateRange": "نطاق التاريخ"
+      },
+      "actions": {
+        "refund": "إصدار استرداد",
+        "markNoShow": "تمييز كعدم حضور",
+        "viewDetails": "عرض التفاصيل"
+      }
+    },
+    "finance": {
+      "title": "لوحة التحكم المالية",
+      "revenue": {
+        "title": "إيرادات المنصة",
+        "thisMonth": "هذا الشهر",
+        "lastMonth": "الشهر الماضي",
+        "growth": "النمو"
+      },
+      "payouts": {
+        "title": "مدفوعات الاستشاريين",
+        "pending": "مدفوعات معلقة",
+        "processed": "معالج هذا الشهر",
+        "export": "تصدير CSV للمدفوعات"
+      }
+    }
+  },
+  "labels": {
+    "yearsExperience": "{years, plural, zero {مستشار جديد} one {# سنة خبرة} two {# سنتان خبرة} few {# سنوات خبرة} many {# سنة خبرة} other {# سنة خبرة}}",
+    "reviewCount": "{count, plural, zero {(لا مراجعات)} one {(# مراجعة)} two {(# مراجعتان)} few {(# مراجعات)} many {(# مراجعة)} other {(# مراجعة)}}",
+    "softwareEngineer": "مهندس برمجيات",
+    "expert": "خبير {specialty}",
+    "free": "مجاني",
+    "minutes": "دقيقة"
+  },
+  "availability": {
+    "usually1Day": "عادة خلال يوم واحد",
+    "notAcceptingBookings": "لا يقبل حجوزات",
+    "available": "متاح",
+    "unavailable": "غير متاح"
+  },
+  "placeholders": {
+    "noSpecificReviews": "جاهز للمساعدة في مشاريع {skill}",
+    "loadingReviews": "تحميل المراجعات...",
+    "noReviewsYet": "لا توجد مراجعات حتى الآن.",
+    "reviewSummary": "هذا الاستشاري لديه {count, plural, zero {لا مراجعات} one {# مراجعة} two {# مراجعتان} few {# مراجعات} many {# مراجعة} other {# مراجعة}} بمتوسط تقييم {rating} نجوم."
+  },
+  "errors": {
+    "advisor_not_found": "الاستشاري غير موجود",
+    "consultation_not_found": "الاستشارة غير موجودة",
+    "booking_failed": "فشل في حجز الاستشارة",
+    "payment_failed": "فشل الدفع",
+    "insufficient_credits": "أرصدة غير كافية لحجز الاستشارة",
+    "advisor_unavailable": "الاستشاري لا يقبل حجوزات حالياً",
+    "invalid_duration": "مدة استشارة غير صالحة",
+    "cancellation_too_late": "لا يمكن الإلغاء خلال 24 ساعة من الاستشارة",
+    "generic_error": "حدث خطأ. يرجى المحاولة مرة أخرى."
+  },
+  "success": {
+    "application_submitted": "تم تقديم طلب الاستشاري بنجاح",
+    "profile_updated": "تم تحديث الملف الشخصي بنجاح",
+    "consultation_booked": "تم حجز الاستشارة بنجاح",
+    "consultation_cancelled": "تم إلغاء الاستشارة بنجاح",
+    "review_submitted": "تم إرسال المراجعة بنجاح",
+    "availability_updated": "تم تحديث حالة التوفر"
+  },
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "page": "صفحة",
+    "of": "من",
+    "showing": "عرض {start}-{end} من {total} مستشار"
+  }
+}

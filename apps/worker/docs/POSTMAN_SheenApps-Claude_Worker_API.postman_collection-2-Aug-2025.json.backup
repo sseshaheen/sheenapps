@@ -1,0 +1,2712 @@
+{
+  "info": {
+    "_postman_id": "claude-worker-api-v1",
+    "name": "Claude Worker API",
+    "description": "🔄 v1 API Update (Aug 9, 2025): All endpoints now use /v1/ prefix\\n\\nAPI collection for Claude Worker microservice - generates code with Claude AI, builds and deploys to Cloudflare Pages.\n\n✨ NEW FEATURES v2.4 - Production-Ready Version Management:\n- 📜 **Enhanced Version History API**: Smart action permissions and artifact availability\n- 🔑 **Idempotency Protection**: All mutating operations with 24h cache\n- 🕐 **Clock-skew Diagnostics**: serverTime in auth failures for debugging\n- 🎯 **Artifact Retention Awareness**: Days until expiration, accessibility hints\n- 🔒 **Production Reliability**: Lock lease renewal, timing-safe comparisons\n- ♿ **Accessibility Support**: Specific reasons for disabled actions\n\n✨ EXISTING FEATURES:\n- Project updates with context awareness\n- Real-time progress tracking with polling API\n- Webhook integration with HMAC signatures\n- Build status monitoring and event streaming\n- 📦 Project export & download with secure signed URLs\n- 🔒 AI time billing integration with balance checks\n\n⚡ UPDATE WORKFLOW:\n1. Create a project with 'Create Preview (Modular System)'\n2. Update it with 'Update Project' endpoint\n3. Updates are 30-45s vs 90-120s for rebuilds!\n\n⚠️ IMPORTANT - AUTHENTICATION SETUP:\n\n1. The collection defaults to sharedSecret = 'your-shared-secret'\n2. You MUST override this in Postman:\n   - Click the gear icon → Manage Environments\n   - Create/select an environment OR use Globals\n   - Add: sharedSecret = [your actual secret]\n   - Select that environment in the top-right dropdown\n\n3. Alternative: Edit collection variables directly:\n   - Click collection name → Variables tab\n   - Change sharedSecret from 'your-shared-secret' to your actual secret\n\n4. To verify: Send the 'Debug Signature' request and check:\n   - Postman Console (View → Show Postman Console)\n   - Look for: pm.variables.get(\"sharedSecret\") = [your secret]\n   - Response should show: \"signatureMatch\": true\n\n🚀 PROGRESS TRACKING WORKFLOW:\n1. Start a build with 'Build Preview (New Project)' or 'Rebuild Preview'\n2. Copy the jobId from the response\n3. Use 'Get Build Status (Clean Events)' or 'Get Clean Build Events ⭐ NextJS Team API'\n4. Poll for progress with userId parameter for security\n\n🎯 **NEXTJS TEAM CLEAN EVENTS API:**\n✅ Structured events - no string parsing needed\n✅ Single overall_progress (0.0-1.0) for progress bars\n✅ Boolean finished flag for completion detection\n✅ Security filtered - no sensitive data exposed\n✅ Incremental polling with lastEventId parameter\n🆕 Version information in completion events (versionId & versionName)\n\n📦 EXPORT WORKFLOW:\n1. Use 'Export Latest Project' to get a download URL for the newest version\n2. Use 'Download Specific Version' to get any historical version\n3. Both return secure signed URLs valid for 24 hours\n4. Handle 413 errors for oversized projects (>2GB)\n5. Handle 404 errors with rebuild suggestions for missing artifacts\n\n🔐 AUTHENTICATION:\n\n⚠️ CRITICAL FOR v2 SIGNATURES:\nQuery parameters MUST be alphabetically sorted! The v2 signature includes the full path with sorted query parameters.\n\nExample:\n- Your URL: /v1/projects/123/versions?state=all&limit=10&offset=0\n- v2 signs: /v1/projects/123/versions?limit=10&offset=0&state=all (sorted!)\n\n💡 RECOMMENDATION: Use v1 signature for endpoints with query parameters (simpler, no sorting needed).\n\n\nThe Worker API uses HMAC signatures with the following headers:\n- x-sheen-signature: v1 signature (timestamp + body)\n- x-sheen-sig-v2: v2 signature (METHOD\\nPATH\\nTIMESTAMP\\nNONCE\\nBODY)\n- x-sheen-timestamp: Unix timestamp in seconds\n- x-sheen-nonce: Random string for replay protection\n\n⚠️ IMPORTANT: The secret is used AS-IS (do NOT base64 decode):\nWORKER_SHARED_SECRET=9Q6WWhZP3AlrhpdDwy3tC0bPtZSYAeJMAkdPzXFl9xs=",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "noauth"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "sharedSecret",
+      "value": "9Q6WWhZP3AlrhpdDwy3tC0bPtZSYAeJMAkdPzXFl9xs=",
+      "type": "string",
+      "description": "HMAC shared secret - use AS-IS (do NOT base64 decode). The trailing = is part of the secret."
+    },
+    {
+      "key": "userId",
+      "value": "user123",
+      "type": "string"
+    },
+    {
+      "key": "projectId",
+      "value": "my-app",
+      "type": "string"
+    },
+    {
+      "key": "versionId",
+      "value": "ver_abc123",
+      "type": "string"
+    },
+    {
+      "key": "versionId",
+      "value": "01HX...",
+      "type": "string"
+    },
+    {
+      "key": "cfWebhookSecret",
+      "value": "cloudflare-webhook-secret",
+      "type": "string"
+    },
+    {
+      "key": "buildId",
+      "value": "27",
+      "type": "string",
+      "description": "Build ID for progress tracking (same as jobId from build endpoints)"
+    },
+    {
+      "key": "sessionId",
+      "value": "test-session-123",
+      "type": "string",
+      "description": "Chat plan session ID for resuming conversations"
+    },
+    {
+      "key": "lastEventId",
+      "value": "0",
+      "type": "string",
+      "description": "Last event ID for incremental polling"
+    },
+    {
+      "key": "lastPreviewUrl",
+      "value": "",
+      "type": "string",
+      "description": "Latest preview URL from completed builds (auto-set by test scripts)"
+    },
+    {
+      "key": "testUserId",
+      "value": "",
+      "type": "string",
+      "description": "User ID for test flow (auto-set by Step 1)"
+    },
+    {
+      "key": "testProjectId",
+      "value": "",
+      "type": "string",
+      "description": "Project ID for test flow (auto-set by Step 1)"
+    },
+    {
+      "key": "artifactRetentionDays",
+      "value": "30",
+      "type": "string",
+      "description": "Artifact retention policy in days (default: 30)"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Generate HMAC signatures for authenticated endpoints",
+          "const needsSignature = (",
+          "    pm.request.url.path.join('/').startsWith('v1') ||",
+          "    pm.request.url.path.includes('generate') ||",
+          "    pm.request.url.path.includes('build-preview') ||",
+          "    pm.request.url.path.includes('update-project') ||",
+          "    pm.request.url.path.includes('create-preview') ||",
+          "    pm.request.url.path.includes('chat-plan') ||",
+          "    pm.request.url.path.includes('billing') ||",
+          "    pm.request.url.path.includes('versions') ||",
+          "    pm.request.url.path.includes('projects')",
+          ");",
+          "",
+          "if (needsSignature) {",
+          "    const CryptoJS = require('crypto-js');",
+          "    const secret = pm.variables.get('sharedSecret');",
+          "    ",
+          "    if (!secret || secret === 'your-shared-secret-here') {",
+          "        console.warn('⚠️ WARNING: sharedSecret not configured!');",
+          "        console.warn('Set it in collection variables or environment');",
+          "        return;",
+          "    }",
+          "    ",
+          "    // Generate timestamp and nonce",
+          "    const timestamp = Math.floor(Date.now() / 1000).toString();",
+          "    const nonce = Math.random().toString(36).substring(2, 15);",
+          "    ",
+          "    // Get request details",
+          "    const method = pm.request.method;",
+          "    let path = '/' + pm.request.url.path.join('/');",
+          "    const body = pm.request.body ? pm.request.body.raw : '';",
+          "    ",
+          "    // Handle query parameters",
+          "    let queryParams = [];",
+          "    if (pm.request.url.query && pm.request.url.query.members) {",
+          "        pm.request.url.query.members.forEach(param => {",
+          "            if (!param.disabled && param.value !== undefined) {",
+          "                queryParams.push([param.key, param.value]);",
+          "            }",
+          "        });",
+          "    }",
+          "    ",
+          "    // Generate v1 signature: timestamp + body (ignores path/query)",
+          "    const v1Canonical = timestamp + body;",
+          "    const v1Signature = CryptoJS.HmacSHA256(v1Canonical, secret).toString();",
+          "    ",
+          "    // Generate v2 signature with sorted query params",
+          "    let v2Path = path;",
+          "    if (queryParams.length > 0) {",
+          "        // CRITICAL: Sort query parameters alphabetically for v2!",
+          "        const sortedParams = queryParams.sort(([a], [b]) => a.localeCompare(b));",
+          "        const queryString = sortedParams",
+          "            .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)",
+          "            .join('&');",
+          "        v2Path = path + '?' + queryString;",
+          "        ",
+          "        console.log('🔄 Query Parameter Sorting for v2:');",
+          "        console.log('  Original:', queryParams.map(([k, v]) => `${k}=${v}`).join('&'));",
+          "        console.log('  Sorted:  ', sortedParams.map(([k, v]) => `${k}=${v}`).join('&'));",
+          "    }",
+          "    ",
+          "    // Generate v2 signature: METHOD\\nPATH\\nTIMESTAMP\\nNONCE\\nBODY",
+          "    const v2Canonical = [method, v2Path, timestamp, nonce, body].join('\\n');",
+          "    const v2Signature = CryptoJS.HmacSHA256(v2Canonical, secret).toString();",
+          "    ",
+          "    // Add headers",
+          "    pm.request.headers.add({key: 'x-sheen-signature', value: v1Signature });",
+          "    pm.request.headers.add({key: 'x-sheen-sig-v2', value: v2Signature });",
+          "    pm.request.headers.add({key: 'x-sheen-timestamp', value: timestamp });",
+          "    pm.request.headers.add({key: 'x-sheen-nonce', value: nonce });",
+          "    ",
+          "    // Log for debugging",
+          "    console.log('🔐 HMAC Signatures Generated:');",
+          "    console.log('  Method:', method);",
+          "    console.log('  Path (original):', path + (queryParams.length > 0 ? '?' + queryParams.map(([k, v]) => `${k}=${v}`).join('&') : ''));",
+          "    console.log('  Path (v2 sorted):', v2Path);",
+          "    console.log('  Timestamp:', timestamp);",
+          "    console.log('  Nonce:', nonce);",
+          "    console.log('  v1 Canonical:', v1Canonical.substring(0, 50) + '...');",
+          "    console.log('  v1 Signature:', v1Signature);",
+          "    console.log('  v2 Canonical:', v2Canonical.substring(0, 100) + '...');",
+          "    console.log('  v2 Signature:', v2Signature);",
+          "    ",
+          "    if (queryParams.length > 0) {",
+          "        console.log('');",
+          "        console.log('⚠️  NOTE: v2 signatures require alphabetically sorted query params!');",
+          "        console.log('💡 TIP: Use v1 signature for simpler implementation (ignores query params)');",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Monitoring",
+      "item": [
+        {
+          "name": "Main Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/myhealthz",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "myhealthz"
+              ]
+            },
+            "description": "Check the overall health of the service"
+          }
+        },
+        {
+          "name": "Claude Executor Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/claude-executor/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "claude-executor",
+                "health"
+              ]
+            },
+            "description": "Check Claude executor health and metrics"
+          }
+        },
+        {
+          "name": "Debug Signature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test\":\"hello\",\"userId\":\"{{userId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/debug-signature",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "debug-signature"
+              ]
+            },
+            "description": "Debug endpoint to test signature generation"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core Operations",
+      "item": [
+        {
+          "name": "Generate Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Create a React todo list app with TypeScript\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "generate"
+              ]
+            },
+            "description": "Generate code using Claude AI. Returns streaming JSON response."
+          }
+        },
+        {
+          "name": "Build Preview (New Project)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Create a React todo list app\",\"framework\":\"react\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/build-preview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "build-preview"
+              ]
+            },
+            "description": "Initial build for a new project - triggers build and deployment to Cloudflare Pages"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 🧪 Smart Test Script for Build Progress Tracking",
+                  "",
+                  "pm.test(\"Build started successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    pm.expect(response.jobId).to.exist;",
+                  "    ",
+                  "    // Auto-set buildId for progress tracking",
+                  "    pm.collectionVariables.set(\"buildId\", response.jobId);",
+                  "    ",
+                  "    console.log(\"🚀 BUILD STARTED SUCCESSFULLY!\");",
+                  "    console.log(\"📊 Response:\", JSON.stringify(response, null, 2));",
+                  "    console.log(\"✅ jobId extracted:\", response.jobId);",
+                  "    console.log(\"🔧 buildId variable set automatically:\", response.jobId);",
+                  "    console.log(\"\");",
+                  "    console.log(\"📋 NEXT STEPS:\");",
+                  "    console.log(\"1. Use 'Get Build Status' to monitor progress\");",
+                  "    console.log(\"2. Use 'Get Clean Build Events ⭐ NextJS Team API' to see detailed events\");",
+                  "    console.log(\"3. Watch for status: planning → executing → deploying → completed\");",
+                  "    console.log(\"4. Final build will have previewUrl in the response\");",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏰ Expected completion time: 60-120 seconds\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('jobId');",
+                  "    pm.expect(response).to.have.property('status');",
+                  "    pm.expect(response).to.have.property('versionId');",
+                  "    pm.expect(response.status).to.equal('queued');",
+                  "});",
+                  "",
+                  "// Set up automatic progress checking reminder",
+                  "setTimeout(() => {",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏰ REMINDER: Check build progress now!\");",
+                  "    console.log(\"   → Send 'Get Build Status' request\");",
+                  "    console.log(\"   → buildId is already set to:\", pm.collectionVariables.get('buildId'));",
+                  "}, 5000);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create Preview (Modular System) ⭐ NEW",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"prompt\":\"Create a simple React app with a header component that says Hello World and a button that increments a counter\",\"framework\":\"react\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/create-preview-for-new-project",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "create-preview-for-new-project"
+              ]
+            },
+            "description": "🎯 ENHANCED: Creates a project with SERVER-SIDE ID GENERATION for improved security. No need to provide projectId - the server generates a secure UUID and returns it. Uses the modular task system with atomic project creation (project + version + build metrics in single transaction). Prevents race conditions with advisory database locking."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 🧪 Test Script for Modular Create Preview",
+                  "",
+                  "pm.test(\"Preview creation started successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    ",
+                  "    console.log(\"🚀 MODULAR PREVIEW CREATION STARTED!\");",
+                  "    console.log(\"📊 Response:\", JSON.stringify(response, null, 2));",
+                  "    ",
+                  "    if (response.status === 'completed') {",
+                  "        console.log(\"✅ Direct mode - Build completed immediately!\");",
+                  "        console.log(\"📋 Plan ID:\", response.planId);",
+                  "        console.log(\"📁 Files created:\", response.files?.length || 0);",
+                  "        console.log(\"⏱️ Duration:\", response.duration + 'ms');",
+                  "        ",
+                  "        if (response.deploymentUrl) {",
+                  "            pm.collectionVariables.set(\"lastPreviewUrl\", response.deploymentUrl);",
+                  "            console.log(\"🌐 Preview URL:\", response.deploymentUrl);",
+                  "        }",
+                  "    } else if (response.status === 'queued') {",
+                  "        console.log(\"📥 Queued mode - Job submitted\");",
+                  "        console.log(\"🆔 Job ID:\", response.jobId);",
+                  "        console.log(\"📋 Plan ID:\", response.planId);",
+                  "        pm.collectionVariables.set(\"buildId\", response.jobId);",
+                  "    }",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('success');",
+                  "    pm.expect(response).to.have.property('status');",
+                  "    ",
+                  "    if (response.status === 'completed') {",
+                  "        pm.expect(response).to.have.property('planId');",
+                  "        pm.expect(response).to.have.property('taskCount');",
+                  "        pm.expect(response).to.have.property('files');",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Project ⭐ FAST",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Add a reset button that sets the counter back to 0\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update-project",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update-project"
+              ]
+            },
+            "description": "NEW: Fast project updates (30-45s) using context-aware Claude. Automatically finds latest version, skips unchanged dependencies, and preserves existing functionality. Perfect for iterative development!"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 🚀 Fast Update Test Script",
+                  "",
+                  "pm.test(\"Update queued successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    pm.expect(response.buildId).to.exist;",
+                  "    ",
+                  "    console.log(\"⚡ FAST UPDATE STARTED!\");",
+                  "    console.log(\"📊 Response:\", JSON.stringify(response, null, 2));",
+                  "    console.log(\"🆔 Build ID:\", response.buildId);",
+                  "    console.log(\"📌 Base Version:\", response.baseVersionId);",
+                  "    console.log(\"⏱️  Estimated Time:\", response.estimatedTime);",
+                  "    ",
+                  "    // Auto-set buildId for progress tracking",
+                  "    pm.collectionVariables.set(\"buildId\", response.buildId);",
+                  "    ",
+                  "    console.log(\"\");",
+                  "    console.log(\"💡 BENEFITS OF UPDATE vs REBUILD:\");",
+                  "    console.log(\"   - Skips dependency install if unchanged\");",
+                  "    console.log(\"   - Claude reads project metadata\");",
+                  "    console.log(\"   - Preserves existing functionality\");",
+                  "    console.log(\"   - 30-45s vs 90-120s!\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Project Recommendations ⭐ NEW",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}/recommendations?userId={{userId}}&versionId={{versionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "{{projectId}}",
+                "recommendations"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}",
+                  "description": "Optional - helps validate project ownership"
+                },
+                {
+                  "key": "versionId",
+                  "value": "{{versionId}}",
+                  "description": "Optional - get recommendations for specific version (defaults to latest)"
+                }
+              ]
+            },
+            "description": "Get AI-generated recommendations for the next features to add to your project. Each version has its own recommendations based on what was added. Pass versionId to get recommendations for a specific version, or omit to get latest."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Recommendations retrieved\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    ",
+                  "    console.log(\"📋 PROJECT RECOMMENDATIONS\");",
+                  "    console.log(\"=\".repeat(50));",
+                  "    ",
+                  "    if (response.recommendations && response.recommendations.length > 0) {",
+                  "        console.log(`Found ${response.recommendations.length} recommendations:\\n`);",
+                  "        ",
+                  "        response.recommendations.forEach((rec, index) => {",
+                  "            const impactIcon = rec.impact === 'high' ? '🚀' : rec.impact === 'medium' ? '📈' : '➕';",
+                  "            const complexityColor = rec.complexity === 'high' ? '🔴' : rec.complexity === 'medium' ? '🟡' : '🟢';",
+                  "            ",
+                  "            console.log(`${index + 1}. ${impactIcon} ${rec.title}`);",
+                  "            console.log(`   ${rec.description}`);",
+                  "            console.log(`   Complexity: ${complexityColor} ${rec.complexity}`);",
+                  "            console.log(`   Category: ${rec.category}`);",
+                  "            console.log(`   Version hint: ${rec.versionHint || 'patch'}`);",
+                  "            console.log(\"\");",
+                  "        });",
+                  "        ",
+                  "        console.log(\"💡 TIP: Copy any recommendation prompt to use with /update-project!\");",
+                  "    } else {",
+                  "        console.log(\"No recommendations found yet.\");",
+                  "        console.log(\"Recommendations are generated after initial project creation.\");",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Build Recommendations ⭐ NEW (Fast)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/builds/{{buildId}}/recommendations?userId={{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "builds",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}",
+                  "description": "Required - User ID for security filtering"
+                }
+              ]
+            },
+            "description": "Get AI-generated recommendations for a specific build using buildId (direct lookup - faster than project-based endpoint). Returns standardized recommendation format with consistency guarantees. Requires userId for security isolation."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Build recommendations retrieved\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    ",
+                  "    console.log(\"🎯 BUILD RECOMMENDATIONS (Direct Lookup)\");",
+                  "    console.log(\"=\".repeat(55));",
+                  "    console.log(`Build ID: ${response.buildId || 'unknown'}`);",
+                  "    console.log(`Project: ${response.projectId || 'unknown'}`);",
+                  "    console.log(`Version: ${response.versionId || 'unknown'}`);",
+                  "    console.log(\"\");",
+                  "    ",
+                  "    if (response.recommendations && response.recommendations.length > 0) {",
+                  "        console.log(`Found ${response.recommendations.length} standardized recommendations:\\n`);",
+                  "        ",
+                  "        response.recommendations.forEach((rec, index) => {",
+                  "            const priorityIcon = rec.priority === 'high' ? '🔥' : rec.priority === 'medium' ? '⚡' : '💡';",
+                  "            const impactIcon = rec.impact === 'high' ? '🚀' : rec.impact === 'medium' ? '📈' : '➕';",
+                  "            const complexityColor = rec.complexity === 'high' ? '🔴' : rec.complexity === 'medium' ? '🟡' : '🟢';",
+                  "            ",
+                  "            console.log(`${index + 1}. ${priorityIcon} ${rec.title} ${impactIcon}`);",
+                  "            console.log(`   📝 ${rec.description}`);",
+                  "            console.log(`   🎯 Priority: ${rec.priority} | Impact: ${rec.impact} | Complexity: ${complexityColor} ${rec.complexity}`);",
+                  "            console.log(`   📦 Category: ${rec.category} | Version: ${rec.versionHint || 'patch'}`);",
+                  "            console.log(`   ✨ Prompt: ${rec.prompt.substring(0, 80)}${rec.prompt.length > 80 ? '...' : ''}`);",
+                  "            ",
+                  "            // Show legacy fields if present",
+                  "            if (rec.files && rec.files.length > 0) {",
+                  "                console.log(`   📁 Files: ${rec.files.join(', ')}`);",
+                  "            }",
+                  "            if (rec.steps && rec.steps.length > 0) {",
+                  "                console.log(`   📋 Steps: ${rec.steps.length} steps available`);",
+                  "            }",
+                  "            console.log(\"\");",
+                  "        });",
+                  "        ",
+                  "        console.log(\"🚀 READY TO USE: Copy any prompt to use with Update Project!\");",
+                  "        console.log(\"📊 DATA CONSISTENCY: All recommendations now use standardized structure\");",
+                  "    } else {",
+                  "        console.log(\"⏳ No recommendations found yet.\");",
+                  "        console.log(\"Recommendations are generated after build completion (~2-3 minutes).\");",
+                  "        console.log(\"This might be a new build - try again in a few minutes.\");",
+                  "    }",
+                  "});",
+                  "",
+                  "// Test standardized structure",
+                  "pm.test(\"Recommendations have standardized structure\", function () {",
+                  "    const response = pm.response.json();",
+                  "    if (response.recommendations && response.recommendations.length > 0) {",
+                  "        const rec = response.recommendations[0];",
+                  "        pm.expect(rec).to.have.property('id');",
+                  "        pm.expect(rec).to.have.property('title');",
+                  "        pm.expect(rec).to.have.property('description');",
+                  "        pm.expect(rec).to.have.property('category');",
+                  "        pm.expect(rec).to.have.property('priority');",
+                  "        pm.expect(rec).to.have.property('complexity');",
+                  "        pm.expect(rec).to.have.property('impact');",
+                  "        pm.expect(rec).to.have.property('versionHint');",
+                  "        pm.expect(rec).to.have.property('prompt');",
+                  "        ",
+                  "        // Validate enum values",
+                  "        pm.expect(['low', 'medium', 'high']).to.include(rec.priority);",
+                  "        pm.expect(['low', 'medium', 'high']).to.include(rec.complexity);",
+                  "        pm.expect(['low', 'medium', 'high']).to.include(rec.impact);",
+                  "        pm.expect(['patch', 'minor', 'major']).to.include(rec.versionHint);",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rebuild Preview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Add ability to mark todos as complete\",\"baseVersionId\":\"{{versionId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rebuild-preview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rebuild-preview"
+              ]
+            },
+            "description": "Update an existing project - uses the latest version if baseVersionId is not provided"
+          }
+        },
+        {
+          "name": "Get Latest Version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/preview/{{userId}}/{{projectId}}/latest",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "preview",
+                "{{userId}}",
+                "{{projectId}}",
+                "latest"
+              ]
+            },
+            "description": "Get the latest version information for a project"
+          }
+        }
+      ],
+      "description": "Core API operations for code generation and project building. Includes both the original build system and the new modular create system."
+    },
+    {
+      "name": "Version Management",
+      "item": [
+        {
+          "name": "List Project Versions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/list/{{userId}}/{{projectId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions",
+                "{{userId}}",
+                "{{projectId}}"
+              ]
+            },
+            "description": "List all versions for a project (up to 200)"
+          }
+        },
+        {
+          "name": "Get Version Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/detail/{{versionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions",
+                "{{versionId}}"
+              ]
+            },
+            "description": "Get detailed information about a specific version"
+          }
+        },
+        {
+          "name": "Version Diff (Stats)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/detail/{{versionId}}/diff/01HY123456789?mode=stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions",
+                "{{versionId}}",
+                "diff",
+                "01HY123456789"
+              ],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "stats",
+                  "description": "stats or patch"
+                }
+              ]
+            },
+            "description": "Get statistics about changes between two versions"
+          }
+        },
+        {
+          "name": "Version Diff (Patch)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/detail/{{versionId}}/diff/01HY123456789?mode=patch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions",
+                "{{versionId}}",
+                "diff",
+                "01HY123456789"
+              ],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "patch"
+                }
+              ]
+            },
+            "description": "Get the git diff patch between two versions"
+          }
+        },
+        {
+          "name": "Rollback Version (Production-Ready)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{hmacSignature}}"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "rollback-{{projectId}}-{{$timestamp}}",
+                "description": "Optional: Prevents duplicate rollbacks (24h cache)"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"targetVersionId\": \"{{versionId}}\",\n  \"skipWorkingDirectory\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/rollback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "versions",
+                "rollback"
+              ]
+            },
+            "description": "🚀 Production-ready rollback with immediate response and background sync\n\n✨ NEW FEATURES:\n- ⚡ Immediate preview URL update (< 1 second)\n- 🔄 Background working directory sync\n- 🔒 Redis locking prevents concurrent rollbacks\n- 🔑 Idempotency protection with 24h cache\n- 🛡️ Timing-safe HMAC signature verification\n- 📊 Build queue management during rollback\n- 🎯 Publication-first architecture (rollback creates unpublished version)\n\n📝 RESPONSE STATES:\n- rollingBack: Background sync in progress\n- deployed: Rollback completed\n- rollbackFailed: Sync failed, preview reverted\n\n⚠️ AUTHENTICATION REQUIRED:\nThis endpoint requires HMAC-SHA256 signature in x-sheen-signature header.\n\n🔄 BUILD BEHAVIOR:\nNew builds are automatically queued during rollback and processed after completion.\n\n📋 ENVIRONMENT VARIABLES:\n- MAX_ROLLBACK_DURATION_SECONDS: Lock TTL (default: 300s)\n- Can be increased for large artifacts"
+          }
+        },
+        {
+          "name": "Rebuild Version",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/detail/{{versionId}}/rebuild",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "versions",
+                "{{versionId}}",
+                "rebuild"
+              ]
+            },
+            "description": "Trigger a rebuild of a specific version"
+          }
+        },
+        {
+          "name": "Export Latest Project",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature: canonical = body + path",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = '';",
+                  "const path = pm.request.url.getPath();",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = CryptoJS.HmacSHA256(canonical, secret).toString();",
+                  "pm.request.headers.add({key: 'x-sheen-signature', value: signature });\n  pm.request.headers.add({key: 'x-sheen-timestamp', value: timestamp });\n  pm.request.headers.add({key: 'x-sheen-nonce', value: Math.random().toString(36).substring(2) });",
+                  "",
+                  "console.log('Generated signature for path:', path);",
+                  "console.log('Canonical string:', canonical);",
+                  "console.log('Signature:', signature);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/projects/{{projectId}}/export?userId={{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "projects",
+                "{{projectId}}",
+                "export"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            },
+            "description": "Export the latest version of a project as a downloadable ZIP file. Returns a 24-hour signed URL for secure downloads.\n\n⭐ **Features:**\n- Secure signed URLs (24-hour expiry)\n- Artifact integrity verification\n- Size limits for safe downloads (2GB max)\n- Ownership verification\n\n🔒 **Security:** Requires HMAC signature authentication\n\n📥 **Usage:** Perfect for user data portability, backups, and version management"
+          }
+        },
+        {
+          "name": "Download Specific Version",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature: canonical = body + path",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = '';",
+                  "const path = pm.request.url.getPath();",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = CryptoJS.HmacSHA256(canonical, secret).toString();",
+                  "pm.request.headers.add({key: 'x-sheen-signature', value: signature });\n  pm.request.headers.add({key: 'x-sheen-timestamp', value: timestamp });\n  pm.request.headers.add({key: 'x-sheen-nonce', value: Math.random().toString(36).substring(2) });",
+                  "",
+                  "console.log('Generated signature for path:', path);",
+                  "console.log('Canonical string:', canonical);",
+                  "console.log('Signature:', signature);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/versions/detail/{{versionId}}/download?userId={{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "versions",
+                "{{versionId}}",
+                "download"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            },
+            "description": "Download a specific project version by version ID. Returns a 24-hour signed URL for secure downloads.\n\n⭐ **Features:**\n- Download any historical version\n- Secure signed URLs with 24-hour expiry\n- SHA256 checksum verification\n- Rebuild suggestion for missing artifacts\n\n🔒 **Security:** Requires HMAC signature authentication\n\n💡 **Special Response:** If artifact is missing, returns 404 with rebuild option:\n```json\n{\n  \"error\": \"Artifact not available\",\n  \"canRebuild\": true,\n  \"rebuildUrl\": \"/v1/versions/{versionId}/rebuild\"\n}\n```"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Progress Tracking ⭐ NEW",
+      "item": [
+        {
+          "name": "Get Clean Build Events ⭐ NextJS Team API",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/builds/{{buildId}}/events?userId={{userId}}&lastEventId={{lastEventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "builds",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}",
+                  "description": "REQUIRED - User ID for security filtering"
+                },
+                {
+                  "key": "lastEventId",
+                  "value": "{{lastEventId}}",
+                  "description": "Optional - only return events after this ID (for incremental polling)"
+                }
+              ]
+            },
+            "description": "⭐ **NEW CLEAN EVENT API FOR NEXTJS TEAM**\n\nGet structured, secure build events designed for frontend integration:\n\n✅ **Benefits:**\n- 🏗️ No more string parsing - clean `title`, `description`, `phase` fields\n- 📊 Single `overall_progress` (0.0-1.0) for progress bars\n- ✅ Boolean `finished` flag for reliable completion detection\n- 🔒 Security filtered - no file paths, UUIDs, or sensitive data\n- 🔄 Incremental polling with `lastEventId` parameter\n\n🔒 **Security:** All sensitive data (file paths, UUIDs, stack traces) automatically filtered from user-facing events.\n\n📊 **Progress Tracking:** Use `overall_progress` (0.0-1.0) directly in progress bars. When `finished: true`, build is complete.\n\n⚡ **Polling Pattern:** Start with `lastEventId=0`, then use returned `lastEventId` for incremental updates every 2-3 seconds."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 🎯 NextJS Team - Clean Events Test",
+                  "",
+                  "pm.test(\"Clean events response is valid\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('buildId');",
+                  "    pm.expect(response).to.have.property('events');",
+                  "    pm.expect(response).to.have.property('lastEventId');",
+                  "    pm.expect(response.events).to.be.an('array');",
+                  "});",
+                  "",
+                  "const response = pm.response.json();",
+                  "const events = response.events || [];",
+                  "",
+                  "console.log('🎯 CLEAN EVENTS API - NEXTJS TEAM');",
+                  "console.log('='.repeat(50));",
+                  "console.log(`🏗️ Build ID: ${response.buildId}`);",
+                  "console.log(`📊 Event Count: ${events.length}`);",
+                  "console.log(`🔄 Last Event ID: ${response.lastEventId}`);",
+                  "console.log('');",
+                  "",
+                  "if (events.length > 0) {",
+                  "    console.log('📄 LATEST EVENTS:');",
+                  "    console.log('-'.repeat(30));",
+                  "    ",
+                  "    events.slice(-3).forEach((event, index) => {",
+                  "        const progressBar = '█'.repeat(Math.floor(event.overall_progress * 20)) + '░'.repeat(20 - Math.floor(event.overall_progress * 20));",
+                  "        const statusIcon = event.event_type === 'completed' ? '✅' : event.event_type === 'failed' ? '❌' : event.event_type === 'progress' ? '🔄' : '🚀';",
+                  "        const finishedIcon = event.finished ? ' 🏁' : '';",
+                  "        ",
+                  "        console.log(`${statusIcon} [${event.phase.toUpperCase()}] ${event.title}${finishedIcon}`);",
+                  "        console.log(`   ${event.description}`);",
+                  "        console.log(`   Progress: [${progressBar}] ${Math.round(event.overall_progress * 100)}%`);",
+                  "        console.log(`   Created: ${new Date(event.created_at).toLocaleTimeString()}`);",
+                  "        ",
+                  "        if (event.preview_url) {",
+                  "            console.log(`   🌐 Preview: ${event.preview_url}`);",
+                  "            pm.collectionVariables.set('lastPreviewUrl', event.preview_url);",
+                  "        }",
+                  "        ",
+                  "        if (event.error_message) {",
+                  "            console.log(`   🚨 Error: ${event.error_message}`);",
+                  "        }",
+                  "        ",
+                  "        // 🆕 Show version information if available",
+                  "        if (event.versionId || event.versionName) {",
+                  "            console.log(`   📦 Version: ${event.versionName || 'Processing...'} (${event.versionId || 'N/A'})`);",
+                  "            if (event.versionId) pm.collectionVariables.set('versionId', event.versionId);",
+                  "        }",
+                  "        ",
+                  "        console.log('');",
+                  "    });",
+                  "    ",
+                  "    // Update lastEventId for next poll",
+                  "    pm.collectionVariables.set('lastEventId', response.lastEventId);",
+                  "    ",
+                  "    // Check if build is finished",
+                  "    const lastEvent = events[events.length - 1];",
+                  "    if (lastEvent && lastEvent.finished) {",
+                  "        console.log('🏁 BUILD COMPLETED!');",
+                  "        if (lastEvent.event_type === 'completed') {",
+                  "            console.log('✅ Status: SUCCESS');",
+                  "        } else if (lastEvent.event_type === 'failed') {",
+                  "            console.log('❌ Status: FAILED');",
+                  "        }",
+                  "    } else {",
+                  "        console.log('⏳ Build still in progress - poll again in 2-3 seconds');",
+                  "    }",
+                  "} else {",
+                  "    console.log('📋 No new events since lastEventId:', pm.variables.get('lastEventId'));",
+                  "}",
+                  "",
+                  "console.log('');",
+                  "console.log('📝 NEXTJS INTEGRATION NOTES:');",
+                  "console.log('• Use overall_progress (0.0-1.0) directly in progress bars');",
+                  "console.log('• Check finished: true for completion');",
+                  "console.log('• No string parsing needed - use structured fields');",
+                  "console.log('• All sensitive data filtered out for security');",
+                  "console.log('• Poll every 2-3 seconds with incremental lastEventId');"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Build Status (Clean Events)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/builds/{{buildId}}/status?userId={{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "builds",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}",
+                  "description": "REQUIRED - User ID for security filtering"
+                }
+              ]
+            },
+            "description": "Get aggregated build status based on clean events. Returns current phase, progress percentage (0-100), and completion status. Use jobId from build endpoints as buildId.\n\n⬆️ **Updated:** Now uses clean events for accurate status calculation with security filtering."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 📊 Build Status Monitor (Clean Events) with Smart Progress Tracking",
+                  "",
+                  "pm.test(\"Status response is valid\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('buildId');",
+                  "    pm.expect(response).to.have.property('status');",
+                  "    pm.expect(response).to.have.property('progress');",
+                  "    pm.expect(response).to.have.property('finished');",
+                  "    pm.expect(response).to.have.property('currentPhase');",
+                  "});",
+                  "",
+                  "const response = pm.response.json();",
+                  "const { buildId, status, progress, previewUrl, error, eventCount, finished, currentPhase } = response;",
+                  "",
+                  "// Visual progress indicator",
+                  "const progressBar = '█'.repeat(Math.floor(progress/5)) + '░'.repeat(20 - Math.floor(progress/5));",
+                  "const finishedIcon = finished ? ' 🏁' : '';",
+                  "console.log(\"📊 BUILD STATUS REPORT (CLEAN EVENTS)\");",
+                  "console.log(\"═\".repeat(50));",
+                  "console.log(`🏗️  Build ID: ${buildId}`);",
+                  "console.log(`📈 Progress: [${progressBar}] ${progress}%${finishedIcon}`);",
+                  "console.log(`🎯 Status: ${status.toUpperCase()}`);",
+                  "console.log(`🔄 Phase: ${currentPhase || 'unknown'}`);",
+                  "console.log(`📝 Events: ${eventCount} total`);",
+                  "console.log(`✅ Finished: ${finished}`);",
+                  "",
+                  "// Status-specific guidance (Clean Events)",
+                  "switch(status) {",
+                  "    case 'starting':",
+                  "        console.log('🔄 Setting up your project...');",
+                  "        console.log('⏱️  Expected: ~5-10 seconds');",
+                  "        break;",
+                  "    case 'developing':",
+                  "        console.log('⚙️  AI is creating your application...');",
+                  "        console.log('⏱️  Expected: ~30-60 seconds');",
+                  "        break;",
+                  "    case 'installing':",
+                  "        console.log('📦 Installing dependencies...');",
+                  "        console.log('⏱️  Expected: ~10-30 seconds');",
+                  "        break;",
+                  "    case 'building':",
+                  "        console.log('🔨 Building your application...');",
+                  "        console.log('⏱️  Expected: ~10-20 seconds');",
+                  "        break;",
+                  "    case 'deploying':",
+                  "        console.log('🚀 Deploying to Cloudflare...');",
+                  "        console.log('⏱️  Expected: ~10-20 seconds');",
+                  "        break;",
+                  "    case 'completed':",
+                  "        console.log('✅ BUILD COMPLETED!');",
+                  "        if (previewUrl) {",
+                  "            console.log(`🌐 Preview URL: ${previewUrl}`);",
+                  "            pm.collectionVariables.set('lastPreviewUrl', previewUrl);",
+                  "        }",
+                  "        break;",
+                  "    case 'failed':",
+                  "        console.log('❌ BUILD FAILED');",
+                  "        if (error) console.log(`🐛 Error: ${error}`);",
+                  "        break;",
+                  "    default:",
+                  "        console.log('⏳ Waiting for build to start...');",
+                  "}",
+                  "",
+                  "console.log(\"═\".repeat(50));",
+                  "",
+                  "if (status !== 'completed' && status !== 'failed') {",
+                  "    console.log('💡 TIP: Send this request again in 10-15 seconds to check progress');",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Webhook Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/webhooks/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "webhooks",
+                "status"
+              ]
+            },
+            "description": "Get webhook delivery statistics and configuration status."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Cloudflare Pages Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "cf-webhook-auth",
+                "value": "{{cfWebhookSecret}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deployment\": {\n    \"id\": \"deploy-123\",\n    \"environment\": \"production\",\n    \"url\": \"https://abc123.pages.dev\",\n    \"aliases\": [],\n    \"created_on\": \"2025-01-21T12:00:00Z\",\n    \"latest_stage\": {\n      \"name\": \"deploy\",\n      \"status\": \"success\",\n      \"ended_on\": \"2025-01-21T12:01:00Z\"\n    }\n  },\n  \"project\": {\n    \"id\": \"proj-123\",\n    \"name\": \"my-app\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/webhooks/cloudflare-callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "webhooks",
+                "cloudflare-callback"
+              ]
+            },
+            "description": "Webhook endpoint for Cloudflare Pages deployment status updates"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🚀 Quick Update Test Flow",
+      "item": [
+        {
+          "name": "Step 1: Create Initial Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"test-{{$timestamp}}\",\"prompt\":\"Create a simple React counter app with increment and decrement buttons. Use a modern clean design with Tailwind CSS.\",\"framework\":\"react\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/create-preview-for-new-project",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "create-preview-for-new-project"
+              ]
+            },
+            "description": "Creates a new counter app with unique IDs based on timestamp"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Project created successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    ",
+                  "    // Extract and save the IDs for next requests",
+                  "    const userId = JSON.parse(pm.request.body.raw).userId;",
+                  "    const projectId = response.projectId; // Server-generated ID",
+                  "    ",
+                  "    pm.collectionVariables.set(\"testUserId\", userId);",
+                  "    pm.collectionVariables.set(\"testProjectId\", projectId);",
+                  "    pm.collectionVariables.set(\"buildId\", response.jobId || response.buildId);",
+                  "    ",
+                  "    console.log(\"✅ Project created!\");",
+                  "    console.log(\"   User ID:\", userId);",
+                  "    console.log(\"   Project ID:\", projectId);",
+                  "    console.log(\"   Build ID:\", response.jobId || response.buildId);",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏳ Wait 30-60 seconds for build to complete\");",
+                  "    console.log(\"   Then run 'Step 2: Check Build Status'\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Step 2: Check Build Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/builds/{{buildId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "builds",
+                ""
+              ]
+            },
+            "description": "Check if the initial build is complete"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();",
+                  "const status = response.status;",
+                  "",
+                  "pm.test(\"Build status retrieved\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "console.log(\"📊 Build Status:\", status.toUpperCase());",
+                  "console.log(\"   Progress:\", response.progress + \"%\");",
+                  "",
+                  "if (status === \"completed\") {",
+                  "    console.log(\"✅ Build completed!\");",
+                  "    if (response.previewUrl) {",
+                  "        console.log(\"🌐 Preview URL:\", response.previewUrl);",
+                  "        pm.collectionVariables.set(\"lastPreviewUrl\", response.previewUrl);",
+                  "    }",
+                  "    console.log(\"\");",
+                  "    console.log(\"🎯 Ready for update! Run 'Step 3: Update Project'\");",
+                  "} else if (status === \"failed\") {",
+                  "    console.log(\"❌ Build failed:\", response.error);",
+                  "} else {",
+                  "    console.log(\"⏳ Still building... Check again in 10-15 seconds\");",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Step 3: Update Project (Fast!)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{testUserId}}\",\"projectId\":\"{{testProjectId}}\",\"prompt\":\"Add a reset button that sets the counter back to 0. Style it with a different color than the other buttons.\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update-project",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update-project"
+              ]
+            },
+            "description": "Updates the project using the fast update endpoint"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Update started successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    ",
+                  "    pm.collectionVariables.set(\"buildId\", response.buildId);",
+                  "    ",
+                  "    console.log(\"⚡ FAST UPDATE STARTED!\");",
+                  "    console.log(\"   Build ID:\", response.buildId);",
+                  "    console.log(\"   Estimated time:\", response.estimatedTime);",
+                  "    console.log(\"\");",
+                  "    console.log(\"💡 This update should be much faster because:\");",
+                  "    console.log(\"   - Dependencies haven't changed (no npm install)\");",
+                  "    console.log(\"   - Claude reads existing project structure\");",
+                  "    console.log(\"   - Only modifies what's needed\");",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏳ Wait 30-45 seconds then run 'Step 4: Check Update Status'\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Step 4: Check Update Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/builds/{{buildId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "builds",
+                ""
+              ]
+            },
+            "description": "Check if the update is complete"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();",
+                  "const status = response.status;",
+                  "",
+                  "pm.test(\"Update status retrieved\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "console.log(\"📊 Update Status:\", status.toUpperCase());",
+                  "console.log(\"   Progress:\", response.progress + \"%\");",
+                  "",
+                  "if (status === \"completed\") {",
+                  "    console.log(\"✅ Update completed!\");",
+                  "    if (response.previewUrl) {",
+                  "        console.log(\"🌐 Updated Preview URL:\", response.previewUrl);",
+                  "        console.log(\"\");",
+                  "        console.log(\"🎉 SUCCESS! The reset button should now be visible.\");",
+                  "    }",
+                  "} else if (status === \"failed\") {",
+                  "    console.log(\"❌ Update failed:\", response.error);",
+                  "} else {",
+                  "    console.log(\"⏳ Still updating... Check again in 10-15 seconds\");",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "description": "Complete workflow to test the fast update feature. Run these requests in order!"
+    },
+    {
+      "name": "AI Time Billing",
+      "item": [
+        {
+          "name": "Get User Balance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{signature}}",
+                "description": "HMAC SHA256 signature of request body"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/billing/balance/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "billing",
+                "balance",
+                "{{userId}}"
+              ]
+            },
+            "description": "Get current AI time balance for a user. Returns welcome bonus, daily gift, and paid seconds remaining."
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/billing/balance/user123",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "billing",
+                    "balance",
+                    "user123"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"balance\": {\n    \"welcomeBonus\": 3000,\n    \"dailyGift\": 900,\n    \"paid\": 0,\n    \"total\": 3900\n  },\n  \"usage\": {\n    \"todayUsed\": 0,\n    \"lifetimeUsed\": 0\n  },\n  \"dailyResetAt\": \"2025-07-28T00:00:00.000Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Check Sufficient Balance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{signature}}",
+                "description": "HMAC SHA256 signature of request body"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"operationType\": \"main_build\",\n  \"projectSize\": \"medium\",\n  \"isUpdate\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/billing/check-sufficient",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "billing",
+                "check-sufficient"
+              ]
+            },
+            "description": "Check if user has sufficient AI time balance for an operation. Returns estimate and purchase recommendations if insufficient."
+          },
+          "response": [
+            {
+              "name": "Sufficient Balance",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"user123\",\n  \"operationType\": \"main_build\",\n  \"projectSize\": \"medium\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/billing/check-sufficient",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "billing",
+                    "check-sufficient"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"sufficient\": true,\n  \"estimate\": {\n    \"estimatedSeconds\": 180,\n    \"estimatedMinutes\": 3,\n    \"confidence\": \"medium\",\n    \"basedOnSamples\": 15\n  },\n  \"balance\": {\n    \"welcomeBonus\": 3000,\n    \"dailyGift\": 900,\n    \"paid\": 0,\n    \"total\": 3900\n  }\n}"
+            },
+            {
+              "name": "Insufficient Balance",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"user123\",\n  \"operationType\": \"main_build\",\n  \"projectSize\": \"large\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/billing/check-sufficient",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "billing",
+                    "check-sufficient"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"sufficient\": false,\n  \"estimate\": {\n    \"estimatedSeconds\": 600,\n    \"estimatedMinutes\": 10,\n    \"confidence\": \"high\",\n    \"basedOnSamples\": 25\n  },\n  \"balance\": {\n    \"welcomeBonus\": 0,\n    \"dailyGift\": 300,\n    \"paid\": 0,\n    \"total\": 300\n  },\n  \"recommendation\": {\n    \"suggestedPackage\": \"booster\",\n    \"costToComplete\": 10,\n    \"purchaseUrl\": \"/purchase\"\n  }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "AI Time Billing endpoints for balance management and pre-flight checks. These are read-only endpoints that the Next.js frontend uses to check user balances before operations."
+    },
+    {
+      "name": "🌐 Publication System",
+      "item": [
+        {
+          "name": "Publish Version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "publish-{{$timestamp}}",
+                "description": "Optional: Prevents double-publishing"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"comment\": \"Publishing stable version with bug fixes\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/projects/{{projectId}}/publish/{{versionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "{{projectId}}",
+                "publish",
+                "{{versionId}}"
+              ]
+            },
+            "description": "Make a version live on all configured domains. Creates publication record and updates CNAME records."
+          }
+        },
+        {
+          "name": "Unpublish Version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "unpublish-{{$timestamp}}",
+                "description": "Optional: Prevents double-unpublishing (24h cache)"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/projects/{{projectId}}/unpublish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "{{projectId}}",
+                "unpublish"
+              ]
+            },
+            "description": "🚫 Unpublish Current Version\n\n✨ NEW FEATURES:\n- 🔑 Idempotency protection with 24h cache\n- 🛡️ Enhanced error handling\n- 🕐 Clock-skew diagnostic in auth failures\n\n⚠️ AUTHENTICATION REQUIRED:\nThis endpoint requires HMAC-SHA256 signature in x-sheen-signature header.\n\n📝 BEHAVIOR:\nRemoves the current published version from live status. The project will have no public site until you explicitly publish another version.\n\n🔄 IDEMPOTENCY:\nUse Idempotency-Key header to prevent accidental double-unpublishing."
+          }
+        },
+        {
+          "name": "Get Version History with Publication Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/projects/{{projectId}}/versions?state=all&limit=20&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "{{projectId}}",
+                "versions"
+              ],
+              "query": [
+                {
+                  "key": "state",
+                  "value": "all",
+                  "description": "Filter: published | unpublished | all"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Max 100 per request"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ]
+            },
+            "description": "📜 Enhanced Version History API (v2.4)\n\n✨ NEW FEATURES:\n- 🎯 **hasArtifact**: Know which versions can be rolled back/previewed\n- 🔓 **canRollback/canPreview/canPublish**: Smart action permissions with business logic\n- ♿ **accessibility.rollbackDisabledReason**: Specific reasons why actions are disabled\n- ⏰ **retention.daysRemaining**: Days until artifact expiration\n- 📏 **artifactSize**: File size information for UI decisions\n\n🔍 RESPONSE FEATURES:\n- artifact_missing: Version has no artifact URL\n- artifact_expired: Artifact pruned (>30 days old)\n- already_published: Cannot rollback published versions\n- deployment_failed: Version deployment failed\n\n📊 PAGINATION:\n- Max 100 versions per request\n- Uses offset-based pagination\n- Includes hasMore flag for infinite scroll\n\n🎨 FRONTEND INTEGRATION:\nResponse includes all metadata needed for intelligent UI decisions:\n- Button disable/enable states\n- Tooltip text for disabled actions\n- Expiration warnings\n- File size displays"
+          }
+        },
+        {
+          "name": "Add Custom Domain",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"domain\": \"app.example.com\",\n  \"type\": \"custom\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/projects/{{projectId}}/domains",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "{{projectId}}",
+                "domains"
+              ]
+            },
+            "description": "Add a domain to the project for publication. Response includes domain verification status: pending_verification (show DNS banner), failed (show retry), active (normal operation)."
+          }
+        }
+      ],
+      "description": "Publication system endpoints for explicit user control over version deployment. Users create versions for preview, then explicitly publish them to domains."
+    },
+    {
+      "name": "🔍 Audit & Monitoring",
+      "item": [
+        {
+          "name": "Investigate File Changes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/admin/audit/working-directory/changes?projectId={{projectId}}&filename=main.css&fromDate=2025-08-02T03:00:00Z&toDate=2025-08-02T06:00:00Z&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "admin",
+                "audit",
+                "working-directory"
+              ],
+              "query": [
+                {
+                  "key": "projectId",
+                  "value": "{{projectId}}",
+                  "description": "Project to investigate"
+                },
+                {
+                  "key": "filename",
+                  "value": "main.css",
+                  "description": "Optional: specific file to investigate"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "2025-08-02T03:00:00Z",
+                  "description": "Start date (max 30-day range)"
+                },
+                {
+                  "key": "toDate",
+                  "value": "2025-08-02T06:00:00Z",
+                  "description": "End date"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Max 100 entries per request"
+                }
+              ]
+            },
+            "description": "Incident response: Who changed main.css at 3 AM? Returns detailed audit trail of file changes."
+          }
+        },
+        {
+          "name": "Security Monitoring",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/admin/audit/working-directory/suspicious?projectId={{projectId}}&fromDate=2025-08-02T03:00:00Z&toDate=2025-08-02T06:00:00Z",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "admin",
+                "audit",
+                "working-directory"
+              ],
+              "query": [
+                {
+                  "key": "projectId",
+                  "value": "{{projectId}}",
+                  "description": "Project to monitor"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "2025-08-02T03:00:00Z",
+                  "description": "Start date (max 7-day range for security)"
+                },
+                {
+                  "key": "toDate",
+                  "value": "2025-08-02T06:00:00Z",
+                  "description": "End date"
+                }
+              ]
+            },
+            "description": "Security monitoring for unusual activity: off-hours operations, unusual file volumes, path traversal attempts."
+          }
+        },
+        {
+          "name": "Performance Monitoring",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/admin/audit/working-directory/performance?projectId={{projectId}}&fromDate=2025-08-02T03:00:00Z&toDate=2025-08-02T06:00:00Z",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "admin",
+                "audit",
+                "working-directory"
+              ],
+              "query": [
+                {
+                  "key": "projectId",
+                  "value": "{{projectId}}",
+                  "description": "Project to analyze"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "2025-08-02T03:00:00Z",
+                  "description": "Start date (max 14-day range for performance)"
+                },
+                {
+                  "key": "toDate",
+                  "value": "2025-08-02T06:00:00Z",
+                  "description": "End date"
+                }
+              ]
+            },
+            "description": "Performance monitoring: sync operation timing, success rates, slow operations identification."
+          }
+        }
+      ],
+      "description": "Audit and monitoring endpoints for incident response and security monitoring. Strict pagination and date-range limits prevent abuse."
+    },
+    {
+      "name": "Chat Plan Mode",
+      "item": [
+        {
+          "name": "Chat with AI (Simple Message)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = pm.request.body.raw;",
+                  "const path = '/v1/chat-plan';",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response successful\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.type).to.eql('chat_response');",
+                  "    pm.expect(response.subtype).to.eql('success');",
+                  "    ",
+                  "    // Store sessionId for future requests",
+                  "    if (response.sessionId) {",
+                  "        pm.collectionVariables.set('sessionId', response.sessionId);",
+                  "        console.log('Session ID stored:', response.sessionId);",
+                  "    }",
+                  "    ",
+                  "    // Log the detected mode",
+                  "    console.log('AI detected mode:', response.mode);",
+                  "    console.log('Response data:', JSON.stringify(response.data, null, 2));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"How do I add authentication to my React app?\",\n  \"locale\": \"en-US\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan"
+              ]
+            },
+            "description": "Send a message to the AI assistant. The AI automatically determines this is a question and returns a direct answer with code references."
+          }
+        },
+        {
+          "name": "Chat with AI (Feature Planning)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = pm.request.body.raw;",
+                  "const path = '/v1/chat-plan';",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response successful\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.type).to.eql('chat_response');",
+                  "    pm.expect(response.subtype).to.eql('success');",
+                  "    ",
+                  "    // Store sessionId for reference",
+                  "    if (response.sessionId) {",
+                  "        pm.collectionVariables.set('sessionId', response.sessionId);",
+                  "        console.log('Session ID stored:', response.sessionId);",
+                  "    }",
+                  "    ",
+                  "    // Verify AI detected it as a feature",
+                  "    pm.expect(response.mode).to.eql('feature');",
+                  "    console.log('AI detected mode:', response.mode);",
+                  "    console.log('Feature plan:', JSON.stringify(response.data, null, 2));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"I want to add a dark mode toggle to my application settings\",\n  \"locale\": \"en-US\",\n  \"context\": {\n    \"includeProjectStructure\": true\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan"
+              ]
+            },
+            "description": "AI detects this as a feature request and creates an implementation plan with steps, dependencies, and estimated complexity. Can be converted to a build."
+          }
+        },
+        {
+          "name": "Chat with AI (Bug Report)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = pm.request.body.raw;",
+                  "const path = '/v1/chat-plan';",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response successful\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.type).to.eql('chat_response');",
+                  "    pm.expect(response.subtype).to.eql('success');",
+                  "    ",
+                  "    // Store sessionId for reference",
+                  "    if (response.sessionId) {",
+                  "        pm.collectionVariables.set('sessionId', response.sessionId);",
+                  "        console.log('Session ID stored:', response.sessionId);",
+                  "    }",
+                  "    ",
+                  "    // Verify AI detected it as a fix",
+                  "    pm.expect(response.mode).to.eql('fix');",
+                  "    console.log('AI detected mode:', response.mode);",
+                  "    console.log('Fix plan:', JSON.stringify(response.data, null, 2));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Users are reporting that the shopping cart total is not updating when they change quantities\",\n  \"locale\": \"en-US\",\n  \"context\": {\n    \"includeBuildErrors\": true\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan"
+              ]
+            },
+            "description": "AI detects this as a bug report and provides root cause analysis, affected files, and fix approach. Can be converted to a build."
+          }
+        },
+        {
+          "name": "Convert Plan to Build",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "",
+                  "",
+                  "// Store session ID from previous chat plan response",
+                  "// pm.collectionVariables.set('sessionId', 'your-session-id');"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"{{sessionId}}\",\n  \"planData\": {\n    \"plan\": {\n      \"overview\": \"Add dark mode toggle\",\n      \"steps\": []\n    }\n  },\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan/convert-to-build",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan",
+                "convert-to-build"
+              ]
+            },
+            "description": "Convert a chat plan session into an actual build. Use the sessionId and planData from a previous chat plan response."
+          }
+        },
+        {
+          "name": "Get Project Timeline",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for GET request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const projectId = pm.variables.get('projectId');",
+                  "const path = `/v1/project/${projectId}/timeline`;",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + '';  // CORRECT v1 format for GET: timestamp + empty",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/project/{{projectId}}/timeline?limit=20&mode=all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "project",
+                "{{projectId}}",
+                "timeline"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items (1-100)"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset",
+                  "disabled": true
+                },
+                {
+                  "key": "mode",
+                  "value": "all",
+                  "description": "Filter: all, plan, or build"
+                },
+                {
+                  "key": "includeHidden",
+                  "value": "false",
+                  "description": "Include hidden messages",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get unified timeline of chat messages, builds, and deployments for a project."
+          }
+        },
+        {
+          "name": "Get Session Details (DISABLED - Admin Only)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for GET request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const sessionId = pm.variables.get('sessionId') || 'test-session-123';",
+                  "const path = `/v1/chat-plan/session/${sessionId}`;",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + '';  // CORRECT v1 format for GET: timestamp + empty",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan/session/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan",
+                "session",
+                "{{sessionId}}"
+              ]
+            },
+            "description": "⚠️ CURRENTLY DISABLED: This endpoint exposes sensitive session data and should only be available to admin users. The endpoint is commented out in the code for security reasons."
+          }
+        },
+        {
+          "name": "Resume Chat Session",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = pm.request.body.raw;",
+                  "const path = '/v1/chat-plan';",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Can you provide more details about the authentication approach?\",\n  \"locale\": \"en-US\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan"
+              ]
+            },
+            "description": "Continue the conversation. The backend automatically uses the last AI session ID stored in the projects table for context continuity. No need to pass sessionId."
+          }
+        },
+        {
+          "name": "Chat with AI (SSE Streaming)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for request",
+                  "const secret = pm.variables.get('sharedSecret');",
+                  "const body = pm.request.body.raw;",
+                  "const path = '/v1/chat-plan';",
+                  "",
+                  "const crypto = require('crypto-js');",
+                  "  const canonical = timestamp + body;  // CORRECT v1 format: timestamp + body",
+                  "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'x-sheen-signature',",
+                  "    value: signature",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/event-stream",
+                "description": "Request SSE streaming"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Analyze my codebase for security vulnerabilities\",\n  \"locale\": \"en-US\",\n  \"context\": {\n    \"includeProjectStructure\": true,\n    \"includeVersionHistory\": true\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/chat-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "chat-plan"
+              ]
+            },
+            "description": "Use Server-Sent Events (SSE) for real-time streaming responses. Set Accept header to text/event-stream. AI will detect this as an analysis request and stream the response."
+          }
+        }
+      ],
+      "description": "Chat Plan Mode provides a conversational interface with AI-powered intent classification. Simply send your message and the AI determines the appropriate response type.\n\n**🤖 AI Auto-Detection:**\nThe AI automatically classifies your message as:\n- **Question**: \"How do I...\", \"What is...\", \"Where is...\"\n- **Feature**: \"Add...\", \"Implement...\", \"Create...\"\n- **Fix**: \"Fix...\", \"Not working\", \"Error when...\"\n- **Analysis**: \"Analyze...\", \"Review...\", \"Check...\"\n- **Build**: \"Build this\", \"Execute\", \"Deploy\"\n- **General**: Everything else\n\n**✨ Key Features:**\n- 🌍 Multi-language support (Arabic, French, Spanish, etc.)\n- 📡 SSE streaming for real-time updates\n- 🔨 Convert plans to actual builds\n- 📊 Unified timeline view of all interactions\n- 🔄 Automatic session continuity\n\n**🚀 Simplified API:**\n- Frontend only sends: userId, projectId, message, locale\n- Backend handles: sessionId, versionId, buildId, context\n- AI determines: intent classification and response structure\n\n**💰 Billing:**\n- Questions: ~30 seconds AI time\n- Features: ~120 seconds AI time\n- Fixes: ~90 seconds AI time\n- Analysis: ~180 seconds AI time\n\n**🚫 Rate Limits:**\n- 100 requests/hour per user\n- 200 requests/hour per project\n- 50 messages max per session"
+    },
+    {
+      "name": "Error Examples",
+      "item": [
+        {
+          "name": "Invalid Signature (401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "invalid-signature",
+                "description": "Intentionally invalid signature"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Test invalid signature\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "generate"
+              ]
+            },
+            "description": "Example of invalid signature error"
+          }
+        },
+        {
+          "name": "Missing Parameters (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "generate"
+              ]
+            },
+            "description": "Example of missing required parameters"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Debug & Testing",
+      "item": [
+        {
+          "name": "Test HMAC Signatures",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"test\": \"data\",\n  \"timestamp\": \"{{$timestamp}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/admin/hmac/test-signature",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "admin",
+                "hmac",
+                "test-signature"
+              ]
+            },
+            "description": "Test HMAC signature generation. This endpoint validates your signatures and returns diagnostic information."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🚀 Cloudflare Three-Lane Deployment",
+      "description": "Intelligent Cloudflare deployment with automatic lane selection (Pages Static, Pages Edge, Workers Node.js) based on runtime requirements and Supabase integration.",
+      "item": [
+        {
+          "name": "Detect Deployment Target",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectPath\": \"/path/to/project\",\n  \"userId\": \"{{userId}}\",\n  \"sheenProjectId\": \"{{projectId}}\",\n  \"projectId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"versionId\": \"{{versionId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/cloudflare/detect-target",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "cloudflare",
+                "detect-target"
+              ]
+            },
+            "description": "🎯 **Detect Optimal Cloudflare Deployment Target**\n\n**What it does:**\n- Analyzes project code patterns (Next.js version, API routes, Node.js imports, ISR)\n- Detects Supabase integration requirements (OAuth vs manual, service-role needs)\n- Selects optimal deployment lane: Pages Static, Pages Edge, or Workers Node.js\n- Saves detection manifest to `.sheenapps/deploy-target.json`\n- Updates database with deployment lane information\n\n**Parameters:**\n- `projectPath` (required): Absolute path to project directory\n- `userId` (optional): For Supabase OAuth integration\n- `sheenProjectId` (optional): For Supabase OAuth integration\n- `projectId` (optional): UUID for database updates\n- `versionId` (optional): Version ID for database updates\n\n**Detection Logic:**\n1. Manual override (`.sheenapps/config.json`) takes precedence\n2. PPR (Partial Prerendering) → Workers\n3. Next.js 15 → Workers (by policy)\n4. Static export → Pages Static\n5. Node.js patterns/ISR → Workers\n6. Supabase service-role needs → Workers\n7. API routes without edge flag → Workers\n8. Default: Pages Edge or Static\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"detection\": {\n    \"target\": \"workers-node\",\n    \"reasons\": [\"Supabase server-side patterns require Workers\"],\n    \"origin\": \"detection\",\n    \"supabaseIntegration\": {\n      \"hasSupabase\": true,\n      \"needsServiceRole\": true\n    }\n  },\n  \"manifestSaved\": true\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Deploy Project (Three-Lane)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectPath\": \"/path/to/project\",\n  \"userId\": \"{{userId}}\",\n  \"sheenProjectId\": \"{{projectId}}\",\n  \"projectId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"versionId\": \"{{versionId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/cloudflare/deploy",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "cloudflare",
+                "deploy"
+              ]
+            },
+            "description": "🚀 **Deploy Project with Three-Lane Strategy**\n\n**What it does:**\n- Reads deployment target from `.sheenapps/deploy-target.json` manifest\n- Injects Supabase environment variables based on OAuth integration\n- Monitors build logs for Edge-incompatible patterns\n- Automatically switches targets if needed (e.g., Edge → Workers)\n- Captures deployment URL and runs post-deploy validation\n- Updates database with final deployment results\n\n**Prerequisites:**\n- Run \"Detect Deployment Target\" first to generate manifest\n- Ensure Cloudflare environment variables are set:\n  - `CF_ACCOUNT_ID`\n  - `CLOUDFLARE_API_TOKEN` or `CF_API_TOKEN_WORKERS`\n\n**Deployment Lanes:**\n- **Pages Static**: Static sites, JAMstack, client-only apps\n- **Pages Edge**: SSR with Edge Runtime, Web APIs only\n- **Workers Node.js**: Full Node.js, ISR, service keys, complex logic\n\n**Environment Variable Security:**\n- Pages Static: Only `NEXT_PUBLIC_*` variables\n- Pages Edge: Public + limited server variables\n- Workers: Full environment access including service-role keys\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"deployment\": {\n    \"deployedUrl\": \"https://app.pages.dev\",\n    \"target\": \"workers-node\",\n    \"switched\": false\n  },\n  \"validationPassed\": true\n}\n```\n\n**Target Switching:**\nIf build logs detect Edge-incompatible code, the system automatically switches from Pages Edge to Workers Node.js."
+          },
+          "response": []
+        },
+        {
+          "name": "Validate Deployment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deployedUrl\": \"https://your-app.pages.dev\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/cloudflare/validate-deployment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "cloudflare",
+                "validate-deployment"
+              ]
+            },
+            "description": "✅ **Validate Deployed Application**\n\n**What it does:**\n- Runs lightweight smoke tests on deployed application\n- Tests homepage accessibility (required)\n- Tests API health endpoint (optional)\n- Tests Next.js image optimization (optional)\n- Provides deployment health confirmation\n\n**Validation Tests:**\n1. **Homepage (/)** - Required test\n2. **API Health (/api/health)** - Optional\n3. **Image Optimization** - Optional Next.js feature test\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"validationPassed\": true,\n  \"message\": \"Deployment validation passed\"\n}\n```\n\n**Notes:**\n- Optional tests don't fail the validation\n- Timeouts are handled gracefully\n- Provides quick confidence that deployment is accessible"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Deployment History & Analytics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-sheen-signature",
+                "value": "{{$randomAlphaNumeric}}",
+                "description": "HMAC-SHA256 signature will be calculated automatically"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/cloudflare/deployment-history?limit=20&target=workers-node",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "cloudflare",
+                "deployment-history"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of recent deployments (1-100)"
+                },
+                {
+                  "key": "target",
+                  "value": "workers-node",
+                  "description": "Filter by deployment lane",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "📊 **Get Deployment Lane History & Analytics**\n\n**What it returns:**\n- Recent deployment lane selections from database\n- Analytics on target distribution\n- Switch rate and manual override statistics\n- Performance metrics for deployment intelligence\n\n**Query Parameters:**\n- `limit` (optional): Number of deployments to return (1-100, default: 20)\n- `target` (optional): Filter by specific deployment lane\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"deployments\": [\n    {\n      \"timestamp\": \"2025-08-20T18:02:31.100Z\",\n      \"target\": \"workers-node\",\n      \"reasons\": [\"Supabase server-side patterns\"],\n      \"switched\": false\n    }\n  ],\n  \"analytics\": {\n    \"total\": 45,\n    \"targetDistribution\": {\n      \"workers-node\": 27,\n      \"pages-static\": 12,\n      \"pages-edge\": 6\n    },\n    \"switchRate\": 8.9,\n    \"manualOverrideRate\": 15.6\n  }\n}\n```\n\n**Analytics Insights:**\n- **Target Distribution**: Which lanes are most commonly selected\n- **Switch Rate**: Percentage of deployments that changed targets during build\n- **Manual Override Rate**: Percentage of manual vs automatic detection"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Deployment Guidance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v1/cloudflare/deployment-guidance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "cloudflare",
+                "deployment-guidance"
+              ]
+            },
+            "description": "📚 **Get Deployment Lane Guidance & Documentation**\n\n**What it returns:**\n- Detailed information about each deployment lane\n- Use cases and limitations for each target\n- Detection criteria and pattern examples\n- Best practices for deployment configuration\n\n**No authentication required** - this is a documentation endpoint.\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"guidance\": {\n    \"lanes\": [\n      {\n        \"target\": \"pages-static\",\n        \"name\": \"Pages Static\",\n        \"description\": \"Static site generation with no server-side functionality\",\n        \"useCases\": [\"Static websites\", \"JAMstack applications\"],\n        \"limitations\": [\"No server-side rendering\", \"No API routes\"]\n      }\n    ],\n    \"detectionCriteria\": {\n      \"patterns\": [\n        {\n          \"pattern\": \"export const revalidate\",\n          \"target\": \"workers-node\",\n          \"reason\": \"ISR requires Node.js runtime\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**Use Cases:**\n- Understanding deployment lane capabilities\n- Troubleshooting deployment target selection\n- Planning application architecture for optimal deployment\n- Learning about detection patterns and criteria"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

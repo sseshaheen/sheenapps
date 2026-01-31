@@ -1,0 +1,30 @@
+{
+  "header": {
+    "back": "[Ɓȧƈķ]",
+    "unsavedChanges": "[Ŭƞşȧṽḗḓ ƈħȧƞɠḗş]",
+    "justNow": "[Ĵŭşŧ ƞȯẇ]",
+    "minutesAgo": "[]{minutes}[ḿ ȧɠȯ]",
+    "share": "[Şħȧřḗ]",
+    "export": "[Ḗẋƥȯřŧ]",
+    "settings": "[Şḗŧŧḯƞɠş]"
+  },
+  "saveStatus": {
+    "saving": "[Şȧṽḯƞɠ...]",
+    "saved": "[Şȧṽḗḓ]",
+    "unsaved": "[Ŭƞşȧṽḗḓ ƈħȧƞɠḗş]",
+    "autoSave": "[Ȧŭŧȯ-şȧṽḗ ḗƞȧƀŀḗḓ]",
+    "lastSaved": "[Ŀȧşŧ şȧṽḗḓ: ]{time}[]"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "[Ɓŭḯŀḓ]",
+      "preview": "[Ƥřḗṽḯḗẇ]",
+      "humanHelp": "[Ħŭḿȧƞ Ħḗŀƥ]",
+      "more": "[Ḿȯřḗ]"
+    },
+    "disabled": {
+      "signInRequired": "[Şḯɠƞ ḯƞ řḗɋŭḯřḗḓ]",
+      "upgradeRequired": "[Ŭƥɠřȧḓḗ ŧȯ ŭƞŀȯƈķ ȦḮ ƈħȧŧ]"
+    }
+  }
+}

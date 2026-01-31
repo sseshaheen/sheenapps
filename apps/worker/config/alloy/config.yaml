@@ -1,0 +1,273 @@
+# Grafana Alloy Configuration for Sheenapps Worker
+# Location: /etc/alloy/config.yaml
+
+receivers:
+  # OTLP receiver for traces/metrics/logs from the worker application
+  # SECURITY: Bind to localhost only - no external access needed
+  otlp:
+    protocols:
+      http:
+        endpoint: 127.0.0.1:4318
+      grpc:
+        endpoint: 127.0.0.1:4317
+        max_recv_msg_size_mib: 4
+        max_concurrent_streams: 100
+
+  # Collect logs from systemd journal with JSON parsing
+  journald:
+    directory: /var/log/journal
+    units:
+      - sheenapps-worker.service
+    priority: info
+    operators:
+      # Parse Pino JSON logs
+      - type: json_parser
+        parse_from: body
+        if: 'body matches "^\\{"'
+      # Extract trace context for correlation
+      - type: move
+        from: body.trace_id
+        to: attributes.trace_id
+        if: body.trace_id != nil
+      - type: move
+        from: body.span_id
+        to: attributes.span_id
+        if: body.span_id != nil
+      - type: move
+        from: body.level
+        to: attributes.level
+        if: body.level != nil
+      - type: move
+        from: body.service
+        to: attributes.service_name
+        if: body.service != nil
+      # Keep msg as the main log body
+      - type: move
+        from: body.msg
+        to: body
+        if: body.msg != nil
+
+  # Host metrics for VM monitoring
+  hostmetrics:
+    collection_interval: 60s
+    scrapers:
+      cpu: {}
+      load: {}
+      memory: {}
+      disk: {}
+      filesystem:
+        include_fs_types:
+          match_type: strict
+          fs_types:
+            - ext4
+            - xfs
+      network:
+        include_interfaces:
+          match_type: regexp
+          interfaces:
+            - ^eth.*
+            - ^ens.*
+
+processors:
+  # Add/modify resource attributes
+  resource:
+    attributes:
+      - key: service.namespace
+        value: sheenapps
+        action: upsert
+      - key: deployment.environment
+        value: ${ENVIRONMENT}
+        action: upsert
+      - key: host.name
+        value: ${HOSTNAME}
+        action: insert
+      - key: cloud.provider
+        value: aws
+        action: insert
+      - key: cloud.region
+        value: eu-west-2
+        action: insert
+
+  # Batch processor for efficiency
+  batch:
+    timeout: 10s
+    send_batch_size: 1024
+    send_batch_max_size: 2048
+
+  # Tail sampling for production (only process after seeing full trace)
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 50000
+    expected_new_traces_per_sec: 100
+    policies:
+      # Always sample errors
+      - name: errors-policy
+        type: status_code
+        status_code:
+          status_codes: [ERROR]
+      
+      # Sample slow traces
+      - name: latency-policy
+        type: latency
+        latency:
+          threshold_ms: 5000
+      
+      # Sample high-value job types
+      - name: important-jobs
+        type: string_attribute
+        string_attribute:
+          key: job.type
+          values: [payment, subscription, critical-webhook]
+          enabled_regex_matching: false
+      
+      # Baseline probabilistic sampling
+      - name: probabilistic-policy
+        type: probabilistic
+        probabilistic:
+          sampling_percentage: 10
+
+  # Memory limiter to prevent OOM
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 512
+    spike_limit_mib: 128
+
+  # Filter sensitive data
+  attributes:
+    actions:
+      - key: user.email
+        action: delete
+      - key: user.password
+        action: delete
+      - key: api.key
+        action: delete
+      - key: http.request.header.authorization
+        action: delete
+      - key: http.request.header.cookie
+        action: delete
+
+  # Transform processor for data enrichment
+  transform:
+    traces:
+      statements:
+        - context: span
+          statements:
+            # Add duration bucket for histograms
+            - set(attributes["duration.bucket"], "short") where duration < 1000000000
+            - set(attributes["duration.bucket"], "medium") where duration >= 1000000000 and duration < 5000000000
+            - set(attributes["duration.bucket"], "long") where duration >= 5000000000
+
+exporters:
+  # Primary exporter to Grafana Cloud
+  otlphttp/grafana:
+    endpoint: ${GRAFANA_OTLP_ENDPOINT}
+    headers:
+      Authorization: ${GRAFANA_OTLP_AUTH}
+    timeout: 30s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
+    sending_queue:
+      enabled: true
+      num_consumers: 10
+      queue_size: 1000
+
+  # Debug exporter for troubleshooting (disabled in prod)
+  debug:
+    verbosity: detailed
+    sampling_initial: 10
+    sampling_thereafter: 100
+
+  # Prometheus exporter for local metrics
+  prometheus:
+    endpoint: 0.0.0.0:8889
+    const_labels:
+      service: sheenapps-worker
+      environment: ${ENVIRONMENT}
+
+extensions:
+  # Health check endpoint
+  health_check:
+    endpoint: 0.0.0.0:13133
+    path: /healthz
+    check_collector_pipeline:
+      enabled: true
+      interval: 10s
+      exporter_failure_threshold: 5
+
+  # Performance profiling (only in dev/staging)
+  pprof:
+    endpoint: 127.0.0.1:1777
+    block_profile_fraction: 0
+    mutex_profile_fraction: 0
+
+  # Memory ballast for stable memory usage
+  memory_ballast:
+    size_mib: 256
+
+  # File storage for buffering
+  file_storage:
+    directory: /var/lib/alloy/storage
+    timeout: 10s
+    compaction:
+      on_start: true
+      on_rebound: true
+      rebound_needed_threshold_mib: 100
+      rebound_trigger_threshold_mib: 10
+
+service:
+  extensions: 
+    - health_check
+    - memory_ballast
+    - file_storage
+    # Only enable pprof in non-prod
+    # - pprof
+
+  telemetry:
+    logs:
+      level: ${LOG_LEVEL:-info}
+      output_paths: ["stdout", "/var/log/alloy/alloy.log"]
+      error_output_paths: ["stderr", "/var/log/alloy/alloy-error.log"]
+    metrics:
+      level: detailed
+      address: 0.0.0.0:8888
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 0.0.0.0
+                port: 8888
+
+  pipelines:
+    # Traces pipeline for production with tail sampling
+    traces:
+      receivers: [otlp]
+      processors: 
+        - memory_limiter
+        - attributes
+        - resource
+        - tail_sampling  # Only in production
+        - transform
+        - batch
+      exporters: [otlphttp/grafana]
+
+    # Metrics pipeline with host metrics
+    metrics:
+      receivers: [otlp, hostmetrics]
+      processors:
+        - memory_limiter
+        - resource
+        - batch
+      exporters: [otlphttp/grafana, prometheus]
+
+    # Logs pipeline - only from journald to avoid duplicates
+    logs:
+      receivers: [journald]  # Removed otlp to prevent duplicate logs
+      processors:
+        - memory_limiter
+        - attributes
+        - resource
+        - batch
+      exporters: [otlphttp/grafana]

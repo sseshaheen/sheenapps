@@ -1,0 +1,112 @@
+{
+  "banner": {
+    "title": "Vous avez été recommandé par un Ami SheenApps !",
+    "description": "Commencez et ils gagneront une commission lorsque vous vous abonnerez."
+  },
+  "cta": {
+    "badge": "Nouveau",
+    "title": "Gagnez avec les Amis SheenApps",
+    "subtitle": "Recommandez des clients et gagnez des commissions récurrentes pendant 12 mois",
+    "commission": "Commission",
+    "months": "Mois",
+    "referrals": "Parrainages",
+    "joinButton": "Rejoindre les Amis SheenApps",
+    "terms": "Gratuit à rejoindre • Conditions applicables"
+  },
+  "signup": {
+    "title": "Rejoindre les Amis SheenApps",
+    "companyName": "Nom de l'entreprise",
+    "website": "Site web/Portfolio",
+    "marketingChannels": "Canaux de marketing",
+    "payoutMethod": "Méthode de paiement préférée",
+    "optional": "(Optionnel)",
+    "companyNamePlaceholder": "Votre entreprise ou marque personnelle",
+    "selectPayout": "Sélectionner la méthode de paiement",
+    "termsText": "J'accepte les",
+    "termsLink": "Conditions générales des Amis SheenApps",
+    "termsRequired": "Veuillez accepter les Conditions générales",
+    "cancel": "Annuler",
+    "create": "Créer un compte partenaire",
+    "creating": "Création...",
+    "success": "Compte partenaire créé ! Lien de parrainage copié.",
+    "successWithCopy": "Compte partenaire créé ! Lien de parrainage copié.",
+    "error": "Échec de la création du compte partenaire. Veuillez réessayer.",
+    "channels": {
+      "blog": "Blog",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "newsletter": "Newsletter",
+      "other": "Autre"
+    },
+    "payout": {
+      "stripe": "Stripe (Virement bancaire)",
+      "paypal": "PayPal",
+      "wire": "Virement bancaire",
+      "wise": "Wise (International)"
+    }
+  },
+  "success": {
+    "title": "Bienvenue chez les Amis SheenApps !",
+    "subtitle": "Votre compte de parrainage a été créé avec succès",
+    "description": "Commencez à partager votre lien pour gagner 15% de commission sur tous les parrainages !",
+    "linkLabel": "Votre lien de parrainage :",
+    "codeLabel": "Code partenaire",
+    "nextStepsTitle": "Prochaines étapes :",
+    "nextStep1": "Partagez votre lien de parrainage avec votre audience",
+    "nextStep2": "Suivez les performances dans votre tableau de bord partenaire",
+    "nextStep3": "Soyez payé mensuellement pour les parrainages réussis",
+    "goToDashboard": "Aller au tableau de bord",
+    "viewTerms": "Conditions"
+  },
+  "dashboard": {
+    "title": "Tableau de bord des Amis SheenApps",
+    "partnerCode": "Code partenaire",
+    "tier": "Niveau",
+    "refresh": "Actualiser",
+    "refreshing": "Actualisation...",
+    "copyLink": "Copier le lien de parrainage",
+    "linkCopied": "Lien de parrainage copié !",
+    "loadError": "Échec du chargement du tableau de bord",
+    "networkError": "Erreur réseau lors du chargement du tableau de bord",
+    "retry": "Réessayer",
+    "stats": {
+      "clicks": "Total des clics",
+      "signups": "Inscriptions",
+      "pending": "Gains en attente",
+      "estimated": "Paiement mensuel estimé",
+      "linkVisits": "Visites du lien",
+      "conversion": "{rate}% de conversion",
+      "awaitingApproval": "En attente d'approbation",
+      "thisMonth": "Projection du mois actuel"
+    },
+    "recentReferrals": "Parrainages récents",
+    "recentCommissions": "Commissions récentes",
+    "userSignup": "Inscription d'utilisateur",
+    "bonus": "Bonus",
+    "noReferrals": "Aucun parrainage pour le moment",
+    "noReferralsDesc": "Commencez à partager votre lien de parrainage pour voir l'activité ici.",
+    "noCommissions": "Aucune commission gagnée pour le moment",
+    "noCommissionsDesc": "Lorsque vos filleuls effectueront leur premier paiement, les commissions apparaîtront ici.",
+    "status": {
+      "pending": "En attente",
+      "confirmed": "Confirmé",
+      "rejected": "Rejeté",
+      "approved": "Approuvé",
+      "paid": "Payé",
+      "disputed": "Contesté"
+    },
+    "tierDesc": "{referrals} parrainages réussis • {rate}% de taux de commission",
+    "nextTier": "Niveau suivant dans",
+    "referralsNeeded": "{count} parrainages",
+    "complete": "complet",
+    "maxTier": "Niveau maximum atteint !",
+    "resources": "Aide et ressources",
+    "viewTerms": "Voir les conditions",
+    "viewTermsDesc": "Lire les conditions générales complètes",
+    "help": "Centre d'aide",
+    "helpDesc": "Obtenez de l'aide avec le programme de parrainage",
+    "contact": "Contacter le support",
+    "contactDesc": "Prenez contact avec notre équipe"
+  }
+}

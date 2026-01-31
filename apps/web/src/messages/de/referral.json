@@ -1,0 +1,112 @@
+{
+  "banner": {
+    "title": "Du wurdest von einem SheenApps Freund empfohlen!",
+    "description": "Starte und sie erhalten Provision, wenn du dich anmeldest."
+  },
+  "cta": {
+    "badge": "Neu",
+    "title": "Verdiene mit SheenApps Freunden",
+    "subtitle": "Empfiehl Kunden und verdiene wiederkehrende Provisionen für 12 Monate",
+    "commission": "Provision",
+    "months": "Monate",
+    "referrals": "Empfehlungen",
+    "joinButton": "SheenApps Freunden beitreten",
+    "terms": "Kostenlos beitreten • Bedingungen gelten"
+  },
+  "signup": {
+    "title": "SheenApps Freunden beitreten",
+    "companyName": "Firmenname",
+    "website": "Website/Portfolio",
+    "marketingChannels": "Marketing-Kanäle",
+    "payoutMethod": "Bevorzugte Auszahlungsmethode",
+    "optional": "(Optional)",
+    "companyNamePlaceholder": "Dein Unternehmen oder persönliche Marke",
+    "selectPayout": "Auszahlungsmethode wählen",
+    "termsText": "Ich akzeptiere die",
+    "termsLink": "SheenApps Freunde Allgemeinen Geschäftsbedingungen",
+    "termsRequired": "Bitte akzeptiere die Allgemeinen Geschäftsbedingungen",
+    "cancel": "Abbrechen",
+    "create": "Partner-Konto erstellen",
+    "creating": "Erstelle...",
+    "success": "Partner-Konto erstellt! Empfehlungslink kopiert.",
+    "successWithCopy": "Partner-Konto erstellt! Empfehlungslink kopiert.",
+    "error": "Fehler beim Erstellen des Partner-Kontos. Bitte versuche es erneut.",
+    "channels": {
+      "blog": "Blog",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "newsletter": "Newsletter",
+      "other": "Andere"
+    },
+    "payout": {
+      "stripe": "Stripe (Banküberweisung)",
+      "paypal": "PayPal",
+      "wire": "Banküberweisung",
+      "wise": "Wise (International)"
+    }
+  },
+  "success": {
+    "title": "Willkommen bei SheenApps Freunden!",
+    "subtitle": "Dein Empfehlungskonto wurde erfolgreich erstellt",
+    "description": "Beginne deinen Link zu teilen und verdiene 15% Provision auf alle Empfehlungen!",
+    "linkLabel": "Dein Empfehlungslink:",
+    "codeLabel": "Partner-Code",
+    "nextStepsTitle": "Nächste Schritte:",
+    "nextStep1": "Teile deinen Empfehlungslink mit deiner Zielgruppe",
+    "nextStep2": "Verfolge die Leistung in deinem Partner-Dashboard",
+    "nextStep3": "Erhalte monatliche Zahlungen für erfolgreiche Empfehlungen",
+    "goToDashboard": "Zum Dashboard",
+    "viewTerms": "Bedingungen"
+  },
+  "dashboard": {
+    "title": "SheenApps Freunde Dashboard",
+    "partnerCode": "Partner-Code",
+    "tier": "Stufe",
+    "refresh": "Aktualisieren",
+    "refreshing": "Aktualisiere...",
+    "copyLink": "Empfehlungslink kopieren",
+    "linkCopied": "Empfehlungslink kopiert!",
+    "loadError": "Fehler beim Laden des Dashboards",
+    "networkError": "Netzwerkfehler beim Laden des Dashboards",
+    "retry": "Wiederholen",
+    "stats": {
+      "clicks": "Gesamte Klicks",
+      "signups": "Anmeldungen",
+      "pending": "Ausstehende Einnahmen",
+      "estimated": "Geschätzte monatliche Auszahlung",
+      "linkVisits": "Link-Besuche",
+      "conversion": "{rate}% Konversion",
+      "awaitingApproval": "Warte auf Genehmigung",
+      "thisMonth": "Aktuelle Monatsprojektion"
+    },
+    "recentReferrals": "Kürzliche Empfehlungen",
+    "recentCommissions": "Kürzliche Provisionen",
+    "userSignup": "Benutzeranmeldung",
+    "bonus": "Bonus",
+    "noReferrals": "Noch keine Empfehlungen",
+    "noReferralsDesc": "Beginne deinen Empfehlungslink zu teilen, um Aktivität hier zu sehen.",
+    "noCommissions": "Noch keine Provisionen verdient",
+    "noCommissionsDesc": "Wenn deine Empfehlungen ihre erste Zahlung tätigen, wirst du Provisionen hier sehen.",
+    "status": {
+      "pending": "Ausstehend",
+      "confirmed": "Bestätigt",
+      "rejected": "Abgelehnt",
+      "approved": "Genehmigt",
+      "paid": "Bezahlt",
+      "disputed": "Streitig"
+    },
+    "tierDesc": "{referrals} erfolgreiche Empfehlungen • {rate}% Provisionssatz",
+    "nextTier": "Nächste Stufe in",
+    "referralsNeeded": "{count} Empfehlungen",
+    "complete": "vollständig",
+    "maxTier": "Maximale Stufe erreicht!",
+    "resources": "Hilfe & Ressourcen",
+    "viewTerms": "Bedingungen ansehen",
+    "viewTermsDesc": "Die vollständigen Allgemeinen Geschäftsbedingungen lesen",
+    "help": "Hilfe-Center",
+    "helpDesc": "Erhalte Hilfe zum Empfehlungsprogramm",
+    "contact": "Support kontaktieren",
+    "contactDesc": "Kontaktiere unser Team"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Expert Advisors",
+  "subtitle": "Get personalized guidance from experienced software engineers",
+  "meta": {
+    "title": "Expert Advisors - SheenApps",
+    "description": "Connect with experienced software engineers for personalized AI-assisted guidance and consultations."
+  },
+  "search": {
+    "placeholder": "Search advisors by name, skills, or specialty...",
+    "filters": {
+      "skills": "Skills",
+      "specialties": "Specialties",
+      "languages": "Languages",
+      "rating": "Minimum Rating",
+      "availability": "Available Now"
+    }
+  },
+  "cards": {
+    "rating": "rating",
+    "reviews": "reviews",
+    "review": "review",
+    "bookNow": "Book Consultation",
+    "viewProfile": "View Profile",
+    "available": "Available",
+    "busy": "Busy"
+  },
+  "empty": {
+    "title": "No advisors found",
+    "description": "Try adjusting your search filters to find more advisors"
+  }
+}

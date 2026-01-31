@@ -1,0 +1,421 @@
+name: Nightly P0-B Tests
+
+on:
+  # Run every night at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      run_quarantine:
+        description: 'Include quarantine tests'
+        required: false
+        default: true
+        type: boolean
+      run_real_services:
+        description: 'Use real external services'
+        required: false
+        default: true
+        type: boolean
+
+# Cancel in-progress runs for same workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: read
+
+env:
+  NODE_ENV: test
+  TEST_MODE: true
+  NEXT_TELEMETRY_DISABLED: 1
+
+  # P0-B tests use real services when available
+  AI_WORKER_MODE: stub
+  FORCE_PAYMENT_PROVIDER: stripe
+  ALLOW_TEST_HEADERS: true
+  NEXT_PUBLIC_ENABLE_TEST_MODE: true
+
+jobs:
+  # P0-B SDK Tests - Full integration with real services
+  sdk-p0b-tests:
+    name: SDK P0-B Tests (Real Services)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    strategy:
+      matrix:
+        test-category:
+          - storage      # Real R2 storage tests
+          - jobs         # Real BullMQ queue tests
+          - email        # Real Resend email tests
+          - payments     # Real Stripe payment tests
+          - quotas       # Quota enforcement with e2e_tiny plan
+          - backups      # Full backup/restore cycle
+          - full-flows   # Multi-service integration flows
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Decide real services mode (per-service)
+        id: services-mode
+        shell: bash
+        run: |
+          # Default all to false
+          REAL_STORAGE=false
+          REAL_STRIPE=false
+          REAL_EMAIL=false
+          REAL_QUEUE=false
+
+          # Helper: treat non-empty as true
+          has() { [ -n "${1:-}" ]; }
+
+          # Check if user wants real services (manual trigger) or always try (scheduled)
+          WANT_REAL=true
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.run_real_services }}" = "false" ]; then
+              WANT_REAL=false
+            fi
+          fi
+
+          if [ "$WANT_REAL" = "true" ]; then
+            # Enable each service only if ALL its required secrets exist
+            if has "${{ secrets.R2_TEST_ACCOUNT_ID }}" && has "${{ secrets.R2_TEST_ACCESS_KEY_ID }}" && has "${{ secrets.R2_TEST_SECRET_ACCESS_KEY }}" && has "${{ secrets.R2_TEST_BUCKET_NAME }}"; then
+              REAL_STORAGE=true
+            fi
+            if has "${{ secrets.STRIPE_TEST_SECRET_KEY }}" && has "${{ secrets.STRIPE_TEST_WEBHOOK_SECRET }}"; then
+              REAL_STRIPE=true
+            fi
+            if has "${{ secrets.RESEND_API_KEY }}"; then
+              REAL_EMAIL=true
+            fi
+            if has "${{ secrets.REDIS_TEST_URL }}"; then
+              REAL_QUEUE=true
+            fi
+          fi
+
+          echo "SDK_E2E_REAL_STORAGE=$REAL_STORAGE" >> $GITHUB_ENV
+          echo "SDK_E2E_REAL_STRIPE=$REAL_STRIPE" >> $GITHUB_ENV
+          echo "SDK_E2E_REAL_EMAIL=$REAL_EMAIL" >> $GITHUB_ENV
+          echo "SDK_E2E_REAL_QUEUE=$REAL_QUEUE" >> $GITHUB_ENV
+
+          echo "Storage: $REAL_STORAGE, Stripe: $REAL_STRIPE, Email: $REAL_EMAIL, Queue: $REAL_QUEUE"
+
+      - name: Set E2E run ID
+        run: echo "E2E_RUN_ID=${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.test-category }}" >> $GITHUB_ENV
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sheenapps'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify no local symlinks in @sheenapps scope
+        run: |
+          if [ -d node_modules/@sheenapps ]; then
+            SYMS=$(find node_modules/@sheenapps -maxdepth 2 -type l 2>/dev/null || true)
+            if [ -n "$SYMS" ]; then
+              echo "::error::Symlinks detected in node_modules/@sheenapps (CI must install from GitHub Packages):"
+              echo "$SYMS"
+              exit 1
+            fi
+          fi
+
+      - name: Setup test environment
+        run: |
+          cp .env.test.local.example .env.test.local
+          echo "BASE_URL=http://localhost:3100" >> .env.test.local
+          echo "TEST_TYPE=p0b" >> .env.test.local
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Require database secrets
+        run: |
+          if [ -z "${{ secrets.SUPABASE_TEST_URL }}" ] || [ -z "${{ secrets.SUPABASE_TEST_SERVICE_KEY }}" ] || [ -z "${{ secrets.SUPABASE_TEST_ANON_KEY }}" ]; then
+            echo "::error::Missing SUPABASE_TEST_URL, SUPABASE_TEST_SERVICE_KEY, or SUPABASE_TEST_ANON_KEY secrets"
+            echo "Nightly tests require a real test database. Configure secrets or skip this workflow."
+            exit 1
+          fi
+
+      - name: Build application
+        run: npm run build
+        env:
+          SKIP_ENV_VALIDATION: true
+
+      - name: Seed test data
+        run: npm run db:seed:test
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_TEST_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_TEST_ANON_KEY }}
+
+      - name: Start application
+        run: npm run dev:test &
+        env:
+          PORT: 3100
+
+      - name: Wait for application
+        run: npx wait-on http://localhost:3100 --timeout 120000
+
+      - name: Run P0-B SDK tests - ${{ matrix.test-category }}
+        run: npx playwright test tests/e2e/p0-b/p0b-sdk-${{ matrix.test-category }}.spec.ts
+        env:
+          TEST_TYPE: p0b
+          CI: true
+          BASE_URL: http://localhost:3100
+
+          # SDK E2E harness configuration
+          SDK_E2E_ENABLED: true
+          E2E_ADMIN_KEY: ${{ secrets.E2E_ADMIN_KEY }}
+          E2E_RUN_ID: ${{ env.E2E_RUN_ID }}
+
+          # Real service flags (computed per-service in services-mode step)
+          SDK_E2E_REAL_STORAGE: ${{ env.SDK_E2E_REAL_STORAGE }}
+          SDK_E2E_REAL_STRIPE: ${{ env.SDK_E2E_REAL_STRIPE }}
+          SDK_E2E_REAL_EMAIL: ${{ env.SDK_E2E_REAL_EMAIL }}
+          SDK_E2E_REAL_QUEUE: ${{ env.SDK_E2E_REAL_QUEUE }}
+
+          # Test credentials
+          TEST_EMAIL: ${{ secrets.TEST_EMAIL || 'test@example.com' }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD || 'TestPassword123!' }}
+
+          # Stripe test keys
+          STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+          STRIPE_TEST_WEBHOOK_SECRET: ${{ secrets.STRIPE_TEST_WEBHOOK_SECRET }}
+          STRIPE_TEST_PRICE_ID: ${{ secrets.STRIPE_TEST_PRICE_ID }}
+
+          # Database access (secrets required - checked in earlier step)
+          SUPABASE_URL: ${{ secrets.SUPABASE_TEST_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_TEST_SERVICE_KEY }}
+
+          # R2 Storage (for real storage tests)
+          R2_ACCOUNT_ID: ${{ secrets.R2_TEST_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_TEST_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: ${{ secrets.R2_TEST_BUCKET_NAME }}
+
+          # Redis/BullMQ (for real queue tests)
+          REDIS_URL: ${{ secrets.REDIS_TEST_URL }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0b-sdk-results-${{ matrix.test-category }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
+
+      - name: Upload failure screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: p0b-sdk-failures-${{ matrix.test-category }}
+          path: test-results/
+          retention-days: 14
+
+      - name: Clean up test data
+        if: always()
+        run: npm run db:seed:test cleanup
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_TEST_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_TEST_SERVICE_KEY }}
+
+  # Quarantine tests - flaky tests that need monitoring
+  quarantine-tests:
+    name: Quarantine Tests (Flaky Monitoring)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Run on schedule by default, respect manual input on dispatch
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.run_quarantine != 'false'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sheenapps'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify no local symlinks in @sheenapps scope
+        run: |
+          if [ -d node_modules/@sheenapps ]; then
+            SYMS=$(find node_modules/@sheenapps -maxdepth 2 -type l 2>/dev/null || true)
+            if [ -n "$SYMS" ]; then
+              echo "::error::Symlinks detected in node_modules/@sheenapps (CI must install from GitHub Packages):"
+              echo "$SYMS"
+              exit 1
+            fi
+          fi
+
+      - name: Setup test environment
+        run: |
+          cp .env.test.local.example .env.test.local
+          echo "BASE_URL=http://localhost:3000" >> .env.test.local
+          echo "TEST_TYPE=quarantine" >> .env.test.local
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Build application
+        run: npm run build
+        env:
+          SKIP_ENV_VALIDATION: true
+
+      - name: Start application
+        run: |
+          npm start &
+          npx wait-on http://localhost:3000 --timeout 120000
+
+      - name: Run quarantine tests
+        run: RUN_QUARANTINE=true npx playwright test
+        env:
+          CI: true
+          BASE_URL: http://localhost:3000
+          SDK_E2E_ENABLED: true
+          E2E_ADMIN_KEY: ${{ secrets.E2E_ADMIN_KEY }}
+
+      - name: Upload quarantine results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quarantine-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  # Test result summary and notifications
+  nightly-summary:
+    name: Nightly Test Summary
+    runs-on: ubuntu-latest
+    needs: [sdk-p0b-tests, quarantine-tests]
+    if: always()
+
+    steps:
+      - name: Download all test results
+        uses: actions/download-artifact@v4
+        with:
+          path: test-results/
+
+      - name: Generate nightly summary
+        run: |
+          echo "## Nightly P0-B Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run Date**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # SDK P0-B Results
+          echo "### SDK P0-B Tests (Real Services)" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.sdk-p0b-tests.result }}" == "success" ]; then
+            echo "All SDK integration tests passed with real services" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.sdk-p0b-tests.result }}" == "failure" ]; then
+            echo "Some SDK integration tests failed - review required" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "SDK tests skipped or cancelled" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Test categories breakdown
+          echo "#### Test Categories:" >> $GITHUB_STEP_SUMMARY
+          echo "| Category | Description |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| storage | Real R2 storage upload/download |" >> $GITHUB_STEP_SUMMARY
+          echo "| jobs | Real BullMQ queue processing |" >> $GITHUB_STEP_SUMMARY
+          echo "| email | Real Resend email delivery |" >> $GITHUB_STEP_SUMMARY
+          echo "| payments | Real Stripe checkout/customers |" >> $GITHUB_STEP_SUMMARY
+          echo "| quotas | e2e_tiny plan quota enforcement |" >> $GITHUB_STEP_SUMMARY
+          echo "| backups | Full backup/restore cycle |" >> $GITHUB_STEP_SUMMARY
+          echo "| full-flows | Multi-service integration |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Quarantine Results
+          echo "### Quarantine Tests (Flaky Monitoring)" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.quarantine-tests.result }}" == "success" ]; then
+            echo "All quarantine tests passed - consider promoting stable ones" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.quarantine-tests.result }}" == "failure" ]; then
+            echo "Quarantine tests failing - review for deletion or fixes" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Quarantine tests skipped" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Overall Status
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.sdk-p0b-tests.result }}" == "success" ]; then
+            echo "### Nightly Build Status: HEALTHY" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Nightly Build Status: NEEDS ATTENTION" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Notify Slack on failure
+        if: github.event_name == 'schedule' && (needs.sdk-p0b-tests.result != 'success' || needs.quarantine-tests.result != 'success')
+        run: |
+          cat << EOF > slack-payload.json
+          {
+            "text": "Nightly P0-B tests failed",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Nightly P0-B Test Failure"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*SDK P0-B Tests:* ${{ needs.sdk-p0b-tests.result }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Quarantine Tests:* ${{ needs.quarantine-tests.result }}"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Run"
+                    },
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
+
+          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              --data @slack-payload.json || echo "Slack notification failed"
+          fi

@@ -1,0 +1,19 @@
+{
+  "actions": {
+    "undo": "Undo",
+    "undoing": "Undoing...",
+    "dismiss": "Dismiss"
+  },
+  "projectRenamed": "Project renamed",
+  "projectDuplicated": "Project duplicated",
+  "projectArchived": "Project archived",
+  "projectRestored": "Project restored",
+  "renameUndone": "Rename undone",
+  "archiveUndone": "Archive undone",
+  "restoreUndone": "Restore undone",
+  "failedToRename": "Failed to rename project",
+  "failedToDuplicate": "Failed to duplicate project",
+  "failedToArchive": "Failed to archive project",
+  "failedToRestore": "Failed to restore project",
+  "copiedPrefix": "Copy of"
+}

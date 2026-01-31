@@ -1,0 +1,54 @@
+{
+  "badge": "Features am selben Tag geliefert",
+  "title": "Morgens anfragen.",
+  "titleHighlight": "Mittags live.",
+  "subtitle": "Sehen Sie, wie echte Kundenanfragen in Stunden zu Live-Features werden, nicht Wochen.",
+  "steps": [
+    {
+      "time": "9:00",
+      "title": "Sie fragen an",
+      "description": "Ich brauche WhatsApp-Integration für meinen Shop",
+      "output": "Anfrage erhalten ✓"
+    },
+    {
+      "time": "9:15",
+      "title": "Wir bauen",
+      "description": "Sarah beginnt mit der WhatsApp Business API-Implementierung",
+      "output": "In Bearbeitung..."
+    },
+    {
+      "time": "10:30",
+      "title": "Sie testen",
+      "description": "Vorschau-Link bereit - testen Sie auf Ihrem Telefon",
+      "output": "Bereit zum Testen!"
+    },
+    {
+      "time": "11:00",
+      "title": "Es ist live!",
+      "description": "WhatsApp-Bestellungen fließen jetzt in Ihr Dashboard",
+      "output": "Feature bereitgestellt 🎉"
+    }
+  ],
+  "stats": [
+    {
+      "value": "247",
+      "label": "Features heute",
+      "trend": "+12%"
+    },
+    {
+      "value": "1h 47m",
+      "label": "Durchschn. Lieferung",
+      "trend": "-23%"
+    },
+    {
+      "value": "94%",
+      "label": "Erfolgsrate",
+      "trend": "+2%"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Kundenbewertung",
+      "trend": "★★★★★"
+    }
+  ]
+}

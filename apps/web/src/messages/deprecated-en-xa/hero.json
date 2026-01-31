@@ -1,0 +1,52 @@
+{
+  "badge": "[Ŧřŭşŧḗḓ ƀẏ ]{count}[ ƀŭşḯƞḗşşḗş]",
+  "title": "[Ẏȯŭř Ŧḗƈħ Ŧḗȧḿ,]",
+  "titleHighlight": "[Ƒȯřḗṽḗř]",
+  "subtitle": "[Ɓŭḯŀḓ ẏȯŭř ƀŭşḯƞḗşş ḯƞ 5 ḿḯƞŭŧḗş. Ȧḓḓ ƒḗȧŧŭřḗş ḯƞ ŀḗşş.]",
+  "subtitleSecond": "[Řḗȧŀ ħŭḿȧƞş ȯƞ şŧȧƞḓƀẏ 24/7.]",
+  "demoPrompt": "[Ẇħȧŧ'ş ẏȯŭř ƀŭşḯƞḗşş ḯḓḗȧ?]",
+  "buildingText": "[Ɓŭḯŀḓḯƞɠ Ẏȯŭř Ɓŭşḯƞḗşş...]",
+  "buildingTextShort": "[Ɓŭḯŀḓḯƞɠ...]",
+  "startBuilding": "[Şŧȧřŧ Ɓŭḯŀḓḯƞɠ Ƞȯẇ]",
+  "startBuildingShort": "[Şŧȧřŧ Ɓŭḯŀḓḯƞɠ]",
+  "useVoice": "[Ŭşḗ ṽȯḯƈḗ]",
+  "noCreditCard": "[Ƞȯ ƈřḗḓḯŧ ƈȧřḓ řḗɋŭḯřḗḓ]",
+  "demoTime": "[60-şḗƈȯƞḓ ḓḗḿȯ]",
+  "businessIdeas": [
+    "I want to sell homemade cookies online",
+    "I need a booking app for my salon",
+    "Create an e-commerce store for handmade jewelry",
+    "Build a food delivery app for my restaurant",
+    "Launch a fitness coaching platform with subscriptions",
+    "Build a marketplace for local artisans",
+    "Create a SaaS for invoices and client management",
+    "Start a real estate listing site for my city",
+    "Build an online course platform for language learning",
+    "Launch a community app for neighborhood events",
+    "Create a job board for remote designers",
+    "Build a fundraising page for my nonprofit",
+    "Create a portfolio site for my photography studio",
+    "Build a reservation system for my clinic",
+    "Launch a dropshipping store with automated fulfillment",
+    "Create a booking site for travel experiences",
+    "Build a restaurant ordering kiosk web app",
+    "Launch an e-commerce sales platform",
+    "Create a CRM for small agencies",
+    "Build a landing page with a waitlist for my new app"
+  ],
+  "stats": [
+    "[]{count}[ ƒḗȧŧŭřḗş ŧȯḓȧẏ]",
+    "[Ȧṽɠ: ]{time}[]",
+    "[]{percent}[ şŭƈƈḗşş řȧŧḗ]"
+  ],
+  "floatingBadges": {
+    "aiHumans": "[ȦḮ + Ħŭḿȧƞş]",
+    "sameDayFeatures": "[Şȧḿḗ-ḓȧẏ ƒḗȧŧŭřḗş]"
+  },
+  "trustBar": {
+    "featuresCount": "[247 ƒḗȧŧŭřḗş ŧȯḓȧẏ]",
+    "avgDeployTime": "[Ȧṽḗřȧɠḗ: 1ħ 47ḿ ŧȯ ḓḗƥŀȯẏ]",
+    "avgDeployTimeShort": "[Ȧṽɠ: 1ħ 47ḿ]",
+    "successRate": "[94% şŭƈƈḗşş řȧŧḗ]"
+  }
+}

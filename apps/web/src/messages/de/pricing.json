@@ -1,0 +1,88 @@
+{
+  "badge": "Echte Menschen in jedem Plan enthalten",
+  "title": "Ihr Tech-Team für weniger als",
+  "titleHighlight": "Eine Fitnessstudio-Mitgliedschaft",
+  "subtitle": "Traditionelle Agenturen verlangen 10k€+ und brauchen Monate. Freelancer verschwinden.",
+  "subtitleSecond": "Wir geben Ihnen ein permanentes Tech-Team, das sich wirklich um Ihren Erfolg kümmert.",
+  "billingMonthly": "Monatlich",
+  "billingYearly": "Jährlich",
+  "billingSave": "Sparen Sie {percent}%",
+  "periodMonthly": "/Monat",
+  "periodYearly": "/Jahr",
+  "plans": {
+    "free": {
+      "name": "Kostenlos",
+      "description": "Testen vor dem Kauf",
+      "features": [
+        "60-Sekunden Business Builder",
+        "1 Beraterstunde/Monat",
+        "2 Feature-Ergänzungen",
+        "Community-Support",
+        "Basis-Analytics",
+        "sheenapps.com Subdomain"
+      ],
+      "cta": "Kostenlos starten"
+    },
+    "starter": {
+      "name": "Starter",
+      "description": "Perfekt zum Testen von Ideen",
+      "features": [
+        "Alles in Kostenlos",
+        "3 Beraterstunden/Monat",
+        "5 Feature-Ergänzungen",
+        "E-Mail-Support",
+        "SSL-Zertifikat",
+        "Basis-Templates"
+      ],
+      "cta": "Bauen starten"
+    },
+    "growth": {
+      "name": "Growth",
+      "description": "Für ernsthafte Unternehmer",
+      "popular": "BELIEBTESTE",
+      "features": [
+        "Alles in Starter",
+        "10 Beraterstunden/Monat",
+        "50 Features/Monat",
+        "Prioritäts-Support",
+        "Custom Domain inklusive",
+        "Erweiterte Analytics",
+        "A/B-Testing",
+        "API-Zugang"
+      ],
+      "cta": "Pro werden",
+      "savings": "Sparen Sie {amount}/Jahr"
+    },
+    "scale": {
+      "name": "Scale",
+      "description": "Ihr dediziertes Tech-Team",
+      "features": [
+        "Alles in Growth",
+        "Dedizierter Berater",
+        "Unbegrenzte Features",
+        "Bereitstellung am selben Tag",
+        "White-Glove Onboarding",
+        "Custom Integrationen",
+        "SLA-Garantie",
+        "Wöchentliche Strategiegespräche"
+      ],
+      "cta": "Jetzt skalieren"
+    }
+  },
+  "enterprise": "Für Unternehmenspreise kontaktieren",
+  "enterpriseDescription": "Brauchen Sie mehr? Bauen Sie mehrere Unternehmen? Haben Sie spezielle Anforderungen?",
+  "guarantees": {
+    "moneyBack": {
+      "value": "30 Tage",
+      "label": "Geld-zurück-Garantie"
+    },
+    "cancel": {
+      "value": "Kündigen",
+      "label": "Jederzeit, keine Fragen"
+    },
+    "export": {
+      "value": "Exportieren",
+      "label": "Ihr Code & Daten immer"
+    }
+  }
+}

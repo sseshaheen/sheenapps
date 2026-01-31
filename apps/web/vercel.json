@@ -1,0 +1,29 @@
+{
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=@sheenapps/web",
+  "outputDirectory": ".next",
+  "devCommand": "pnpm dev",
+  "installCommand": "cd ../.. && pnpm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "ignoreCommand": "exit 0",
+  "functions": {
+    "app/api/persistent-chat/stream/route.ts": {
+      "maxDuration": 300
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/persistent-chat/(.*)",
+      "headers": [
+        {
+          "key": "X-Accel-Buffering",
+          "value": "no"
+        },
+        {
+          "key": "Content-Encoding", 
+          "value": "identity"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Optional health check cron job for Railway
+# Deploy this as a separate cron service in Railway
+
+schedule: "*/5 * * * *"
+command: |
+  curl -f https://${SERVICE_URL}/myhealthz || \
+  (echo "Health check failed for Claude Worker" && exit 1)

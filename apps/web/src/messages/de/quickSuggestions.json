@@ -1,0 +1,97 @@
+{
+  "contact": {
+    "title": "Kontaktformular hinzufügen",
+    "description": "Ermöglichen Sie Besuchern, Sie einfach über ein professionelles Formular zu erreichen",
+    "prompt": "Fügen Sie ein Kontaktformular mit Name, E-Mail und Nachrichtenfeldern hinzu"
+  },
+  "pricing": {
+    "title": "Preisbereich hinzufügen",
+    "description": "Zeigen Sie Ihre Preispläne, um Kunden bei der Entscheidung zu helfen",
+    "prompt": "Fügen Sie einen Preisbereich mit verschiedenen Planoptionen hinzu"
+  },
+  "faq": {
+    "title": "FAQ-Bereich hinzufügen",
+    "description": "Beantworten Sie häufige Fragen, um Supportanfragen zu reduzieren",
+    "prompt": "Fügen Sie einen Bereich für häufig gestellte Fragen hinzu"
+  },
+  "testimonials": {
+    "title": "Testimonials hinzufügen",
+    "description": "Bauen Sie Vertrauen mit Kundenbewertungen und Testimonials auf",
+    "prompt": "Fügen Sie einen Testimonials-Bereich mit Kundenbewertungen hinzu"
+  },
+  "about": {
+    "title": "Über uns-Bereich hinzufügen",
+    "description": "Erzählen Sie Ihre Geschichte und verbinden Sie sich mit Besuchern",
+    "prompt": "Fügen Sie einen Über uns-Bereich hinzu, der das Unternehmen oder Team beschreibt"
+  },
+  "services": {
+    "title": "Leistungsbereich hinzufügen",
+    "description": "Präsentieren Sie Ihr Angebot für potenzielle Kunden",
+    "prompt": "Fügen Sie einen Leistungsbereich hinzu, der wichtige Angebote hervorhebt"
+  },
+  "portfolio": {
+    "title": "Portfolio hinzufügen",
+    "description": "Zeigen Sie Ihre beste Arbeit, um neue Kunden zu gewinnen",
+    "prompt": "Fügen Sie einen Portfolio-Bereich mit früheren Projekten hinzu"
+  },
+  "team": {
+    "title": "Team-Bereich hinzufügen",
+    "description": "Stellen Sie Ihr Team vor, um persönliche Verbindungen aufzubauen",
+    "prompt": "Fügen Sie einen Team-Bereich mit Mitgliederprofilen hinzu"
+  },
+  "booking": {
+    "title": "Buchungssystem hinzufügen",
+    "description": "Ermöglichen Sie Kunden, online Termine zu buchen",
+    "prompt": "Fügen Sie eine Buchungs- oder Terminplanungsfunktion hinzu"
+  },
+  "payment": {
+    "title": "Zahlungsoptionen hinzufügen",
+    "description": "Akzeptieren Sie Zahlungen direkt auf Ihrer Website",
+    "prompt": "Fügen Sie Zahlungsabwicklung mit Checkout-Funktionalität hinzu"
+  },
+  "gallery": {
+    "title": "Bildergalerie hinzufügen",
+    "description": "Präsentieren Sie Fotos in einem attraktiven Galerie-Layout",
+    "prompt": "Fügen Sie eine Bildergalerie mit Lightbox-Funktionalität hinzu"
+  },
+  "newsletter": {
+    "title": "Newsletter-Anmeldung hinzufügen",
+    "description": "Bauen Sie Ihre E-Mail-Liste mit einem Anmeldeformular auf",
+    "prompt": "Fügen Sie ein Newsletter-Anmeldeformular hinzu"
+  },
+  "blog": {
+    "title": "Blog-Bereich hinzufügen",
+    "description": "Teilen Sie Updates und verbessern Sie SEO mit einem Blog",
+    "prompt": "Fügen Sie einen Blog-Bereich für Artikel und Updates hinzu"
+  },
+  "social": {
+    "title": "Social Links hinzufügen",
+    "description": "Verbinden Sie Ihre Social-Media-Profile",
+    "prompt": "Fügen Sie Social-Media-Links und Teilen-Buttons hinzu"
+  },
+  "seo": {
+    "title": "SEO verbessern",
+    "description": "Optimieren Sie für Suchmaschinen und gewinnen Sie mehr Besucher",
+    "prompt": "Fügen Sie passende Meta-Tags, strukturierte Daten und SEO-Optimierung hinzu"
+  },
+  "analytics": {
+    "title": "Analytics hinzufügen",
+    "description": "Verfolgen Sie das Besucherverhalten und messen Sie die Leistung",
+    "prompt": "Fügen Sie Analytics-Tracking zur Überwachung des Website-Traffics hinzu"
+  },
+  "mobile": {
+    "title": "Für Mobilgeräte optimieren",
+    "description": "Stellen Sie ein großartiges Erlebnis auf allen Geräten sicher",
+    "prompt": "Verbessern Sie die mobile Reaktionsfähigkeit und Touch-Interaktionen"
+  },
+  "accessibility": {
+    "title": "Barrierefreiheit verbessern",
+    "description": "Machen Sie die Website für alle nutzbar",
+    "prompt": "Fügen Sie geeignete Barrierefreiheits-Funktionen und ARIA-Labels hinzu"
+  },
+  "darkMode": {
+    "title": "Dunkelmodus hinzufügen",
+    "description": "Ermöglichen Sie Benutzern, zwischen hellem und dunklem Design zu wechseln",
+    "prompt": "Fügen Sie einen Dunkelmodus-Schalter mit Theme-Wechsel hinzu"
+  }
+}

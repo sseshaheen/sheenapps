@@ -1,0 +1,869 @@
+{
+  "floatingButton": "Construye Tu Idea",
+  "ideaCapture": {
+    "title": "Cuéntanos Tu Idea",
+    "description": "Describe tu negocio con tus propias palabras. Sé tan detallado o simple como quieras.",
+    "placeholder": "Quiero crear...",
+    "signInPlaceholder": "Por favor, inicia sesión para comenzar tu proyecto",
+    "submitButton": "Empezar a Construir",
+    "voiceButton": "Usar voz",
+    "attachButton": "Adjuntar archivo",
+    "examples": [
+      "Una tienda online para artesanías",
+      "Un sistema de reservas para mi salón",
+      "App de delivery para mi restaurante",
+      "Sitio web portafolio para mi agencia",
+      "Herramienta SaaS para gestión de proyectos"
+    ],
+    "signInRequired": "Sign In Required",
+    "signInMessage": "Please sign in to create and manage your projects",
+    "signInToStartBuilding": "Sign In to Start Building"
+  },
+  "templates": {
+    "title": "O elige una plantilla",
+    "subtitle": "Comienza más rápido con plantillas especializadas por sector",
+    "viewAll": "Ver todas las plantillas",
+    "skipTemplate": "O describe tu propia idea",
+    "allCategories": "Todos",
+    "preview": "Vista previa",
+    "useTemplate": "Usar plantilla",
+    "proRequired": "Actualización requerida",
+    "features": "Características",
+    "categories": {
+      "retail": "Comercio",
+      "services": "Servicios",
+      "technology": "Tecnología",
+      "platform": "Plataforma",
+      "food": "Gastronomía",
+      "creative": "Creativo",
+      "education": "Educación",
+      "corporate": "Corporativo",
+      "health": "Salud & Fitness",
+      "publishing": "Publicación",
+      "events": "Eventos",
+      "real-estate": "Inmobiliaria"
+    },
+    "items": {
+      "ecommerce": {
+        "name": "Tienda Online",
+        "description": "Vende productos en línea con pagos e inventario"
+      },
+      "booking": {
+        "name": "Sistema de Reservas",
+        "description": "Programación de citas para empresas de servicios"
+      },
+      "restaurant": {
+        "name": "Restaurante & Menú",
+        "description": "Menú online, pedidos y reservas de mesas"
+      },
+      "portfolio": {
+        "name": "Sitio Portfolio",
+        "description": "Muestra tu trabajo y atrae clientes"
+      },
+      "course-platform": {
+        "name": "Plataforma de Cursos",
+        "description": "Enseña en línea con videos y cuestionarios"
+      },
+      "business-landing": {
+        "name": "Página de Negocio",
+        "description": "Convierte visitantes en clientes"
+      },
+      "gym-fitness": {
+        "name": "Gimnasio & Fitness",
+        "description": "Membresías, clases y reserva de entrenadores"
+      },
+      "blog": {
+        "name": "Blog & Contenido",
+        "description": "Comparte artículos y construye tu audiencia"
+      },
+      "saas": {
+        "name": "Plataforma SaaS",
+        "description": "Software de suscripción con gestión de usuarios"
+      },
+      "marketplace": {
+        "name": "Marketplace",
+        "description": "Conecta compradores y vendedores con comisiones"
+      },
+      "real-estate": {
+        "name": "Inmobiliaria",
+        "description": "Listados de propiedades con búsqueda avanzada"
+      },
+      "events-ticketing": {
+        "name": "Eventos & Ticketing",
+        "description": "Vende entradas y gestiona asistentes"
+      }
+    }
+  },
+  "form": {
+    "businessIdea": "Idea de Negocio",
+    "tryExamples": "Prueba estos ejemplos:"
+  },
+  "planStatus": {
+    "plan": "Plan",
+    "unlimitedGenerations": "Generaciones ilimitadas",
+    "generationsRemaining": "{count} generaciones restantes",
+    "upgrade": "Mejorar"
+  },
+  "interface": {
+    "chat": {
+      "title": "Asistente IA",
+      "thinking": "Pensando...",
+      "placeholder": "Haz una pregunta o describe lo que te gustaría construir...",
+      "buildMode": "Modo Construcción",
+      "planMode": "Modo Planificación",
+      "modes": {
+        "build": "Construir",
+        "plan": "Planificar"
+      },
+      "startRecording": "Iniciar grabación de voz",
+      "stopRecording": "Detener grabación",
+      "discardRecording": "Descartar grabación",
+      "confirmDiscard": "¿Descartar?",
+      "confirmYes": "Sí, descartar",
+      "confirmNo": "No, continuar",
+      "recording": "Grabando",
+      "transcribing": "Transcribiendo audio...",
+      "processingAudio": "Procesando...",
+      "voiceAddedToMessage": "Voz añadida al mensaje",
+      "microphoneAccessDenied": "Acceso al micrófono denegado. Por favor, permita el acceso al micrófono.",
+      "noMicrophoneFound": "No se encontró micrófono. Por favor, conecte un micrófono.",
+      "voiceRecordingError": "Error en la grabación de voz",
+      "transcriptionError": "Error al transcribir el audio"
+    },
+    "preview": {
+      "title": "Vista Previa en Vivo",
+      "loading": "Construyendo tu app..."
+    },
+    "buildLog": {
+      "title": "Progreso de Construcción",
+      "steps": {
+        "analyzing": "Analizando tu idea",
+        "scaffolding": "Creando estructura",
+        "generating": "Generando páginas",
+        "styling": "Aplicando diseño",
+        "deploying": "Preparando despliegue"
+      }
+    },
+    "chatPlan": {
+      "modeBadges": {
+        "question": "Pregunta",
+        "feature": "Planificación de Funciones",
+        "fix": "Corrección de Errores",
+        "analysis": "Análisis de Código",
+        "general": "General",
+        "build": "Construyendo"
+      },
+      "featurePlan": {
+        "title": "Plan de Función",
+        "description": "Descripción",
+        "steps": "Pasos de Implementación",
+        "acceptanceCriteria": "Criterios de Aceptación",
+        "estimatedTime": "Tiempo Estimado",
+        "complexity": "Complejidad",
+        "feasibility": "Viabilidad",
+        "convertToBuild": "Comenzar Construcción",
+        "complexityLevels": {
+          "simple": "Simple",
+          "moderate": "Moderado",
+          "complex": "Complejo"
+        },
+        "feasibilityLevels": {
+          "easy": "Fácil",
+          "moderate": "Moderado",
+          "challenging": "Desafiante"
+        }
+      },
+      "fixPlan": {
+        "title": "Bug Fix Plan",
+        "issueAnalysis": "Issue Analysis",
+        "rootCause": "Root Cause",
+        "solutions": "Proposed Solutions",
+        "confidence": "Confidence",
+        "riskLevel": "Risk Level",
+        "estimatedTime": "Time to Fix",
+        "selectSolution": "Select Solution",
+        "confidenceLevels": {
+          "low": "Bajo",
+          "medium": "Medio",
+          "high": "Alto"
+        },
+        "riskLevels": {
+          "low": "Low Risk",
+          "medium": "Medium Risk",
+          "high": "High Risk"
+        }
+      },
+      "questionResponse": {
+        "answer": "Answer",
+        "codeReferences": "Code References",
+        "relatedQuestions": "Related Questions",
+        "lineNumber": "Line",
+        "lines": "Lines"
+      },
+      "analysisResults": {
+        "title": "Code Analysis",
+        "findings": "Findings",
+        "category": "Category",
+        "severity": "Severity",
+        "suggestion": "Suggestion",
+        "impact": "Impact",
+        "categories": {
+          "performance": "Performance",
+          "security": "Security",
+          "maintainability": "Maintainability",
+          "best_practices": "Best Practices",
+          "code_quality": "Code Quality"
+        },
+        "severityLevels": {
+          "error": "Error",
+          "warning": "Warning",
+          "info": "Info"
+        }
+      },
+      "convertDialog": {
+        "title": "Convertir Plan en Construcción",
+        "description": "Transforme este plan en cambios reales de código.",
+        "estimatedCost": "Tiempo de IA estimado: {minutes} minutos",
+        "confirm": "Comenzar Construcción",
+        "cancel": "Cancelar",
+        "cannotCancel": "Una vez iniciada, esta operación no se puede cancelar",
+        "insufficientBalance": "Necesitas {minutes} minutos más de tiempo de IA para completar esta construcción.",
+        "addCredits": "Añadir Créditos"
+      },
+      "usage": {
+        "billedSeconds": "AI Time Used: {seconds}s",
+        "tokensUsed": "Tokens: {tokens}",
+        "sessionId": "Session: {id}"
+      },
+      "errors": {
+        "connectionLost": "Connection lost. Please try again.",
+        "streamError": "Error receiving response. Please retry.",
+        "conversionFailed": "Failed to convert plan to build. Please try again.",
+        "insufficientBalance": "Insufficient AI time credits. Please add more credits to continue.",
+        "projectNotFound": "Project not found or access denied.",
+        "rateLimitExceeded": "Too many requests. Please wait a moment and try again.",
+        "authenticationFailed": "Authentication failed. Please refresh and try again.",
+        "unknownError": "An unexpected error occurred. Please try again."
+      }
+    }
+  },
+  "questionFlow": {
+    "questions": {
+      "business_type": {
+        "text": "¡Me encanta tu idea! Déjame ayudarte a hacerla realidad. Primero, ¿qué tipo de negocio es este?",
+        "chips": [
+          "Plataforma SaaS",
+          "Tienda E-commerce",
+          "Marketplace",
+          "Sitio Portfolio",
+          "Otro"
+        ]
+      },
+      "color_theme": {
+        "text": "¡Excelente elección! Ahora, ¿qué paleta de colores representa tu marca?",
+        "chips": [
+          "Pasión Púrpura",
+          "Azul Océano",
+          "Verde Bosque",
+          "Naranja Atardecer",
+          "Oscuro Medianoche"
+        ]
+      },
+      "brand_name": {
+        "text": "¡Se ve increíble! ¿Cómo deberíamos llamar tu negocio?",
+        "chips": [
+          "Usar sugerencia IA",
+          "Escribiré el mío"
+        ]
+      },
+      "features": {
+        "text": "¿Qué funciones son imprescindibles para el lanzamiento?",
+        "chips": [
+          "Autenticación de Usuario",
+          "Procesamiento de Pagos",
+          "Notificaciones Email",
+          "Panel Analytics",
+          "Integración IA"
+        ]
+      },
+      "target_audience": {
+        "text": "¿Cuál es tu audiencia objetivo principal?",
+        "chips": [
+          "Pequeñas Empresas",
+          "Empresas",
+          "Consumidores",
+          "Freelancers",
+          "Todos"
+        ]
+      },
+      "subscription_model": {
+        "text": "¿Qué modelo de precios funciona mejor para ti?",
+        "chips": [
+          "Freemium",
+          "Prueba Gratuita",
+          "Solo Pago",
+          "Basado en Uso"
+        ]
+      },
+      "product_type": {
+        "text": "¿Qué tipo de productos venderás?",
+        "chips": [
+          "Productos Físicos",
+          "Descargas Digitales",
+          "Servicios",
+          "Mixto"
+        ]
+      },
+      "marketplace_type": {
+        "text": "¿Qué tipo de marketplace estás construyendo?",
+        "chips": [
+          "B2B",
+          "B2C",
+          "C2C",
+          "Marketplace de Servicios"
+        ]
+      },
+      "portfolio_type": {
+        "text": "¿Cuál es tu enfoque creativo?",
+        "chips": [
+          "Diseño",
+          "Fotografía",
+          "Desarrollo",
+          "Escritura",
+          "Multi-disciplinario"
+        ]
+      }
+    },
+    "buildSteps": {
+      "analyzing": [
+        "Analizando tu idea de negocio...",
+        "Entendiendo tus requerimientos...",
+        "Identificando funciones clave..."
+      ],
+      "scaffolding": [
+        "Creando la estructura de tu app...",
+        "Configurando la base...",
+        "Construyendo componentes principales..."
+      ],
+      "generating": [
+        "Generando tus páginas...",
+        "Creando diseños personalizados...",
+        "Construyendo interfaces de usuario..."
+      ],
+      "styling": [
+        "Aplicando los colores de tu marca...",
+        "Creando diseños hermosos...",
+        "Puliendo la experiencia..."
+      ],
+      "features": [
+        "Añadiendo autenticación...",
+        "Configurando procesamiento de pagos...",
+        "Implementando funciones principales..."
+      ]
+    }
+  },
+  "buildEvents": {
+    "BUILD_DEPENDENCIES_INSTALLING": "Instalando dependencias... (Paso {step} de {total})",
+    "BUILD_FRAMEWORK_DETECTING": "Detectando framework... (Paso {step} de {total})",
+    "BUILD_CODE_GENERATING": "Generando código... (Paso {step} de {total})",
+    "BUILD_ASSETS_OPTIMIZING": "Optimizando recursos... (Paso {step} de {total})",
+    "BUILD_PROJECT_DEPLOYING": "Desplegando proyecto... (Paso {step} de {total})",
+    "BUILD_COMPLETE": "¡Construcción completa!",
+    "BUILD_FAILED": "Construcción fallida: {reason}",
+    "BUILD_STARTED": "Iniciando construcción...",
+    "BUILD_PROGRESS": "Progreso: {progress}%",
+    "BUILD_TIMEOUT": "Tiempo agotado después de {minutes} minutos",
+    "BUILD_QUEUED": "Construcción en cola",
+    "BUILD_VALIDATING": "Validando configuración",
+    "BUILD_CODE_REVIEWING": "Revisando código generado",
+    "BUILD_CODE_APPLYING": "Aplicando cambios de código",
+    "BUILD_DEPENDENCIES_ANALYZING": "Analizando dependencias",
+    "BUILD_DEPENDENCIES_CACHED": "Usando caché de dependencias",
+    "BUILD_COMPILING": "Compilando aplicación",
+    "BUILD_BUNDLING": "Empaquetando recursos",
+    "BUILD_OPTIMIZING": "Optimizando para producción",
+    "BUILD_DEPLOY_PREPARING": "Preparando despliegue",
+    "BUILD_DEPLOY_UPLOADING": "Subiendo a CDN",
+    "BUILD_DEPLOY_ACTIVATING": "Activando vista previa",
+    "BUILD_CANCELLED": "Construcción cancelada por usuario",
+    "ROLLBACK_STARTED": "Proceso de reversión iniciado",
+    "ROLLBACK_VALIDATING": "Validando versión objetivo",
+    "ROLLBACK_ARTIFACT_DOWNLOADING": "Descargando artefactos de reversión",
+    "ROLLBACK_WORKING_DIR_SYNCING": "Sincronizando directorio de trabajo",
+    "ROLLBACK_PREVIEW_UPDATING": "Actualizando URL de vista previa",
+    "ROLLBACK_COMPLETED": "Reversión completada exitosamente",
+    "ROLLBACK_FAILED": "Reversión fallida: {reason}",
+    "BUILD_DEVELOPMENT_STARTING": "La IA está comenzando a trabajar en tu proyecto",
+    "BUILD_DEVELOPMENT_COMPLETE": "La IA ha terminado de crear el código de tu aplicación",
+    "BUILD_DEPENDENCIES_COMPLETE": "Dependencias instaladas exitosamente",
+    "BUILD_PREVIEW_PREPARING": "Preparando la vista previa de tu aplicación",
+    "BUILD_METADATA_GENERATING": "Generando recomendaciones y documentación",
+    "BUILD_METADATA_COMPLETE": "Documentación y recomendaciones listas",
+    "BUILD_RECOMMENDATIONS_GENERATED": "Recomendaciones de mejoras generadas",
+    "BUILD_FILE_CREATING": "Creando {filename}...",
+    "BUILD_FILE_UPDATING": "Actualizando {filename}...",
+    "BUILD_FILE_READING": "Leyendo {filename}...",
+    "BUILD_TASK_WORKING": "Trabajando en: {task} ({completed}/{total})",
+    "BUILD_PLANNING_COMPLETE": "Planificación completa, iniciando implementación...",
+    "BUILD_DEVELOPMENT_PROGRESS": "IA trabajando en tu proyecto",
+    "PROCESSING": "Procesando..."
+  },
+  "codeViewer": {
+    "search": {
+      "placeholder": "Buscar...",
+      "noResults": "Sin resultados",
+      "searching": "Buscando...",
+      "matchCount": "{current} de {total}",
+      "previousMatch": "Resultado anterior",
+      "nextMatch": "Resultado siguiente",
+      "caseSensitive": "Distinguir mayúsculas",
+      "useRegex": "Usar expresión regular",
+      "close": "Cerrar búsqueda"
+    },
+    "fileTree": {
+      "title": "Archivos",
+      "searchPlaceholder": "Buscar archivos...",
+      "clearSearch": "Limpiar búsqueda",
+      "noFiles": "Sin archivos",
+      "collapse": "Contraer árbol de archivos",
+      "expand": "Expandir árbol de archivos",
+      "fileCount": "{count, plural, =0 {Sin archivos} =1 {1 archivo} other {# archivos}}",
+      "totalSize": "{size}"
+    },
+    "tabs": {
+      "close": "Cerrar {name}"
+    },
+    "panel": {
+      "hideFileTree": "Ocultar árbol de archivos",
+      "showFileTree": "Mostrar árbol de archivos",
+      "closeFileTree": "Cerrar árbol de archivos"
+    },
+    "codeDisplay": {
+      "viewModes": {
+        "code": "Vista de código",
+        "diff": "Vista de diferencias",
+        "preview": "Vista previa"
+      },
+      "followMode": {
+        "following": "Siguiendo el cursor (clic para detener)",
+        "notFollowing": "Clic para seguir el cursor",
+        "stopFollowing": "Dejar de seguir el cursor",
+        "startFollowing": "Seguir el cursor"
+      },
+      "emptyState": {
+        "title": "Ningún archivo seleccionado",
+        "description": "Selecciona un archivo del árbol de archivos para ver su contenido, o espera a que comience la generación de código."
+      },
+      "fileInfo": {
+        "lines": "{count} líneas",
+        "chars": "{count} caracteres",
+        "generating": "Generando...",
+        "generatingProgress": "Generando... {progress}%",
+        "modified": "Modificado",
+        "new": "Nuevo"
+      },
+      "actions": {
+        "search": "Buscar en el archivo",
+        "searchShortcut": "Buscar en el archivo (Cmd+F)",
+        "copied": "¡Copiado!",
+        "copyFile": "Copiar archivo",
+        "copyAllFiles": "Copiar todos los archivos",
+        "downloadZip": "Descargar como ZIP"
+      },
+      "previewNotAvailable": "Vista previa no disponible",
+      "loadingFile": "Loading file..."
+    }
+  },
+  "workspace": {
+    "header": {
+      "logoAlt": "SheenApps - Ir al panel de control",
+      "untitledProject": "Proyecto sin título",
+      "soon": "Próximamente",
+      "new": "Nuevo",
+      "comingSoonShare": "¡Próximamente - Estamos trabajando en funciones de compartir!",
+      "comingSoonSettings": "¡Próximamente - La configuración del proyecto está en camino!",
+      "exportTitle": "Exportar código fuente del proyecto",
+      "exportNotAvailable": "Exportación no disponible",
+      "run": "Ejecutar",
+      "openRun": "Ver panel de negocios"
+    },
+    "version": {
+      "noVersion": "Sin versión aún",
+      "loading": "Cargando...",
+      "processing": "Procesando...",
+      "rollingBack": "Restaurando...",
+      "makingLive": "Publicando...",
+      "takingOffline": "Desconectando...",
+      "creatingVersion": "Creando nueva versión...",
+      "liveOnSite": "En línea en tu sitio",
+      "readyToPublish": "Listo para publicar",
+      "errorLoading": "Error al cargar",
+      "finalizingVersion": "Finalizando versión...",
+      "version": "Versión",
+      "makeItLive": "Publicar",
+      "goingLive": "Publicando...",
+      "versionHistory": "Historial de versiones",
+      "takeOffline": "Desconectar",
+      "takingSiteOffline": "Desconectando sitio...",
+      "publishFailed": "Error al publicar: {message}",
+      "unpublishFailed": "Error al desconectar: {message}",
+      "confirmTakeOffline": "¿Desconectar tu sitio? {domain} mostrará un error hasta que lo publiques de nuevo.",
+      "yourDomains": "tus dominios"
+    },
+    "publish": {
+      "noBuild": "Sin build aún",
+      "noBuildShort": "Sin build",
+      "building": "Construyendo...",
+      "buildingShort": "Construyendo",
+      "publish": "Publicar",
+      "publishShort": "Publicar",
+      "publishing": "Publicando...",
+      "publishingShort": "Publicando",
+      "live": "En vivo",
+      "liveShort": "En vivo",
+      "clickToShare": "Haz clic para compartir tu sitio en vivo",
+      "error": "Build fallido",
+      "errorShort": "Error",
+      "nowLive": "¡está ahora en vivo en tu sitio!",
+      "publishFailed": "Publicación fallida",
+      "confirmTitle": "¿Publicar tu sitio?",
+      "confirmDescription": "Tu sitio estará en vivo y accesible para todos.",
+      "cancel": "Cancelar",
+      "confirm": "Publicar"
+    },
+    "publishSuccess": {
+      "titleFirst": "¡Tu sitio está en vivo!",
+      "titleSuccess": "Publicado con éxito",
+      "copy": "Copiar",
+      "copied": "¡Copiado!",
+      "copyFailed": "Error al copiar",
+      "qrDescription": "Escanea para probar en tu teléfono",
+      "viewSite": "Ver tu sitio",
+      "share": "Compartir",
+      "celebrationMessage": "¡Celebramos porque esto es un verdadero logro - tu primera publicación!"
+    },
+    "integrations": {
+      "database": "Base de datos",
+      "git": "Git",
+      "deploy": "Despliegue",
+      "cms": "CMS",
+      "notConnected": "No conectado",
+      "connect": "Conectar",
+      "connected": "conectado",
+      "disconnected": "desconectado",
+      "warning": "advertencia",
+      "needsAttention": "necesita atención",
+      "error": "error",
+      "viewDetails": "Ver detalles",
+      "checkStatus": "Verificar estado",
+      "reconnect": "Reconectar",
+      "statusMayBeOutdated": "El estado puede estar desactualizado",
+      "statusUnavailable": "Estado no disponible",
+      "overallStatus": "Estado general de integraciones: {status}",
+      "executingAction": "Ejecutando acción...",
+      "databaseIntegration": "Integración de Base de Datos",
+      "configureDatabaseConnection": "Configurar conexión de base de datos para tu proyecto",
+      "deployIntegration": "Integración de Despliegue",
+      "configureDeployConnection": "Configurar opciones de despliegue para tu proyecto",
+      "cmsIntegration": "Integración CMS",
+      "configureCmsConnection": "Configurar gestión de contenido para tu proyecto"
+    },
+    "preview": {
+      "noPreviewAvailable": "Vista previa no disponible",
+      "projectBuilding": "Tu proyecto se está construyendo. La vista previa aparecerá cuando termine.",
+      "projectNotBuilt": "Es posible que el proyecto aún no se haya construido. Intenta construir el proyecto para ver la vista previa.",
+      "buildId": "ID de build: {id}",
+      "project": "Proyecto: {id}",
+      "build": "Build: {id}",
+      "viewport": "Vista: {viewport} ({orientation})",
+      "scale": "Escala: {scale}%",
+      "mode": "Modo: {mode}",
+      "fit": "Ajustar",
+      "pixel": "Píxel"
+    },
+    "devices": {
+      "mobile": "Móvil",
+      "tablet": "Tableta",
+      "desktop": "Escritorio",
+      "switchTo": "Cambiar a vista {device} ({key})",
+      "portrait": "Vertical",
+      "landscape": "Horizontal",
+      "toggleOrientation": "Alternar orientación (R) - Actualmente {orientation}",
+      "displayMode": "Modo de visualización: {mode}",
+      "fitToContainer": "Ajustar al contenedor",
+      "pixelAccurate": "Píxel exacto",
+      "fit": "Ajustar",
+      "pixel": "Píxel",
+      "zoomIn": "Acercar (tecla ])",
+      "zoomOut": "Alejar (tecla [)",
+      "copyDimensions": "Clic para copiar dimensiones",
+      "reset": "Restablecer",
+      "resetToDefault": "Restablecer a valores predeterminados",
+      "ariaLabel": "Vista {viewport}, {width} por {height} píxeles, escala {scale} por ciento, orientación {orientation}, modo {mode}",
+      "updatingPreview": "Actualizando vista previa..."
+    },
+    "chat": {
+      "collapseChat": "Minimizar chat",
+      "expandChat": "Expandir chat",
+      "chat": "Chat",
+      "building": "Construyendo...",
+      "unreadMessages": "{count} sin leer",
+      "noUnread": "sin mensajes sin leer",
+      "clickToExpand": "Clic para expandir.",
+      "expandSidebar": "Expandir barra lateral del chat",
+      "startConversation": "Iniciar la conversación",
+      "emptyStateHelp": "Envía un mensaje a tu equipo o pregunta a la IA",
+      "loadingConversation": "Cargando conversación...",
+      "loadingOlderMessages": "Cargando mensajes antiguos...",
+      "loadOlderMessages": "Cargar mensajes antiguos",
+      "syncing": "Sincronizando...",
+      "today": "Hoy",
+      "yesterday": "Ayer"
+    },
+    "connection": {
+      "connected": "Conectado",
+      "connecting": "Conectando...",
+      "disconnected": "Desconectado",
+      "error": "Error de conexión",
+      "unknown": "Desconocido",
+      "reconnect": "Reconectar",
+      "connectionLost": "Conexión perdida - los mensajes pueden no sincronizarse en tiempo real",
+      "connectionLostShort": "Conexión perdida",
+      "maxReconnectionAttempts": "Se alcanzó el máximo de intentos de reconexión"
+    },
+    "composer": {
+      "team": "Equipo",
+      "askAi": "Preguntar a IA",
+      "buildNow": "Construir ahora",
+      "buildModeLabel": "Modo construcción: {mode}",
+      "buildImmediatelyOn": "Construcción inmediata",
+      "planModeOn": "Modo planificación",
+      "buildModeTooltip": "Cuando está activado, la IA construirá tus cambios inmediatamente. Cuando está desactivado, la IA creará primero un plan.",
+      "aiPlaceholder": "Pregunta a la IA cualquier cosa sobre tu proyecto...",
+      "teamPlaceholder": "Envía un mensaje a tu equipo...",
+      "sendButton": "Enviar mensaje",
+      "cannotSendButton": "No se puede enviar - verifica tu conexión",
+      "youAreTyping": "Estás escribiendo...",
+      "pressEnterToSend": "Presiona Enter para enviar, Shift+Enter para nueva línea",
+      "teamMessageVisible": "Tu mensaje será visible para todos los miembros del equipo en este proyecto",
+      "aiBuildDescription": "La IA analizará y construirá tus cambios inmediatamente [Por defecto]",
+      "aiPlanDescription": "La IA analizará tu solicitud y creará un plan o responderá tus preguntas (construir después)",
+      "filters": {
+        "all": "Todo",
+        "team": "Equipo",
+        "ai": "IA",
+        "builds": "Builds"
+      }
+    },
+    "chatHeader": {
+      "name": "Sheena",
+      "subtitle": "Tu compañera IA de construcción"
+    },
+    "chatInput": {
+      "buildInProgress": "Construcción en progreso...",
+      "build": "Construir",
+      "plan": "Planificar",
+      "discussionMode": "Modo discusión - explorando ideas",
+      "buildMode": "Modo construcción - listo para implementar",
+      "discussionModeShort": "Modo discusión",
+      "buildModeShort": "Modo construcción"
+    },
+    "sidebar": {
+      "title": "Constructor de negocios",
+      "answerQuestions": "Responde las preguntas para mejorar tu aplicación",
+      "preparingQuestions": "Preparando tus preguntas personalizadas",
+      "refineApp": "Mejora tu aplicación",
+      "answerToCustomize": "Responde las preguntas para personalizar tu aplicación y ver la vista previa en vivo",
+      "questionsReady": "¡Preguntas listas! Construyamos tu aplicación personalizada.",
+      "quickActions": "Acciones rápidas"
+    },
+    "auth": {
+      "loadingChat": "Cargando chat...",
+      "initializingChat": "Inicializando chat",
+      "authRequired": "Autenticación requerida",
+      "signInToAccess": "Por favor inicia sesión para acceder al chat"
+    },
+    "mobileChat": {
+      "aiAssistant": "Asistente IA",
+      "getHelp": "Obtén ayuda para construir tu aplicación",
+      "comingSoon": "Chat IA próximamente",
+      "premiumFeature": "Función premium para asistencia personalizada"
+    },
+    "buildStatus": {
+      "deployed": "desplegado",
+      "building": "construyendo",
+      "failed": "fallido",
+      "queued": "en cola"
+    },
+    "firstBuild": {
+      "title": "Construyendo tu aplicación",
+      "description": "Quédate con nosotros... tu vista previa estará lista pronto y podrás hacer cambios fácilmente.",
+      "continue": "Continuar"
+    },
+    "iterationStrip": {
+      "nextStep": "Siguiente paso:",
+      "guidance": "Edita la descripción → Prueba la vista previa → Publica la app"
+    }
+  },
+  "buildProgress": {
+    "starting": "Iniciando construcción...",
+    "building": "Construyendo",
+    "complete": "Construcción completa",
+    "failed": "Construcción fallida",
+    "preview": "Vista previa",
+    "deploy": "Desplegar",
+    "deploying": "Desplegando...",
+    "deployed": "Desplegado",
+    "deployFailed": "Error de despliegue",
+    "viewSite": "Ver sitio",
+    "step": "Paso {current} de {total}",
+    "failedDuring": "Falló durante: {phase}",
+    "recommendedNextSteps": "Próximos pasos recomendados:",
+    "showBuildSteps": "Mostrar {count} pasos de construcción",
+    "hideBuildSteps": "Ocultar {count} pasos de construcción",
+    "version": "Versión:",
+    "phases": {
+      "setup": "Configuración",
+      "development": "Desarrollo",
+      "dependencies": "Dependencias",
+      "build": "Construcción",
+      "deploy": "Despliegue",
+      "metadata": "Finalización"
+    }
+  },
+  "humanProgress": {
+    "header": {
+      "badge": "AI is building your website",
+      "title": "Creating Your Website",
+      "complete": "Done!"
+    },
+    "steps": {
+      "analyzing": {
+        "title": "Understanding your idea",
+        "description": "Analyzing exactly what you need"
+      },
+      "researching": {
+        "title": "Researching your industry",
+        "description": "Finding best practices for your project type"
+      },
+      "planning": {
+        "title": "Planning the pages",
+        "description": "Designing your site structure"
+      },
+      "designing": {
+        "title": "Adding the design",
+        "description": "Choosing the right colors and layout"
+      },
+      "optimizing": {
+        "title": "Optimizing speed",
+        "description": "Making sure your site loads fast"
+      },
+      "finalizing": {
+        "title": "Final touches",
+        "description": "Your site is almost ready!"
+      }
+    },
+    "tips": {
+      "analyzing": "We analyze thousands of successful sites to design the best for you",
+      "researching": "Researching the latest trends in your industry",
+      "planning": "Great sites start with great planning",
+      "designing": "Choosing colors that resonate with your audience",
+      "optimizing": "Speed matters - 53% of visitors leave if a site takes over 3 seconds",
+      "finalizing": "Almost there! Your new website is on its way"
+    }
+  },
+  "wizard": {
+    "steps": {
+      "siteType": {
+        "title": "What do you want to build?",
+        "subtitle": "Pick the type that best describes your project",
+        "options": {
+          "portfolio": {
+            "label": "Portfolio",
+            "description": "Showcase your work"
+          },
+          "business": {
+            "label": "Business Website",
+            "description": "Company or service site"
+          },
+          "store": {
+            "label": "Online Store",
+            "description": "Sell products online"
+          },
+          "blog": {
+            "label": "Blog",
+            "description": "Share your stories"
+          },
+          "other": {
+            "label": "Something Else",
+            "description": "I'll describe it"
+          }
+        }
+      },
+      "businessName": {
+        "title": "What should we call it?",
+        "subtitle": "Enter your business or project name",
+        "placeholder": "My Awesome Project",
+        "skip": "Skip for now"
+      },
+      "industry": {
+        "title": "What's your business about?",
+        "subtitle": "This helps us design something perfect for you",
+        "options": [
+          "Food & Restaurant",
+          "Health & Fitness",
+          "Beauty & Fashion",
+          "Education",
+          "Technology",
+          "Real Estate",
+          "Finance",
+          "Travel",
+          "Entertainment",
+          "Other"
+        ],
+        "skip": "Skip this step"
+      },
+      "style": {
+        "title": "Pick a style",
+        "subtitle": "Choose the vibe that matches your brand",
+        "options": {
+          "modern": {
+            "label": "Modern",
+            "description": "Clean and contemporary"
+          },
+          "classic": {
+            "label": "Classic",
+            "description": "Timeless and elegant"
+          },
+          "bold": {
+            "label": "Bold",
+            "description": "Vibrant and eye-catching"
+          },
+          "minimal": {
+            "label": "Minimal",
+            "description": "Simple and focused"
+          }
+        }
+      }
+    },
+    "progress": {
+      "step": "Step",
+      "of": "of"
+    },
+    "actions": {
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip wizard",
+      "startBuilding": "Start Building"
+    }
+  },
+  "pricingModal": {
+    "title": "Elige tu Plan",
+    "description": "Selecciona un plan para continuar construyendo",
+    "currentPlan": "Plan Actual",
+    "getCredits": "Obtener Créditos",
+    "mostPopular": "Más Popular",
+    "maybeLater": "Quizás más tarde",
+    "securePayment": "Pago seguro vía Stripe • Cancela en cualquier momento"
+  }
+}

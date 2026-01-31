@@ -1,0 +1,25 @@
+{
+  "trials": {
+    "planRequired": "Planname ist erforderlich",
+    "notEligible": "Benutzer ist nicht für eine Testversion berechtigt",
+    "customerCreationFailed": "Fehler beim Erstellen des Kundendatensatzes",
+    "invalidReferralCode": "Ungültiger oder abgelaufener Empfehlungscode",
+    "cannotUseSelfReferral": "Sie können Ihren eigenen Empfehlungscode nicht verwenden",
+    "extensionFailed": "Fehler beim Verlängern der Testversion"
+  },
+  "export": {
+    "invalidProject": "Ungültige Projekt-ID",
+    "serviceUnavailable": "Exportdienst nicht verfügbar"
+  },
+  "general": {
+    "internalError": "Ein unerwarteter Fehler ist aufgetreten",
+    "authRequired": "Authentifizierung erforderlich",
+    "invalidRequest": "Ungültige Anfrage",
+    "serviceUnavailable": "Dienst vorübergehend nicht verfügbar"
+  },
+  "oauth": {
+    "invalidState": "Ungültiger OAuth-Statusparameter",
+    "missingCode": "Autorisierungscode fehlt",
+    "exchangeFailed": "Fehler beim Austauschen des Autorisierungscodes"
+  }
+}

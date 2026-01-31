@@ -1,0 +1,97 @@
+{
+  "contact": {
+    "title": "Agregar formulario de contacto",
+    "description": "Permita que los visitantes lo contacten fácilmente con un formulario profesional",
+    "prompt": "Agregar un formulario de contacto con campos de nombre, correo y mensaje"
+  },
+  "pricing": {
+    "title": "Agregar sección de precios",
+    "description": "Muestre sus planes de precios para ayudar a los clientes a decidir",
+    "prompt": "Agregar una sección de precios con diferentes opciones de planes"
+  },
+  "faq": {
+    "title": "Agregar sección de FAQ",
+    "description": "Responda preguntas comunes para reducir consultas de soporte",
+    "prompt": "Agregar una sección de preguntas frecuentes"
+  },
+  "testimonials": {
+    "title": "Agregar testimonios",
+    "description": "Genere confianza con reseñas y testimonios de clientes",
+    "prompt": "Agregar una sección de testimonios con reseñas de clientes"
+  },
+  "about": {
+    "title": "Agregar sección Nosotros",
+    "description": "Cuente su historia y conecte con los visitantes",
+    "prompt": "Agregar una sección sobre nosotros describiendo la empresa o el equipo"
+  },
+  "services": {
+    "title": "Agregar sección de servicios",
+    "description": "Muestre lo que ofrece a clientes potenciales",
+    "prompt": "Agregar una sección de servicios destacando ofertas clave"
+  },
+  "portfolio": {
+    "title": "Agregar portafolio",
+    "description": "Muestre su mejor trabajo para atraer nuevos clientes",
+    "prompt": "Agregar una sección de portafolio mostrando proyectos anteriores"
+  },
+  "team": {
+    "title": "Agregar sección del equipo",
+    "description": "Presente a su equipo para crear conexiones personales",
+    "prompt": "Agregar una sección del equipo con perfiles de los miembros"
+  },
+  "booking": {
+    "title": "Agregar sistema de reservas",
+    "description": "Permita que los clientes agenden citas en línea",
+    "prompt": "Agregar una función de reserva o programación de citas"
+  },
+  "payment": {
+    "title": "Agregar opciones de pago",
+    "description": "Acepte pagos directamente en su sitio web",
+    "prompt": "Agregar procesamiento de pagos con funcionalidad de checkout"
+  },
+  "gallery": {
+    "title": "Agregar galería de imágenes",
+    "description": "Muestre fotos en un diseño de galería atractivo",
+    "prompt": "Agregar una galería de imágenes con funcionalidad lightbox"
+  },
+  "newsletter": {
+    "title": "Agregar suscripción al boletín",
+    "description": "Construya su lista de correos con un formulario de suscripción",
+    "prompt": "Agregar un formulario de suscripción al boletín"
+  },
+  "blog": {
+    "title": "Agregar sección de blog",
+    "description": "Comparta actualizaciones y mejore el SEO con un blog",
+    "prompt": "Agregar una sección de blog para artículos y actualizaciones"
+  },
+  "social": {
+    "title": "Agregar enlaces sociales",
+    "description": "Conecte sus perfiles de redes sociales",
+    "prompt": "Agregar enlaces de redes sociales y botones para compartir"
+  },
+  "seo": {
+    "title": "Mejorar el SEO",
+    "description": "Optimice para buscadores y obtenga más visitantes",
+    "prompt": "Agregar meta etiquetas apropiadas, datos estructurados y optimización SEO"
+  },
+  "analytics": {
+    "title": "Agregar analíticas",
+    "description": "Rastree el comportamiento de visitantes y mida el rendimiento",
+    "prompt": "Agregar seguimiento de analíticas para monitorear el tráfico del sitio"
+  },
+  "mobile": {
+    "title": "Optimizar para móvil",
+    "description": "Asegure una excelente experiencia en todos los dispositivos",
+    "prompt": "Mejorar la capacidad de respuesta móvil e interacciones táctiles"
+  },
+  "accessibility": {
+    "title": "Mejorar la accesibilidad",
+    "description": "Haga el sitio usable para todos",
+    "prompt": "Agregar características de accesibilidad apropiadas y etiquetas ARIA"
+  },
+  "darkMode": {
+    "title": "Agregar modo oscuro",
+    "description": "Permita a los usuarios cambiar entre temas claro y oscuro",
+    "prompt": "Agregar un botón de modo oscuro con cambio de tema"
+  }
+}

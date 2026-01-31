@@ -1,0 +1,360 @@
+{
+  "404": {
+    "title": "الصفحة مش موجودة",
+    "description": "الصفحة اللي بتدور عليها مش موجودة.",
+    "goHome": "ارجع للرئيسية"
+  },
+  "generic": {
+    "title": "حصل حاجة غلط",
+    "description": "حصل خطأ مش متوقع. جرب تاني.",
+    "tryAgain": "جرب تاني",
+    "goHome": "ارجع للرئيسية",
+    "somethingWrong": "حصل حاجة غلط",
+    "unexpectedError": "حصل خطأ مش متوقع",
+    "networkError": "في مشكلة في النت",
+    "timeoutError": "الطلب خد وقت كتير"
+  },
+  "api": {
+    "serverError": "في مشكلة في السيرفر. جرب كمان شوية.",
+    "notFound": "مش لاقيين اللي بتدور عليه",
+    "unauthorized": "مش مسموح ليك تعمل كده",
+    "forbidden": "الوصول ممنوع",
+    "rateLimited": "طلبات كتير أوي. استنى شوية."
+  },
+  "validation": {
+    "required": "الخانة دي مطلوبة",
+    "invalidFormat": "الصيغة مش صح",
+    "tooShort": "قصيرة أوي",
+    "tooLong": "طويلة أوي",
+    "invalidEmail": "اكتب إيميل صح",
+    "invalidUrl": "اكتب لينك صح"
+  },
+  "loading": {
+    "failed": "التحميل فشل",
+    "timeout": "التحميل خد وقت كتير",
+    "retry": "جرب تاني"
+  },
+  "actionable": {
+    "AI_LIMIT_REACHED": {
+      "message": "الخدمة مشغولة دلوقتي",
+      "action": "جرب بعد دقايق أو ابعت طلب أبسط",
+      "support": "أو كلمنا على واتساب"
+    },
+    "NETWORK_TIMEOUT": {
+      "message": "النت بطيء أو مقطوع",
+      "action": "اتأكد من النت وجرب تاني",
+      "support": "لو المشكلة فضلت، كلمنا"
+    },
+    "RATE_LIMITED": {
+      "message": "طلبات كتير في وقت قصير",
+      "action": "استنى شوية وجرب تاني",
+      "support": "احنا معاك"
+    },
+    "AUTH_FAILED": {
+      "message": "لازم تسجل دخول عشان تكمل",
+      "action": "سجل دخول عشان تكمل بناء موقعك",
+      "support": "في مشكلة؟ كلمنا"
+    },
+    "PROVIDER_UNAVAILABLE": {
+      "message": "الخدمة واقفة صيانة",
+      "action": "جرب بعد دقايق",
+      "support": "فريقنا شغال عليها"
+    },
+    "INTERNAL_ERROR": {
+      "message": "حصل خطأ مش متوقع",
+      "action": "جرب تاني أو جرب طلب مختلف",
+      "support": "بلغنا فريقنا - كلمنا للمتابعة"
+    },
+    "AUTH_EXPIRED": {
+      "message": "الجلسة انتهت عشان الأمان",
+      "action": "سجل دخول تاني عشان تكمل",
+      "support": "احنا معاك"
+    },
+    "INSUFFICIENT_BALANCE": {
+      "message": "رصيدك مش كفاية للعملية دي",
+      "action": "اشحن رصيد عشان تكمل موقعك",
+      "support": "عندك سؤال عن الأسعار؟ كلمنا"
+    },
+    "BUILD_TIMEOUT": {
+      "message": "العملية خدت وقت طويل",
+      "action": "جرب طلب أبسط زي 'ضيف صفحة تواصل'",
+      "support": "أو كلمنا نساعدك"
+    },
+    "BUILD_FAILED": {
+      "message": "حصل خطأ وانت بتبني موقعك",
+      "action": "جرب تاني - أو جرب طلب مختلف",
+      "support": "فريقنا موجود يساعدك"
+    },
+    "INVALID_INPUT": {
+      "message": "البيانات اللي دخلتها مش صح",
+      "action": "راجع البيانات وصححها",
+      "support": "محتاج مساعدة؟ كلمنا"
+    },
+    "VALIDATION_FAILED": {
+      "message": "في بيانات محتاجة تتصلح",
+      "action": "راجع الخانات المحددة وصححها",
+      "support": "احنا معاك"
+    }
+  },
+  "AI_LIMIT_REACHED": "الخدمة مشغولة دلوقتي. جرب تاني بعد {minutes} دقيقة.",
+  "NETWORK_TIMEOUT": "الاتصال خد وقت كتير. اتأكد من النت وجرب تاني.",
+  "RATE_LIMITED": "طلبات كتير أوي. استنى شوية وجرب تاني.",
+  "AUTH_FAILED": "لازم تسجل دخول عشان تكمل.",
+  "PROVIDER_UNAVAILABLE": "الخدمة مش شغالة دلوقتي. هنرجعها بسرعة.",
+  "INTERNAL_ERROR": "حصل خطأ مش متوقع. جرب تاني.",
+  "AUTH_EXPIRED": "الجلسة انتهت. سجل دخول تاني.",
+  "INSUFFICIENT_BALANCE": "الرصيد مش كفاية. اشحن حسابك.",
+  "BUILD_TIMEOUT": "العملية خدت وقت كتير. جرب تاني.",
+  "BUILD_FAILED": "البناء فشل. جرب تاني.",
+  "INVALID_INPUT": "البيانات مش صح. راجعها تاني.",
+  "VALIDATION_FAILED": "في حاجة محتاجة تتصلح. راجع البيانات.",
+  "titles": {
+    "AI_LIMIT_REACHED": "الخدمة مشغولة",
+    "NETWORK_TIMEOUT": "مشكلة في النت",
+    "RATE_LIMITED": "استنى شوية",
+    "AUTH_FAILED": "سجل دخول",
+    "PROVIDER_UNAVAILABLE": "صيانة",
+    "INTERNAL_ERROR": "حصلت مشكلة",
+    "AUTH_EXPIRED": "سجل دخول تاني",
+    "INSUFFICIENT_BALANCE": "اشحن رصيد",
+    "BUILD_TIMEOUT": "خد وقت كتير",
+    "BUILD_FAILED": "حصلت مشكلة",
+    "INVALID_INPUT": "بيانات غلط",
+    "VALIDATION_FAILED": "راجع البيانات"
+  },
+  "retryButtons": {
+    "AI_LIMIT_REACHED": "جرب دلوقتي",
+    "NETWORK_TIMEOUT": "جرب تاني",
+    "RATE_LIMITED": "جرب دلوقتي",
+    "AUTH_FAILED": "سجل دخول",
+    "PROVIDER_UNAVAILABLE": "جرب بعدين",
+    "INTERNAL_ERROR": "جرب تاني",
+    "AUTH_EXPIRED": "سجل دخول",
+    "INSUFFICIENT_BALANCE": "اشحن رصيد",
+    "BUILD_TIMEOUT": "جرب طلب أبسط",
+    "BUILD_FAILED": "جرب تاني",
+    "INVALID_INPUT": "صلح البيانات",
+    "VALIDATION_FAILED": "راجع البيانات"
+  },
+  "supportButtons": {
+    "general": "كلمنا",
+    "whatsapp": "واتساب",
+    "help": "مساعدة"
+  },
+  "countdown": {
+    "availableIn": "هيكون متاح في {time}",
+    "availableNow": "متاح دلوقتي",
+    "minute": "دقيقة",
+    "minutes": "دقايق",
+    "second": "ثانية",
+    "seconds": "ثواني"
+  },
+  "recovery": {
+    "dontWorry": "متقلقش!",
+    "tryAgain": "جرب تاني",
+    "contactSupport": "كلم الدعم",
+    "whatHappened": "ايه اللي حصل",
+    "suggestion": "اقتراحنا"
+  },
+
+  "easyMode": {
+    "domain": {
+      "DOMAIN_SEARCH_FAILED": {
+        "title": "البحث مش شغال",
+        "message": "مش قادرين ندور على الدومين دلوقتي",
+        "action": "جرب تاني بعد شوية",
+        "support": "محتاج مساعدة؟ كلمنا"
+      },
+      "DOMAIN_UNAVAILABLE": {
+        "title": "الدومين محجوز",
+        "message": "الدومين ده متسجل لحد تاني",
+        "action": "جرب اسم تاني أو امتداد تاني (.com, .net)",
+        "support": "نقدر نساعدك تلاقي بديل"
+      },
+      "DOMAIN_PURCHASE_FAILED": {
+        "title": "الشرا فشل",
+        "message": "مش قادرين نتم شرا الدومين",
+        "action": "اتأكد من بيانات الدفع وجرب تاني",
+        "support": "كلمنا نساعدك"
+      },
+      "DOMAIN_VERIFICATION_PENDING": {
+        "title": "بنتأكد",
+        "message": "بنتحقق من الدومين بتاعك",
+        "action": "عادة بياخد كام دقيقة",
+        "support": "هنبلغك لما يجهز"
+      },
+      "DOMAIN_VERIFICATION_TIMEOUT": {
+        "title": "التحقق بياخد وقت",
+        "message": "التحقق من الدومين بياخد وقت أطول من العادي",
+        "action": "اتأكد من إعدادات DNS أو استنى شوية",
+        "support": "كلمنا لو المشكلة فضلت"
+      },
+      "DOMAIN_VERIFICATION_FAILED": {
+        "title": "التحقق فشل",
+        "message": "مش قادرين نتأكد إنك مالك الدومين",
+        "action": "اتأكد إن إعدادات DNS مطابقة بالظبط",
+        "support": "نقدر نساعدك في الإعداد"
+      },
+      "DOMAIN_ALREADY_REGISTERED": {
+        "title": "متسجل قبل كده",
+        "message": "الدومين ده مربوط بمشروع تاني",
+        "action": "استخدم دومين تاني أو شيله من المشروع التاني",
+        "support": "محتاج مساعدة؟ كلمنا"
+      }
+    },
+    "email": {
+      "EMAIL_QUOTA_EXCEEDED": {
+        "title": "وصلت للحد",
+        "message": "وصلت لأقصى عدد رسايل الشهر ده",
+        "action": "رقي خطتك عشان رسايل أكتر",
+        "support": "عندك سؤال عن الحدود؟ كلمنا"
+      },
+      "EMAIL_SEND_FAILED": {
+        "title": "الرسالة ماتبعتتش",
+        "message": "مش قادرين نبعت الرسالة",
+        "action": "جرب تاني بعد شوية",
+        "support": "لو المشكلة فضلت، كلمنا"
+      },
+      "EMAIL_DOMAIN_NOT_VERIFIED": {
+        "title": "الدومين مش متفعل",
+        "message": "الدومين بتاعك مش متفعل للإيميل لسه",
+        "action": "فعّل الدومين الأول",
+        "support": "نقدر نساعدك في التفعيل"
+      },
+      "MAILBOX_CREATE_FAILED": {
+        "title": "معملتش الميلبوكس",
+        "message": "مش قادرين نعمل صندوق البريد",
+        "action": "اتأكد إن الدومين متفعل الأول",
+        "support": "كلمنا نساعدك"
+      },
+      "MAILBOX_LIMIT_REACHED": {
+        "title": "حد الميلبوكسات",
+        "message": "وصلت لأقصى عدد صناديق البريد في خطتك",
+        "action": "رقي خطتك عشان صناديق أكتر",
+        "support": "كلمنا عن الخطط"
+      },
+      "MAILBOX_NAME_TAKEN": {
+        "title": "الاسم مستخدم",
+        "message": "الإيميل ده موجود قبل كده",
+        "action": "اختار اسم تاني",
+        "support": "محتاج اقتراحات؟ كلمنا"
+      }
+    },
+    "cms": {
+      "CMS_CONTENT_TYPE_CREATE_FAILED": {
+        "title": "معملتش نوع المحتوى",
+        "message": "حصلت مشكلة وانت بتعمل نوع المحتوى",
+        "action": "جرب اسم تاني",
+        "support": "كلمنا لو المشكلة فضلت"
+      },
+      "CMS_CONTENT_TYPE_NOT_FOUND": {
+        "title": "نوع المحتوى مش موجود",
+        "message": "نوع المحتوى ده مش موجود",
+        "action": "اعمله الأول أو اتأكد من الاسم",
+        "support": "محتاج مساعدة؟ كلمنا"
+      },
+      "CMS_ENTRY_CREATE_FAILED": {
+        "title": "ماضفتش",
+        "message": "حصلت مشكلة وانت بتضيف المحتوى",
+        "action": "اتأكد من الخانات المطلوبة وجرب تاني",
+        "support": "كلمنا نساعدك"
+      },
+      "CMS_ENTRY_UPDATE_FAILED": {
+        "title": "ماحفظتش",
+        "message": "مش قادرين نحفظ التغييرات",
+        "action": "جرب تاني بعد شوية",
+        "support": "كلمنا لو المشكلة فضلت"
+      },
+      "CMS_MEDIA_UPLOAD_FAILED": {
+        "title": "الرفع فشل",
+        "message": "مش قادرين نرفع الملف",
+        "action": "اتأكد من الملف وجرب تاني",
+        "support": "عندك مشكلة؟ كلمنا"
+      },
+      "CMS_MEDIA_TOO_LARGE": {
+        "title": "الملف كبير أوي",
+        "message": "الملف ده أكبر من الحد المسموح",
+        "action": "استخدم ملف أصغر (الحد {maxSize})",
+        "support": "محتاج ترفع ملفات أكبر؟ رقي خطتك"
+      }
+    },
+    "deploy": {
+      "DEPLOY_R2_UPLOAD_FAILED": {
+        "title": "مشكلة في الرفع",
+        "message": "مش قادرين نرفع ملفات موقعك",
+        "action": "هنجرب تاني أوتوماتيك",
+        "support": "كلمنا لو المشكلة فضلت"
+      },
+      "DEPLOY_WORKERS_FAILED": {
+        "title": "مشكلة في النشر",
+        "message": "مش قادرين ننشر موقعك دلوقتي",
+        "action": "هنجرب تاني أوتوماتيك",
+        "support": "كلمنا عشان تعرف الحالة"
+      },
+      "DEPLOY_DNS_FAILED": {
+        "title": "مشكلة DNS",
+        "message": "مش قادرين نحدث إعدادات الدومين",
+        "action": "استنى كام دقيقة وجرب تاني",
+        "support": "نقدر نساعدك في الإصلاح"
+      },
+      "DEPLOY_CERTIFICATE_PENDING": {
+        "title": "شهادة الأمان بتتحضر",
+        "message": "شهادة SSL بتتحضر",
+        "action": "عادة بتاخد كام دقيقة",
+        "support": "هتكون جاهزة قريب"
+      },
+      "DEPLOY_CERTIFICATE_FAILED": {
+        "title": "مشكلة في الشهادة",
+        "message": "مش قادرين نعمل شهادة الأمان",
+        "action": "اتأكد من إعدادات الدومين",
+        "support": "كلمنا نساعدك"
+      }
+    },
+    "payment": {
+      "PAYMENT_FAILED": {
+        "title": "الدفع فشل",
+        "message": "مش قادرين نعمل عملية الدفع",
+        "action": "اتأكد من بيانات الدفع وجرب تاني",
+        "support": "كلمنا لمساعدة الفواتير"
+      },
+      "PAYMENT_METHOD_REQUIRED": {
+        "title": "محتاج طريقة دفع",
+        "message": "ضيف طريقة دفع عشان تكمل",
+        "action": "ضيف كارت عشان تكمل",
+        "support": "عندك سؤال عن الدفع؟ كلمنا"
+      },
+      "PAYMENT_CARD_DECLINED": {
+        "title": "الكارت مرفوض",
+        "message": "الكارت بتاعك اترفض",
+        "action": "جرب كارت تاني أو كلم البنك",
+        "support": "عندك مشكلة؟ نقدر نساعد"
+      },
+      "PAYMENT_3DS_REQUIRED": {
+        "title": "تأكيد إضافي مطلوب",
+        "message": "البنك محتاج تأكيد إضافي",
+        "action": "كمّل التأكيد في النافذة اللي فتحت",
+        "support": "كلم البنك لو اتوقف"
+      }
+    },
+    "project": {
+      "PROJECT_NOT_FOUND": {
+        "title": "المشروع مش موجود",
+        "message": "المشروع ده مش موجود أو ملكش صلاحية",
+        "action": "اتأكد من اللينك أو روح للوحة التحكم",
+        "support": "كلمنا لو فاكر ده غلط"
+      },
+      "PROJECT_LIMIT_REACHED": {
+        "title": "حد المشاريع",
+        "message": "وصلت لأقصى عدد مشاريع في خطتك",
+        "action": "رقي خطتك عشان مشاريع أكتر",
+        "support": "كلمنا عن الخطط"
+      },
+      "PROJECT_SUSPENDED": {
+        "title": "المشروع متوقف",
+        "message": "المشروع ده متوقف مؤقتاً",
+        "action": "شوف إيميلك للتفاصيل",
+        "support": "كلمنا نحل الموضوع"
+      }
+    }
+  }
+}

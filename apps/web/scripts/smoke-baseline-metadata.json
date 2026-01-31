@@ -1,0 +1,14 @@
+{
+  "generated": "2025-06-26T19:14:26.739Z",
+  "totalTests": 5,
+  "totalDuration": 16132,
+  "slowestTest": [
+    "Homepage loads successfully",
+    5426
+  ],
+  "fastestTest": [
+    "API endpoints respond",
+    1081
+  ],
+  "averageDuration": 3226
+}

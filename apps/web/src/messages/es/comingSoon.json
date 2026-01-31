@@ -1,0 +1,44 @@
+{
+  "badge": "Solo por Invitación",
+  "title": "Estamos en Línea — Para Usuarios Selectos",
+  "titleHighlight": "Usuarios Selectos",
+  "subtitle": "Estamos agregando nuevos usuarios gradualmente para garantizar la mejor experiencia.",
+  "subtitleSecond": "Solicita acceso para reservar tu lugar.",
+  "waitlist": {
+    "title": "Solicitar Acceso",
+    "subtitle": "Agregamos nuevos usuarios cada semana",
+    "placeholder": "Ingresa tu correo electrónico",
+    "button": "Solicitar Acceso",
+    "submitting": "Enviando...",
+    "success": "¡Solicitud Recibida!",
+    "successSubtitle": "Te contactaremos cuando tu lugar esté disponible.",
+    "error": "Algo salió mal. Por favor intenta de nuevo.",
+    "alreadyJoined": "¡Ya has solicitado acceso!",
+    "spots": "Lugares limitados se abren semanalmente",
+    "privacy": "Respetamos tu privacidad. Sin spam, nunca."
+  },
+  "features": {
+    "title": "Lo Que Obtienes",
+    "ai": {
+      "title": "Constructor con IA",
+      "description": "Describe tu visión, mírala cobrar vida"
+    },
+    "speed": {
+      "title": "Ultra Rápido",
+      "description": "De la idea al sitio web desplegado en minutos"
+    },
+    "team": {
+      "title": "Soporte Experto",
+      "description": "Personas reales listas para ayudarte a tener éxito"
+    }
+  },
+  "pricing": {
+    "title": "Precios Simples y Transparentes",
+    "subtitle": "Planes para cada etapa de tu viaje",
+    "launching": "Detalles completos de precios tras aprobación"
+  },
+  "footer": {
+    "launching": "Ahora en Línea",
+    "copyright": "© 2025 SheenApps. Todos los derechos reservados."
+  }
+}

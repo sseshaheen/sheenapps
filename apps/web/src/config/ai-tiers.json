@@ -1,0 +1,327 @@
+{
+  "version": "1.0.0",
+  "environment": "development",
+  "lastUpdated": "2024-12-21T00:00:00Z",
+  "tiers": {
+    "basic": {
+      "name": "Basic",
+      "priority": 1,
+      "maxCostPerRequest": 0.005,
+      "maxMonthlyBudget": 500,
+      "providers": [
+        "openai-gpt3.5",
+        "claude-haiku",
+        "mock-fast"
+      ],
+      "fallbackTier": "mock",
+      "enabled": true,
+      "rules": [
+        {
+          "type": "complexity",
+          "operator": "in",
+          "value": [
+            "simple",
+            "moderate"
+          ],
+          "weight": 0.8
+        },
+        {
+          "type": "risk_level",
+          "operator": "in",
+          "value": [
+            "low",
+            "medium"
+          ],
+          "weight": 0.9
+        },
+        {
+          "type": "domain",
+          "operator": "in",
+          "value": [
+            "general",
+            "content",
+            "classification"
+          ],
+          "weight": 0.6
+        }
+      ]
+    },
+    "intermediate": {
+      "name": "Intermediate",
+      "priority": 2,
+      "maxCostPerRequest": 0.02,
+      "maxMonthlyBudget": 1500,
+      "providers": [
+        "openai-gpt4o-mini",
+        "claude-haiku"
+      ],
+      "fallbackTier": "basic",
+      "enabled": true,
+      "rules": [
+        {
+          "type": "complexity",
+          "operator": "in",
+          "value": [
+            "moderate",
+            "complex"
+          ],
+          "weight": 0.8
+        },
+        {
+          "type": "risk_level",
+          "operator": "in",
+          "value": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "weight": 0.7
+        },
+        {
+          "type": "domain",
+          "operator": "in",
+          "value": [
+            "business",
+            "marketing",
+            "analysis"
+          ],
+          "weight": 0.6
+        }
+      ]
+    },
+    "advanced": {
+      "name": "Advanced",
+      "priority": 3,
+      "maxCostPerRequest": 0.05,
+      "maxMonthlyBudget": 3000,
+      "providers": [
+        "claude-worker",
+        "claude-sonnet",
+        "openai-gpt4o-mini"
+      ],
+      "fallbackTier": "intermediate",
+      "enabled": true,
+      "rules": [
+        {
+          "type": "complexity",
+          "operator": "in",
+          "value": [
+            "complex",
+            "very_complex"
+          ],
+          "weight": 0.9
+        },
+        {
+          "type": "risk_level",
+          "operator": "in",
+          "value": [
+            "medium",
+            "high"
+          ],
+          "weight": 0.8
+        },
+        {
+          "type": "domain",
+          "operator": "in",
+          "value": [
+            "business",
+            "creative",
+            "analysis",
+            "strategy"
+          ],
+          "weight": 0.7
+        }
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "priority": 4,
+      "maxCostPerRequest": 0.15,
+      "maxMonthlyBudget": 5000,
+      "providers": [
+        "claude-opus",
+        "openai-gpt4o"
+      ],
+      "fallbackTier": "advanced",
+      "enabled": true,
+      "rules": [
+        {
+          "type": "complexity",
+          "operator": "in",
+          "value": [
+            "complex",
+            "very_complex"
+          ],
+          "weight": 0.9
+        },
+        {
+          "type": "risk_level",
+          "operator": "in",
+          "value": [
+            "high",
+            "critical"
+          ],
+          "weight": 1.0
+        },
+        {
+          "type": "domain",
+          "operator": "in",
+          "value": [
+            "finance",
+            "legal",
+            "healthcare",
+            "research"
+          ],
+          "weight": 0.9
+        }
+      ]
+    },
+    "specialized": {
+      "name": "Specialized",
+      "priority": 5,
+      "maxCostPerRequest": 0.25,
+      "maxMonthlyBudget": 2000,
+      "providers": [
+        "claude-opus"
+      ],
+      "fallbackTier": "premium",
+      "enabled": true,
+      "rules": [
+        {
+          "type": "domain",
+          "operator": "in",
+          "value": [
+            "image_generation",
+            "code_generation",
+            "specialized_analysis"
+          ],
+          "weight": 1.0
+        }
+      ]
+    }
+  },
+  "routing": {
+    "defaultTier": "intermediate",
+    "budgetThresholds": [
+      {
+        "percentage": 80,
+        "action": "notify",
+        "severity": "warning"
+      },
+      {
+        "percentage": 95,
+        "action": "tier_downgrade",
+        "severity": "critical"
+      },
+      {
+        "percentage": 100,
+        "action": "emergency_stop",
+        "severity": "critical"
+      }
+    ],
+    "complexityMapping": {
+      "simple": "basic",
+      "moderate": "intermediate",
+      "complex": "advanced",
+      "very_complex": "premium"
+    },
+    "domainSpecificRules": {
+      "finance": "premium",
+      "legal": "premium",
+      "healthcare": "premium",
+      "medical": "premium",
+      "research": "premium",
+      "business": "intermediate",
+      "marketing": "intermediate",
+      "web_design": "advanced",
+      "ui": "advanced",
+      "frontend": "advanced",
+      "content": "basic",
+      "general": "basic",
+      "development": "mock"
+    },
+    "riskLevelMapping": {
+      "low": "basic",
+      "medium": "intermediate",
+      "high": "advanced",
+      "critical": "premium"
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "alertThresholds": [
+      {
+        "type": "budget",
+        "percentage": 80,
+        "severity": "warning",
+        "actions": [
+          "notify"
+        ],
+        "recipients": [
+          "admin@sheenapps.com"
+        ]
+      },
+      {
+        "type": "budget",
+        "percentage": 95,
+        "severity": "critical",
+        "actions": [
+          "notify",
+          "tier_downgrade"
+        ],
+        "recipients": [
+          "admin@sheenapps.com",
+          "dev-team@sheenapps.com"
+        ]
+      },
+      {
+        "type": "error_rate",
+        "threshold": 0.1,
+        "severity": "warning",
+        "actions": [
+          "notify",
+          "health_check"
+        ],
+        "recipients": [
+          "dev-team@sheenapps.com"
+        ]
+      },
+      {
+        "type": "response_time",
+        "threshold": 10000,
+        "severity": "warning",
+        "actions": [
+          "notify"
+        ],
+        "recipients": [
+          "dev-team@sheenapps.com"
+        ]
+      }
+    ],
+    "reportingInterval": "hourly",
+    "costTrackingEnabled": true,
+    "usageAnalyticsEnabled": true,
+    "performanceMonitoringEnabled": true
+  },
+  "features": {
+    "smartCaching": {
+      "enabled": true,
+      "ttlMinutes": 60,
+      "maxCacheSize": 1000
+    },
+    "requestBatching": {
+      "enabled": false,
+      "maxBatchSize": 10,
+      "maxWaitTimeMs": 5000
+    },
+    "fallbackRetries": {
+      "enabled": true,
+      "maxRetries": 3,
+      "retryDelayMs": 1000
+    },
+    "loadBalancing": {
+      "enabled": true,
+      "strategy": "round_robin"
+    }
+  }
+}

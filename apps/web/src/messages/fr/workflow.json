@@ -1,0 +1,54 @@
+{
+  "badge": "Fonctionnalités livrées le jour même",
+  "title": "Demandez le matin.",
+  "titleHighlight": "Prêt avant le déjeuner.",
+  "subtitle": "Découvrez comment les vraies demandes clients deviennent des fonctionnalités en direct en heures, pas en semaines.",
+  "steps": [
+    {
+      "time": "09h00",
+      "title": "Vous demandez",
+      "description": "J'ai besoin d'une intégration WhatsApp pour ma boutique",
+      "output": "Demande reçue ✓"
+    },
+    {
+      "time": "09h15",
+      "title": "Nous développons",
+      "description": "Sarah commence l'implémentation de l'API WhatsApp Business",
+      "output": "En cours..."
+    },
+    {
+      "time": "10h30",
+      "title": "Vous testez",
+      "description": "Lien de prévisualisation prêt - testez sur votre téléphone",
+      "output": "Prêt à tester !"
+    },
+    {
+      "time": "11h00",
+      "title": "C'est en ligne !",
+      "description": "Les commandes WhatsApp arrivent maintenant sur votre tableau de bord",
+      "output": "Fonctionnalité déployée 🎉"
+    }
+  ],
+  "stats": [
+    {
+      "value": "247",
+      "label": "Fonctionnalités aujourd'hui",
+      "trend": "+12%"
+    },
+    {
+      "value": "1h 47m",
+      "label": "Livraison moyenne",
+      "trend": "-23%"
+    },
+    {
+      "value": "94%",
+      "label": "Taux de réussite",
+      "trend": "+2%"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Évaluation client",
+      "trend": "★★★★★"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+# OpenClaw Development Environment
+#
+# This Docker Compose file sets up a local OpenClaw gateway for development and testing.
+#
+# Usage:
+#   cd docker/openclaw-dev
+#   docker-compose up -d
+#
+# Requirements:
+#   - Docker & Docker Compose
+#   - ANTHROPIC_API_KEY in .env file or environment
+#
+# Part of SHEENAPPS_OPENCLAW_ANALYSIS.md Phase: Dev Mode Infrastructure
+
+version: '3.8'
+
+services:
+  # =============================================================================
+  # OpenClaw Gateway (Single Instance for Dev)
+  # =============================================================================
+  openclaw-gateway:
+    image: ghcr.io/openclaw/gateway:${OPENCLAW_GATEWAY_TAG:-0.12.3}
+    container_name: openclaw-dev-gateway
+    ports:
+      - "127.0.0.1:18789:18789"  # Gateway WebSocket/HTTP
+      - "127.0.0.1:18790:18790"  # WhatsApp QR Web UI (optional)
+      - "127.0.0.1:18793:18793"  # Canvas UI (optional, disabled in config)
+    volumes:
+      - openclaw-data:/app/data
+      - ./config:/app/config:ro
+    env_file:
+      - .env
+    environment:
+      # LLM Configuration (fail fast if ANTHROPIC_API_KEY missing)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY?err:ANTHROPIC_API_KEY is required - add to .env file}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+
+      # Gateway Configuration
+      - PROJECT_ID=dev-project-001
+      - GATEWAY_PORT=18789
+      - GATEWAY_HOST=0.0.0.0
+
+      # SheenApps Integration
+      - SHEENAPPS_WORKER_URL=http://host.docker.internal:8080
+      - SHEENAPPS_WEBHOOK_URL=http://host.docker.internal:8080/v1/webhooks/openclaw
+      - SHEENAPPS_WEBHOOK_SECRET=${SHEENAPPS_WEBHOOK_SECRET:-dev-webhook-secret}
+
+      # Safety Configuration
+      - TOOL_POLICY=read-only
+      - CANVAS_ENABLED=false
+
+      # Redis for session caching
+      - REDIS_URL=redis://redis:6379
+
+      # Logging
+      - LOG_LEVEL=debug
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:18789/health >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # =============================================================================
+  # Redis (For Session Caching)
+  # =============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: openclaw-dev-redis
+    ports:
+      - "127.0.0.1:6380:6379"  # Use 6380 to avoid conflict with main Redis
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  openclaw-data:
+    name: openclaw-dev-data
+  redis-data:
+    name: openclaw-dev-redis
+
+networks:
+  default:
+    name: openclaw-dev-network

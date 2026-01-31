@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "environment": "development",
+  "lastUpdated": "2024-12-21T00:00:00Z",
+  
+  "tiers": {
+    "basic": {
+      "name": "Basic",
+      "priority": 1,
+      "maxCostPerRequest": 0,
+      "maxMonthlyBudget": 0,
+      "providers": ["mock-fast"],
+      "fallbackTier": "mock",
+      "enabled": true,
+      "rules": []
+    },
+    
+    "intermediate": {
+      "name": "Intermediate",
+      "priority": 2,
+      "maxCostPerRequest": 0,
+      "maxMonthlyBudget": 0,
+      "providers": ["mock-fast", "mock-premium"],
+      "fallbackTier": "basic",
+      "enabled": true,
+      "rules": []
+    },
+    
+    "advanced": {
+      "name": "Advanced", 
+      "priority": 3,
+      "maxCostPerRequest": 0,
+      "maxMonthlyBudget": 0,
+      "providers": ["claude-worker", "mock-premium"],
+      "fallbackTier": "intermediate",
+      "enabled": true,
+      "rules": []
+    },
+    
+    "premium": {
+      "name": "Premium",
+      "priority": 4,
+      "maxCostPerRequest": 0,
+      "maxMonthlyBudget": 0,
+      "providers": ["mock-premium"],
+      "fallbackTier": "advanced",
+      "enabled": true,
+      "rules": []
+    },
+    
+    "specialized": {
+      "name": "Specialized",
+      "priority": 5,
+      "maxCostPerRequest": 0,
+      "maxMonthlyBudget": 0,
+      "providers": ["mock-premium"],
+      "fallbackTier": "premium",
+      "enabled": true,
+      "rules": []
+    }
+  },
+  
+  "routing": {
+    "defaultTier": "intermediate",
+    "budgetThresholds": [],
+    "complexityMapping": {
+      "simple": "basic",
+      "moderate": "intermediate",
+      "complex": "advanced",
+      "very_complex": "premium"
+    },
+    "domainSpecificRules": {
+      "finance": "premium",
+      "legal": "premium",
+      "healthcare": "premium",
+      "medical": "premium",
+      "research": "premium",
+      "business": "intermediate",
+      "marketing": "intermediate",
+      "web_design": "advanced",
+      "ui": "advanced",
+      "frontend": "advanced",
+      "content": "basic",
+      "general": "basic",
+      "development": "basic"
+    },
+    "riskLevelMapping": {
+      "low": "basic",
+      "medium": "intermediate",
+      "high": "advanced",
+      "critical": "premium"
+    }
+  },
+  
+  "monitoring": {
+    "enabled": false,
+    "alertThresholds": [],
+    "reportingInterval": "hourly",
+    "costTrackingEnabled": false,
+    "usageAnalyticsEnabled": true,
+    "performanceMonitoringEnabled": true
+  },
+  
+  "features": {
+    "smartCaching": {
+      "enabled": true,
+      "ttlMinutes": 120,
+      "maxCacheSize": 10000
+    },
+    "requestBatching": {
+      "enabled": false,
+      "maxBatchSize": 10,
+      "maxWaitTimeMs": 5000
+    },
+    "fallbackRetries": {
+      "enabled": true,
+      "maxRetries": 1,
+      "retryDelayMs": 100
+    },
+    "loadBalancing": {
+      "enabled": false,
+      "strategy": "round_robin"
+    }
+  }
+}

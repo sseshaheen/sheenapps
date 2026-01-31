@@ -1,0 +1,119 @@
+{
+  "title": "Choisissez votre plan",
+  "subtitle": "Tarification transparente qui évolue avec votre entreprise",
+  "badge": "Aucun frais caché, annulez à tout moment",
+  "monthlyBilling": "Mensuel",
+  "yearlyBilling": "Annuel",
+  "yearlyDiscount": "Économisez 20%",
+  "currencyNote": "Tous les prix affichés en {currency}",
+  "loadingPlans": "Chargement des plans tarifaires...",
+  "errorLoading": "Impossible de charger les plans tarifaires. Veuillez réessayer.",
+  "retryButton": "Réessayer",
+  "popularPlan": "Plus populaire",
+  
+  "subscriptions": {
+    "title": "Plans d'abonnement",
+    "description": "Facturation mensuelle ou annuelle avec accès complet à toutes les fonctionnalités de la plateforme."
+  },
+  
+  "packages": {
+    "title": "Recharges ponctuelles",
+    "description": "Achetez des crédits supplémentaires à tout moment. Les crédits n'expirent jamais."
+  },
+  
+  "features": {
+    "expand": "Voir toutes les fonctionnalités",
+    "collapse": "Afficher les fonctionnalités essentielles",
+    "included": "Tout dans {planName} :",
+    "unlimited": "Illimité",
+    "perMonth": "par mois"
+  },
+
+  "plans": {
+    "free": {
+      "dailyBonusWithGift": "{bonusDaily} minutes IA gratuites par jour + cadeau de bienvenue",
+      "welcomeGiftOnly": "Cadeau de bienvenue inclus",
+      "welcomeGiftFeature": "Cadeau de bienvenue à l'inscription"
+    },
+    "advisor": {
+      "communitySupport": "Support communautaire",
+      "sessionsIncluded": "{count} sessions de conseil incluses",
+      "unlimitedSessions": "Sessions de conseil illimitées",
+      "dailySessions": "Session de conseil quotidienne"
+    },
+    "descriptions": {
+      "minutesIncluded": "{minutes} minutes IA incluses",
+      "minutesTotal": "{totalMinutes} minutes IA au total"
+    },
+    "features": {
+      "bonusMinutesDaily": "{bonusDaily} minutes IA bonus/jour",
+      "aiMinutesMonthly": "{minutes} minutes IA/mois",
+      "rolloverMinutes": "Jusqu'à {rolloverCap} minutes IA reportées"
+    }
+  },
+
+  "packages": {
+    "title": "Recharges ponctuelles",
+    "description": "Achetez des crédits supplémentaires à tout moment. Les crédits n'expirent jamais.",
+    "badges": {
+      "mostPopular": "Plus Populaire",
+      "bestValue": "Meilleure Valeur"
+    },
+    "features": {
+      "baseMinutes": "{baseMinutes} minutes IA de base",
+      "bonusMinutes": "+{bonusMinutes} minutes IA bonus",
+      "costPerMinute": "{cost} par minute IA",
+      "creditsNeverExpire": "Les crédits n'expirent jamais"
+    },
+    "savings": {
+      "saveAtLeast": "Économisez au moins {discount}%"
+    }
+  },
+
+  "cta": {
+    "getStarted": "Commencer",
+    "choosePlan": "Choisir le plan",
+    "upgrade": "Mettre à niveau",
+    "purchase": "Acheter des crédits",
+    "currentPlan": "Plan actuel",
+    "contact": "Contacter les ventes"
+  },
+
+  "pricing": {
+    "free": "Gratuit",
+    "month": "/mois",
+    "billedAnnually": " facturé annuellement"
+  },
+
+  "guarantees": {
+    "title": "Notre promesse",
+    "moneyBack": {
+      "title": "Remboursement sous 30 jours",
+      "description": "Remboursement intégral si non satisfait"
+    },
+    "cancelAnytime": {
+      "title": "Annulez à tout moment",
+      "description": "Aucun contrat ni frais d'annulation"
+    },
+    "dataExport": {
+      "title": "Vos données vous appartiennent",
+      "description": "Exportez tout, à tout moment"
+    }
+  },
+  
+  "faq": {
+    "title": "Questions fréquentes",
+    "currency": {
+      "question": "Puis-je changer ma devise de facturation ?",
+      "answer": "Oui ! Nous supportons plusieurs devises. Votre préférence est détectée automatiquement."
+    },
+    "upgrade": {
+      "question": "Puis-je changer de plan à tout moment ?",
+      "answer": "Absolument. Les changements prennent effet immédiatement avec proratisation."
+    },
+    "credits": {
+      "question": "Les crédits ponctuels expirent-ils ?",
+      "answer": "Non, les crédits achetés via les packages ponctuels n'expirent jamais."
+    }
+  }
+}

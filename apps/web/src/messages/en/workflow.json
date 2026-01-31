@@ -1,0 +1,54 @@
+{
+  "badge": "Features delivered same day",
+  "title": "Request in Morning.",
+  "titleHighlight": "Live by noon.",
+  "subtitle": "Watch how real customer requests become live features in hours, not weeks.",
+  "steps": [
+    {
+      "time": "9:00 AM",
+      "title": "You Request",
+      "description": "I need WhatsApp integration for my store",
+      "output": "Request received ✓"
+    },
+    {
+      "time": "9:15 AM",
+      "title": "We Build",
+      "description": "Sarah starts implementing WhatsApp Business API",
+      "output": "In progress..."
+    },
+    {
+      "time": "10:30 AM",
+      "title": "You Test",
+      "description": "Preview link ready - test on your phone",
+      "output": "Ready to test!"
+    },
+    {
+      "time": "11:00 AM",
+      "title": "It's Live!",
+      "description": "WhatsApp orders now flowing to your dashboard",
+      "output": "Feature deployed 🎉"
+    }
+  ],
+  "stats": [
+    {
+      "value": "247",
+      "label": "Features Today",
+      "trend": "+12%"
+    },
+    {
+      "value": "1h 47m",
+      "label": "Avg. Delivery",
+      "trend": "-23%"
+    },
+    {
+      "value": "94%",
+      "label": "Success Rate",
+      "trend": "+2%"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Customer Rating",
+      "trend": "★★★★★"
+    }
+  ]
+}

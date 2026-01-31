@@ -1,0 +1,831 @@
+@import "tailwindcss";
+@import "../styles/mobile-responsive.css";
+@import "../styles/dark-mode-fix.css";
+
+@layer base, components, utilities;
+
+@layer utilities {
+  /* EXPERT FIX: Controlled app-height utility that uses dvh when supported */
+  .min-h-app {
+    min-height: 100vh; /* fallback */
+  }
+  
+  @supports (height: 100dvh) {
+    .min-h-app {
+      min-height: 100dvh; /* modern browsers */
+    }
+  }
+
+  /* Header-aware layout utilities */
+  .pt-header {
+    padding-top: 4rem; /* 64px - matches header height */
+  }
+  
+  .mt-header {
+    margin-top: 4rem; /* 64px - matches header height */
+  }
+  
+  /* Header spacer element */
+  .header-spacer {
+    height: 4rem; /* 64px - matches header height */
+  }
+}
+
+@layer base {
+  /* FOUC Prevention */
+  :root {
+    color-scheme: light dark;
+  }
+
+  /* Modern fixed header solution (2024 best practice) */
+  html {
+    scroll-padding-top: 4rem; /* 64px - matches header height */
+  }
+
+  /* Core mode tokens (light/dark) - Single source of truth */
+  :root {
+    /* Background & Surfaces */
+    --bg: 0 0% 100%;              /* Main background */
+    --fg: 222 84% 5%;             /* Main text */
+    --surface: 0 0% 98%;          /* Card/panel background */
+    --neutral: 0 0% 96%;          /* Neutral backgrounds */
+    --muted: 0 0% 64%;            /* Muted text */
+    
+    /* Semantic Colors */
+    --accent: 262 83% 57%;        /* Primary brand color */
+    --success: 142 76% 36%;       /* Success states */
+    --warning: 38 92% 50%;        /* Warning states */
+    --error: 0 72% 51%;           /* Error states */
+    
+    /* Interactive States */
+    --accent-hover: 262 83% 47%;  /* Accent hover state */
+    --accent-active: 262 83% 37%; /* Accent active state */
+    --success-hover: 142 76% 46%; /* Success hover state */
+    --warning-hover: 38 92% 60%;  /* Warning hover state */
+    --error-hover: 0 72% 61%;     /* Error hover state */
+    --border: 220 13% 91%;        /* Default borders */
+    --input: 220 13% 91%;         /* Input backgrounds */
+    --ring: 262 83% 57%;          /* Focus rings */
+    
+    /* Design System Tokens */
+    --radius: 12px;               /* Standard border radius */
+    --shadow-1: 0 1px 2px hsl(var(--fg) / 0.06);    /* Subtle shadow */
+    --shadow-2: 0 4px 16px hsl(var(--fg) / 0.08);   /* Medium shadow */
+    --shadow-3: 0 12px 32px hsl(var(--fg) / 0.12);  /* Deep shadow */
+    
+    /* Accessibility: Contrast Pairs */
+    --btn-fg-on-accent: 0 0% 100%;     /* White text on accent */
+    --btn-fg-on-surface: 222 84% 5%;   /* Dark text on light surface */
+    --chip-fg-on-surface: 222 84% 5%;  /* Dark text on chips */
+    
+    /* Chart Colors (Data Visualization) */
+    --chart-primary: 262 83% 57%;      /* Purple - primary accent */
+    --chart-secondary: 221 83% 53%;    /* Blue - secondary data */
+    --chart-success: 142 76% 36%;      /* Green - positive values */
+    --chart-warning: 38 92% 50%;       /* Orange - warnings */
+    --chart-danger: 0 72% 51%;         /* Red - errors/negative */
+    
+    /* Container Query Support */
+    --container-workspace: workspace / inline-size;  /* Named container for workspace */
+    --container-sidebar: sidebar / inline-size;      /* Named container for sidebar */
+    
+    /* Legacy compatibility (keep shadcn/ui working) */
+    --background: var(--bg);
+    --foreground: var(--fg);
+    --card: var(--surface);
+    --card-foreground: var(--fg);
+    --popover: var(--surface);
+    --popover-foreground: var(--fg);
+    --primary: var(--accent);
+    --primary-foreground: var(--btn-fg-on-accent);
+    --secondary: var(--neutral);
+    --secondary-foreground: var(--fg);
+    --muted-foreground: var(--muted);
+    --accent-foreground: var(--fg);
+    --destructive: var(--error);
+    --destructive-foreground: var(--btn-fg-on-accent);
+    --radius: 0.5rem;
+  }
+
+  /* Mobile optimizations */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    height: 100%;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Optimize touch interactions */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Preview container animations */
+  .preview-container.preview-updating {
+    position: relative;
+  }
+  
+  .preview-container.preview-updating::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, hsl(var(--accent) / 0.1) 50%, transparent 70%);
+    animation: shimmer 1s ease-out;
+    pointer-events: none;
+    border-radius: 0.5rem;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Code viewer streaming cursor animation */
+  @keyframes cursor-blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-cursor-blink {
+    animation: cursor-blink 1s ease-in-out infinite;
+  }
+
+  /* Better mobile performance */
+  @media (max-width: 768px) {
+    * {
+      will-change: auto;
+    }
+    
+    /* Prevent zoom on input focus */
+    input, textarea, select {
+      font-size: 16px;
+    }
+  }
+
+  /* Mobile scroll improvements - prevent rubber-banding/page scroll chaining */
+  html, body {
+    overscroll-behavior: none;
+  }
+
+  /* EXPERT FIX: Complete height chain for 100% heights */
+  html, body, #__next {
+    height: 100%;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .container {
+    direction: rtl;
+  }
+
+  /* RTL-specific overrides */
+  [dir="rtl"] .flex {
+    direction: ltr; /* Reset flex containers to prevent layout issues */
+  }
+
+  [dir="rtl"] .flex > * {
+    direction: rtl; /* But maintain RTL for content */
+  }
+
+  /* Enhanced Arabic typography */
+  [dir="rtl"] {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "clig" 1;
+    -webkit-font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "clig" 1;
+    -moz-font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "clig" 1;
+    line-height: 1.8; /* Optimal line height for Arabic readability */
+
+  /* RTL True Mirror Layout Fixes */
+  
+  /* Header layouts - ensure proper mirroring */
+  [dir="rtl"] header .flex {
+    flex-direction: row-reverse;
+  }
+  
+  /* Navigation items should be mirrored */
+  [dir="rtl"] .flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+  
+  /* Button layouts with icons */
+  [dir="rtl"] button {
+    flex-direction: row-reverse;
+  }
+  
+  [dir="rtl"] button .flex {
+    flex-direction: row-reverse;
+  }
+  
+  /* Ensure button content flows RTL */
+  [dir="rtl"] .btn,
+  [dir="rtl"] button[class*="bg-gradient"] {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  /* Grid layouts maintain direction */
+  [dir="rtl"] .grid {
+    direction: ltr;
+  }
+  
+  [dir="rtl"] .grid > * {
+    direction: rtl;
+  }
+  
+  /* Card content layout mirroring */
+  [dir="rtl"] .card-header {
+    text-align: right;
+  }
+  
+  /* Text alignment overrides */
+  [dir="rtl"] .text-center {
+    text-align: center !important;
+  }
+  
+  [dir="rtl"] .text-left {
+    text-align: right !important;
+  }
+  
+  [dir="rtl"] .text-right {
+    text-align: left !important;
+  }
+  
+  /* Logo positioning for RTL */
+  [dir="rtl"] .logo-container {
+    order: 1;
+  }
+  
+  /* User menu positioning for RTL */
+  [dir="rtl"] .user-menu-container {
+    order: -1;
+  }
+  
+  /* Form and button layout mirroring */
+  [dir="rtl"] .flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Container Query Components */
+  .cq-workspace {
+    container: workspace / inline-size;
+  }
+  
+  .cq-sidebar {
+    container: sidebar / inline-size;
+  }
+  
+  /* Container Query Rules */
+  @container workspace (max-width: 768px) {
+    .cq-workspace .hide-on-mobile {
+      display: none;
+    }
+    
+    .cq-workspace .mobile-only {
+      display: block;
+    }
+  }
+  
+  @container workspace (min-width: 769px) {
+    .cq-workspace .hide-on-desktop {
+      display: none;
+    }
+    
+    .cq-workspace .desktop-only {
+      display: block;
+    }
+  }
+  
+  @container workspace (max-width: 1024px) {
+    .cq-workspace .sidebar-auto-collapse {
+      width: 4rem; /* w-16 equivalent */
+    }
+  }
+  
+  @container workspace (min-width: 1025px) {
+    .cq-workspace .sidebar-auto-expand {
+      width: 20rem; /* w-80 equivalent */
+    }
+  }
+  
+  /* Workspace Header Container Query Rules - Simplified Icon/Text Approach */
+  
+  /* EXPERT STEP 0: Prove the span is targetable */
+  .header-button-text { 
+    outline: 3px solid magenta !important; 
+  }
+  
+  
+  /* EXPERT: Additional data-cq attribute selector for workspace */
+  [data-cq="workspace"] { 
+    container-type: inline-size; 
+    container-name: workspace; 
+  }
+  
+  /* REMOVED: Old container query rules - replaced with @layer utilities approach */
+  
+  /* EXPERT: Modern width syntax - Simplified for debugging */
+  @container (width <= 1200px) {
+    .header-button-text {
+      display: none !important;
+    }
+    .header-icon-spacing {
+      margin-right: 0 !important;
+    }
+  }
+  @container (width > 1200px) {
+    .header-button-text {
+      display: inline !important;
+    }
+    .header-icon-spacing {
+      margin-right: 0.5rem !important;
+    }
+  }
+  
+  /* EXPERT FALLBACK: Media queries for comparison */
+  @media (max-width: 1200px) {
+    .header-button-text-media {
+      display: none !important;
+      border: 2px solid blue !important; /* Media query debug */
+    }
+  }
+  
+  @media (min-width: 1201px) {
+    .header-button-text-media {
+      display: inline !important;
+      border: 2px solid orange !important; /* Media query debug */
+    }
+  }
+  
+  /* Named container queries - Simple icon/text switching */
+  @container workspace (min-width: 1201px) {
+    .cq-workspace .header-button-text {
+      display: inline !important;
+    }
+    .cq-workspace .header-icon-spacing {
+      margin-right: 0.5rem !important;
+    }
+    .cq-workspace .header-project-name {
+      max-width: 20rem; /* More space when buttons have text */
+    }
+    .cq-workspace .header-spacing {
+      gap: 0.75rem; /* Normal spacing for text+icon buttons */
+    }
+    /* Version badge positioning handled by CSS Grid */
+  }
+  
+  @container workspace (max-width: 1200px) {
+    .cq-workspace .header-button-text {
+      display: none !important;
+    }
+    .cq-workspace .header-icon-spacing {
+      margin-right: 0 !important;
+    }
+    .cq-workspace .header-project-name {
+      max-width: 15rem; /* Moderate space when buttons are icon-only */
+    }
+    .cq-workspace .header-spacing {
+      gap: 0.5rem; /* Tighter spacing for icon-only buttons */
+    }
+  }
+  
+  /* RTL-aware header adjustments - Grid handles centering automatically */
+  
+  /* Card grid layouts maintain structure but content is RTL */
+  [dir="rtl"] .grid {
+    direction: ltr; /* Grid structure stays LTR */
+  }
+  
+  [dir="rtl"] .grid > * {
+    direction: rtl; /* Individual cards are RTL */
+  }
+  
+  /* Button groups in RTL should reverse */
+  [dir="rtl"] .button-group {
+    flex-direction: row-reverse;
+  }
+  
+  /* Example buttons should flow RTL */
+  [dir="rtl"] .example-buttons {
+    flex-direction: row-reverse;
+  }
+  
+  /* Ensure flex-wrap maintains RTL flow */
+  [dir="rtl"] .flex-wrap {
+    flex-direction: row-reverse;
+  }
+    letter-spacing: 0.025em; /* Subtle letter spacing for clarity */
+  }
+
+  /* Arabic font hierarchy */
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-family: var(--font-cairo), var(--font-ibm-plex-arabic), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div {
+    font-family: var(--font-cairo), var(--font-ibm-plex-arabic), system-ui, sans-serif;
+  }
+
+  /* Professional Arabic button styling */
+  [dir="rtl"] button, [dir="rtl"] .btn {
+    font-family: var(--font-cairo), var(--font-ibm-plex-arabic), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  /* Gradient text for Arabic */
+  [dir="rtl"] .bg-gradient-to-r {
+    background: linear-gradient(to left, var(--tw-gradient-stops));
+  }
+
+  /* Navigation fixes for RTL */
+  [dir="rtl"] nav {
+    direction: rtl;
+  }
+
+  [dir="rtl"] .gap-8 > * + * {
+    margin-right: 2rem;
+    margin-left: 0;
+  }
+
+  /* Dark mode overrides - Only managed by next-themes */
+  .dark {
+    /* Core tokens for dark mode */
+    --bg: 224 71% 4%;             /* Dark background */
+    --fg: 210 40% 98%;            /* Light text */
+    --surface: 222 47% 11%;       /* Dark surface */
+    --neutral: 217 33% 17%;       /* Dark neutral */
+    --muted: 217 11% 65%;         /* Dark muted text */
+    
+    /* Semantic colors adjusted for dark mode */
+    --accent: 263 92% 71%;        /* Brighter accent for dark */
+    --success: 142 69% 58%;       /* Brighter success */
+    --warning: 38 92% 50%;        /* Keep warning similar */
+    --error: 0 91% 71%;           /* Brighter error */
+    
+    /* Interactive states for dark mode */
+    --accent-hover: 263 92% 81%;  /* Lighter on hover */
+    --accent-active: 263 92% 61%; /* Darker on active */
+    --border: 217 33% 17%;        /* Dark borders */
+    --input: 217 33% 17%;         /* Dark inputs */
+    --ring: 263 92% 71%;          /* Bright focus ring */
+    
+    /* Accessibility: Dark mode contrast pairs */
+    --btn-fg-on-accent: 224 71% 4%;      /* Dark text on bright accent */
+    --btn-fg-on-surface: 210 40% 98%;    /* Light text on dark surface */
+    --chip-fg-on-surface: 210 40% 98%;   /* Light text on dark chips */
+    
+    /* Legacy compatibility updates */
+    --background: var(--bg);
+    --foreground: var(--fg);
+    --card: var(--surface);
+    --card-foreground: var(--fg);
+    --popover: var(--surface);
+    --popover-foreground: var(--fg);
+    --primary: var(--accent);
+    --primary-foreground: var(--btn-fg-on-accent);
+    --secondary: var(--neutral);
+    --secondary-foreground: var(--fg);
+    --muted-foreground: var(--muted);
+    --accent-foreground: var(--btn-fg-on-surface);
+    --destructive: var(--error);
+    --destructive-foreground: var(--btn-fg-on-accent);
+  }
+
+  /* Template tokens (default to mode tokens) */
+  [data-template] {
+    --tpl-bg: var(--bg);
+    --tpl-fg: var(--fg);
+    --tpl-surface: var(--surface);
+    --tpl-accent: var(--accent);
+    --tpl-border: var(--border);
+    --tpl-neutral: var(--neutral);
+    --tpl-muted: var(--muted);
+  }
+
+  /* Template variants - Only affect containers with [data-template] */
+  [data-template="modern"] {
+    --tpl-accent: 24 95% 53%;     /* Orange brand */
+  }
+  
+  [data-template="classic"] {
+    --tpl-accent: 202 88% 45%;    /* Blue brand */
+  }
+  
+  [data-template="elegant"] {
+    --tpl-accent: 271 81% 56%;    /* Purple brand */
+  }
+  
+  [data-template="salon"] {
+    --tpl-accent: 30 25% 55%;     /* Warm brown (#8B7355) */
+    --tpl-surface: 42 27% 97%;    /* Warm white (#FAF9F7) */
+  }
+  
+  [data-template="saas"] {
+    --tpl-accent: 231 48% 48%;    /* Indigo (#4f46e5) */
+  }
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: var(--radius);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-cairo: var(--font-cairo);
+  --font-ibm-plex-arabic: var(--font-ibm-plex-arabic);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========================================
+   RTL (Right-to-Left) Support
+======================================== */
+
+/* RTL-aware text alignment */
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* RTL-aware margins and padding using CSS logical properties */
+[dir="rtl"] .ml-auto {
+  margin-inline-start: auto;
+  margin-left: initial;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-inline-end: auto;
+  margin-right: initial;
+}
+
+/* RTL-aware flexbox layouts */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .justify-start {
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .justify-end {
+  justify-content: flex-start;
+}
+
+/* RTL-aware positioning */
+[dir="rtl"] .left-0 {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .right-0 {
+  left: 0;
+  right: auto;
+}
+
+/* RTL-aware transforms for directional icons */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Common directional icons that should flip in RTL */
+[dir="rtl"] [data-icon="arrow-right"],
+[dir="rtl"] [data-icon="arrow-left"],
+[dir="rtl"] [data-icon="chevron-right"],
+[dir="rtl"] [data-icon="chevron-left"] {
+  transform: scaleX(-1);
+}
+
+/* RTL-aware border radius */
+[dir="rtl"] .rounded-l-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+[dir="rtl"] .rounded-r-lg {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* RTL-aware form elements */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+}
+
+/* RTL textarea placeholder alignment */
+[dir="rtl"] textarea::placeholder {
+  text-align: right;
+}
+
+/* Ensure all form textareas respect RTL */
+[dir="rtl"] textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL-aware floating labels and placeholders */
+[dir="rtl"] .placeholder-shown {
+  text-align: right;
+}
+
+/* RTL-aware dropdown menus */
+[dir="rtl"] .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/* RTL-aware tooltips */
+[dir="rtl"] .tooltip-right {
+  left: auto;
+  right: 100%;
+}
+
+[dir="rtl"] .tooltip-left {
+  right: auto;
+  left: 100%;
+}
+
+/* RTL-aware breadcrumbs */
+[dir="rtl"] .breadcrumb-separator::before {
+  content: "\\";
+  transform: scaleX(-1);
+}
+
+/* RTL-aware progress bars */
+[dir="rtl"] .progress-bar {
+  direction: ltr;
+}
+
+/* RTL-aware modal and dialog positioning */
+[dir="rtl"] .modal-dialog {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure proper Arabic font rendering */
+[dir="rtl"] {
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* RTL-aware CSS Grid */
+[dir="rtl"] .grid-cols-auto-1fr {
+  grid-template-columns: 1fr auto;
+}
+
+/* RTL-aware scroll behavior */
+[dir="rtl"] .overflow-x-auto {
+  direction: rtl;
+}
+
+[dir="rtl"] .overflow-x-auto > * {
+  direction: ltr;
+}
+
+/* Fix for common layout issues in RTL */
+[dir="rtl"] .space-x-reverse > * + * {
+  margin-right: var(--tw-space-x-reverse);
+  margin-left: calc(var(--tw-space-x-reverse) * 0);
+}
+
+/* RTL-aware navigation */
+[dir="rtl"] .nav-item {
+  text-align: right;
+}
+
+/* RTL-aware button icons */
+[dir="rtl"] .btn-icon-left {
+  order: 2;
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .btn-icon-right {
+  order: -1;
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* EXPERT RECOMMENDED: Container queries with @layer utilities for proper CSS order */
+@layer utilities {
+  /* Icons only when the button cluster is narrow */
+  @container (inline-size <= 400px) {
+    .header-button-text { display: none !important; }
+    .header-icon-spacing { margin-right: 0 !important; }
+    .header-spacing { gap: 0.5rem !important; }
+  }
+
+  /* Text + icons when the cluster is wide */
+  @container (inline-size > 400px) {
+    .header-button-text { display: inline !important; }
+    .header-icon-spacing { margin-right: 0.5rem !important; }
+    .header-spacing { gap: 0.75rem !important; }
+  }
+
+  /* ✅ ROBUST FIX: Fixed header utilities for systematic handling */
+  /* Use when routes have fixed global headers that need spacing */
+  .pt-fixed-header {
+    padding-top: 3.5rem; /* 56px - mobile header height (h-14) */
+  }
+  
+  @media (min-width: 640px) {
+    .pt-fixed-header {
+      padding-top: 4rem; /* 64px - sm+ header height (h-16) */
+    }
+  }
+  
+  /* Alternative: scroll margin for smooth anchor navigation with fixed headers */
+  .scroll-mt-fixed-header {
+    scroll-margin-top: 3.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .scroll-mt-fixed-header {
+      scroll-margin-top: 4rem;
+    }
+  }
+
+}
+
+/* EXPERT RTL SUPPORT (CLAUDE.MD) - Triple-layer enforcement */
+@layer utilities {
+  /* Clean RTL implementation following CLAUDE.md best practices */
+  [dir="rtl"] {
+    direction: rtl;
+    unicode-bidi: plaintext;
+  }
+  
+  /* Ensure text elements respect RTL properly */
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6,
+  [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div, [dir="rtl"] text {
+    direction: rtl;
+    unicode-bidi: plaintext;
+  }
+  
+  /* Override any conflicting flex direction rules for clean RTL */
+  [dir="rtl"] .rtl-clean {
+    direction: rtl;
+    unicode-bidi: plaintext;
+  }
+}

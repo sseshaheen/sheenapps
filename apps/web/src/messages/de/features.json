@@ -1,0 +1,30 @@
+{
+  "title": "Alles was Sie für den Erfolg brauchen",
+  "subtitle": "Wir sind nicht nur ein weiterer KI-Builder. Wir sind Ihre permanente Tech-Abteilung.",
+  "list": [
+    {
+      "title": "Sofort-Generierung",
+      "description": "Beschreiben Sie Ihre Idee, sehen Sie sie in Echtzeit mit KI + menschlicher Expertise entstehen"
+    },
+    {
+      "title": "Ihr Tech-Team",
+      "description": "Dedizierte Berater, die Ihr Geschäft kennen und mit Ihnen wachsen"
+    },
+    {
+      "title": "Vollständiges Eigentum",
+      "description": "Exportieren Sie Ihren Code und Daten jederzeit. Kein Vendor Lock-in, niemals"
+    },
+    {
+      "title": "Mehrsprachig",
+      "description": "Arabisch (mehrere Dialekte), Französisch, Englisch - wir sprechen Ihre Sprache"
+    },
+    {
+      "title": "Immer unterstützt",
+      "description": "Echte Menschen + KI unterstützen Sie 24/7, nicht nur ein Chatbot"
+    },
+    {
+      "title": "Kontinuierliche Entwicklung",
+      "description": "Fordern Sie morgens Features an, haben Sie sie nachmittags live"
+    }
+  ]
+}

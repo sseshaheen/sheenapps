@@ -1,0 +1,898 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Help builders through blockers in 15 minutes",
+      "subtitle": "Earn by guiding builders with your expertise",
+      "cta": "Become an Advisor",
+      "badge": "Join our expert advisor network"
+    },
+    "howItWorks": {
+      "title": "How it Works",
+      "steps": [
+        "Apply with your expertise",
+        "Get approved by our team", 
+        "Take paid consultations"
+      ]
+    },
+    "earnings": {
+      "title": "Earn 70% of Each Session",
+      "rates": "$6.30 / $13.30 / $24.50",
+      "description": "You earn 70% of each session",
+      "sessionTypes": {
+        "quick": "Quick questions",
+        "review": "Code review", 
+        "deep": "Deep consultation"
+      }
+    },
+    "trust": {
+      "payments": "Secure Stripe payouts",
+      "paymentsDescription": "Secure payments processed through Stripe with weekly payouts",
+      "calendar": "Calendar integration",
+      "calendarDescription": "Seamless booking through Cal.com integration",
+      "policy": "All payments go through SheenApps; no direct payments",
+      "policyTitle": "Platform Policy"
+    },
+    "cta": {
+      "title": "Ready to start earning?",
+      "description": "Join our network of expert advisors and help builders succeed while earning great money",
+      "quickApplication": "Quick application process"
+    },
+    "dashboard": {
+      "buttonText": "Advisor Dashboard"
+    },
+    "auth": {
+      "signInRequired": "You'll need to sign in or create an account to apply"
+    }
+  },
+  "client": {
+    "hero": {
+      "title": "Get unstuck in 15-60 minutes with vetted engineers",
+      "subtitle": "Architecture decisions, code reviews, and debugging—solved in focused sessions",
+      "badge": "Expert Software Engineering Help",
+      "trustBar": "Vetted senior engineers • Stripe-secured payments • 4.8/5 rating",
+      "findExpert": "Find an expert now",
+      "describeChalenge": "Describe your challenge",
+      "pricing": "15 min $9 · 30 min $19 · 60 min $35 — charged securely by SheenApps"
+    },
+    "problems": {
+      "title": "Sound Familiar?",
+      "scenarios": [
+        "Stuck on a complex architecture decision for days?",
+        "Code review backlog blocking your entire team?",
+        "Need someone to sanity-check your approach?",
+        "Deadline approaching but unsure if you're on the right track?"
+      ]
+    },
+    "solutions": {
+      "title": "Here's How Our Experts Help",
+      "services": [
+        {
+          "title": "Architecture Reviews",
+          "description": "Get your system design validated by engineers who've built at scale",
+          "example": "Sarah saved 3 weeks by catching a scalability issue early"
+        },
+        {
+          "title": "Code Reviews",
+          "description": "Professional code reviews that teach you patterns, not just fixes",
+          "example": "Reduced technical debt by 40% in one session"
+        },
+        {
+          "title": "Debugging Sessions",
+          "description": "Pair with experts who can spot issues you've missed",
+          "example": "Fixed a memory leak that was costing $2K/month in server costs"
+        },
+        {
+          "title": "Technology Guidance",
+          "description": "Choose the right tools and frameworks for your project",
+          "example": "Avoided 6 months of refactoring with the right tech choice"
+        }
+      ]
+    },
+    "advisorShowcase": {
+      "title": "Meet Your Potential Advisors",
+      "subtitle": "Premium advisor profiles",
+      "error": "Unable to load advisors at the moment.",
+      "browseAll": "Browse All Advisors",
+      "noAdvisors": "No advisors available at the moment.",
+      "checkBack": "We're working on bringing you the best experts. Check back soon!"
+    },
+    "process": {
+      "title": "How It Works",
+      "steps": [
+        {
+          "title": "Describe Your Challenge",
+          "description": "Smart matching form"
+        },
+        {
+          "title": "Get Matched with Experts",
+          "description": "AI-powered recommendations"
+        },
+        {
+          "title": "Book Your Session",
+          "description": "Calendar integration"
+        },
+        {
+          "title": "Get Unstuck Fast",
+          "description": "Screen sharing, code review, or workspace collaboration"
+        },
+        {
+          "title": "Follow-Up Resources",
+          "description": "Session notes, recommendations"
+        }
+      ]
+    },
+    "trust": {
+      "title": "Why Builders Trust Our Professional Advisors",
+      "points": [
+        {
+          "title": "Vetted Experts",
+          "description": "All advisors pass technical interviews"
+        },
+        {
+          "title": "Secure Payments",
+          "description": "Stripe-powered with money-back guarantee"
+        },
+        {
+          "title": "24/7 Support",
+          "description": "Human support for any issues"
+        },
+        {
+          "title": "Quality Guarantee",
+          "description": "Not satisfied? First session is free"
+        },
+        {
+          "title": "Track Record",
+          "description": "95% of sessions rated 5 stars"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What if I can't explain my problem clearly?",
+          "answer": "Our advisors are skilled at understanding technical challenges. They'll ask the right questions to help clarify your situation and provide targeted guidance."
+        },
+        {
+          "question": "How do I know the advisor is qualified?",
+          "answer": "All our advisors pass technical interviews and have proven industry experience. You can see their backgrounds, specializations, and reviews before booking."
+        },
+        {
+          "question": "What if we don't finish in the allotted time?",
+          "answer": "Sessions can be extended if both parties agree, or you can book a follow-up session. We're flexible to ensure you get the help you need."
+        },
+        {
+          "question": "Can I get a refund if I'm not satisfied?",
+          "answer": "Yes, we offer a satisfaction guarantee. If you're not happy with your session, contact our support team within 24 hours for a full refund."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Ready to Stop Being Stuck?",
+      "subtitle": "Join 5,000+ developers who get unstuck faster",
+      "guarantee": "Try your first session risk-free"
+    },
+    "recruitment": {
+      "text": "Are you a senior engineer who loves helping other developers?",
+      "cta": "Join our advisor network"
+    },
+    "quickMatcher": {
+      "title": "Find Your Perfect Advisor",
+      "challengeSelection": {
+        "title": "What's your main challenge?",
+        "subtitle": "Select the category that best describes what you're stuck on",
+        "challenges": {
+          "architecture": {
+            "title": "System Architecture Decision",
+            "description": "Need guidance on designing scalable systems, choosing the right architecture patterns, or refactoring existing code"
+          },
+          "performance": {
+            "title": "Performance Issues",
+            "description": "Application is slow, memory leaks, database queries taking too long, or need optimization guidance"
+          },
+          "debugging": {
+            "title": "Complex Bug Investigation",
+            "description": "Stuck on a tricky bug, intermittent issues, or need help with debugging strategies and tools"
+          },
+          "code-review": {
+            "title": "Code Review & Best Practices",
+            "description": "Want expert feedback on code quality, design patterns, security, or team development practices"
+          },
+          "technology": {
+            "title": "Technology Selection",
+            "description": "Choosing between frameworks, databases, cloud providers, or other technology stack decisions"
+          },
+          "career": {
+            "title": "Career & Technical Growth",
+            "description": "Guidance on career progression, skill development, technical leadership, or industry best practices"
+          }
+        },
+        "urgentBadge": "Urgent"
+      },
+      "challengeDetails": {
+        "backButton": "Back",
+        "subtitle": "Tell us more about your specific situation",
+        "descriptionLabel": "Describe your challenge (optional)",
+        "descriptionPlaceholder": "E.g., I'm building a React app with 100k users and the dashboard is loading slowly. I've tried basic optimizations but need expert guidance on advanced performance techniques...",
+        "descriptionHelp": "Optional: More details help us find better matches, but you can also discuss this directly with advisors",
+        "timelineLabel": "When do you need help?",
+        "timelineOptions": {
+          "urgent": {
+            "label": "ASAP",
+            "description": "Today/Tomorrow"
+          },
+          "week": {
+            "label": "This Week",
+            "description": "Within 7 days"
+          },
+          "month": {
+            "label": "This Month",
+            "description": "Within 30 days"
+          }
+        },
+        "recommendedSkills": "Recommended advisor skills:",
+        "findMatchesButton": "Find Matching Advisors"
+      },
+      "matches": {
+        "loading": {
+          "title": "Finding your perfect matches...",
+          "subtitle": "Analyzing advisor skills and availability"
+        },
+        "backButton": "Back",
+        "resultsTitle": "{count} advisors match your challenge",
+        "resultsSubtitle": "Experts in {challenge}",
+        "noMatches": {
+          "title": "No matches found",
+          "subtitle": "Try selecting a different challenge type or browse all advisors",
+          "browseButton": "Browse All Advisors"
+        },
+        "advisorCard": {
+          "availableNow": "Available now",
+          "notAccepting": "Not accepting bookings",
+          "yearsExperience": "{years}+ years",
+          "bookButton": "Book Session",
+          "moreSkills": "+{count} more"
+        },
+        "seeAllButton": "See All Advisors"
+      }
+    }
+  },
+  "advisors": {
+    "title": "Expert Advisors",
+    "navTitle": "Advisors",
+    "subtitle": "Get personalized guidance from experienced software engineers",
+    "meta": {
+      "title": "Expert Advisors - SheenApps", 
+      "description": "Connect with experienced software engineers for personalized AI-assisted guidance and consultations."
+    },
+    "search": {
+      "placeholder": "Search advisors by name, skills, or specialty...",
+      "filters": {
+        "skills": "Skills",
+        "specialties": "Specialties", 
+        "languages": "Languages",
+        "rating": "Minimum Rating",
+        "availability": "Available Now",
+        "allSpecialties": "All Specialties",
+        "anyExperience": "Any Experience",
+        "specialtyOptions": {
+          "web-development": "Web Development",
+          "mobile-development": "Mobile Development",
+          "backend-development": "Backend Development",
+          "devops": "DevOps",
+          "data-science": "Data Science",
+          "ui-ux": "UI/UX Design"
+        },
+        "experienceOptions": {
+          "1": "1+ Years",
+          "3": "3+ Years",
+          "5": "5+ Years",
+          "10": "10+ Years"
+        }
+      }
+    },
+    "cards": {
+      "rating": "rating",
+      "reviews": "reviews",
+      "review": "review",
+      "bookNow": "Book Consultation",
+      "viewProfile": "View Profile",
+      "available": "Available",
+      "busy": "Busy"
+    },
+    "empty": {
+      "title": "No advisors found",
+      "description": "Try adjusting your search filters to find more advisors"
+    }
+  },
+  "profile": {
+      "title": "Edit Profile",
+      "subtitle": "Update your advisor profile and preferences",
+      "about": "About",
+      "skills": "Skills & Technologies",
+      "specialties": "Areas of Expertise",
+      "languages": "Languages",
+      "experience": "Experience",
+      "reviews": "Reviews & Ratings",
+      "portfolio": "Portfolio",
+      "availability": "Availability",
+      "personalInfo": {
+        "title": "Personal Information",
+        "displayName": "Display Name",
+        "displayNamePlaceholder": "Your professional name",
+        "bio": "Professional Bio",
+        "bioPlaceholder": "Tell clients about your experience and expertise...",
+        "avatar": "Profile Photo",
+        "location": "Location",
+        "languages": "Languages"
+      },
+      "expertise": {
+        "title": "Expertise & Skills",
+        "skills": "Technical Skills",
+        "skillsPlaceholder": "Add your technical skills...",
+        "specialties": "Specialties",
+        "specialtiesPlaceholder": "What are your areas of expertise?",
+        "experience": "Years of Experience",
+        "experienceHelp": "Professional software development experience"
+      },
+      "pricing": {
+        "title": "Pricing & Availability",
+        "hourlyRate": "Hourly Rate",
+        "hourlyRateHelp": "Your consultation rate in USD",
+        "availability": "Availability",
+        "availabilityHelp": "When are you typically available for consultations?",
+        "timezone": "Timezone"
+      },
+      "integrations": {
+        "title": "Integrations",
+        "calcom": "Cal.com Integration",
+        "calcomUrl": "Cal.com Event URL",
+        "calcomPlaceholder": "https://cal.com/your-username/consultation",
+        "calcomHelp": "Clients will use this link to book consultations",
+        "stripe": "Stripe Account",
+        "stripeStatus": "Payment Status",
+        "connectStripe": "Connect Stripe Account",
+        "stripeConnected": "Connected"
+      },
+      "actions": {
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "cancel": "Cancel",
+        "preview": "Preview Public Profile"
+      }
+    },
+    "dashboard": {
+      "title": "Advisor Dashboard",
+      "welcome": "Welcome back",
+      "earnings": {
+        "title": "Earnings",
+        "thisMonth": "This Month",
+        "lastMonth": "Last Month",
+        "lifetime": "Lifetime Total",
+        "pendingPayout": "Pending Payout",
+        "nextPayout": "Next Payout",
+        "consultations": "Consultations"
+      },
+      "availability": {
+        "title": "Availability Status",
+        "accepting": "Accepting Bookings",
+        "paused": "Paused",
+        "toggle": "Toggle Availability"
+      },
+      "onboarding": {
+        "title": "Complete Your Setup",
+        "stripe": "Connect Stripe for Payouts",
+        "calcom": "Connect Cal.com for Scheduling",
+        "profile": "Complete Your Profile"
+      },
+      "consultations": {
+        "title": "Upcoming Consultations",
+        "upcoming": "Upcoming",
+        "completed": "Completed",
+        "all": "All",
+        "empty": "No upcoming consultations",
+        "viewAll": "View All Consultations",
+        "client": "Client",
+        "duration": "Duration",
+        "status": "Status",
+        "scheduled": "Scheduled",
+        "free": "Free",
+        "paid": "Paid",
+        "viewDetails": "View Details",
+        "notes": "Notes",
+        "addNotes": "Add Notes",
+        "loadMore": "Load More"
+      },
+      "navigation": {
+        "overview": "Overview",
+        "consultations": "Consultations",
+        "analytics": "Analytics",
+        "availability": "Availability",
+        "settings": "Settings",
+        "more": "More"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "overview": "Performance Overview",
+        "consultations": "Consultations",
+        "earnings": "Earnings",
+        "performance": "Performance",
+        "trends": "Trends",
+        "period": {
+          "30d": "Last 30 Days",
+          "90d": "Last 90 Days",
+          "1y": "Last Year"
+        },
+        "metrics": {
+          "totalConsultations": "Total Consultations",
+          "totalEarnings": "Total Earnings",
+          "averageRating": "Average Rating",
+          "profileViews": "Profile Views",
+          "conversionRate": "Conversion Rate",
+          "freeConsultations": "Free Consultations",
+          "paidConsultations": "Paid Consultations",
+          "consultationGrowth": "Consultation Growth",
+          "earningsGrowth": "Earnings Growth"
+        },
+        "charts": {
+          "consultationsByDuration": "Consultations by Duration",
+          "consultationsByType": "Consultations by Type",
+          "earningsOverTime": "Earnings Over Time",
+          "ratingsTrend": "Ratings Trend"
+        }
+      },
+      "availability": {
+        "title": "Availability",
+        "schedule": "Weekly Schedule",
+        "timezone": "Timezone",
+        "blackoutDates": "Blackout Dates",
+        "preferences": "Booking Preferences",
+        "calendarSync": "Calendar Sync",
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        },
+        "fields": {
+          "minNoticeHours": "Minimum Notice (hours)",
+          "maxAdvanceDays": "Maximum Advance Booking (days)",
+          "bufferMinutes": "Buffer Between Consultations (minutes)",
+          "addTimeSlot": "Add Time Slot",
+          "removeTimeSlot": "Remove",
+          "startTime": "Start Time",
+          "endTime": "End Time",
+          "addBlackoutDate": "Add Blackout Date",
+          "selectTimezone": "Select Timezone"
+        },
+        "sync": {
+          "lastSynced": "Last synced",
+          "status": "Status",
+          "success": "Success",
+          "failed": "Failed",
+          "pending": "Pending",
+          "syncNow": "Sync Now"
+        },
+        "validation": {
+          "invalidTime": "Invalid time format",
+          "overlappingSlots": "Time slots cannot overlap",
+          "startAfterEnd": "Start time must be before end time"
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "pricing": "Pricing Settings",
+        "consultations": "Consultation Settings",
+        "pricingModel": {
+          "title": "Pricing Model",
+          "description": "Choose how you want to price your consultations",
+          "platformFixed": {
+            "title": "Platform Fixed",
+            "description": "Use platform-set prices for all consultations"
+          },
+          "freeOnly": {
+            "title": "Free Only", 
+            "description": "Offer only free consultations"
+          },
+          "hybrid": {
+            "title": "Hybrid",
+            "description": "Mix of free and paid consultations"
+          }
+        },
+        "freeConsultations": {
+          "title": "Free Consultation Durations",
+          "description": "Select which consultation durations you want to offer for free",
+          "duration15": "15 minutes",
+          "duration30": "30 minutes", 
+          "duration60": "60 minutes",
+          "note": "Free consultations help build trust and can lead to paid sessions"
+        }
+      }
+    },
+    "application": {
+      "title": "Apply to Become an Advisor",
+      "subtitle": "Share your expertise and help others build amazing projects",
+      "steps": {
+        "personal": {
+          "title": "Personal Information",
+          "description": "Tell us about yourself and your professional background",
+          "fields": {
+            "displayName": {
+              "label": "Display Name",
+              "placeholder": "How you'd like to be shown to clients",
+              "help": "This is how clients will see your name"
+            },
+            "bio": {
+              "label": "Professional Bio",
+              "placeholder": "Tell clients about your background and expertise...",
+              "help": "Describe your experience, specialties, and what makes you a great advisor"
+            },
+            "experience": {
+              "label": "Years of Experience",
+              "help": "How many years of professional software development experience do you have?"
+            },
+            "portfolio": {
+              "label": "Portfolio URL (Optional)",
+              "placeholder": "https://yourportfolio.com",
+              "help": "Link to your work, GitHub, or professional website"
+            }
+          }
+        },
+        "professional": {
+          "title": "Skills & Expertise",
+          "description": "Help clients find you by showcasing your technical skills and areas of expertise",
+          "fields": {
+            "skills": {
+              "label": "Technical Skills",
+              "help": "List the technologies and frameworks you're proficient in"
+            },
+            "specialties": {
+              "label": "Areas of Expertise",
+              "help": "What types of projects do you specialize in?"
+            },
+            "languages": {
+              "label": "Communication Languages",
+              "help": "Which languages can you communicate with clients in?",
+              "placeholder": "Add language..."
+            },
+            "linkedin": {
+              "label": "LinkedIn URL (Optional)",
+              "placeholder": "https://linkedin.com/in/yourprofile",
+              "help": "Your LinkedIn profile for professional verification"
+            },
+            "github": {
+              "label": "GitHub URL (Optional)",
+              "placeholder": "https://github.com/yourusername",
+              "help": "Your GitHub profile to showcase your code"
+            }
+          }
+        },
+        "consultation": {
+          "title": "Consultation Preferences",
+          "description": "Set your availability and consultation preferences to help clients book sessions",
+          "fields": {
+            "availability": {
+              "label": "Available Days",
+              "help": "Which days of the week are you available for consultations?"
+            },
+            "consultationTypes": {
+              "label": "Consultation Types",
+              "help": "What types of consultation services do you offer?"
+            },
+            "timeZones": {
+              "label": "Preferred Time Zones",
+              "help": "Which time zones work best for you?",
+              "placeholder": "Add time zone..."
+            },
+            "maxSessions": {
+              "label": "Max Sessions per Week",
+              "help": "How many consultation sessions can you handle per week?",
+              "placeholder": "10"
+            }
+          }
+        }
+      },
+      "navigation": {
+        "next": "Next Step",
+        "previous": "Previous",
+        "submit": "Submit Application",
+        "saveDraft": "Save Draft",
+        "cancel": "Cancel"
+      },
+      "progress": {
+        "step": "Step",
+        "of": "of",
+        "complete": "Complete"
+      },
+      "draft": {
+        "saved": "Draft saved",
+        "saving": "Saving...",
+        "autoSave": "Auto-save enabled"
+      },
+      "auth": {
+        "guestMessage": "You can start filling out the form - authentication required only when submitting",
+        "authenticatedMessage": "Authenticated - you can submit your application"
+      }
+    },
+  "consultations": {
+    "title": "Consultations",
+    "book": {
+      "title": "Book Consultation",
+      "selectDuration": "Select Duration",
+      "selectTime": "Select Time",
+      "pricing": {
+        "15min": "15-minute consultation",
+        "30min": "30-minute consultation", 
+        "60min": "60-minute consultation",
+        "clientPays": "You pay",
+        "advisorEarns": "Advisor earns (70%)",
+        "descriptions": {
+          "15min": "Perfect for quick questions",
+          "30min": "Perfect for focused discussions", 
+          "60min": "Perfect for in-depth guidance"
+        }
+      },
+      "policies": {
+        "title": "Booking Policies",
+        "cancellation": "Free cancellation up to 24 hours before consultation",
+        "ownership": "You own all code and assets produced during consultation",
+        "refund": "Refunds are automatic for cancellations more than 24 hours in advance"
+      },
+      "form": {
+        "notes": {
+          "label": "Consultation Notes (Optional)",
+          "placeholder": "What would you like to discuss or get help with?",
+          "help": "Help your advisor prepare by sharing details about your project or questions"
+        },
+        "project": {
+          "label": "Related Project (Optional)",
+          "help": "Link this consultation to one of your SheenApps projects"
+        }
+      },
+      "payment": {
+        "title": "Payment Details",
+        "secure": "Secure payment powered by Stripe",
+        "processing": "Processing payment...",
+        "success": "Payment successful!"
+      },
+      "confirmation": {
+        "title": "Consultation Booked!",
+        "details": "Consultation Details",
+        "advisor": "Advisor",
+        "duration": "Duration",
+        "dateTime": "Date & Time",
+        "price": "Price",
+        "videoLink": "Video Link",
+        "calendar": "Add to Calendar",
+        "email": "You'll receive a confirmation email with all the details"
+      }
+    },
+    "list": {
+      "upcoming": "Upcoming",
+      "completed": "Completed", 
+      "cancelled": "Cancelled",
+      "all": "All Consultations",
+      "empty": {
+        "upcoming": "No upcoming consultations",
+        "completed": "No completed consultations",
+        "cancelled": "No cancelled consultations"
+      }
+    },
+    "card": {
+      "duration": "Duration",
+      "status": {
+        "scheduled": "Scheduled",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "no_show": "No Show"
+      },
+      "actions": {
+        "join": "Join Call",
+        "cancel": "Cancel",
+        "reschedule": "Reschedule",
+        "review": "Leave Review",
+        "viewRecording": "View Recording"
+      }
+    },
+    "cancel": {
+      "title": "Cancel Consultation",
+      "reason": "Reason for cancellation",
+      "reasons": {
+        "schedule_conflict": "Schedule conflict",
+        "no_longer_needed": "No longer needed",
+        "technical_issue": "Technical issue",
+        "other": "Other"
+      },
+      "refundInfo": "Cancelled more than 24 hours in advance? You'll receive a full refund automatically.",
+      "noRefundInfo": "Cancelled within 24 hours? No refund will be issued per our policy.",
+      "confirm": "Yes, Cancel Consultation",
+      "success": {
+        "title": "Consultation Cancelled",
+        "withRefund": "Your consultation has been cancelled and a full refund will be processed within 3-5 business days.",
+        "noRefund": "Your consultation has been cancelled. No refund will be issued as per our 24-hour policy."
+      }
+    },
+    "review": {
+      "title": "Rate Your Consultation",
+      "rating": {
+        "label": "Overall Rating",
+        "help": "How would you rate this consultation overall?"
+      },
+      "detailed": {
+        "expertise": "Technical Expertise",
+        "communication": "Communication",
+        "helpfulness": "Helpfulness"
+      },
+      "comment": {
+        "label": "Review (Optional)",
+        "placeholder": "Share your experience to help other clients...",
+        "help": "Your review will be public and help other clients choose advisors"
+      },
+      "submit": "Submit Review",
+      "success": {
+        "title": "Review Submitted!",
+        "description": "Thank you for your feedback. Your review helps other clients find great advisors."
+      }
+    }
+  },
+  "pricing": {
+    "from": "From",
+    "consultation": "consultation",
+    "perConsultation": "per consultation",
+    "currency": {
+      "usd": "$",
+      "eur": "€", 
+      "gbp": "£",
+      "egp": "EGP",
+      "sar": "SAR",
+      "aed": "AED",
+      "mad": "MAD"
+    }
+  },
+  "admin": {
+    "advisors": {
+      "title": "Advisor Applications",
+      "subtitle": "Review and manage advisor applications",
+      "tabs": {
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "all": "All Applications"
+      },
+      "table": {
+        "applicant": "Applicant",
+        "appliedDate": "Applied",
+        "experience": "Experience",
+        "skills": "Skills",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "viewProfile": "View Profile",
+        "addNotes": "Add Notes"
+      },
+      "stats": {
+        "total": "Total Applications",
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "review": {
+        "title": "Review Application",
+        "approveConfirm": "Approve this advisor application?",
+        "rejectConfirm": "Reject this advisor application?",
+        "adminNotes": "Admin Notes",
+        "adminNotesPlaceholder": "Add notes about this application..."
+      },
+      "empty": {
+        "title": "No Applications Found",
+        "description": "No advisor applications match the current filter."
+      },
+      "applications": {
+        "title": "Advisor Applications",
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "review": "Review Application",
+        "approve": "Approve",
+        "reject": "Reject",
+        "notes": {
+          "label": "Admin Notes",
+          "placeholder": "Notes about this application..."
+        }
+      },
+      "list": {
+        "title": "All Advisors",
+        "active": "Active",
+        "suspended": "Suspended",
+        "actions": {
+          "suspend": "Suspend",
+          "reactivate": "Reactivate",
+          "viewProfile": "View Profile",
+          "editProfile": "Edit Profile"
+        }
+      }
+    },
+    "consultations": {
+      "title": "Consultation Management",
+      "list": "All Consultations",
+      "filters": {
+        "status": "Status",
+        "advisor": "Advisor",
+        "dateRange": "Date Range"
+      },
+      "actions": {
+        "refund": "Issue Refund",
+        "markNoShow": "Mark No-Show",
+        "viewDetails": "View Details"
+      }
+    },
+    "finance": {
+      "title": "Finance Dashboard",
+      "revenue": {
+        "title": "Platform Revenue",
+        "thisMonth": "This Month",
+        "lastMonth": "Last Month",
+        "growth": "Growth"
+      },
+      "payouts": {
+        "title": "Advisor Payouts",
+        "pending": "Pending Payouts",
+        "processed": "Processed This Month",
+        "export": "Export Payout CSV"
+      }
+    }
+  },
+  "labels": {
+    "yearsExperience": "{years, plural, =0 {New advisor} one {# year experience} other {# years experience}}",
+    "reviewCount": "{count, plural, =0 {(No reviews yet)} one {(# review)} other {(# reviews)}}",
+    "softwareEngineer": "Software Engineer",
+    "expert": "{specialty} Expert",
+    "free": "Free",
+    "minutes": "minutes"
+  },
+  "availability": {
+    "usually1Day": "Usually within 1 day",
+    "notAcceptingBookings": "Not accepting bookings",
+    "available": "Available",
+    "unavailable": "Unavailable"
+  },
+  "placeholders": {
+    "noSpecificReviews": "Ready to help with {skill} projects",
+    "loadingReviews": "Loading reviews...",
+    "noReviewsYet": "No reviews yet.",
+    "reviewSummary": "This advisor has {count, plural, =0 {no reviews} one {# review} other {# reviews}} with an average rating of {rating} stars."
+  },
+  "errors": {
+    "advisor_not_found": "Advisor not found",
+    "consultation_not_found": "Consultation not found", 
+    "booking_failed": "Failed to book consultation",
+    "payment_failed": "Payment failed",
+    "insufficient_credits": "Insufficient credits to book consultation",
+    "advisor_unavailable": "Advisor is not currently accepting bookings",
+    "invalid_duration": "Invalid consultation duration",
+    "cancellation_too_late": "Cannot cancel within 24 hours of consultation",
+    "generic_error": "An error occurred. Please try again."
+  },
+  "success": {
+    "application_submitted": "Advisor application submitted successfully",
+    "profile_updated": "Profile updated successfully",
+    "consultation_booked": "Consultation booked successfully",
+    "consultation_cancelled": "Consultation cancelled successfully",
+    "review_submitted": "Review submitted successfully",
+    "availability_updated": "Availability status updated"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "showing": "Showing {start}-{end} of {total} advisors"
+  }
+}

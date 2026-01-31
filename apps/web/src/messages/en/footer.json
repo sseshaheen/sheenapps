@@ -1,0 +1,26 @@
+{
+  "description": "Your permanent tech team for the price of a gym membership. Build, grow, and scale your business without the technical hassle.",
+  "product": "Product",
+  "support": "Support",
+  "company": "Company",
+  "links": {
+    "howItWorks": "How it Works",
+    "pricing": "Pricing",
+    "features": "Features",
+    "templates": "Templates",
+    "integrations": "Integrations",
+    "talkToAdvisor": "Talk to Advisor",
+    "helpCenter": "Help Center",
+    "community": "Community",
+    "status": "Status",
+    "bookCall": "Book a Call",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "copyright": "© 2025 SheenApps. All rights reserved.",
+  "systemsOperational": "All systems operational",
+  "supportAvailable": "24/7 support available"
+}

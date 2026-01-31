@@ -1,0 +1,48 @@
+groups:
+  - name: claude-worker
+    interval: 1m
+    rules:
+      - alert: ClaudeWorkerHighErrorRate
+        expr: rate(http_requests_total{job="claude-worker",status=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High 5xx error rate on Claude Worker"
+          description: "Claude Worker is experiencing {{ $value | humanizePercentage }} 5xx errors"
+
+      - alert: ClaudeWorkerDown
+        expr: up{job="claude-worker"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Claude Worker is down"
+          description: "Claude Worker has been unreachable for more than 2 minutes"
+
+      - alert: ClaudeWorkerHighQueueDepth
+        expr: claude_worker_queue_depth > 50
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High queue depth on Claude Worker"
+          description: "Claude Worker queue has {{ $value }} pending requests"
+
+      - alert: ClaudeWorkerRateLimitNearCapacity
+        expr: (claude_worker_rate_limit_calls / claude_worker_rate_limit_max) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Claude Worker approaching rate limit"
+          description: "Claude Worker has used {{ $value | humanizePercentage }} of rate limit capacity"
+
+      - alert: ClaudeWorkerHighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="claude-worker"}[5m])) > 30
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High p95 latency on Claude Worker"
+          description: "95th percentile latency is {{ $value }}s (threshold: 30s)"

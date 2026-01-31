@@ -1,0 +1,200 @@
+# Grafana Alerting Rules for Sheenapps Worker
+# Import this file in Grafana Cloud under Alerting > Alert Rules
+
+apiVersion: 1
+groups:
+  - name: worker_critical
+    interval: 30s
+    rules:
+      - alert: WorkerDown
+        expr: |
+          absent_over_time(worker_heartbeat[5m]) == 1
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Worker service is down"
+          description: "Worker {{ $labels.instance }} has been down for more than 5 minutes"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/worker-down"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(worker_jobs_processed_total{service_name="sheenapps-worker",status="failure"}[5m]))
+            /
+            sum(rate(worker_jobs_processed_total{service_name="sheenapps-worker"}[5m]))
+          ) > 0.10
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "High job error rate detected"
+          description: "Job error rate is {{ $value | humanizePercentage }} (threshold: 10%)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/high-error-rate"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: QueueBacklogCritical
+        expr: |
+          worker_queue_lag_seconds{service_name="sheenapps-worker"} > 600
+        for: 10m
+        labels:
+          severity: critical
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Critical queue backlog"
+          description: "Queue {{ $labels.queue_name }} has a lag of {{ $value | humanizeDuration }} (threshold: 10 minutes)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/queue-backlog"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+  - name: worker_warning
+    interval: 60s
+    rules:
+      - alert: HighJobLatency
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(worker_job_duration_seconds_bucket{service_name="sheenapps-worker"}[5m])) by (le, job_type)
+          ) > 5
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "High job processing latency"
+          description: "P95 latency for {{ $labels.job_type }} is {{ $value | humanizeDuration }}"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/high-latency"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: ModerateErrorRate
+        expr: |
+          (
+            sum(rate(worker_jobs_processed_total{service_name="sheenapps-worker",status="failure"}[5m]))
+            /
+            sum(rate(worker_jobs_processed_total{service_name="sheenapps-worker"}[5m]))
+          ) > 0.05
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Moderate job error rate"
+          description: "Job error rate is {{ $value | humanizePercentage }} (threshold: 5%)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/moderate-error-rate"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: QueueBacklogWarning
+        expr: |
+          worker_queue_lag_seconds{service_name="sheenapps-worker"} > 300
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Queue backlog detected"
+          description: "Queue {{ $labels.queue_name }} has a lag of {{ $value | humanizeDuration }} (threshold: 5 minutes)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/queue-backlog"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: HighMemoryUsage
+        expr: |
+          (
+            worker_process_memory_bytes{service_name="sheenapps-worker",memory_type="rss"}
+            / 1024 / 1024
+          ) > 2048
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "High memory usage"
+          description: "Worker memory usage is {{ $value | humanize }}MB (threshold: 2GB)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/high-memory"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: ExternalServiceErrors
+        expr: |
+          sum(rate(worker_external_call_errors_total{service_name="sheenapps-worker"}[5m])) by (peer_service) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "External service errors"
+          description: "Errors calling {{ $labels.peer_service }}: {{ $value | humanize }} errors/sec"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/external-service-errors"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: DatabaseConnectionPoolExhausted
+        expr: |
+          (
+            worker_db_connection_pool_size{service_name="sheenapps-worker",db_state="idle"}
+            /
+            worker_db_connection_pool_size{service_name="sheenapps-worker",db_state="total"}
+          ) < 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Database connection pool nearly exhausted"
+          description: "Only {{ $value | humanizePercentage }} of connections are idle"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/db-pool-exhausted"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: LowCacheHitRate
+        expr: |
+          worker_cache_hit_ratio{service_name="sheenapps-worker"} < 0.5
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Low cache hit rate"
+          description: "Cache hit rate is {{ $value | humanizePercentage }} (threshold: 50%)"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/low-cache-hits"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+  - name: worker_info
+    interval: 5m
+    rules:
+      - alert: NoDataReceived
+        expr: |
+          absent(worker_jobs_processed_total{service_name="sheenapps-worker"})
+        for: 10m
+        labels:
+          severity: info
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "No telemetry data received"
+          description: "No metrics received from worker for 10 minutes"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/no-telemetry"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"
+
+      - alert: JobProcessingStalled
+        expr: |
+          rate(worker_jobs_processed_total{service_name="sheenapps-worker"}[10m]) == 0
+          and
+          worker_queue_size{service_name="sheenapps-worker"} > 0
+        for: 10m
+        labels:
+          severity: info
+          team: platform
+          service: sheenapps-worker
+        annotations:
+          summary: "Job processing appears stalled"
+          description: "No jobs processed in 10 minutes despite queue having messages"
+          runbook_url: "https://wiki.sheenapps.com/runbooks/processing-stalled"
+          dashboard_url: "https://sheenapps.grafana.net/d/sheenapps-worker-golden-signals"

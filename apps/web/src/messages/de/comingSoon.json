@@ -1,0 +1,44 @@
+{
+  "badge": "Nur auf Einladung",
+  "title": "Wir Sind Online — Für Ausgewählte Nutzer",
+  "titleHighlight": "Ausgewählte Nutzer",
+  "subtitle": "Wir fügen schrittweise neue Nutzer hinzu, um die beste Erfahrung zu gewährleisten.",
+  "subtitleSecond": "Fordern Sie Zugang an, um Ihren Platz zu sichern.",
+  "waitlist": {
+    "title": "Zugang Anfordern",
+    "subtitle": "Wir fügen jede Woche neue Nutzer hinzu",
+    "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "button": "Zugang Anfordern",
+    "submitting": "Wird gesendet...",
+    "success": "Anfrage Erhalten!",
+    "successSubtitle": "Wir melden uns, sobald Ihr Platz verfügbar ist.",
+    "error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
+    "alreadyJoined": "Sie haben bereits Zugang angefordert!",
+    "spots": "Begrenzte Plätze werden wöchentlich freigegeben",
+    "privacy": "Wir respektieren Ihre Privatsphäre. Niemals Spam."
+  },
+  "features": {
+    "title": "Was Sie Bekommen",
+    "ai": {
+      "title": "KI-Gestützter Builder",
+      "description": "Beschreiben Sie Ihre Vision, sehen Sie sie zum Leben erwachen"
+    },
+    "speed": {
+      "title": "Blitzschnell",
+      "description": "Von der Idee zur fertigen Website in Minuten"
+    },
+    "team": {
+      "title": "Experten-Support",
+      "description": "Echte Menschen, die Ihnen zum Erfolg verhelfen"
+    }
+  },
+  "pricing": {
+    "title": "Einfache, Transparente Preise",
+    "subtitle": "Pläne für jede Phase Ihrer Reise",
+    "launching": "Vollständige Preisdetails nach Genehmigung"
+  },
+  "footer": {
+    "launching": "Jetzt Online",
+    "copyright": "© 2025 SheenApps. Alle Rechte vorbehalten."
+  }
+}

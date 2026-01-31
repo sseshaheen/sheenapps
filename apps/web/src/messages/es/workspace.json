@@ -1,0 +1,94 @@
+{
+  "header": {
+    "back": "Atrás",
+    "unsavedChanges": "Cambios sin guardar",
+    "justNow": "Ahora mismo",
+    "minutesAgo": "hace {minutes}m",
+    "share": "Compartir",
+    "export": "Exportar",
+    "settings": "Configuración",
+    "undo": "Undo",
+    "redo": "Redo",
+    "undoTooltip": "Undo last change",
+    "redoTooltip": "Redo last change",
+    "nothingToUndo": "Nothing to undo",
+    "nothingToRedo": "Nothing to redo",
+    "undoShortcut": "Ctrl+Z",
+    "redoShortcut": "Ctrl+Shift+Z"
+  },
+  "saveStatus": {
+    "saving": "Guardando...",
+    "saved": "Guardado",
+    "unsaved": "Cambios sin guardar",
+    "autoSave": "Auto-guardado activado",
+    "lastSaved": "Último guardado: {time}"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "Construir",
+      "preview": "Vista Previa",
+      "humanHelp": "Ayuda humana",
+      "more": "Más",
+      "code": "Code"
+    },
+    "disabled": {
+      "signInRequired": "Inicio de sesión requerido",
+      "upgradeRequired": "Actualización requerida"
+    },
+    "header": {
+      "unlockPremium": "Desbloquear funciones premium",
+      "premiumDescription": "Chat IA, exportaciones avanzadas y más",
+      "upgrade": "Actualizar",
+      "signInToSave": "Inicia sesión para guardar tu trabajo",
+      "signInDescription": "Desbloquea IA e historial de proyectos",
+      "signIn": "Iniciar sesión",
+      "comingSoon": "Próximamente"
+    },
+    "panels": {
+      "previewTitle": "Vista previa",
+      "previewDescription": "La vista previa de la app aparecerá aquí",
+      "aiHelpTitle": "Ayuda IA avanzada",
+      "aiHelpDescription": "Función premium - próximamente",
+      "settingsTitle": "Configuración",
+      "settingsDescription": "Configuración del proyecto - próximamente",
+      "codeTitle": "Código generado",
+      "codeDescription": "Ver y explorar el código fuente generado"
+    }
+  },
+  "advisorMatching": {
+    "match": {
+      "matchedTitle": "¡Asesor encontrado!",
+      "matchedDescription": "Encontramos una excelente coincidencia para tu proyecto",
+      "advisorDetails": "Especializado en las tecnologías de tu proyecto",
+      "matchScore": "Puntuación de coincidencia",
+      "yearsExperience": "Años de experiencia",
+      "rating": "Calificación",
+      "reviews": "Reseñas",
+      "skills": "Habilidades",
+      "approve": "Aprobar coincidencia",
+      "decline": "Rechazar",
+      "dismiss": "Cerrar"
+    },
+    "decline": {
+      "title": "Coincidencia rechazada",
+      "description": "¿Te gustaría:",
+      "retryLabel": "Encontrar un asesor diferente",
+      "retryDescription": "Buscaremos otro experto",
+      "browseLabel": "Explorar todos los asesores",
+      "browseDescription": "Elige de nuestro directorio completo de expertos",
+      "laterLabel": "Quizás más tarde",
+      "laterDescription": "Puedes solicitar un asesor en cualquier momento"
+    },
+    "banner": {
+      "advisorJoined": "¡Tu asesor se ha unido al espacio de trabajo y está listo para ayudar!",
+      "dismiss": "Cerrar"
+    }
+  },
+  "chat": {
+    "advisorJoined": "¡El asesor se ha unido al espacio de trabajo y está listo para ayudar!"
+  },
+  "viewTabs": {
+    "preview": "Vista previa",
+    "code": "Código"
+  }
+}

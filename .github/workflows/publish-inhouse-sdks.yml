@@ -1,0 +1,87 @@
+name: Publish In-House SDKs
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_db:
+        description: "Publish @sheenapps/db"
+        required: true
+        default: "true"
+      publish_cms:
+        description: "Publish @sheenapps/cms"
+        required: true
+        default: "true"
+      publish_auth:
+        description: "Publish @sheenapps/auth"
+        required: true
+        default: "true"
+
+jobs:
+  publish-db:
+    if: ${{ github.event.inputs.publish_db == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+      - name: Install + build
+        working-directory: packages/db
+        run: |
+          npm install
+          npm run build
+      - name: Publish
+        working-directory: packages/db
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-cms:
+    if: ${{ github.event.inputs.publish_cms == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+      - name: Install + build
+        working-directory: packages/cms
+        run: |
+          npm install
+          npm run build
+      - name: Publish
+        working-directory: packages/cms
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-auth:
+    if: ${{ github.event.inputs.publish_auth == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+      - name: Install + build
+        working-directory: packages/auth
+        run: |
+          npm install
+          npm run build
+      - name: Publish
+        working-directory: packages/auth
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

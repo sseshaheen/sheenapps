@@ -1,0 +1,110 @@
+// OpenClaw Gateway Configuration for SheenApps Development
+//
+// This configuration sets up a secure, SheenApps-integrated gateway
+// for local development and testing.
+//
+// Reference: /docs/SHEENAPPS_OPENCLAW_ANALYSIS.md Appendix C
+
+{
+  // =============================================================================
+  // Project Binding
+  // =============================================================================
+  "project.id": "${PROJECT_ID}",
+
+  // =============================================================================
+  // Security: Tool Policy
+  // =============================================================================
+  // Only allow SheenApps-specific tools
+  "tools.default.enabled": false,
+  "tools.allowlist": [
+    "sheenapps.*"
+  ],
+  "tools.blocklist": [
+    "file.*",
+    "shell.*",
+    "web.*",
+    "code.*",
+    "browser.*"
+  ],
+
+  // =============================================================================
+  // Canvas (Attack Surface - Disabled for Dev)
+  // =============================================================================
+  "canvas.enabled": false,
+
+  // =============================================================================
+  // Session Configuration
+  // =============================================================================
+  "agent.sessions.keyPattern": "${PROJECT_ID}:{{channel}}:{{sender.id}}",
+  "agent.sessions.storage": "/app/data/sessions",
+  "agent.sessions.maxAge": "7d",
+
+  // =============================================================================
+  // LLM Configuration
+  // =============================================================================
+  "llm.provider": "anthropic",
+  "llm.model": "claude-3-haiku-20240307",
+  "llm.maxTokensPerMessage": 2000,
+  "llm.maxTokensPerSession": 50000,
+
+  // Context management (auto-compaction when near limit)
+  "llm.contextManagement.enabled": true,
+  "llm.contextManagement.warningThreshold": 0.7,
+  "llm.contextManagement.compactionThreshold": 0.85,
+
+  // =============================================================================
+  // Channel Configuration
+  // =============================================================================
+  // Telegram (Enable for dev testing)
+  "channels.telegram.enabled": true,
+  "channels.telegram.dm.allowlist": ["*"],
+  "channels.telegram.groups.requireMention": true,
+
+  // WebChat (Enable for dev testing)
+  "channels.webchat.enabled": true,
+  "channels.webchat.origins": ["*"],
+
+  // WhatsApp (Disabled by default - high ban risk)
+  "channels.whatsapp.enabled": false,
+  "channels.whatsapp.dm.allowlist": [],
+  "channels.whatsapp.sessions.path": "/app/data/whatsapp-sessions",
+
+  // =============================================================================
+  // Webhook Configuration
+  // =============================================================================
+  "webhooks.enabled": true,
+  "webhooks.url": "${SHEENAPPS_WEBHOOK_URL}",
+  "webhooks.secret": "${SHEENAPPS_WEBHOOK_SECRET}",
+  "webhooks.retries": 3,
+  "webhooks.timeout": 10000,
+  "webhooks.events": [
+    "message.received",
+    "message.sent",
+    "tool.called",
+    "tool.completed",
+    "lead.created",
+    "channel.connected",
+    "channel.disconnected",
+    "session.started",
+    "session.ended",
+    "error.occurred"
+  ],
+
+  // =============================================================================
+  // Rate Limiting
+  // =============================================================================
+  "rateLimit.messagesPerMinute": 30,
+  "rateLimit.tokensPerMinute": 50000,
+
+  // =============================================================================
+  // Logging & Observability
+  // =============================================================================
+  "logging.level": "${LOG_LEVEL:-info}",
+  "logging.format": "json",
+  "logging.includeTimestamp": true,
+
+  // Metrics endpoint for Prometheus scraping
+  "metrics.enabled": true,
+  "metrics.port": 9090,
+  "metrics.path": "/metrics"
+}

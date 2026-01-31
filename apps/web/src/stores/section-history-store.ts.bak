@@ -1,0 +1,868 @@
+// Simple Section History Store - One-step undo/redo with browser cache
+// Lightweight solution for section editing history before authentication
+
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+interface ComponentData {
+  id: string
+  type: string
+  name: string
+  html: string
+  css: string
+  props: Record<string, unknown>
+}
+
+interface SectionVersion {
+  id: string
+  component: ComponentData
+  timestamp: number
+  userAction: string
+}
+
+interface SectionHistory {
+  versions: SectionVersion[] // Full history stack (max 4: original + 3 edits)
+  currentIndex: number // Index pointing to current version in the stack
+}
+
+interface LayoutFinalState {
+  originalState: Record<string, ComponentData> // sectionId -> original component
+  finalState: Record<string, ComponentData>    // sectionId -> final edited component
+  lastUpdated: number
+}
+
+interface SectionHistoryState {
+  histories: Record<string, Record<string, SectionHistory>> // layoutId -> sectionId -> SectionHistory
+  layoutFinalStates: Record<string, LayoutFinalState> // layoutId -> final state cache
+  currentLayoutId: string | null
+  
+  // Layout Management with Smart State Management
+  switchToLayout: (layoutId: string) => void
+  getCurrentLayoutId: () => string | null
+  clearLayoutHistory: (layoutId: string) => void
+  getLayoutFinalState: (layoutId: string) => LayoutFinalState | null
+  setLayoutFinalState: (layoutId: string, originalState: Record<string, ComponentData>, finalState: Record<string, ComponentData>) => void
+  
+  // Actions (now layout-aware)
+  recordChange: (sectionId: string, component: ComponentData, userAction: string, originalComponent?: ComponentData) => void
+  recordInitialState: (sectionId: string, component: ComponentData) => void
+  undo: (sectionId: string) => SectionVersion | null
+  redo: (sectionId: string) => SectionVersion | null
+  canUndo: (sectionId: string) => boolean
+  canRedo: (sectionId: string) => boolean
+  clearHistory: (sectionId: string) => void
+  clearAllHistory: () => void
+  
+  // UI helpers
+  getUndoAction: (sectionId: string) => string | null
+  getRedoAction: (sectionId: string) => string | null
+  getCurrentVersion: (sectionId: string) => SectionVersion | null
+  getAllCurrentVersions: () => Record<string, SectionVersion>
+  
+  // Smart State Management
+  updateLayoutFinalState: () => void
+  validateEditIsolation: (layoutId: string) => boolean
+  getImmutableSnapshot: (layoutId: string) => LayoutFinalState | null
+  
+  // AI-Ready Functions (for future external AI integration)
+  captureCurrentState: (sectionId: string, component: ComponentData) => void
+  bulkInitializeFromRenderedSections: (sectionsMap: Record<string, ComponentData>) => void
+}
+
+// TODO: Remove this function when external AI is implemented
+// This creates a simple but realistic luxury-premium original component
+function createLuxuryPremiumOriginal(sectionType: string): any {
+  console.log(`🔍 Creating luxury-premium original component for ${sectionType}`)
+  
+  // Create realistic luxury-premium originals that match the actual styling
+  const luxuryOriginals = {
+    header: {
+      id: `${sectionType}-luxury-original`,
+      type: sectionType,
+      name: 'Original Luxury Header',
+      html: `
+        <header class="header-luxury-original" data-section-type="${sectionType}">
+          <div class="header-container">
+            <div class="header-logo">
+              <div class="logo-crown">♛</div>
+              <div class="logo-text">
+                <div class="logo-main">ÉLITE SALON</div>
+                <div class="logo-tagline">EXCELLENCE SINCE 1985</div>
+              </div>
+            </div>
+            <nav class="header-nav">
+              <a href="#services">SERVICES</a>
+              <a href="#about">ABOUT</a>
+              <a href="#contact">CONTACT</a>
+            </nav>
+          </div>
+        </header>
+      `,
+      css: `
+        .header-luxury-original {
+          background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+          color: #f8f6f3;
+          padding: 1rem 0;
+          border-bottom: 1px solid #d4af37;
+        }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .header-logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-crown { font-size: 2rem; color: #d4af37; }
+        .logo-main { font-size: 1.5rem; font-weight: 700; color: #f8f6f3; }
+        .logo-tagline { font-size: 0.8rem; color: #d4af37; }
+        .header-nav { display: flex; gap: 2rem; }
+        .header-nav a { color: #f8f6f3; text-decoration: none; font-weight: 500; }
+      `,
+      props: { businessName: 'ÉLITE SALON', isOriginal: true }
+    },
+    hero: {
+      id: `${sectionType}-luxury-original`,
+      type: sectionType,
+      name: 'Original Luxury Hero',
+      html: `
+        <section class="hero-luxury-original" data-section-type="${sectionType}">
+          <div class="hero-container">
+            <div class="hero-content">
+              <h1 class="hero-title">Experience Unparalleled Luxury</h1>
+              <p class="hero-subtitle">Where elegance meets expertise in the heart of luxury beauty.</p>
+              <button class="btn-primary-original">BOOK EXPERIENCE</button>
+            </div>
+            <div class="hero-visual">
+              <div class="luxury-badge">♛ SINCE 1985</div>
+            </div>
+          </div>
+        </section>
+      `,
+      css: `
+        .hero-luxury-original {
+          min-height: 80vh;
+          background: linear-gradient(135deg, #f8f6f3 0%, #e8e2d8 100%);
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+        .hero-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; padding: 0 2rem; }
+        .hero-content { flex: 1; }
+        .hero-title { font-size: 3.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.2rem; color: #666; margin-bottom: 2rem; }
+        .btn-primary-original { background: #d4af37; color: #1a1a1a; padding: 1rem 2rem; border: none; font-weight: 700; }
+        .luxury-badge { position: absolute; top: 2rem; right: 2rem; background: #1a1a1a; color: #d4af37; padding: 1rem; }
+      `,
+      props: { title: 'Experience Unparalleled Luxury', isOriginal: true }
+    },
+    features: {
+      id: `${sectionType}-luxury-original`,
+      type: sectionType,
+      name: 'Original Luxury Features',
+      html: `
+        <section class="features-luxury-original" data-section-type="${sectionType}">
+          <div class="features-container">
+            <h2 class="features-title">Our Signature Services</h2>
+            <div class="features-grid">
+              <div class="feature-item">
+                <div class="feature-icon">✨</div>
+                <h3>Premium Styling</h3>
+                <p>Expert stylists with international training</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">♛</div>
+                <h3>VIP Experience</h3>
+                <p>Private suites and personalized service</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">◆</div>
+                <h3>Luxury Products</h3>
+                <p>Exclusive high-end beauty brands</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      `,
+      css: `
+        .features-luxury-original {
+          padding: 5rem 0;
+          background: #f8f6f3;
+        }
+        .features-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+        .features-title { font-size: 2.5rem; color: #1a1a1a; margin-bottom: 3rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .feature-item { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .feature-icon { font-size: 2rem; color: #d4af37; margin-bottom: 1rem; }
+        .feature-item h3 { color: #1a1a1a; margin-bottom: 1rem; }
+        .feature-item p { color: #666; }
+      `,
+      props: { title: 'Our Signature Services', isOriginal: true }
+    },
+    testimonials: {
+      id: `${sectionType}-luxury-original`,
+      type: sectionType,
+      name: 'Original Luxury Testimonials',
+      html: `
+        <section class="testimonials-luxury-original" data-section-type="${sectionType}">
+          <div class="testimonials-container">
+            <h2 class="testimonials-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+              <div class="testimonial-item">
+                <div class="stars">★★★★★</div>
+                <p>"Absolutely exceptional service and results. The team truly understands luxury."</p>
+                <div class="client-name">— Sarah M.</div>
+              </div>
+              <div class="testimonial-item">
+                <div class="stars">★★★★★</div>
+                <p>"My go-to salon for over 10 years. Consistently outstanding experience."</p>
+                <div class="client-name">— Jennifer L.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `,
+      css: `
+        .testimonials-luxury-original {
+          padding: 5rem 0;
+          background: #e8e2d8;
+        }
+        .testimonials-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+        .testimonials-title { font-size: 2.5rem; color: #1a1a1a; margin-bottom: 3rem; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .testimonial-item { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .stars { color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; }
+        .testimonial-item p { color: #1a1a1a; font-style: italic; margin-bottom: 1rem; }
+        .client-name { color: #666; font-weight: 500; }
+      `,
+      props: { title: 'What Our Clients Say', isOriginal: true }
+    }
+  }
+  
+  const original = luxuryOriginals[sectionType as keyof typeof luxuryOriginals]
+  if (original) {
+    console.log(`✅ Created luxury-premium original for ${sectionType}`)
+    return original
+  }
+  
+  console.warn(`⚠️ No luxury-premium original available for ${sectionType}`)
+  return null
+}
+
+export const useSectionHistoryStore = create<SectionHistoryState>()(
+  persist(
+    (set, get) => ({
+      histories: {},
+      layoutFinalStates: {},
+      currentLayoutId: null,
+
+      // Layout Management Methods with Smart State Management
+      switchToLayout: (layoutId: string) => {
+        const { logger } = require('@/utils/logger')
+        const state = get()
+        
+        logger.info(`Switching to layout: ${layoutId}`, undefined, 'layout')
+        
+        // Update current layout's final state before switching
+        if (state.currentLayoutId) {
+          logger.debug('layout', 'Updating final state before switch')
+          get().updateLayoutFinalState()
+        }
+        
+        set((state) => ({
+          currentLayoutId: layoutId,
+          // Initialize layout structures if they don't exist
+          histories: {
+            ...state.histories,
+            [layoutId]: state.histories[layoutId] || {}
+          },
+          layoutFinalStates: {
+            ...state.layoutFinalStates,
+            [layoutId]: state.layoutFinalStates[layoutId] || {
+              originalState: {},
+              finalState: {},
+              lastUpdated: Date.now()
+            }
+          }
+        }))
+        
+        logger.success(`Layout switched to ${layoutId}`, 'layout')
+      },
+
+      getCurrentLayoutId: () => {
+        return get().currentLayoutId
+      },
+
+      clearLayoutHistory: (layoutId: string) => {
+        console.log(`🧹 Clearing history for layout: ${layoutId}`)
+        set((state) => {
+          const newHistories = { ...state.histories }
+          const newFinalStates = { ...state.layoutFinalStates }
+          delete newHistories[layoutId]
+          delete newFinalStates[layoutId]
+          return { 
+            histories: newHistories,
+            layoutFinalStates: newFinalStates
+          }
+        })
+      },
+
+      getLayoutFinalState: (layoutId: string) => {
+        const state = get()
+        return state.layoutFinalStates[layoutId] || null
+      },
+
+      setLayoutFinalState: (layoutId: string, originalState: Record<string, any>, finalState: Record<string, any>) => {
+        console.log(`💾 Setting final state for layout ${layoutId}`)
+        set((state) => ({
+          layoutFinalStates: {
+            ...state.layoutFinalStates,
+            [layoutId]: {
+              originalState: JSON.parse(JSON.stringify(originalState)), // Deep clone for immutability
+              finalState: JSON.parse(JSON.stringify(finalState)), // Deep clone for immutability
+              lastUpdated: Date.now()
+            }
+          }
+        }))
+      },
+
+      // Helper to get current layout histories
+      _getCurrentLayoutHistories: () => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ No current layout ID set')
+          return {}
+        }
+        return state.histories[state.currentLayoutId] || {}
+      },
+
+      // Helper to update current layout histories
+      _updateCurrentLayoutHistories: (sectionId: string, sectionHistory: SectionHistory) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot update history - no current layout ID set')
+          return
+        }
+        
+        set((state) => ({
+          histories: {
+            ...state.histories,
+            [state.currentLayoutId!]: {
+              ...state.histories[state.currentLayoutId!],
+              [sectionId]: sectionHistory
+            }
+          }
+        }))
+      },
+
+      recordInitialState: (sectionId: string, component: any) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot record initial state - no current layout ID set')
+          return
+        }
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        
+        // Only record initial state if no history exists yet for this section in this layout
+        if (currentLayoutHistories[sectionId]) {
+          console.log(`🔄 Initial state already exists for ${sectionId} in layout ${state.currentLayoutId}`)
+          return
+        }
+
+        const initialVersion: SectionVersion = {
+          id: `${sectionId}-initial`,
+          component,
+          timestamp: Date.now(),
+          userAction: 'initial'
+        }
+
+        console.log(`📸 Recording initial state for ${sectionId} in layout ${state.currentLayoutId}`)
+        
+        set((state) => ({
+          histories: {
+            ...state.histories,
+            [state.currentLayoutId!]: {
+              ...currentLayoutHistories,
+              [sectionId]: {
+                versions: [initialVersion],
+                currentIndex: 0
+              }
+            }
+          }
+        }))
+      },
+
+      // AI-Ready Functions for External AI Integration (layout-aware)
+      captureCurrentState: (sectionId: string, component: any) => {
+        // This will be used to capture the current rendered state when AI generates initial layouts
+        const state = get()
+        console.log(`📸 Capturing current state for ${sectionId} in layout ${state.currentLayoutId} (AI-ready)`)
+        const { recordInitialState } = get()
+        recordInitialState(sectionId, component)
+      },
+
+      bulkInitializeFromRenderedSections: (sectionsMap: Record<string, any>) => {
+        // This will be used when external AI generates a complete layout
+        // sectionsMap format: { "header": component, "hero": component, ... }
+        const state = get()
+        console.log(`🎯 Bulk initializing sections from AI-generated layout in ${state.currentLayoutId}:`, Object.keys(sectionsMap))
+        
+        Object.entries(sectionsMap).forEach(([sectionId, component]) => {
+          const { recordInitialState } = get()
+          recordInitialState(sectionId, component)
+        })
+        
+        console.log(`✅ Initialized ${Object.keys(sectionsMap).length} sections from AI layout in ${state.currentLayoutId}`)
+      },
+
+      recordChange: (sectionId: string, component: any, userAction: string, originalComponent?: any) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot record change - no current layout ID set')
+          return
+        }
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const currentHistory = currentLayoutHistories[sectionId] || { versions: [], currentIndex: -1 }
+        
+        console.log(`📝 Recording change for ${sectionId} in layout ${state.currentLayoutId}: "${userAction}"`)
+          
+        const newVersion: SectionVersion = {
+          id: `${sectionId}-${Date.now()}`,
+          component,
+          timestamp: Date.now(),
+          userAction
+        }
+
+        // Ensure versions is always an array and currentIndex is a valid number
+        const safeVersions = Array.isArray(currentHistory.versions) ? currentHistory.versions : []
+        let updatedVersions = [...safeVersions]
+        let newCurrentIndex = typeof currentHistory.currentIndex === 'number' ? currentHistory.currentIndex : -1
+
+        // If this is the very first edit (no history exists), create initial state
+        if (updatedVersions.length === 0) {
+          if (originalComponent) {
+            console.log(`✅ Using provided original API-generated component for ${sectionId}`)
+            const originalVersion = {
+              id: `${sectionId}-api-original`,
+              component: originalComponent,
+              timestamp: Date.now() - 1000,
+              userAction: 'original (API-generated)'
+            }
+            updatedVersions = [originalVersion, newVersion]
+            newCurrentIndex = 1
+          } else {
+            console.error(`❌ No original component available for ${sectionId} - this should not happen!`)
+            console.error(`💡 Original components should be captured when API generates them`)
+            
+            // This should not happen anymore with the new system
+            updatedVersions = [newVersion]
+            newCurrentIndex = 0
+            console.log(`⚠️ Adding edit without original state for ${sectionId}`)
+          }
+        } else {
+          // We have existing history
+          // If we're not at the latest version (user did undo), remove future versions
+          if (newCurrentIndex < updatedVersions.length - 1) {
+            updatedVersions = updatedVersions.slice(0, newCurrentIndex + 1)
+          }
+          
+          // Add the new version
+          updatedVersions.push(newVersion)
+          newCurrentIndex = updatedVersions.length - 1
+          
+          // Keep only the last 4 versions (1 original + 3 edits max)
+          if (updatedVersions.length > 4) {
+            updatedVersions = updatedVersions.slice(-4)
+            newCurrentIndex = updatedVersions.length - 1
+          }
+        }
+
+        const updatedHistory: SectionHistory = {
+          versions: updatedVersions,
+          currentIndex: newCurrentIndex
+        }
+
+        console.log(`🔍 History updated for ${sectionId} in layout ${state.currentLayoutId}:`, {
+          versionsCount: updatedVersions.length,
+          currentIndex: newCurrentIndex,
+          currentAction: updatedVersions[newCurrentIndex]?.userAction,
+          canUndo: newCurrentIndex > 0,
+          canRedo: newCurrentIndex < updatedVersions.length - 1,
+          allActions: updatedVersions.map(v => v.userAction)
+        })
+
+        set((state) => ({
+          histories: {
+            ...state.histories,
+            [state.currentLayoutId!]: {
+              ...currentLayoutHistories,
+              [sectionId]: updatedHistory
+            }
+          }
+        }))
+
+        // Auto-update final state cache for true edit isolation
+        console.log(`🔄 Auto-updating final state cache after recording change for ${sectionId}`)
+        get().updateLayoutFinalState()
+      },
+
+      undo: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot undo - no current layout ID set')
+          return null
+        }
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        
+        if (!history || !Array.isArray(history.versions) || history.currentIndex <= 0) {
+          console.log(`⚠️ Cannot undo ${sectionId} in layout ${state.currentLayoutId} - no previous version available`)
+          return null
+        }
+
+        const previousVersion = history.versions[history.currentIndex - 1]
+        if (!previousVersion) return null
+        
+        // Check if previous state is a placeholder (unknown original)
+        if (previousVersion.component === null) {
+          console.log(`⚠️ Cannot undo ${sectionId} in layout ${state.currentLayoutId} - original state unknown`)
+          console.log('Suggestion: Implement initial state capture when sections are first loaded')
+          return null
+        }
+
+        // Move back one step in history within this layout
+        set((state) => ({
+          histories: {
+            ...state.histories,
+            [state.currentLayoutId!]: {
+              ...currentLayoutHistories,
+              [sectionId]: {
+                ...history,
+                currentIndex: history.currentIndex - 1
+              }
+            }
+          }
+        }))
+
+        console.log(`🔄 Undoing ${sectionId} in layout ${state.currentLayoutId}: ${history.currentIndex} → ${history.currentIndex - 1} (${previousVersion.userAction})`)
+        
+        // Update final state cache after undo
+        get().updateLayoutFinalState()
+        
+        return previousVersion
+      },
+
+      redo: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot redo - no current layout ID set')
+          return null
+        }
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        
+        if (!history || !Array.isArray(history.versions) || history.currentIndex >= history.versions.length - 1) {
+          console.log(`⚠️ Cannot redo ${sectionId} in layout ${state.currentLayoutId} - no next version available`)
+          return null
+        }
+
+        const nextVersion = history.versions[history.currentIndex + 1]
+        if (!nextVersion) return null
+
+        // Move forward one step in history within this layout
+        set((state) => ({
+          histories: {
+            ...state.histories,
+            [state.currentLayoutId!]: {
+              ...currentLayoutHistories,
+              [sectionId]: {
+                ...history,
+                currentIndex: history.currentIndex + 1
+              }
+            }
+          }
+        }))
+
+        console.log(`🔄 Redoing ${sectionId} in layout ${state.currentLayoutId}: ${history.currentIndex} → ${history.currentIndex + 1} (${nextVersion.userAction})`)
+        
+        // Update final state cache after redo
+        get().updateLayoutFinalState()
+        
+        return nextVersion
+      },
+
+      canUndo: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) return false
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        if (!history || !Array.isArray(history.versions) || history.currentIndex <= 0) return false
+        
+        const previousVersion = history.versions[history.currentIndex - 1]
+        // Can only undo if we have a previous state AND it's not a placeholder
+        return !!previousVersion && previousVersion.component !== null
+      },
+
+      canRedo: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) return false
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        if (!history || !Array.isArray(history.versions)) return false
+        return history.currentIndex < history.versions.length - 1
+      },
+
+      clearHistory: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot clear history - no current layout ID set')
+          return
+        }
+
+        console.log(`🧹 Clearing history for ${sectionId} in layout ${state.currentLayoutId}`)
+        
+        set((state) => {
+          const currentLayoutHistories = { ...state.histories[state.currentLayoutId!] }
+          delete currentLayoutHistories[sectionId]
+          
+          return {
+            histories: {
+              ...state.histories,
+              [state.currentLayoutId!]: currentLayoutHistories
+            }
+          }
+        })
+      },
+
+      clearAllHistory: () => {
+        console.log('🧹 Clearing all section history')
+        set({ histories: {} })
+        // Also clear localStorage
+        try {
+          localStorage.removeItem('section-history-storage')
+        } catch (error) {
+          console.warn('Could not clear localStorage:', error)
+        }
+      },
+
+      getUndoAction: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) return null
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        if (!history || !Array.isArray(history.versions) || history.currentIndex <= 0) return null
+        
+        const previousVersion = history.versions[history.currentIndex - 1]
+        if (!previousVersion || previousVersion.component === null) return null
+        return `Undo: ${previousVersion.userAction}`
+      },
+
+      getRedoAction: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) return null
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        if (!history || !Array.isArray(history.versions) || history.currentIndex >= history.versions.length - 1) return null
+        
+        const nextVersion = history.versions[history.currentIndex + 1]
+        return nextVersion ? `Redo: ${nextVersion.userAction}` : null
+      },
+
+      getCurrentVersion: (sectionId: string) => {
+        const state = get()
+        if (!state.currentLayoutId) return null
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const history = currentLayoutHistories[sectionId]
+        if (!history || !Array.isArray(history.versions) || history.currentIndex < 0) return null
+        
+        return history.versions[history.currentIndex] || null
+      },
+
+      getAllCurrentVersions: () => {
+        const state = get()
+        if (!state.currentLayoutId) return {}
+
+        const currentLayoutHistories = state.histories[state.currentLayoutId] || {}
+        const currentVersions: Record<string, SectionVersion> = {}
+        
+        Object.entries(currentLayoutHistories).forEach(([sectionId, history]) => {
+          if (history && Array.isArray(history.versions) && history.currentIndex >= 0) {
+            const currentVersion = history.versions[history.currentIndex]
+            if (currentVersion) {
+              currentVersions[sectionId] = currentVersion
+            }
+          }
+        })
+        
+        console.log(`📋 Current versions for layout ${state.currentLayoutId}:`, Object.keys(currentVersions))
+        return currentVersions
+      },
+
+      // Smart State Management Methods
+      updateLayoutFinalState: () => {
+        const state = get()
+        if (!state.currentLayoutId) {
+          console.warn('⚠️ Cannot update final state - no current layout ID')
+          return
+        }
+
+        const layoutId = state.currentLayoutId
+        const currentLayoutHistories = state.histories[layoutId] || {}
+        const originalState: Record<string, any> = {}
+        const finalState: Record<string, any> = {}
+
+        // Build original and final states from history
+        Object.entries(currentLayoutHistories).forEach(([sectionId, history]) => {
+          if (history && Array.isArray(history.versions) && history.versions.length > 0) {
+            // Original is always the first version
+            originalState[sectionId] = history.versions[0].component
+            
+            // Final is the current version (at currentIndex)
+            if (history.currentIndex >= 0 && history.versions[history.currentIndex]) {
+              finalState[sectionId] = history.versions[history.currentIndex].component
+            }
+          }
+        })
+
+        console.log(`💾 Updating final state for layout ${layoutId}:`, {
+          originalCount: Object.keys(originalState).length,
+          finalCount: Object.keys(finalState).length
+        })
+
+        set((state) => ({
+          layoutFinalStates: {
+            ...state.layoutFinalStates,
+            [layoutId]: {
+              originalState: JSON.parse(JSON.stringify(originalState)),
+              finalState: JSON.parse(JSON.stringify(finalState)),
+              lastUpdated: Date.now()
+            }
+          }
+        }))
+      },
+
+      validateEditIsolation: (layoutId: string) => {
+        const state = get()
+        const finalState = state.layoutFinalStates[layoutId]
+        
+        if (!finalState) {
+          console.warn(`⚠️ No final state found for layout ${layoutId}`)
+          return false
+        }
+
+        // Validate that sections exist and have valid components
+        const isValid = Object.entries(finalState.finalState).every(([sectionId, component]) => {
+          const isValidComponent = component && typeof component === 'object'
+          if (!isValidComponent) {
+            console.warn(`⚠️ Invalid component for ${sectionId} in layout ${layoutId}`)
+          }
+          return isValidComponent
+        })
+
+        console.log(`🔍 Edit isolation validation for ${layoutId}:`, isValid ? '✅ Valid' : '❌ Invalid')
+        return isValid
+      },
+
+      getImmutableSnapshot: (layoutId: string) => {
+        const state = get()
+        const finalState = state.layoutFinalStates[layoutId]
+        
+        if (!finalState) {
+          console.warn(`⚠️ No snapshot available for layout ${layoutId}`)
+          return null
+        }
+
+        // Return a deep clone to ensure immutability
+        return JSON.parse(JSON.stringify(finalState))
+      },
+
+      // TODO: Remove this mock function when external AI is implemented
+      initializeLayoutSections: (layout: string, sectionTypes: string[]) => {
+        console.log(`🧪 MOCK: Attempting to initialize ${layout} sections:`, sectionTypes)
+        console.log(`⚠️ This is mock behavior - in production, use bulkInitializeFromRenderedSections() after AI generates the layout`)
+        // No-op for now since we removed the hardcoded components
+      }
+    }),
+    {
+      name: 'section-history-storage',
+      // Persist histories, final states, and current layout ID
+      partialize: (state) => ({ 
+        histories: state.histories, 
+        layoutFinalStates: state.layoutFinalStates,
+        currentLayoutId: state.currentLayoutId 
+      }),
+      // Migrate old data structure to new per-layout format
+      migrate: (persistedState: any, version: number) => {
+        console.log('🔄 Migrating section history data to per-layout format...', persistedState)
+        
+        if (persistedState?.histories) {
+          // Check if it's the old global format (sectionId -> SectionHistory)
+          const isOldGlobalFormat = Object.values(persistedState.histories).some((history: any) => 
+            history && (Array.isArray(history.versions) || 'previous' in history || 'current' in history)
+          )
+          
+          if (isOldGlobalFormat) {
+            console.log('🔄 Converting old global format to per-layout format')
+            
+            // Convert old global format to new per-layout format
+            const migratedHistories: Record<string, Record<string, SectionHistory>> = {}
+            const defaultLayoutId = 'default' // Migrate old data to 'default' layout
+            
+            const defaultLayoutHistories: Record<string, SectionHistory> = {}
+            
+            Object.entries(persistedState.histories).forEach(([sectionId, history]: [string, any]) => {
+              // Handle old previous/current/next format
+              if (history && ('previous' in history || 'current' in history || 'next' in history)) {
+                console.log(`🔄 Migrating old three-step format for ${sectionId}`)
+                const versions: SectionVersion[] = []
+                let currentIndex = -1
+                
+                if (history.previous && history.previous.component) {
+                  versions.push(history.previous)
+                  currentIndex = 0
+                }
+                if (history.current && history.current.component) {
+                  versions.push(history.current)
+                  currentIndex = versions.length - 1
+                }
+                if (history.next && history.next.component) {
+                  versions.push(history.next)
+                }
+                
+                defaultLayoutHistories[sectionId] = { versions, currentIndex }
+              } else if (history && Array.isArray(history.versions)) {
+                // Already new multi-step format, keep as is
+                defaultLayoutHistories[sectionId] = history
+              }
+            })
+            
+            migratedHistories[defaultLayoutId] = defaultLayoutHistories
+            
+            return { 
+              histories: migratedHistories,
+              layoutFinalStates: {},
+              currentLayoutId: defaultLayoutId
+            }
+          }
+          
+          // Already in per-layout format or unknown format
+          return {
+            histories: persistedState.histories,
+            layoutFinalStates: persistedState.layoutFinalStates || {},
+            currentLayoutId: persistedState.currentLayoutId || null
+          }
+        }
+        
+        return {
+          histories: {},
+          layoutFinalStates: {},
+          currentLayoutId: null
+        }
+      },
+      version: 2
+    }
+  )
+)

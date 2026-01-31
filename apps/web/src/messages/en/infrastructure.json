@@ -1,0 +1,627 @@
+{
+  "modeSelection": {
+    "title": "Choose Your Infrastructure",
+    "subtitle": "Select how you want to build and deploy your project",
+    "easyMode": {
+      "title": "Easy Mode",
+      "badge": "Recommended",
+      "description": "Everything handled for you - zero external accounts needed",
+      "features": [
+        "Managed database & authentication",
+        "Instant hosting at yoursite.sheenapps.com",
+        "Built-in content management",
+        "Custom domains (Pro tier)"
+      ],
+      "cta": "Select Easy Mode"
+    },
+    "proMode": {
+      "title": "Pro Mode",
+      "description": "Connect your own infrastructure for full control",
+      "features": [
+        "Your Supabase database",
+        "Your Vercel hosting",
+        "Your Sanity CMS",
+        "Your GitHub repository"
+      ],
+      "cta": "Select Pro Mode"
+    }
+  },
+  "panel": {
+    "title": "Infrastructure",
+    "simpleTitle": "Settings",
+    "easyModeLabel": "Easy Mode",
+    "proModeLabel": "Pro Mode",
+    "loading": "Loading infrastructure status...",
+    "simpleLoading": "Loading...",
+    "advancedSettings": "Advanced Settings",
+    "advancedSettingsHint": "Database, Authentication, API Keys",
+    "showAdvanced": "Show Advanced",
+    "showSimple": "Simple View"
+  },
+  "wizardMode": {
+    "tracking": {
+      "title": "Set Up Tracking",
+      "subtitle": "Copy this tracking code and add it to your website to start collecting visitor data."
+    },
+    "payments": {
+      "title": "Connect Payments",
+      "subtitle": "Connect Stripe to accept payments from your customers."
+    },
+    "forms": {
+      "title": "Set Up Forms",
+      "subtitle": "Create forms to collect information from your visitors."
+    },
+    "doneButton": "Done",
+    "returnToSetup": "Return to Setup"
+  },
+  "database": {
+    "title": "Database",
+    "schema": "Schema",
+    "tables": "Tables",
+    "storage": "Storage",
+    "status": {
+      "active": "Active",
+      "provisioning": "Provisioning",
+      "error": "Error"
+    },
+    "actions": {
+      "viewSchema": "View Schema",
+      "queryConsole": "Query Console",
+      "createTable": "Create Table"
+    },
+    "dialogs": {
+      "schema": {
+        "title": "Database Schema",
+        "description": "View your database tables and columns",
+        "tables": "Tables",
+        "columns": "Columns",
+        "type": "Type",
+        "nullable": "Nullable",
+        "primaryKey": "PK",
+        "loading": "Loading schema...",
+        "error": "Failed to load schema",
+        "noTables": "No tables yet",
+        "createFirst": "Create your first table",
+        "createTable": "Create Table",
+        "rows": "rows"
+      },
+      "createTable": {
+        "title": "Create Table",
+        "description": "Define a new table structure for your database",
+        "tableName": "Table Name",
+        "tableNamePlaceholder": "products",
+        "columns": "Columns",
+        "addColumn": "Add Column",
+        "columnName": "Column Name",
+        "columnType": "Type",
+        "nullable": "Nullable",
+        "primaryKey": "Primary Key",
+        "defaultValue": "Default Value",
+        "remove": "Remove",
+        "cancel": "Cancel",
+        "create": "Create Table",
+        "creating": "Creating...",
+        "success": "Table created successfully",
+        "error": "Failed to create table",
+        "validation": {
+          "tableNameRequired": "Table name is required",
+          "columnNameRequired": "All columns must have a name",
+          "atLeastOneColumn": "At least one column is required"
+        }
+      },
+      "query": {
+        "title": "Query Console",
+        "description": "Run SELECT queries against your database",
+        "queryPlaceholder": "SELECT * FROM users LIMIT 10;",
+        "run": "Run Query",
+        "running": "Running...",
+        "clear": "Clear",
+        "results": "Results",
+        "noResults": "Query returned no results",
+        "executionTime": "Execution time",
+        "rowCount": "Rows",
+        "error": "Query error",
+        "selectOnlyWarning": "Only SELECT queries are allowed. Press Cmd/Ctrl+Enter to run."
+      }
+    }
+  },
+  "hosting": {
+    "title": "Hosting",
+    "url": "URL",
+    "subdomain": "Subdomain",
+    "lastDeploy": "Last deploy",
+    "currentBuild": "Build",
+    "noDeploymentsYet": "No deployments yet. Click Deploy to publish your site.",
+    "status": {
+      "live": "Live",
+      "deploying": "Deploying",
+      "none": "Not Deployed",
+      "error": "Error"
+    },
+    "actions": {
+      "openSite": "Open Site",
+      "deploy": "Deploy",
+      "rollback": "Rollback",
+      "viewLogs": "View Logs"
+    },
+    "history": {
+      "title": "Recent Deployments",
+      "viewAll": "View all",
+      "live": "Live",
+      "ago": "ago",
+      "failed": "Failed",
+      "deployed": "Deployed",
+      "deploying": "Deploying",
+      "uploading": "Uploading",
+      "rollbackTo": "Rollback to this build",
+      "rollbackConfirm": "Rollback to build {buildId}?",
+      "rollbackDescription": "This will make build {buildId} the active deployment. Your current deployment will be replaced.",
+      "cancel": "Cancel",
+      "confirmRollback": "Rollback",
+      "rollingBack": "Rolling back...",
+      "rollbackSuccess": "Rolled back successfully",
+      "rollbackError": "Rollback failed",
+      "empty": "No deployment history",
+      "loadMore": "Load more"
+    }
+  },
+  "quotas": {
+    "title": "Usage Today",
+    "requests": "Requests",
+    "bandwidth": "Bandwidth",
+    "resetsAt": "Resets at",
+    "midnightUTC": "Midnight UTC",
+    "unlimited": "Unlimited"
+  },
+  "cms": {
+    "title": "CMS",
+    "simpleTitle": "Content",
+    "subtitle": "Manage content types, entries, and media",
+    "typesLabel": "Types",
+    "entriesLabel": "Entries",
+    "mediaLabel": "Media",
+    "manage": "Manage",
+    "dialog": {
+      "title": "Content Manager",
+      "description": "Create content types, entries, and media for your app.",
+      "tabs": {
+        "types": "Types",
+        "entries": "Entries",
+        "media": "Media"
+      },
+      "types": {
+        "header": "Create a content type",
+        "name": "Name",
+        "slug": "Slug",
+        "schema": "Fields",
+        "schemaHelp": "Define fields and validations in JSON.",
+        "create": "Create Type",
+        "creating": "Creating...",
+        "empty": "No content types yet",
+        "error": "Failed to create content type",
+        "schemaHint": "Schema example: {\"fields\":[{\"name\":\"title\",\"type\":\"text\",\"required\":true}]}",
+        "validation": {
+          "invalidSchema": "Schema must include a fields array with name/type",
+          "missingFields": "Add at least one field to the schema"
+        },
+        "fieldBuilder": {
+          "addField": "Add Field",
+          "removeField": "Remove",
+          "fieldName": "Name",
+          "fieldNamePlaceholder": "e.g. title",
+          "fieldType": "Type",
+          "required": "Required",
+          "constraints": "Constraints",
+          "options": "Options",
+          "optionsPlaceholder": "Option value",
+          "minValue": "Min",
+          "maxValue": "Max",
+          "maxLength": "Max length",
+          "description": "Description",
+          "descriptionPlaceholder": "Help text for this field",
+          "display": "Display",
+          "displayCurrency": "Currency",
+          "displayPercent": "Percent",
+          "displayNone": "Default",
+          "showJson": "Show JSON",
+          "hideJson": "Hide JSON",
+          "noFields": "No fields yet. Click \"Add Field\" to start."
+        }
+      },
+      "entries": {
+        "header": "Create an entry",
+        "contentType": "Content type",
+        "contentTypePlaceholder": "Select a type",
+        "slug": "Slug",
+        "status": "Status",
+        "locale": "Locale",
+        "data": "Entry JSON",
+        "dataHelp": "Provide entry data as JSON.",
+        "create": "Create Entry",
+        "creating": "Creating...",
+        "empty": "No entries for this type",
+        "error": "Failed to create entry",
+        "statuses": {
+          "draft": "Draft",
+          "published": "Published",
+          "archived": "Archived"
+        },
+        "editorTabs": {
+          "form": "Form",
+          "json": "JSON"
+        },
+        "showAdvanced": "Show advanced",
+        "hideAdvanced": "Hide advanced",
+        "noSchema": "No schema fields available. Use JSON mode to add data.",
+        "validation": {
+          "required": "Field '{field}' is required",
+          "invalidJson": "Entry JSON is invalid",
+          "minLength": "Field '{field}' must be at least {min} characters",
+          "maxLength": "Field '{field}' must be at most {max} characters",
+          "min": "Field '{field}' must be at least {min}",
+          "max": "Field '{field}' must be at most {max}",
+          "pattern": "Field '{field}' format is invalid"
+        },
+        "fieldPlaceholder": "Select a value",
+        "hints": {
+          "format": "Format",
+          "pattern": "Pattern",
+          "description": "Notes",
+          "range": "Range",
+          "currency": "Display: currency",
+          "percent": "Display: percent"
+        },
+        "requiredLabel": "Required",
+        "quickFill": "Quick fill sample"
+      },
+      "media": {
+        "header": "Upload media",
+        "filename": "File",
+        "altText": "Alt text",
+        "upload": "Upload",
+        "uploading": "Uploading...",
+        "empty": "No media uploaded yet",
+        "error": "Failed to upload media",
+        "sizeNote": "Max 10MB per upload"
+      },
+      "errors": {
+        "invalidJson": "Please enter valid JSON",
+        "missingType": "Select a content type",
+        "missingFile": "Choose a file to upload"
+      },
+      "preview": {
+        "entryCreated": "Entry created!",
+        "viewOnSite": "View on site",
+        "previewOnSite": "Preview on site",
+        "showPreview": "Preview",
+        "hidePreview": "Hide Preview",
+        "previewTitle": "Live Preview",
+        "refreshPreview": "Refresh"
+      }
+    }
+  },
+  "apiKeys": {
+    "title": "API Keys",
+    "publicKey": "Public Key",
+    "serverKey": "Server Key",
+    "hidden": "Hidden",
+    "serverKeyShownOnce": "Server key was shown once during project creation. You can regenerate it below.",
+    "noServerKey": "No server key generated yet.",
+    "status": {
+      "active": "Active",
+      "notCreated": "Not created",
+      "expiring": "Expiring"
+    },
+    "actions": {
+      "copy": "Copy",
+      "copied": "Copied!",
+      "copySuccess": "Copied!",
+      "copyError": "Copy Failed",
+      "copyDescription": "{keyType} copied to clipboard",
+      "copyErrorDescription": "Unable to copy to clipboard. Please try again.",
+      "show": "Show",
+      "hide": "Hide",
+      "regenerate": "Regenerate Key",
+      "regenerating": "Regenerating..."
+    },
+    "hints": {
+      "public": "Use in browser code - cannot write sensitive columns",
+      "server": "Full database access - keep secret, never expose"
+    },
+    "sdk": {
+      "title": "SDK Quick Start",
+      "description": "Use these snippets in your app to access the database and CMS.",
+      "note": "Public key works in the browser. Use the server key for write operations.",
+      "copy": "Copy snippet"
+    },
+    "regenerate": {
+      "confirmTitle": "Regenerate {keyType}?",
+      "confirmDescription": "This will create a new key. The old key will continue working for 15 minutes.",
+      "warning": "Make sure to update your deployed apps with the new key within 15 minutes to avoid service interruption.",
+      "cancel": "Cancel",
+      "confirm": "Regenerate",
+      "success": "Key Regenerated",
+      "successDescription": "Copy your new key now - it won't be shown again.",
+      "error": "Regeneration Failed",
+      "newKeyLabel": "Your new key:",
+      "oldKeyExpires": "Old key will stop working at {time}"
+    }
+  },
+  "deploy": {
+    "button": "Deploy",
+    "deploying": "Deploying...",
+    "dialogTitle": "Deploy to Easy Mode",
+    "buildLabel": "Build",
+    "createdLabel": "Created",
+    "deployTo": "This will deploy to:",
+    "includes": "Deploy includes:",
+    "staticFiles": "{count} static files ({size} MB)",
+    "ssrBundle": "SSR bundle ({size} MB)",
+    "envVars": "Environment variables ({count} vars)",
+    "warning": "This will replace your current deployment.",
+    "previousBuild": "Previous build:",
+    "actions": {
+      "cancel": "Cancel",
+      "deployNow": "Deploy Now"
+    },
+    "progress": {
+      "uploadingAssets": "Uploading static assets ({count} files)",
+      "deployingBundle": "Deploying SSR bundle",
+      "updatingRouting": "Updating routing",
+      "complete": "Site live at {url}"
+    },
+    "success": "Deployed successfully!",
+    "error": "Deployment failed",
+    "logs": {
+      "showDetails": "Show details",
+      "hideDetails": "Hide details"
+    }
+  },
+  "siteBadge": {
+    "siteIsLive": "Your site is live",
+    "publishingChanges": "Publishing changes...",
+    "notPublishedYet": "Not published yet",
+    "publishFailed": "Publishing failed",
+    "openSite": "Open Site",
+    "retry": "Retry"
+  },
+  "onboarding": {
+    "title": "Getting Started",
+    "dismiss": "Dismiss",
+    "progress": "{done}/{total}",
+    "steps": {
+      "createProject": "Create your project",
+      "viewSite": "View your live site",
+      "viewSiteAction": "Open",
+      "addContent": "Add your first content",
+      "addContentAction": "Add Now",
+      "shareSite": "Share your site",
+      "shareSiteAction": "Copy Link"
+    },
+    "dismissed": "Checklist hidden",
+    "reopen": "Show checklist",
+    "completed": "All done! You're all set.",
+    "copiedToast": "Link copied!"
+  },
+  "guidedFirstEdit": {
+    "step1": {
+      "title": "Let's personalize your site",
+      "subtitle": "Give your business a name that your customers will remember",
+      "label": "Business Name",
+      "placeholder": "Enter your business name",
+      "save": "Save & Continue",
+      "skip": "Skip for now"
+    },
+    "step2": {
+      "title": "Your site is ready!",
+      "subtitle": "We've added sample content to get you started. Edit it to match your business.",
+      "action": "Edit Content",
+      "done": "I'll do this later"
+    },
+    "success": "Saved!"
+  },
+  "eject": {
+    "title": "Need More Control?",
+    "description": "Eject to Pro Mode to:",
+    "features": [
+      "Connect your own Supabase database",
+      "Deploy to your Vercel account",
+      "Use your Sanity CMS",
+      "Push code to your GitHub repo"
+    ],
+    "note": "Your data will be exported and migrated.",
+    "button": "Upgrade to Pro Mode"
+  },
+  "errors": {
+    "loadFailed": "Failed to load infrastructure status",
+    "deployFailed": "Deployment failed",
+    "quotaExceeded": "Quota exceeded",
+    "rateLimitExceeded": "Rate limit exceeded",
+    "unauthorized": "You don't have access to this project"
+  },
+  "auth": {
+    "title": "Auth UI",
+    "subtitle": "Drop-in signup, signin, and magic link UI for your app",
+    "cta": "Get UI Kit",
+    "dialog": {
+      "title": "Auth UI Kit",
+      "description": "Copy these forms into your app and connect them to the auth API.",
+      "tabs": {
+        "signUp": "Sign up",
+        "signIn": "Sign in",
+        "magicLink": "Magic link"
+      },
+      "actions": {
+        "copy": "Copy snippet",
+        "copied": "Copied"
+      },
+      "notes": {
+        "apiKey": "Use your public API key for client-side auth calls.",
+        "session": "Store the session token and send it as a Bearer token for /auth/user.",
+        "magicLink": "Magic link returns a token; deliver it via email then verify it."
+      },
+      "preview": {
+        "title": "Live preview",
+        "description": "Run a real request against the auth API.",
+        "emailLabel": "Email",
+        "passwordLabel": "Password",
+        "submitSignUp": "Create test user",
+        "submitSignIn": "Sign in",
+        "submitMagicLink": "Send magic link",
+        "responseLabel": "Response",
+        "warning": "This will create or authenticate a real user in your project.",
+        "sessionTokenLabel": "Session token",
+        "submitSessionCheck": "Check session",
+        "copyResponse": "Copy response",
+        "clearResponse": "Clear",
+        "requestSucceeded": "Request succeeded",
+        "showDevDetails": "Show developer details",
+        "hideDevDetails": "Hide developer details"
+      },
+      "session": {
+        "loggedInAs": "Logged in as",
+        "signOut": "Sign out",
+        "signingOut": "Signing out...",
+        "notLoggedIn": "Not logged in",
+        "sessionRestored": "Session restored",
+        "sessionExpired": "Session expired"
+      }
+    }
+  },
+  "phase3": {
+    "title": "Phase 3 Features",
+    "subtitle": "Placeholder cards for upcoming features.",
+    "domains": "Custom domains",
+    "eject": "Eject to Pro",
+    "advancedDb": "Advanced database tools",
+    "comingSoon": "Coming soon"
+  },
+  "phase3Tools": {
+    "title": "Phase 3 Tools",
+    "subtitle": "Placeholders wired to upcoming services.",
+    "comingSoon": "Coming soon",
+    "notifyMe": "Notify me when available",
+    "notified": "Registered",
+    "domains": {
+      "title": "Custom domains",
+      "placeholder": "app.example.com",
+      "add": "Add domain",
+      "note": "We'll validate DNS and issue certificates once enabled."
+    },
+    "export": {
+      "title": "Export your data",
+      "description": "Download a snapshot of your database and CMS.",
+      "action": "Request export"
+    },
+    "table": {
+      "title": "Table viewer",
+      "description": "Preview rows with filters and pagination (coming soon).",
+      "action": "Open table viewer"
+    },
+    "eject": {
+      "title": "Eject to Pro Mode",
+      "description": "Export infra config and unlock custom hosting and providers.",
+      "action": "Start eject"
+    }
+  },
+  "domains": {
+    "title": "Domains",
+    "subdomain": "Subdomain",
+    "customDomain": "Custom Domain",
+    "addDomain": "Connect Domain",
+    "buyDomain": "Buy Domain",
+    "connected": "Connected",
+    "pending": "Pending",
+    "registered": "Registered",
+    "expiresAt": "Expires",
+    "noDomains": "No custom domain connected. Your site is available at your subdomain."
+  },
+  "exportEject": {
+    "title": "Export & Migrate",
+    "export": {
+      "title": "Download Project",
+      "description": "Download your project as a ZIP file with all code and assets.",
+      "action": "Download ZIP",
+      "exporting": "Preparing download...",
+      "success": "Download started!",
+      "error": "Failed to export project"
+    },
+    "eject": {
+      "title": "Migrate to Pro Mode",
+      "description": "Move to Pro Mode for full control with your own infrastructure.",
+      "action": "Start Migration",
+      "confirmTitle": "Migrate to Pro Mode?",
+      "confirmDescription": "This will submit a migration request. Our team will review it and help you set up your own infrastructure.",
+      "confirmWarning": "Your data and content will be preserved during migration. You'll get access to connect your own database, hosting, and CMS.",
+      "cancel": "Cancel",
+      "confirm": "Submit Request",
+      "submitting": "Submitting...",
+      "success": "Migration request submitted! We'll be in touch soon.",
+      "error": "Failed to submit migration request"
+    }
+  },
+  "emailHosting": {
+    "title": "Email",
+    "mailboxes": "Mailboxes",
+    "sentThisMonth": "Sent this month",
+    "domains": "Hosted domains",
+    "noMailboxes": "No mailboxes yet. Connect a domain and enable email hosting.",
+    "manage": "Manage Email",
+    "verified": "Active",
+    "pending": "Pending"
+  },
+  "team": {
+    "title": "Team",
+    "invite": "Invite",
+    "inviting": "Inviting...",
+    "emailPlaceholder": "Email address",
+    "roles": {
+      "owner": "Owner",
+      "admin": "Admin",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted"
+    },
+    "actions": {
+      "changeRole": "Change role",
+      "remove": "Remove"
+    },
+    "empty": "No team members yet. Invite someone to collaborate.",
+    "you": "(You)",
+    "errors": {
+      "inviteFailed": "Failed to send invitation",
+      "updateFailed": "Failed to update role",
+      "removeFailed": "Failed to remove member"
+    },
+    "success": {
+      "invited": "Invitation sent",
+      "updated": "Role updated",
+      "removed": "Member removed"
+    }
+  },
+  "easyModeHelper": {
+    "title": "AI Helper",
+    "placeholder": "Ask about your project...",
+    "close": "Close",
+    "thinking": "Thinking...",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "suggestedQuestions": "Try one of these questions:",
+    "suggestions": [
+      "How do I add a contact form?",
+      "How can I change my site's colors?",
+      "How do I add a new page?",
+      "How do I connect a custom domain?"
+    ],
+    "voice": {
+      "start": "Start recording",
+      "stop": "Stop recording",
+      "listening": "Listening...",
+      "processing": "Processing...",
+      "commandExecuted": "Command executed: {{command}}",
+      "noMatch": "Sending to assistant..."
+    }
+  }
+}

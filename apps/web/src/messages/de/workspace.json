@@ -1,0 +1,94 @@
+{
+  "header": {
+    "back": "Zurück",
+    "unsavedChanges": "Nicht gespeicherte Änderungen",
+    "justNow": "Gerade eben",
+    "minutesAgo": "vor {minutes}m",
+    "share": "Teilen",
+    "export": "Exportieren",
+    "settings": "Einstellungen",
+    "undo": "Undo",
+    "redo": "Redo",
+    "undoTooltip": "Undo last change",
+    "redoTooltip": "Redo last change",
+    "nothingToUndo": "Nothing to undo",
+    "nothingToRedo": "Nothing to redo",
+    "undoShortcut": "Ctrl+Z",
+    "redoShortcut": "Ctrl+Shift+Z"
+  },
+  "saveStatus": {
+    "saving": "Speichern...",
+    "saved": "Gespeichert",
+    "unsaved": "Nicht gespeicherte Änderungen",
+    "autoSave": "Auto-Speichern aktiviert",
+    "lastSaved": "Zuletzt gespeichert: {time}"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "Bauen",
+      "preview": "Vorschau",
+      "humanHelp": "Menschliche Hilfe",
+      "more": "Mehr",
+      "code": "Code"
+    },
+    "disabled": {
+      "signInRequired": "Anmeldung erforderlich",
+      "upgradeRequired": "Upgrade erforderlich"
+    },
+    "header": {
+      "unlockPremium": "Premium-Funktionen freischalten",
+      "premiumDescription": "KI-Chat, erweiterte Exporte & mehr",
+      "upgrade": "Upgraden",
+      "signInToSave": "Melden Sie sich an, um zu speichern",
+      "signInDescription": "KI-Funktionen und Projektverlauf freischalten",
+      "signIn": "Anmelden",
+      "comingSoon": "Demnächst"
+    },
+    "panels": {
+      "previewTitle": "Vorschau",
+      "previewDescription": "App-Vorschau erscheint hier",
+      "aiHelpTitle": "Erweiterte KI-Hilfe",
+      "aiHelpDescription": "Premium-Funktion - demnächst",
+      "settingsTitle": "Einstellungen",
+      "settingsDescription": "Projekteinstellungen - demnächst",
+      "codeTitle": "Generierter Code",
+      "codeDescription": "Generierten Quellcode anzeigen und erkunden"
+    }
+  },
+  "advisorMatching": {
+    "match": {
+      "matchedTitle": "Berater gefunden!",
+      "matchedDescription": "Wir haben eine großartige Übereinstimmung für Ihr Projekt gefunden",
+      "advisorDetails": "Spezialisiert auf die Technologien Ihres Projekts",
+      "matchScore": "Übereinstimmungswert",
+      "yearsExperience": "Jahre Erfahrung",
+      "rating": "Bewertung",
+      "reviews": "Rezensionen",
+      "skills": "Fähigkeiten",
+      "approve": "Übereinstimmung genehmigen",
+      "decline": "Ablehnen",
+      "dismiss": "Schließen"
+    },
+    "decline": {
+      "title": "Übereinstimmung abgelehnt",
+      "description": "Möchten Sie:",
+      "retryLabel": "Einen anderen Berater finden",
+      "retryDescription": "Wir suchen nach einem anderen Experten",
+      "browseLabel": "Alle Berater durchsuchen",
+      "browseDescription": "Wählen Sie aus unserem vollständigen Expertenverzeichnis",
+      "laterLabel": "Vielleicht später",
+      "laterDescription": "Sie können jederzeit einen Berater anfordern"
+    },
+    "banner": {
+      "advisorJoined": "Ihr Berater ist dem Arbeitsbereich beigetreten und bereit zu helfen!",
+      "dismiss": "Schließen"
+    }
+  },
+  "chat": {
+    "advisorJoined": "Der Berater ist dem Arbeitsbereich beigetreten und bereit zu helfen!"
+  },
+  "viewTabs": {
+    "preview": "Vorschau",
+    "code": "Code"
+  }
+}

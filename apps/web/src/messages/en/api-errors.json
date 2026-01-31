@@ -1,0 +1,25 @@
+{
+  "trials": {
+    "planRequired": "Plan name is required",
+    "notEligible": "User is not eligible for a trial",
+    "customerCreationFailed": "Failed to create customer record",
+    "invalidReferralCode": "Invalid or expired referral code",
+    "cannotUseSelfReferral": "You cannot use your own referral code",
+    "extensionFailed": "Failed to extend trial"
+  },
+  "export": {
+    "invalidProject": "Invalid project ID",
+    "serviceUnavailable": "Export service not available"
+  },
+  "general": {
+    "internalError": "An unexpected error occurred",
+    "authRequired": "Authentication required",
+    "invalidRequest": "Invalid request",
+    "serviceUnavailable": "Service temporarily unavailable"
+  },
+  "oauth": {
+    "invalidState": "Invalid OAuth state parameter",
+    "missingCode": "Missing authorization code",
+    "exchangeFailed": "Failed to exchange authorization code"
+  }
+}

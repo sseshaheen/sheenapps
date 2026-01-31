@@ -1,0 +1,94 @@
+{
+  "header": {
+    "back": "ارجع",
+    "unsavedChanges": "تغييرات مو محفوظة",
+    "justNow": "توّه",
+    "minutesAgo": "من {minutes} دقيقة",
+    "share": "شارك",
+    "export": "صدّر",
+    "settings": "إعدادات",
+    "undo": "تراجع",
+    "redo": "إعادة",
+    "undoTooltip": "تراجع عن آخر تغيير",
+    "redoTooltip": "أعد آخر تغيير",
+    "nothingToUndo": "ما في شي تتراجع عنه",
+    "nothingToRedo": "ما في شي تعيده",
+    "undoShortcut": "Ctrl+Z",
+    "redoShortcut": "Ctrl+Shift+Z"
+  },
+  "saveStatus": {
+    "saving": "يتم الحفظ...",
+    "saved": "محفوظ",
+    "unsaved": "تغييرات مو محفوظة",
+    "autoSave": "الحفظ التلقائي مشغّل",
+    "lastSaved": "آخر حفظ: {time}"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "تجهيز",
+      "preview": "عرض الموقع",
+      "code": "الكود",
+      "humanHelp": "تواصل مع خبير",
+      "more": "أكثر"
+    },
+    "disabled": {
+      "signInRequired": "لازم تسجّل دخول",
+      "upgradeRequired": "لازم ترقية"
+    },
+    "header": {
+      "unlockPremium": "فعّل المميزات المتقدمة",
+      "premiumDescription": "شات ذكي، تصدير متقدم، وأكثر",
+      "upgrade": "رقّي",
+      "signInToSave": "سجّل دخول عشان تحفظ شغلك",
+      "signInDescription": "فعّل الذكاء الاصطناعي وتاريخ المشاريع",
+      "signIn": "دخول",
+      "comingSoon": "قريباً"
+    },
+    "panels": {
+      "previewTitle": "المعاينة",
+      "previewDescription": "معاينة التطبيق بتظهر هنا",
+      "aiHelpTitle": "مساعدة ذكية متقدمة",
+      "aiHelpDescription": "ميزة مدفوعة - قريباً",
+      "settingsTitle": "الإعدادات",
+      "settingsDescription": "إعدادات المشروع - قريباً",
+      "codeTitle": "الكود المُولَّد",
+      "codeDescription": "عرض واستكشاف الكود المصدري المُولَّد"
+    }
+  },
+  "advisorMatching": {
+    "match": {
+      "matchedTitle": "تم العثور على مستشار!",
+      "matchedDescription": "وجدنا تطابقاً رائعاً لمشروعك",
+      "advisorDetails": "متخصص في التقنيات المستخدمة في مشروعك",
+      "matchScore": "نسبة التطابق",
+      "yearsExperience": "سنوات الخبرة",
+      "rating": "التقييم",
+      "reviews": "المراجعات",
+      "skills": "المهارات",
+      "approve": "الموافقة على التطابق",
+      "decline": "رفض",
+      "dismiss": "إغلاق"
+    },
+    "decline": {
+      "title": "تم رفض التطابق",
+      "description": "هل ترغب في:",
+      "retryLabel": "العثور على مستشار آخر",
+      "retryDescription": "سنبحث عن خبير آخر",
+      "browseLabel": "تصفح جميع المستشارين",
+      "browseDescription": "اختر من دليل الخبراء الكامل",
+      "laterLabel": "ربما لاحقاً",
+      "laterDescription": "يمكنك طلب مستشار في أي وقت"
+    },
+    "banner": {
+      "advisorJoined": "انضم المستشار إلى مساحة العمل وهو جاهز للمساعدة!",
+      "dismiss": "إغلاق"
+    }
+  },
+  "chat": {
+    "advisorJoined": "انضم المستشار إلى مساحة العمل وهو جاهز للمساعدة!"
+  },
+  "viewTabs": {
+    "preview": "المعاينة",
+    "code": "الكود"
+  }
+}

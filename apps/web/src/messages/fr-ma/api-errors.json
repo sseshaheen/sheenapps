@@ -1,0 +1,25 @@
+{
+  "trials": {
+    "planRequired": "Le nom du plan est requis",
+    "notEligible": "L'utilisateur n'est pas éligible pour un essai",
+    "customerCreationFailed": "Échec de la création de l'enregistrement client",
+    "invalidReferralCode": "Code de parrainage invalide ou expiré",
+    "cannotUseSelfReferral": "Vous ne pouvez pas utiliser votre propre code de parrainage",
+    "extensionFailed": "Échec de l'extension de l'essai"
+  },
+  "export": {
+    "invalidProject": "ID de projet invalide",
+    "serviceUnavailable": "Service d'exportation non disponible"
+  },
+  "general": {
+    "internalError": "Une erreur inattendue s'est produite",
+    "authRequired": "Authentification requise",
+    "invalidRequest": "Requête invalide",
+    "serviceUnavailable": "Service temporairement indisponible"
+  },
+  "oauth": {
+    "invalidState": "Paramètre d'état OAuth invalide",
+    "missingCode": "Code d'autorisation manquant",
+    "exchangeFailed": "Échec de l'échange du code d'autorisation"
+  }
+}

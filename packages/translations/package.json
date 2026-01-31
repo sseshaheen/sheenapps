@@ -1,0 +1,40 @@
+{
+  "name": "@sheenapps/translations",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./next-intl": {
+      "types": "./dist/next-intl.d.ts",
+      "import": "./dist/next-intl.js"
+    },
+    "./i18next": {
+      "types": "./dist/i18next.d.ts",
+      "import": "./dist/i18next.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/generated"
+  ],
+  "scripts": {
+    "build": "pnpm run build:locales && tsc",
+    "build:locales": "tsx scripts/build-locales.ts",
+    "clean": "rm -rf dist src/generated/*",
+    "type-check": "tsc --noEmit",
+    "check:coverage": "tsx scripts/check-coverage.ts"
+  },
+  "dependencies": {
+    "@sheenapps/platform-tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^5"
+  }
+}

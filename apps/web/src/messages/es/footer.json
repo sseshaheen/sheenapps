@@ -1,0 +1,26 @@
+{
+  "description": "Tu equipo técnico permanente por el precio de una membresía de gimnasio. Construye, crece y escala tu negocio sin las complicaciones técnicas.",
+  "product": "Producto",
+  "support": "Soporte",
+  "company": "Empresa",
+  "links": {
+    "howItWorks": "Cómo Funciona",
+    "pricing": "Precios",
+    "features": "Características",
+    "templates": "Plantillas",
+    "integrations": "Integraciones",
+    "talkToAdvisor": "Hablar con Asesor",
+    "helpCenter": "Centro de Ayuda",
+    "community": "Comunidad",
+    "status": "Estado",
+    "bookCall": "Reservar Llamada",
+    "about": "Acerca de",
+    "blog": "Blog",
+    "careers": "Carreras",
+    "privacy": "Privacidad",
+    "terms": "Términos"
+  },
+  "copyright": "© 2025 SheenApps. Todos los derechos reservados.",
+  "systemsOperational": "Todos los sistemas operativos",
+  "supportAvailable": "Soporte 24/7 disponible"
+}

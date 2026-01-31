@@ -1,0 +1,627 @@
+{
+  "modeSelection": {
+    "title": "اختر البنية التحتية",
+    "subtitle": "اختر كيف تريد بناء ونشر مشروعك",
+    "easyMode": {
+      "title": "الوضع السهل",
+      "badge": "موصى به",
+      "description": "كل شيء يدار لك - لا حاجة لحسابات خارجية",
+      "features": [
+        "قاعدة بيانات ومصادقة مدارة",
+        "استضافة فورية على yoursite.sheenapps.com",
+        "إدارة محتوى مدمجة",
+        "نطاقات مخصصة (الباقة الاحترافية)"
+      ],
+      "cta": "اختر الوضع السهل"
+    },
+    "proMode": {
+      "title": "الوضع الاحترافي",
+      "description": "اربط بنيتك التحتية الخاصة للتحكم الكامل",
+      "features": [
+        "قاعدة بيانات Supabase الخاصة بك",
+        "استضافة Vercel الخاصة بك",
+        "نظام إدارة المحتوى Sanity الخاص بك",
+        "مستودع GitHub الخاص بك"
+      ],
+      "cta": "اختر الوضع الاحترافي"
+    }
+  },
+  "panel": {
+    "title": "البنية التحتية",
+    "simpleTitle": "الإعدادات",
+    "simpleLoading": "جاري التحميل...",
+    "easyModeLabel": "الوضع السهل",
+    "proModeLabel": "الوضع الاحترافي",
+    "loading": "جاري تحميل حالة البنية التحتية...",
+    "advancedSettings": "إعدادات متقدمة",
+    "advancedSettingsHint": "البيانات، المصادقة، مفاتيح الربط",
+    "showAdvanced": "عرض متقدم",
+    "showSimple": "عرض مبسط"
+  },
+  "wizardMode": {
+    "tracking": {
+      "title": "إعداد التتبع",
+      "subtitle": "انسخ رمز التتبع هذا وأضفه إلى موقعك لبدء جمع بيانات الزوار."
+    },
+    "payments": {
+      "title": "ربط المدفوعات",
+      "subtitle": "اربط Stripe لقبول المدفوعات من عملائك."
+    },
+    "forms": {
+      "title": "إعداد النماذج",
+      "subtitle": "أنشئ نماذج لجمع المعلومات من زوارك."
+    },
+    "doneButton": "تم",
+    "returnToSetup": "العودة للإعداد"
+  },
+  "database": {
+    "title": "قاعدة البيانات",
+    "schema": "المخطط",
+    "tables": "الجداول",
+    "storage": "التخزين",
+    "status": {
+      "active": "نشط",
+      "provisioning": "جاري الإعداد",
+      "error": "خطأ"
+    },
+    "actions": {
+      "viewSchema": "عرض المخطط",
+      "queryConsole": "وحدة الاستعلامات",
+      "createTable": "إنشاء جدول"
+    },
+    "dialogs": {
+      "schema": {
+        "title": "مخطط قاعدة البيانات",
+        "description": "عرض جداول وأعمدة قاعدة البيانات",
+        "tables": "الجداول",
+        "columns": "الأعمدة",
+        "type": "النوع",
+        "nullable": "قابل للقيمة الفارغة",
+        "primaryKey": "المفتاح الأساسي",
+        "loading": "جاري تحميل المخطط...",
+        "error": "فشل تحميل المخطط",
+        "noTables": "لا توجد جداول بعد",
+        "createFirst": "إنشاء جدولك الأول",
+        "createTable": "إنشاء جدول",
+        "rows": "صفوف"
+      },
+      "createTable": {
+        "title": "إنشاء جدول",
+        "description": "تعريف بنية جدول جديد لقاعدة البيانات",
+        "tableName": "اسم الجدول",
+        "tableNamePlaceholder": "products",
+        "columns": "الأعمدة",
+        "addColumn": "إضافة عمود",
+        "columnName": "اسم العمود",
+        "columnType": "النوع",
+        "nullable": "قابل للقيمة الفارغة",
+        "primaryKey": "مفتاح أساسي",
+        "defaultValue": "القيمة الافتراضية",
+        "remove": "إزالة",
+        "cancel": "إلغاء",
+        "create": "إنشاء الجدول",
+        "creating": "جاري الإنشاء...",
+        "success": "تم إنشاء الجدول بنجاح",
+        "error": "فشل إنشاء الجدول",
+        "validation": {
+          "tableNameRequired": "اسم الجدول مطلوب",
+          "columnNameRequired": "يجب أن يحتوي كل عمود على اسم",
+          "atLeastOneColumn": "يجب وجود عمود واحد على الأقل"
+        }
+      },
+      "query": {
+        "title": "وحدة الاستعلامات",
+        "description": "تنفيذ استعلامات SELECT على قاعدة البيانات",
+        "queryPlaceholder": "SELECT * FROM users LIMIT 10;",
+        "run": "تنفيذ الاستعلام",
+        "running": "جاري التنفيذ...",
+        "clear": "مسح",
+        "results": "النتائج",
+        "noResults": "لم يرجع الاستعلام أي نتائج",
+        "executionTime": "وقت التنفيذ",
+        "rowCount": "الصفوف",
+        "error": "خطأ في الاستعلام",
+        "selectOnlyWarning": "يُسمح فقط باستعلامات SELECT. اضغط Cmd/Ctrl+Enter للتنفيذ."
+      }
+    }
+  },
+  "hosting": {
+    "title": "الاستضافة",
+    "url": "الرابط",
+    "subdomain": "النطاق الفرعي",
+    "lastDeploy": "آخر نشر",
+    "currentBuild": "البناء",
+    "noDeploymentsYet": "لا توجد عمليات نشر بعد. انقر على نشر لنشر موقعك.",
+    "status": {
+      "live": "مباشر",
+      "deploying": "جاري النشر",
+      "none": "غير منشور",
+      "error": "خطأ"
+    },
+    "actions": {
+      "openSite": "فتح الموقع",
+      "deploy": "نشر",
+      "rollback": "التراجع",
+      "viewLogs": "عرض السجلات"
+    },
+    "history": {
+      "title": "عمليات النشر الأخيرة",
+      "viewAll": "عرض الكل",
+      "live": "مباشر",
+      "ago": "مضت",
+      "failed": "فشل",
+      "deployed": "تم النشر",
+      "deploying": "جاري النشر",
+      "uploading": "جاري الرفع",
+      "rollbackTo": "التراجع إلى هذا البناء",
+      "rollbackConfirm": "التراجع إلى البناء {buildId}؟",
+      "rollbackDescription": "سيجعل هذا البناء {buildId} النشر النشط. سيتم استبدال نشرك الحالي.",
+      "cancel": "إلغاء",
+      "confirmRollback": "تراجع",
+      "rollingBack": "جاري التراجع...",
+      "rollbackSuccess": "تم التراجع بنجاح",
+      "rollbackError": "فشل التراجع",
+      "empty": "لا يوجد سجل نشر",
+      "loadMore": "تحميل المزيد"
+    }
+  },
+  "quotas": {
+    "title": "الاستخدام اليوم",
+    "requests": "الطلبات",
+    "bandwidth": "عرض النطاق",
+    "resetsAt": "يعاد ضبطه في",
+    "midnightUTC": "منتصف الليل UTC",
+    "unlimited": "غير محدود"
+  },
+  "cms": {
+    "title": "CMS",
+    "simpleTitle": "المحتوى",
+    "subtitle": "Manage content types, entries, and media",
+    "typesLabel": "Types",
+    "entriesLabel": "Entries",
+    "mediaLabel": "Media",
+    "manage": "Manage",
+    "dialog": {
+      "title": "Content Manager",
+      "description": "Create content types, entries, and media for your app.",
+      "tabs": {
+        "types": "Types",
+        "entries": "Entries",
+        "media": "Media"
+      },
+      "types": {
+        "header": "Create a content type",
+        "name": "Name",
+        "slug": "Slug",
+        "schema": "الحقول",
+        "schemaHelp": "Define fields and validations in JSON.",
+        "create": "Create Type",
+        "creating": "Creating...",
+        "empty": "No content types yet",
+        "error": "Failed to create content type",
+        "schemaHint": "Schema example: {\"fields\":[{\"name\":\"title\",\"type\":\"text\",\"required\":true}]}",
+        "validation": {
+          "invalidSchema": "Schema must include a fields array with name/type",
+          "missingFields": "Add at least one field to the schema"
+        },
+        "fieldBuilder": {
+          "addField": "إضافة حقل",
+          "removeField": "حذف",
+          "fieldName": "الاسم",
+          "fieldNamePlaceholder": "مثال: العنوان",
+          "fieldType": "النوع",
+          "required": "مطلوب",
+          "constraints": "القيود",
+          "options": "الخيارات",
+          "optionsPlaceholder": "قيمة الخيار",
+          "minValue": "الحد الأدنى",
+          "maxValue": "الحد الأقصى",
+          "maxLength": "الحد الأقصى للطول",
+          "description": "الوصف",
+          "descriptionPlaceholder": "نص مساعد لهذا الحقل",
+          "display": "العرض",
+          "displayCurrency": "عملة",
+          "displayPercent": "نسبة مئوية",
+          "displayNone": "افتراضي",
+          "showJson": "عرض JSON",
+          "hideJson": "إخفاء JSON",
+          "noFields": "لا توجد حقول بعد. انقر \"إضافة حقل\" للبدء."
+        }
+      },
+      "entries": {
+        "header": "Create an entry",
+        "contentType": "Content type",
+        "contentTypePlaceholder": "Select a type",
+        "slug": "Slug",
+        "status": "Status",
+        "locale": "Locale",
+        "data": "Entry JSON",
+        "dataHelp": "Provide entry data as JSON.",
+        "create": "Create Entry",
+        "creating": "Creating...",
+        "empty": "No entries for this type",
+        "error": "Failed to create entry",
+        "statuses": {
+          "draft": "Draft",
+          "published": "Published",
+          "archived": "Archived"
+        },
+        "editorTabs": {
+          "form": "نموذج",
+          "json": "JSON"
+        },
+        "showAdvanced": "عرض المتقدم",
+        "hideAdvanced": "إخفاء المتقدم",
+        "noSchema": "No schema fields available. Use JSON mode to add data.",
+        "validation": {
+          "required": "Field '{field}' is required",
+          "invalidJson": "Entry JSON is invalid",
+          "minLength": "Field '{field}' must be at least {min} characters",
+          "maxLength": "Field '{field}' must be at most {max} characters",
+          "min": "Field '{field}' must be at least {min}",
+          "max": "Field '{field}' must be at most {max}",
+          "pattern": "Field '{field}' format is invalid"
+        },
+        "fieldPlaceholder": "Select a value",
+        "hints": {
+          "format": "Format",
+          "pattern": "Pattern",
+          "description": "Notes",
+          "range": "Range",
+          "currency": "Display: currency",
+          "percent": "Display: percent"
+        },
+        "requiredLabel": "Required",
+        "quickFill": "Quick fill sample"
+      },
+      "media": {
+        "header": "Upload media",
+        "filename": "File",
+        "altText": "Alt text",
+        "upload": "Upload",
+        "uploading": "Uploading...",
+        "empty": "No media uploaded yet",
+        "error": "Failed to upload media",
+        "sizeNote": "Max 10MB per upload"
+      },
+      "errors": {
+        "invalidJson": "Please enter valid JSON",
+        "missingType": "Select a content type",
+        "missingFile": "Choose a file to upload"
+      },
+      "preview": {
+        "entryCreated": "تم إنشاء المحتوى!",
+        "viewOnSite": "عرض في الموقع",
+        "previewOnSite": "معاينة في الموقع",
+        "showPreview": "معاينة",
+        "hidePreview": "إخفاء المعاينة",
+        "previewTitle": "معاينة مباشرة",
+        "refreshPreview": "تحديث"
+      }
+    }
+  },
+  "apiKeys": {
+    "title": "مفاتيح API",
+    "publicKey": "المفتاح العام",
+    "serverKey": "مفتاح الخادم",
+    "hidden": "مخفي",
+    "serverKeyShownOnce": "تم عرض مفتاح الخادم مرة واحدة أثناء إنشاء المشروع. يمكنك إعادة إنشائه أدناه.",
+    "noServerKey": "لم يتم إنشاء مفتاح خادم بعد.",
+    "status": {
+      "active": "نشط",
+      "notCreated": "لم يتم إنشاؤه",
+      "expiring": "ينتهي"
+    },
+    "actions": {
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "show": "إظهار",
+      "hide": "إخفاء",
+      "regenerate": "إعادة إنشاء المفتاح",
+      "regenerating": "جاري إعادة الإنشاء...",
+      "copySuccess": "تم النسخ!",
+      "copyError": "فشل النسخ",
+      "copyDescription": "تم نسخ {keyType} إلى الحافظة",
+      "copyErrorDescription": "تعذر النسخ إلى الحافظة. يرجى المحاولة مرة أخرى."
+    },
+    "hints": {
+      "public": "استخدم في كود المتصفح - لا يمكن كتابة الأعمدة الحساسة",
+      "server": "وصول كامل لقاعدة البيانات - احتفظ به سرياً، لا تعرضه أبداً"
+    },
+    "sdk": {
+      "title": "SDK Quick Start",
+      "description": "Use these snippets in your app to access the database and CMS.",
+      "note": "Public key works in the browser. Use the server key for write operations.",
+      "copy": "Copy snippet"
+    },
+    "regenerate": {
+      "confirmTitle": "إعادة إنشاء {keyType}؟",
+      "confirmDescription": "سيتم إنشاء مفتاح جديد. سيستمر المفتاح القديم في العمل لمدة 15 دقيقة.",
+      "warning": "تأكد من تحديث تطبيقاتك بالمفتاح الجديد خلال 15 دقيقة لتجنب انقطاع الخدمة.",
+      "cancel": "إلغاء",
+      "confirm": "إعادة إنشاء",
+      "success": "تم إعادة إنشاء المفتاح",
+      "successDescription": "انسخ مفتاحك الجديد الآن - لن يتم عرضه مرة أخرى.",
+      "error": "فشل إعادة الإنشاء",
+      "newKeyLabel": "مفتاحك الجديد:",
+      "oldKeyExpires": "سينتهي عمل المفتاح القديم في {time}"
+    }
+  },
+  "deploy": {
+    "button": "نشر",
+    "deploying": "جاري النشر...",
+    "dialogTitle": "النشر إلى الوضع السهل",
+    "buildLabel": "البناء",
+    "createdLabel": "تم الإنشاء",
+    "deployTo": "سيتم النشر إلى:",
+    "includes": "يتضمن النشر:",
+    "staticFiles": "{count} ملفات ثابتة ({size} ميجابايت)",
+    "ssrBundle": "حزمة SSR ({size} ميجابايت)",
+    "envVars": "متغيرات البيئة ({count} متغيرات)",
+    "warning": "سيؤدي هذا إلى استبدال النشر الحالي.",
+    "previousBuild": "البناء السابق:",
+    "actions": {
+      "cancel": "إلغاء",
+      "deployNow": "نشر الآن"
+    },
+    "progress": {
+      "uploadingAssets": "رفع الملفات الثابتة ({count} ملفات)",
+      "deployingBundle": "نشر حزمة SSR",
+      "updatingRouting": "تحديث التوجيه",
+      "complete": "الموقع مباشر على {url}"
+    },
+    "success": "تم النشر بنجاح!",
+    "error": "فشل النشر",
+    "logs": {
+      "showDetails": "عرض التفاصيل",
+      "hideDetails": "إخفاء التفاصيل"
+    }
+  },
+  "siteBadge": {
+    "siteIsLive": "موقعك مباشر",
+    "publishingChanges": "جارٍ نشر التغييرات...",
+    "notPublishedYet": "لم يُنشر بعد",
+    "publishFailed": "فشل النشر",
+    "openSite": "فتح الموقع",
+    "retry": "إعادة المحاولة"
+  },
+  "onboarding": {
+    "title": "البدء",
+    "dismiss": "إخفاء",
+    "progress": "{done}/{total}",
+    "steps": {
+      "createProject": "إنشاء مشروعك",
+      "viewSite": "عرض موقعك المباشر",
+      "viewSiteAction": "فتح",
+      "addContent": "إضافة أول محتوى",
+      "addContentAction": "إضافة الآن",
+      "shareSite": "مشاركة موقعك",
+      "shareSiteAction": "نسخ الرابط"
+    },
+    "dismissed": "تم إخفاء القائمة",
+    "reopen": "إظهار القائمة",
+    "completed": "تم الانتهاء! أنت جاهز.",
+    "copiedToast": "تم نسخ الرابط!"
+  },
+  "guidedFirstEdit": {
+    "step1": {
+      "title": "لنخصص موقعك",
+      "subtitle": "أعطِ نشاطك التجاري اسماً يتذكره عملاؤك",
+      "label": "اسم النشاط التجاري",
+      "placeholder": "أدخل اسم نشاطك التجاري",
+      "save": "حفظ والمتابعة",
+      "skip": "تخطي الآن"
+    },
+    "step2": {
+      "title": "موقعك جاهز!",
+      "subtitle": "أضفنا محتوى تجريبياً للبدء. عدّله ليناسب نشاطك التجاري.",
+      "action": "تعديل المحتوى",
+      "done": "سأفعل ذلك لاحقاً"
+    },
+    "success": "تم الحفظ!"
+  },
+  "eject": {
+    "title": "تحتاج مزيد من التحكم؟",
+    "description": "الانتقال إلى الوضع الاحترافي من أجل:",
+    "features": [
+      "ربط قاعدة بيانات Supabase الخاصة بك",
+      "النشر على حساب Vercel الخاص بك",
+      "استخدام Sanity CMS الخاص بك",
+      "دفع الكود إلى مستودع GitHub الخاص بك"
+    ],
+    "note": "سيتم تصدير بياناتك ونقلها.",
+    "button": "الترقية إلى الوضع الاحترافي"
+  },
+  "errors": {
+    "loadFailed": "فشل تحميل حالة البنية التحتية",
+    "deployFailed": "فشل النشر",
+    "quotaExceeded": "تجاوز الحصة المسموحة",
+    "rateLimitExceeded": "تجاوز حد المعدل",
+    "unauthorized": "ليس لديك صلاحية الوصول لهذا المشروع"
+  },
+  "auth": {
+    "title": "Auth UI",
+    "subtitle": "Drop-in signup, signin, and magic link UI for your app",
+    "cta": "Get UI Kit",
+    "dialog": {
+      "title": "Auth UI Kit",
+      "description": "Copy these forms into your app and connect them to the auth API.",
+      "tabs": {
+        "signUp": "Sign up",
+        "signIn": "Sign in",
+        "magicLink": "Magic link"
+      },
+      "actions": {
+        "copy": "Copy snippet",
+        "copied": "Copied"
+      },
+      "notes": {
+        "apiKey": "استخدم مفتاح API العام للاستدعاءات من جانب العميل.",
+        "session": "احفظ رمز الجلسة وأرسله كرمز Bearer لـ /auth/user.",
+        "magicLink": "يُرجع الرابط السحري رمزًا؛ قم بإرساله عبر البريد الإلكتروني ثم تحقق منه."
+      },
+      "preview": {
+        "title": "معاينة مباشرة",
+        "description": "تشغيل طلب حقيقي على واجهة المصادقة.",
+        "emailLabel": "البريد الإلكتروني",
+        "passwordLabel": "كلمة المرور",
+        "submitSignUp": "إنشاء مستخدم تجريبي",
+        "submitSignIn": "تسجيل الدخول",
+        "submitMagicLink": "إرسال رابط سحري",
+        "responseLabel": "الاستجابة",
+        "warning": "سيؤدي هذا إلى إنشاء أو مصادقة مستخدم حقيقي في مشروعك.",
+        "sessionTokenLabel": "رمز الجلسة",
+        "submitSessionCheck": "التحقق من الجلسة",
+        "copyResponse": "نسخ الاستجابة",
+        "clearResponse": "مسح",
+        "requestSucceeded": "نجح الطلب",
+        "showDevDetails": "عرض تفاصيل المطور",
+        "hideDevDetails": "إخفاء تفاصيل المطور"
+      },
+      "session": {
+        "loggedInAs": "مسجّل الدخول كـ",
+        "signOut": "تسجيل الخروج",
+        "signingOut": "جاري تسجيل الخروج...",
+        "notLoggedIn": "غير مسجّل الدخول",
+        "sessionRestored": "تم استعادة الجلسة",
+        "sessionExpired": "انتهت صلاحية الجلسة"
+      }
+    }
+  },
+  "phase3": {
+    "title": "Phase 3 Features",
+    "subtitle": "Placeholder cards for upcoming features.",
+    "domains": "Custom domains",
+    "eject": "Eject to Pro",
+    "advancedDb": "Advanced database tools",
+    "comingSoon": "Coming soon"
+  },
+  "phase3Tools": {
+    "title": "أدوات المرحلة الثالثة",
+    "subtitle": "ميزات قادمة للخدمات المتقدمة.",
+    "comingSoon": "قريبًا",
+    "notifyMe": "اشعِرني عند التوفر",
+    "notified": "تم التسجيل",
+    "domains": {
+      "title": "النطاقات المخصصة",
+      "placeholder": "app.example.com",
+      "add": "إضافة نطاق",
+      "note": "سنتحقق من DNS ونُصدر شهادات SSL بمجرد التفعيل."
+    },
+    "export": {
+      "title": "تصدير البيانات",
+      "description": "تحميل نسخة من قاعدة البيانات ونظام المحتوى.",
+      "action": "طلب التصدير"
+    },
+    "table": {
+      "title": "عارض الجداول",
+      "description": "معاينة البيانات مع الفلترة والتصفح (قريبًا).",
+      "action": "فتح عارض الجداول"
+    },
+    "eject": {
+      "title": "التحويل للوضع الاحترافي",
+      "description": "تصدير إعدادات البنية والانتقال للاستضافة المخصصة.",
+      "action": "بدء التحويل"
+    }
+  },
+  "domains": {
+    "title": "النطاقات",
+    "subdomain": "النطاق الفرعي",
+    "customDomain": "نطاق مخصص",
+    "addDomain": "ربط نطاق",
+    "buyDomain": "شراء نطاق",
+    "connected": "متصل",
+    "pending": "قيد الانتظار",
+    "registered": "مسجل",
+    "expiresAt": "ينتهي",
+    "noDomains": "لا يوجد نطاق مخصص. موقعك متاح على النطاق الفرعي."
+  },
+  "exportEject": {
+    "title": "تصدير ونقل",
+    "export": {
+      "title": "تحميل المشروع",
+      "description": "حمّل مشروعك كملف ZIP مع جميع الأكواد والملفات.",
+      "action": "تحميل ZIP",
+      "exporting": "جاري التحضير...",
+      "success": "بدأ التحميل!",
+      "error": "فشل تصدير المشروع"
+    },
+    "eject": {
+      "title": "الانتقال إلى الوضع الاحترافي",
+      "description": "انتقل إلى الوضع الاحترافي للتحكم الكامل بالبنية التحتية.",
+      "action": "بدء الانتقال",
+      "confirmTitle": "الانتقال إلى الوضع الاحترافي؟",
+      "confirmDescription": "سيتم إرسال طلب انتقال. فريقنا سيراجعه ويساعدك في إعداد بنيتك التحتية.",
+      "confirmWarning": "سيتم الحفاظ على بياناتك ومحتواك أثناء الانتقال. ستتمكن من ربط قاعدة بيانات واستضافة ونظام إدارة محتوى خاص بك.",
+      "cancel": "إلغاء",
+      "confirm": "إرسال الطلب",
+      "submitting": "جاري الإرسال...",
+      "success": "تم إرسال طلب الانتقال! سنتواصل معك قريباً.",
+      "error": "فشل إرسال طلب الانتقال"
+    }
+  },
+  "emailHosting": {
+    "title": "البريد الإلكتروني",
+    "mailboxes": "صناديق البريد",
+    "sentThisMonth": "المرسل هذا الشهر",
+    "domains": "النطاقات المستضافة",
+    "noMailboxes": "لا توجد صناديق بريد بعد. اربط نطاقاً وفعّل استضافة البريد.",
+    "manage": "إدارة البريد",
+    "verified": "نشط",
+    "pending": "قيد الانتظار"
+  },
+  "easyModeHelper": {
+    "title": "مساعد ذكي",
+    "placeholder": "اسأل عن مشروعك...",
+    "close": "إغلاق",
+    "thinking": "يفكر...",
+    "errorGeneric": "صار خطأ. حاول مرة ثانية.",
+    "suggestedQuestions": "جرّب أحد هالأسئلة:",
+    "suggestions": [
+      "كيف أضيف نموذج تواصل؟",
+      "كيف أغيّر ألوان موقعي؟",
+      "كيف أضيف صفحة جديدة؟",
+      "كيف أربط دومين خاص؟"
+    ],
+    "voice": {
+      "start": "ابدأ التسجيل",
+      "stop": "أوقف التسجيل",
+      "listening": "أسمعك...",
+      "processing": "جاري المعالجة...",
+      "commandExecuted": "تم تنفيذ: {{command}}",
+      "noMatch": "أرسل للمساعد..."
+    }
+  },
+  "team": {
+    "title": "الفريق",
+    "invite": "ادعُ",
+    "inviting": "جاري الدعوة...",
+    "emailPlaceholder": "الإيميل",
+    "roles": {
+      "owner": "المالك",
+      "admin": "مدير",
+      "editor": "محرر",
+      "viewer": "مشاهد"
+    },
+    "status": {
+      "pending": "منتظر",
+      "accepted": "مقبول"
+    },
+    "actions": {
+      "changeRole": "غيّر الدور",
+      "remove": "أزِل"
+    },
+    "empty": "ما في أحد بالفريق لحد الحين. ادعُ أحد يتعاون معك.",
+    "you": "(أنت)",
+    "errors": {
+      "inviteFailed": "ما انبعثت الدعوة",
+      "updateFailed": "ما تغيّر الدور",
+      "removeFailed": "ما انحذف العضو"
+    },
+    "success": {
+      "invited": "انبعثت الدعوة",
+      "updated": "تغيّر الدور",
+      "removed": "انحذف العضو"
+    }
+  }
+}

@@ -1,0 +1,896 @@
+<html lang="en"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <title>Serenity Salon - Book Your Appointment</title>
+  <style type="text/css" data-vite-dev-id="/Users/sh/Sites/templates-v3/test-50/minimal-vite-react-tailwind-salon-booking/src/index.css">/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    --color-black: #000;
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-2xl: 42rem;
+    --container-4xl: 56rem;
+    --container-6xl: 72rem;
+    --container-7xl: 80rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --font-weight-light: 300;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --radius-lg: 0.5rem;
+    --radius-2xl: 1rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+  .bottom-0 {
+    bottom: calc(var(--spacing) * 0);
+  }
+  .left-0 {
+    left: calc(var(--spacing) * 0);
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
+  .mb-12 {
+    margin-bottom: calc(var(--spacing) * 12);
+  }
+  .mb-16 {
+    margin-bottom: calc(var(--spacing) * 16);
+  }
+  .block {
+    display: block;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+  .h-32 {
+    height: calc(var(--spacing) * 32);
+  }
+  .h-48 {
+    height: calc(var(--spacing) * 48);
+  }
+  .h-full {
+    height: 100%;
+  }
+  .h-screen {
+    height: 100vh;
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .w-48 {
+    width: calc(var(--spacing) * 48);
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
+  .max-w-6xl {
+    max-width: var(--container-6xl);
+  }
+  .max-w-7xl {
+    max-width: var(--container-7xl);
+  }
+  .resize-none {
+    resize: none;
+  }
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
+  .gap-12 {
+    gap: calc(var(--spacing) * 12);
+  }
+  .space-y-1 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 1) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-2 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-4 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-6 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-8 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-\[\#E8DFD3\] {
+    border-color: #E8DFD3;
+  }
+  .bg-\[\#8B7355\] {
+    background-color: #8B7355;
+  }
+  .bg-\[\#E8DFD3\]\/20 {
+    background-color: color-mix(in oklab, #E8DFD3 20%, transparent);
+  }
+  .bg-\[\#E8DFD3\]\/30 {
+    background-color: color-mix(in oklab, #E8DFD3 30%, transparent);
+  }
+  .bg-\[\#FAF9F7\] {
+    background-color: #FAF9F7;
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .bg-gradient-to-br {
+    --tw-gradient-position: to bottom right in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+  .bg-gradient-to-t {
+    --tw-gradient-position: to top in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+  .from-\[\#8B7355\]\/20 {
+    --tw-gradient-from: color-mix(in oklab, #8B7355 20%, transparent);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-\[\#FAF9F7\] {
+    --tw-gradient-from: #FAF9F7;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-black\/50 {
+    --tw-gradient-from: color-mix(in srgb, #000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-\[\#D4A574\]\/20 {
+    --tw-gradient-to: color-mix(in oklab, #D4A574 20%, transparent);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-transparent {
+    --tw-gradient-to: transparent;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 8);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
+  }
+  .pt-4 {
+    padding-top: calc(var(--spacing) * 4);
+  }
+  .pb-3 {
+    padding-bottom: calc(var(--spacing) * 3);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+  .text-5xl {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .font-light {
+    --tw-font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-light);
+  }
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .text-\[\#2C2C2C\] {
+    color: #2C2C2C;
+  }
+  .text-\[\#6B6B6B\] {
+    color: #6B6B6B;
+  }
+  .text-\[\#6B6B6C\] {
+    color: #6B6B6C;
+  }
+  .text-\[\#8B7355\] {
+    color: #8B7355;
+  }
+  .text-\[\#D4A574\] {
+    color: #D4A574;
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .italic {
+    font-style: italic;
+  }
+  .opacity-0 {
+    opacity: 0%;
+  }
+  .shadow-lg {
+    --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-xl {
+    --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-shadow {
+    transition-property: box-shadow;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  .duration-500 {
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
+  }
+  .group-hover\:scale-110 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        --tw-scale-x: 110%;
+        --tw-scale-y: 110%;
+        --tw-scale-z: 110%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+  .group-hover\:opacity-100 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        opacity: 100%;
+      }
+    }
+  }
+  .last\:border-0 {
+    &:last-child {
+      border-style: var(--tw-border-style);
+      border-width: 0px;
+    }
+  }
+  .hover\:bg-\[\#7A6348\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #7A6348;
+      }
+    }
+  }
+  .hover\:bg-\[\#8B7355\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #8B7355;
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
+      }
+    }
+  }
+  .hover\:shadow-xl {
+    &:hover {
+      @media (hover: hover) {
+        --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      }
+    }
+  }
+  .focus\:border-\[\#8B7355\] {
+    &:focus {
+      border-color: #8B7355;
+    }
+  }
+  .focus\:outline-none {
+    &:focus {
+      --tw-outline-style: none;
+      outline-style: none;
+    }
+  }
+  .sm\:grid-cols-2 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .sm\:grid-cols-4 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .sm\:px-6 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+  }
+  .sm\:text-2xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
+  .sm\:text-5xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    }
+  }
+  .sm\:text-6xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-6xl);
+      line-height: var(--tw-leading, var(--text-6xl--line-height));
+    }
+  }
+  .md\:grid-cols-2 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-cols-3 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-2 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-3 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-4 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .lg\:px-8 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+  .lg\:text-7xl {
+    @media (width >= 64rem) {
+      font-size: var(--text-7xl);
+      line-height: var(--tw-leading, var(--text-7xl--line-height));
+    }
+  }
+}
+:root {
+  --color-primary: #8B7355;
+  --color-secondary: #E8DFD3;
+  --color-accent: #D4A574;
+  --color-background: #FAF9F7;
+  --color-text: #2C2C2C;
+  --color-text-light: #6B6B6B;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-gradient-position {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-via {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-via-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --tw-gradient-via-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --tw-gradient-to-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-gradient-position: initial;
+      --tw-gradient-from: #0000;
+      --tw-gradient-via: #0000;
+      --tw-gradient-to: #0000;
+      --tw-gradient-stops: initial;
+      --tw-gradient-via-stops: initial;
+      --tw-gradient-from-position: 0%;
+      --tw-gradient-via-position: 50%;
+      --tw-gradient-to-position: 100%;
+      --tw-font-weight: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-duration: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+    }
+  }
+}
+</style></head>
+  <body>
+    <div id="root"><div class="min-h-screen bg-[#FAF9F7]"><section class="relative h-screen flex items-center justify-center overflow-hidden"><div class="absolute inset-0 bg-gradient-to-br from-[#8B7355]/20 to-[#D4A574]/20"></div><div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"><h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl text-[#2C2C2C] mb-6">Serenity Salon</h1><p class="text-xl sm:text-2xl text-[#6B6B6B] mb-8 font-light">Where beauty meets tranquility</p><button class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-medium hover:bg-[#7A6348] transition-colors duration-300">Book Your Appointment</button></div><div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAF9F7] to-transparent"></div></section><section class="py-20 px-4 sm:px-6 lg:px-8"><div class="max-w-7xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Our Services</h2><p class="text-center text-[#6B6B6B] mb-16 max-w-2xl mx-auto">Discover our comprehensive range of beauty and wellness treatments designed to enhance your natural beauty</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">✂️</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Hair Styling</h3><p class="text-[#6B6B6B] mb-4">Professional cuts, colors, and treatments</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">60-120 min</span><span class="text-[#2C2C2C] font-semibold">From $65</span></div></div><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">🌸</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Facial Treatments</h3><p class="text-[#6B6B6B] mb-4">Rejuvenating facials for all skin types</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">60-90 min</span><span class="text-[#2C2C2C] font-semibold">From $85</span></div></div><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">💅</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Nail Services</h3><p class="text-[#6B6B6B] mb-4">Manicures, pedicures, and nail art</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">45-75 min</span><span class="text-[#2C2C2C] font-semibold">From $45</span></div></div><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">💆</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Massage Therapy</h3><p class="text-[#6B6B6B] mb-4">Relaxing Swedish and deep tissue massage</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">60-90 min</span><span class="text-[#2C2C2C] font-semibold">From $95</span></div></div><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">💄</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Makeup Services</h3><p class="text-[#6B6B6B] mb-4">Professional makeup for any occasion</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">45-60 min</span><span class="text-[#2C2C2C] font-semibold">From $75</span></div></div><div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"><div class="text-4xl mb-4">🌿</div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-3">Spa Packages</h3><p class="text-[#6B6B6B] mb-4">Complete wellness experiences</p><div class="flex justify-between items-center text-sm"><span class="text-[#8B7355] font-medium">2-4 hours</span><span class="text-[#2C2C2C] font-semibold">From $250</span></div></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8 bg-[#E8DFD3]/20"><div class="max-w-4xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Book Your Appointment</h2><p class="text-center text-[#6B6B6B] mb-12">Select your preferred service, stylist, and time</p><div class="bg-white rounded-2xl shadow-xl p-8"><div class="space-y-6"><div><label class="block text-[#2C2C2C] font-medium mb-2">Select Service</label><select class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355]"><option value="">Choose a service</option><option value="haircut">Hair Styling</option><option value="facial">Facial Treatment</option><option value="nails">Nail Services</option><option value="massage">Massage Therapy</option><option value="makeup">Makeup Services</option></select></div><div><label class="block text-[#2C2C2C] font-medium mb-2">Select Stylist</label><select class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355]"><option value="">Any available stylist</option><option value="sarah">Sarah Johnson</option><option value="emma">Emma Chen</option><option value="lisa">Lisa Rodriguez</option><option value="maya">Maya Patel</option></select></div><div><label class="block text-[#2C2C2C] font-medium mb-2">Select Date</label><input class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355]" type="date" value=""></div><button class="w-full bg-[#8B7355] text-white py-4 rounded-lg font-medium hover:bg-[#7A6348] transition-colors duration-300">Confirm Booking</button></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8"><div class="max-w-7xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Meet Our Team</h2><p class="text-center text-[#6B6B6B] mb-16 max-w-2xl mx-auto">Our talented professionals are dedicated to providing you with exceptional service and care</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"><div class="text-center"><div class="mb-4 relative overflow-hidden rounded-full w-48 h-48 mx-auto"><img alt="Sarah Johnson" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&amp;h=400&amp;fit=crop"></div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-1">Sarah Johnson</h3><p class="text-[#8B7355] font-medium mb-2">Master Stylist</p><p class="text-sm text-[#6B6B6B] mb-3">12 years experience</p><div class="space-y-1"><span class="block text-xs text-[#6B6B6B]">Balayage</span><span class="block text-xs text-[#6B6B6B]">Color Correction</span><span class="block text-xs text-[#6B6B6B]">Precision Cuts</span></div></div><div class="text-center"><div class="mb-4 relative overflow-hidden rounded-full w-48 h-48 mx-auto"><img alt="Emma Chen" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&amp;h=400&amp;fit=crop"></div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-1">Emma Chen</h3><p class="text-[#8B7355] font-medium mb-2">Senior Esthetician</p><p class="text-sm text-[#6B6B6B] mb-3">8 years experience</p><div class="space-y-1"><span class="block text-xs text-[#6B6B6B]">Anti-aging Facials</span><span class="block text-xs text-[#6B6B6B]">Microdermabrasion</span><span class="block text-xs text-[#6B6B6B]">Chemical Peels</span></div></div><div class="text-center"><div class="mb-4 relative overflow-hidden rounded-full w-48 h-48 mx-auto"><img alt="Lisa Rodriguez" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&amp;h=400&amp;fit=crop"></div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-1">Lisa Rodriguez</h3><p class="text-[#8B7355] font-medium mb-2">Nail Artist</p><p class="text-sm text-[#6B6B6B] mb-3">6 years experience</p><div class="space-y-1"><span class="block text-xs text-[#6B6B6B]">Nail Art</span><span class="block text-xs text-[#6B6B6B]">Gel Extensions</span><span class="block text-xs text-[#6B6B6B]">Japanese Manicure</span></div></div><div class="text-center"><div class="mb-4 relative overflow-hidden rounded-full w-48 h-48 mx-auto"><img alt="Maya Patel" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1598536886172-5ae1b9f0c0ac?w=400&amp;h=400&amp;fit=crop"></div><h3 class="font-heading text-2xl text-[#2C2C2C] mb-1">Maya Patel</h3><p class="text-[#8B7355] font-medium mb-2">Massage Therapist</p><p class="text-sm text-[#6B6B6B] mb-3">10 years experience</p><div class="space-y-1"><span class="block text-xs text-[#6B6B6B]">Swedish Massage</span><span class="block text-xs text-[#6B6B6B]">Deep Tissue</span><span class="block text-xs text-[#6B6B6B]">Hot Stone Therapy</span></div></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8 bg-[#E8DFD3]/20"><div class="max-w-6xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Our Pricing</h2><p class="text-center text-[#6B6B6C] mb-16 max-w-2xl mx-auto">Transparent pricing for all our services. Prices may vary based on hair length and complexity</p><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="bg-white rounded-2xl p-8 shadow-lg"><h3 class="font-heading text-2xl text-[#8B7355] mb-6">Hair Services</h3><div class="space-y-4"><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Women's Haircut</span><span class="text-[#8B7355] font-medium">$65-$85</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Men's Haircut</span><span class="text-[#8B7355] font-medium">$45-$55</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Color Service</span><span class="text-[#8B7355] font-medium">$95-$150</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Highlights/Balayage</span><span class="text-[#8B7355] font-medium">$150-$250</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Hair Treatment</span><span class="text-[#8B7355] font-medium">$45-$75</span></div></div></div><div class="bg-white rounded-2xl p-8 shadow-lg"><h3 class="font-heading text-2xl text-[#8B7355] mb-6">Facial Treatments</h3><div class="space-y-4"><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Classic Facial</span><span class="text-[#8B7355] font-medium">$85</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Anti-Aging Facial</span><span class="text-[#8B7355] font-medium">$120</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Hydrating Facial</span><span class="text-[#8B7355] font-medium">$95</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Chemical Peel</span><span class="text-[#8B7355] font-medium">$150</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Microdermabrasion</span><span class="text-[#8B7355] font-medium">$135</span></div></div></div><div class="bg-white rounded-2xl p-8 shadow-lg"><h3 class="font-heading text-2xl text-[#8B7355] mb-6">Nail Services</h3><div class="space-y-4"><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Classic Manicure</span><span class="text-[#8B7355] font-medium">$45</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Gel Manicure</span><span class="text-[#8B7355] font-medium">$65</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Classic Pedicure</span><span class="text-[#8B7355] font-medium">$55</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Spa Pedicure</span><span class="text-[#8B7355] font-medium">$75</span></div><div class="flex justify-between items-center pb-3 border-b border-[#E8DFD3] last:border-0"><span class="text-[#2C2C2C]">Nail Art</span><span class="text-[#8B7355] font-medium">From $10</span></div></div></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8"><div class="max-w-7xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Our Gallery</h2><p class="text-center text-[#6B6B6C] mb-16 max-w-2xl mx-auto">Take a glimpse into our serene space and the transformative experiences we create</p><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Salon interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Hair styling" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Nail service" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1633681122544-f7e4b26fa1fa?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Facial treatment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Makeup service" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div><div class="relative overflow-hidden rounded-2xl aspect-square group"><img alt="Spa atmosphere" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&amp;h=600&amp;fit=crop"><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8 bg-[#E8DFD3]/20"><div class="max-w-6xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Client Testimonials</h2><p class="text-center text-[#6B6B6C] mb-16 max-w-2xl mx-auto">Don\'t just take our word for it - hear what our valued clients have to say</p><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="bg-white rounded-2xl p-8 shadow-lg"><div class="flex mb-4"><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span></div><p class="text-[#2C2C2C] mb-6 italic">"The best salon experience I've ever had! Sarah did an amazing job with my balayage. The atmosphere is so relaxing and the staff is incredibly professional."</p><div class="border-t border-[#E8DFD3] pt-4"><p class="font-medium text-[#2C2C2C]">Jessica Martinez</p><p class="text-sm text-[#6B6B6B]">Hair Color • 2 weeks ago</p></div></div><div class="bg-white rounded-2xl p-8 shadow-lg"><div class="flex mb-4"><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span></div><p class="text-[#2C2C2C] mb-6 italic">"I've been coming here for years. The consistency and quality of service is unmatched. Emma always knows exactly what my skin needs."</p><div class="border-t border-[#E8DFD3] pt-4"><p class="font-medium text-[#2C2C2C]">Michael Thompson</p><p class="text-sm text-[#6B6B6B]">Facial Treatment • 1 month ago</p></div></div><div class="bg-white rounded-2xl p-8 shadow-lg"><div class="flex mb-4"><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span><span class="text-[#D4A574] text-xl">★</span></div><p class="text-[#2C2C2C] mb-6 italic">"Lisa is a true artist! My nails have never looked better. The attention to detail and creativity she brings to every appointment is exceptional."</p><div class="border-t border-[#E8DFD3] pt-4"><p class="font-medium text-[#2C2C2C]">Sophia Lee</p><p class="text-sm text-[#6B6B6B]">Nail Art • 3 weeks ago</p></div></div></div></div></section><section class="py-20 px-4 sm:px-6 lg:px-8"><div class="max-w-6xl mx-auto"><h2 class="font-heading text-4xl sm:text-5xl text-center text-[#2C2C2C] mb-4">Visit Us</h2><p class="text-center text-[#6B6B6B] mb-16 max-w-2xl mx-auto">We\'re conveniently located in the heart of downtown, ready to welcome you</p><div class="grid grid-cols-1 lg:grid-cols-2 gap-12"><div class="space-y-8"><div><h3 class="font-heading text-2xl text-[#8B7355] mb-4">Location</h3><p class="text-[#2C2C2C]">123 Serenity Lane<br>Downtown District<br>New York, NY 10001</p></div><div><h3 class="font-heading text-2xl text-[#8B7355] mb-4">Hours</h3><div class="space-y-2 text-[#2C2C2C]"><p>Monday - Friday: 9:00 AM - 8:00 PM</p><p>Saturday: 9:00 AM - 6:00 PM</p><p>Sunday: 10:00 AM - 5:00 PM</p></div></div><div><h3 class="font-heading text-2xl text-[#8B7355] mb-4">Contact</h3><p class="text-[#2C2C2C]">Phone: (555) 123-4567<br>Email: hello@serenitysalon.com</p></div></div><div class="bg-[#E8DFD3]/30 rounded-2xl p-8"><h3 class="font-heading text-2xl text-[#8B7355] mb-6">Send Us a Message</h3><form class="space-y-4"><div><input placeholder="Your Name" class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355]" type="text"></div><div><input placeholder="Your Email" class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355]" type="email"></div><div><textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-[#E8DFD3] rounded-lg focus:outline-none focus:border-[#8B7355] resize-none"></textarea></div><button class="w-full bg-[#8B7355] text-white py-3 rounded-lg font-medium hover:bg-[#7A6348] transition-colors duration-300">Send Message</button></form></div></div></div></section></div></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+</body></html>

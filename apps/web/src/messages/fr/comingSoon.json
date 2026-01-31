@@ -1,0 +1,44 @@
+{
+  "badge": "Sur Invitation",
+  "title": "Nous Sommes en Ligne — Pour Certains Utilisateurs",
+  "titleHighlight": "Certains Utilisateurs",
+  "subtitle": "Nous ajoutons de nouveaux utilisateurs progressivement pour garantir la meilleure expérience.",
+  "subtitleSecond": "Demandez l'accès pour réserver votre place.",
+  "waitlist": {
+    "title": "Demander l'Accès",
+    "subtitle": "Nous ajoutons de nouveaux utilisateurs chaque semaine",
+    "placeholder": "Entrez votre adresse email",
+    "button": "Demander l'Accès",
+    "submitting": "Envoi...",
+    "success": "Demande Reçue !",
+    "successSubtitle": "Nous vous contacterons dès qu'une place se libère.",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "alreadyJoined": "Vous avez déjà demandé l'accès !",
+    "spots": "Places limitées ouvertes chaque semaine",
+    "privacy": "Nous respectons votre vie privée. Jamais de spam."
+  },
+  "features": {
+    "title": "Ce Que Vous Obtenez",
+    "ai": {
+      "title": "Constructeur IA",
+      "description": "Décrivez votre vision, regardez-la prendre vie"
+    },
+    "speed": {
+      "title": "Ultra Rapide",
+      "description": "De l'idée au site déployé en quelques minutes"
+    },
+    "team": {
+      "title": "Support Expert",
+      "description": "De vraies personnes prêtes à vous aider à réussir"
+    }
+  },
+  "pricing": {
+    "title": "Tarification Simple et Transparente",
+    "subtitle": "Des plans pour chaque étape de votre parcours",
+    "launching": "Détails complets des prix après approbation"
+  },
+  "footer": {
+    "launching": "Maintenant en Ligne",
+    "copyright": "© 2025 SheenApps. Tous droits réservés."
+  }
+}

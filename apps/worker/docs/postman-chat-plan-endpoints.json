@@ -1,0 +1,425 @@
+{
+  "name": "Chat Plan Mode",
+  "item": [
+    {
+      "name": "Process Chat Plan (Question)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"How do I add authentication to my React app?\",\n  \"chatMode\": \"question\",\n  \"locale\": \"en-US\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Ask a technical question about the codebase. Returns a direct answer with code references."
+      }
+    },
+    {
+      "name": "Process Chat Plan (Feature)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"I want to add a dark mode toggle to my application settings\",\n  \"chatMode\": \"feature\",\n  \"locale\": \"en-US\",\n  \"context\": {\n    \"includeProjectStructure\": true\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Create an implementation plan for a new feature. Returns structured plan with steps, dependencies, and estimated complexity."
+      }
+    },
+    {
+      "name": "Process Chat Plan (Fix)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Users are reporting that the shopping cart total is not updating when they change quantities\",\n  \"chatMode\": \"fix\",\n  \"locale\": \"en-US\",\n  \"context\": {\n    \"includeBuildErrors\": true\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Analyze a bug/issue and propose a solution. Returns root cause analysis, affected files, and fix approach."
+      }
+    },
+    {
+      "name": "Process Chat Plan (SSE Streaming)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "text/event-stream",
+            "description": "Request SSE streaming response"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Analyze the architecture of my application and suggest improvements\",\n  \"chatMode\": \"analysis\",\n  \"locale\": \"en-US\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Request with SSE streaming for real-time updates. Note: Postman may not display SSE properly - use curl or a browser-based tool for testing SSE."
+      }
+    },
+    {
+      "name": "Convert Plan to Build",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan/convert-to-build';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});",
+              "",
+              "// Store session ID from previous chat plan response",
+              "// pm.collectionVariables.set('sessionId', 'your-session-id');"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"{{sessionId}}\",\n  \"planData\": {\n    \"plan\": {\n      \"overview\": \"Add dark mode toggle\",\n      \"steps\": []\n    }\n  },\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan/convert-to-build",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan", "convert-to-build"]
+        },
+        "description": "Convert a chat plan session into an actual build. Use the sessionId and planData from a previous chat plan response."
+      }
+    },
+    {
+      "name": "Get Project Timeline",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for GET request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const projectId = pm.variables.get('projectId');",
+              "const path = `/v1/project/${projectId}/timeline`;",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = '' + path;  // Empty body for GET",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/project/{{projectId}}/timeline?limit=20&mode=all",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "project", "{{projectId}}", "timeline"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "20",
+              "description": "Number of items (1-100)"
+            },
+            {
+              "key": "offset",
+              "value": "0",
+              "description": "Pagination offset",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "all",
+              "description": "Filter: all, plan, or build"
+            },
+            {
+              "key": "includeHidden",
+              "value": "false",
+              "description": "Include hidden messages",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Get unified timeline of chat messages, builds, and deployments for a project."
+      }
+    },
+    {
+      "name": "Get Session Details",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for GET request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const sessionId = pm.variables.get('sessionId') || 'test-session-123';",
+              "const path = `/v1/chat-plan/session/${sessionId}`;",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = '' + path;  // Empty body for GET",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan/session/{{sessionId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan", "session", "{{sessionId}}"]
+        },
+        "description": "Get details about a specific chat plan session including all messages."
+      }
+    },
+    {
+      "name": "Resume Chat Session",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"Can you provide more details about the authentication approach?\",\n  \"chatMode\": \"question\",\n  \"sessionId\": \"{{sessionId}}\",\n  \"locale\": \"en-US\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Resume an existing chat session for context continuity. Include the sessionId from a previous response."
+      }
+    },
+    {
+      "name": "Arabic Chat Plan Request",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate HMAC signature for request",
+              "const secret = pm.variables.get('sharedSecret');",
+              "const body = pm.request.body.raw;",
+              "const path = '/v1/chat-plan';",
+              "",
+              "const crypto = require('crypto-js');",
+              "const canonical = body + path;",
+              "const signature = crypto.HmacSHA256(canonical, secret).toString();",
+              "",
+              "pm.request.headers.add({",
+              "    key: 'x-sheen-signature',",
+              "    value: signature",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"projectId\": \"{{projectId}}\",\n  \"message\": \"كيف أضيف نظام المصادقة إلى تطبيقي؟\",\n  \"chatMode\": \"question\",\n  \"locale\": \"ar-EG\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/chat-plan",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "chat-plan"]
+        },
+        "description": "Example of Arabic language support. The response will be in Arabic with proper RTL handling for file paths."
+      }
+    }
+  ],
+  "description": "Chat Plan Mode provides a read-only conversational interface for users to ask questions, analyze issues, and create implementation plans that can be converted into builds.\n\n**Chat Modes:**\n- `question`: Direct technical questions\n- `feature`: Feature planning with implementation steps\n- `fix`: Bug analysis and solution proposals\n- `analysis`: Codebase analysis and insights\n- `general`: General conversation\n\n**Key Features:**\n- Session resumption for context continuity\n- Multi-language support (Arabic, French, Spanish, etc.)\n- SSE streaming for real-time updates\n- Conversion from plans to actual builds\n- Unified timeline view of all interactions\n\n**Billing:**\n- Questions: ~30 seconds AI time\n- Features: ~120 seconds AI time\n- Fixes: ~90 seconds AI time\n- Analysis: ~180 seconds AI time\n\n**Rate Limits:**\n- 100 requests/hour per user\n- 200 requests/hour per project\n- 50 messages max per session"
+}

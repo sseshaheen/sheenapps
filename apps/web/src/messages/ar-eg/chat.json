@@ -1,0 +1,56 @@
+{
+  "CHAT_CONNECTION_ESTABLISHED": "تم الاتصال بالمساعد الذكي",
+  "CHAT_TOOL_READ_FILE": "بنقرأ {file}...",
+  "CHAT_TOOL_SEARCH_CODE": "بندور على '{pattern}'...",
+  "CHAT_TOOL_FIND_FILES": "بندور على ملفات '{pattern}'...",
+  "CHAT_TOOL_WRITE_FILE": "بنكتب في {file}...",
+  "CHAT_TOOL_EDIT_FILE": "بنعدل {file}...",
+  "CHAT_TOOL_GENERIC": "بنستخدم {tool}...",
+  "CHAT_ANALYZING": "بنحلل طلبك...",
+  "CHAT_PROCESSING": "شغالين...",
+  "CHAT_FINALIZING": "خلاص تقريباً...",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE": "رصيدك مش كفاية. محتاج {required} دقيقة وعندك {available} دقيقة بس. اشحن عشان تكمل.",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE_SIMPLE": "رصيدك مش كفاية. اشحن عشان تكمل.",
+  "CHAT_ERROR_TIMEOUT": "العملية خدت وقت كتير. جرب طلب أبسط أو قسمه لحاجات صغيرة.",
+  "CHAT_ERROR_GENERAL": "حصل خطأ: {message}",
+  "CHAT_STREAM_ERROR": "في مشكلة في الاتصال. جرب تاني.",
+  "STREAM_ERROR": "في مشكلة في الاتصال. جرب تاني.",
+  "CHAT_COMPLETE_SUCCESS": "تمام!",
+  "composer": {
+    "aiPlaceholder": "اكتب اللي عايز تعدله أو تضيفه...",
+    "teamPlaceholder": "ابعت رسالة لفريقك...",
+    "sendButton": "ابعت",
+    "cannotSendButton": "مش هينفع تبعت",
+    "buildModeTooltip": "تنفيذ فوري ولا مراجعة الأول",
+    "buildModeLabel": "الوضع: {mode}",
+    "buildImmediatelyOn": "تنفيذ فوري",
+    "planModeOn": "مراجعة الأول"
+  },
+  "errors": {
+    "BUILD_TIMEOUT": {
+      "title": "خد وقت كتير",
+      "message": "العملية خدت وقت أكتر من المتوقع",
+      "action": "جرب طلب أبسط زي 'غير لون الخلفية' أو 'ضيف صفحة تواصل'",
+      "support": "أو كلمنا نساعدك"
+    },
+    "BUILD_FAILED": {
+      "title": "حصلت مشكلة",
+      "message": "واجهنا مشكلة وانت بتبني موقعك",
+      "action": "جرب تاني - أو جرب طلب مختلف",
+      "support": "فريقنا موجود يساعدك على واتساب"
+    },
+    "INSUFFICIENT_BALANCE": {
+      "title": "اشحن رصيد",
+      "message": "رصيدك مش كفاية للعملية دي",
+      "action": "اشحن رصيد عشان تكمل موقعك",
+      "support": "عندك سؤال عن الأسعار؟ كلمنا"
+    }
+  },
+  "recovery": {
+    "title": "حصلت مشكلة - متقلقش!",
+    "retryButton": "جرب تاني",
+    "supportButton": "كلم الدعم",
+    "whatHappened": "ايه اللي حصل",
+    "suggestion": "اقتراحنا"
+  }
+}

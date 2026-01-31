@@ -1,0 +1,58 @@
+{
+  "badge": "Echte Menschen, echter Support",
+  "title": "Lernen Sie Ihr Tech-Team kennen",
+  "subtitle": "Dedizierte Berater, die Ihr Geschäft kennen. Verfügbar in Ihrer Sprache.",
+  "subtitleSecond": "Bauen Ihre Features während Sie schlafen.",
+  "advisors": {
+    "ahmed": {
+      "name": "Ahmed Hassan",
+      "role": "Arabischer Tech-Lead",
+      "language": "العربية",
+      "specialties": [
+        "RTL-Entwicklung",
+        "MENA-Markt",
+        "Payment-Gateways"
+      ],
+      "availability": "Jetzt verfügbar"
+    },
+    "sarah": {
+      "name": "Sarah Chen",
+      "role": "Feature-Spezialistin",
+      "language": "English",
+      "specialties": [
+        "E-Commerce",
+        "SaaS",
+        "API-Integrationen"
+      ],
+      "availability": "Nächster Slot: 14:00"
+    },
+    "pierre": {
+      "name": "Pierre Dubois",
+      "role": "Wachstumsberater",
+      "language": "Français",
+      "specialties": [
+        "Skalierung",
+        "Performance",
+        "Analytics"
+      ],
+      "availability": "Nächster Slot: 15:30"
+    }
+  },
+  "howItWorks": {
+    "title": "Wie Ihr Tech-Team funktioniert",
+    "instantChat": {
+      "title": "Instant Chat",
+      "description": "Schreiben Sie Ihrem Team jederzeit. Antworten in Minuten, nicht Stunden."
+    },
+    "scheduledCalls": {
+      "title": "Geplante Anrufe",
+      "description": "Buchen Sie 10-minütige Strategiesitzungen. Planen Sie Features, lösen Sie Probleme."
+    },
+    "proactiveUpdates": {
+      "title": "Proaktive Updates",
+      "description": "Wir schlagen Verbesserungen und neue Features vor, um Ihr Geschäft zu erweitern."
+    }
+  },
+  "scheduleCall": "Ihren ersten Anruf planen",
+  "includedInPlans": "In allen Plänen enthalten • Keine zusätzlichen Kosten"
+}

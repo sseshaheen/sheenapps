@@ -1,0 +1,94 @@
+{
+  "header": {
+    "back": "Retour",
+    "unsavedChanges": "Modifications non sauvegardées",
+    "justNow": "À l'instant",
+    "minutesAgo": "Il y a {minutes} min",
+    "share": "Partager",
+    "export": "Exporter",
+    "settings": "Paramètres",
+    "undo": "Undo",
+    "redo": "Redo",
+    "undoTooltip": "Undo last change",
+    "redoTooltip": "Redo last change",
+    "nothingToUndo": "Nothing to undo",
+    "nothingToRedo": "Nothing to redo",
+    "undoShortcut": "Ctrl+Z",
+    "redoShortcut": "Ctrl+Shift+Z"
+  },
+  "saveStatus": {
+    "saving": "Sauvegarde...",
+    "saved": "Sauvegardé",
+    "unsaved": "Modifications non sauvegardées",
+    "autoSave": "Sauvegarde automatique activée",
+    "lastSaved": "Dernière sauvegarde : {time}"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "Construire",
+      "preview": "Aperçu",
+      "humanHelp": "Aide humaine",
+      "more": "Plus",
+      "code": "Code"
+    },
+    "disabled": {
+      "signInRequired": "Connexion requise",
+      "upgradeRequired": "Mise à niveau requise"
+    },
+    "header": {
+      "unlockPremium": "Débloquer les fonctionnalités premium",
+      "premiumDescription": "Chat IA, exports avancés et plus",
+      "upgrade": "Mettre à niveau",
+      "signInToSave": "Connectez-vous pour sauvegarder",
+      "signInDescription": "Débloquez l'IA et l'historique des projets",
+      "signIn": "Connexion",
+      "comingSoon": "Bientôt disponible"
+    },
+    "panels": {
+      "previewTitle": "Aperçu",
+      "previewDescription": "L'aperçu de l'app apparaîtra ici",
+      "aiHelpTitle": "Aide IA avancée",
+      "aiHelpDescription": "Fonctionnalité premium - bientôt",
+      "settingsTitle": "Paramètres",
+      "settingsDescription": "Paramètres du projet - bientôt",
+      "codeTitle": "Code généré",
+      "codeDescription": "Afficher et explorer le code source généré"
+    }
+  },
+  "advisorMatching": {
+    "match": {
+      "matchedTitle": "Conseiller trouvé !",
+      "matchedDescription": "Nous avons trouvé une excellente correspondance pour votre projet",
+      "advisorDetails": "Spécialisé dans les technologies de votre projet",
+      "matchScore": "Score de correspondance",
+      "yearsExperience": "Années d'expérience",
+      "rating": "Évaluation",
+      "reviews": "Avis",
+      "skills": "Compétences",
+      "approve": "Approuver la correspondance",
+      "decline": "Refuser",
+      "dismiss": "Fermer"
+    },
+    "decline": {
+      "title": "Correspondance refusée",
+      "description": "Souhaitez-vous :",
+      "retryLabel": "Trouver un autre conseiller",
+      "retryDescription": "Nous rechercherons un autre expert",
+      "browseLabel": "Parcourir tous les conseillers",
+      "browseDescription": "Choisissez parmi notre répertoire complet d'experts",
+      "laterLabel": "Peut-être plus tard",
+      "laterDescription": "Vous pouvez demander un conseiller à tout moment"
+    },
+    "banner": {
+      "advisorJoined": "Votre conseiller a rejoint l'espace de travail et est prêt à aider !",
+      "dismiss": "Fermer"
+    }
+  },
+  "chat": {
+    "advisorJoined": "Le conseiller a rejoint l'espace de travail et est prêt à aider !"
+  },
+  "viewTabs": {
+    "preview": "Aperçu",
+    "code": "Code"
+  }
+}

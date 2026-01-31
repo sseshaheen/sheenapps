@@ -1,0 +1,1007 @@
+# Run Hub Implementation Plan
+
+**Date:** 2026-01-30
+**Scope:** Verified issues + actionable roadmap for `sheenappsai` and `sheenapps-claude-worker`
+
+**Architecture Context:** This plan addresses **two separate codebases**:
+- **`sheenappsai` (Next.js)**: UI, proxy layer, settings management - *verified via code exploration*
+- **`sheenapps-claude-worker` (Fastify)**: Execution engine, email, jobs, data ingestion - *requires audit*
+
+---
+
+## 1) Executive Summary
+
+**Status:** Run Hub UI is visually complete but lacks functional execution layer and real data.
+
+**Core Problem:** The platform looks trustworthy but doesn't deliver on what it shows:
+- Actions appear available but may not execute
+- KPIs show empty states for most projects (no data flowing)
+- Deep-linking and navigation are broken
+- Email digests and workflows are unverified
+
+**Goal:** Make Run Hub do what it appears to do. Every card, every action, every metric should be truthful.
+
+**Approach:**
+1. **Quick wins** (2 days): Fix verified Next.js bugs
+2. **Worker audit** (1 week): Verify execution layer works
+3. **Data flow** (1-2 weeks): Bridge analytics → business events
+4. **Observability** (2 days): Make system debuggable
+5. **UX polish** (3 days): Guide users when things are missing
+
+---
+
+## 2) Architecture: Next.js vs Worker
+
+**Critical Understanding:** Run Hub spans two separate codebases with clear boundaries:
+
+| Component | Owner | Responsibility | Verified? |
+|-----------|-------|----------------|-----------|
+| UI & Display | Next.js | Render KPIs, actions, settings | ✅ Yes |
+| Proxy Layer | Next.js | Forward requests to worker | ✅ Yes |
+| Settings Management | Next.js | Store run_settings in Supabase | ✅ Yes |
+| Execution Engine | Worker | Run workflows, send emails, compute KPIs | ❓ Needs audit |
+| Job Scheduling | Worker | Daily rollups, digest delivery | ❓ Needs audit |
+| Event Ingestion | Worker/SDK | Emit business_events from analytics, payments, forms | ❓ Needs audit |
+
+**What this means:**
+- Bugs in Next.js (UI, routing, settings) can be fixed immediately
+- Bugs in Worker (execution, email, data) require worker codebase access
+- Claims about worker functionality are **inferred** from API contracts, not verified
+
+**Key Files Verified (Next.js):**
+- Run Hub entry points, header, tabs, empty states, translations, and Run Overview UI.
+- KPI cards, alerts, sparkline trends, and action cards.
+- Notifications settings UI and digest settings UI.
+- Action modals (Send Promo, Post Update, Recover Abandoned).
+
+**Evidence:**
+- `sheenappsai/src/components/run/run-overview-content.tsx`
+- `sheenappsai/src/components/run/run-page-content.tsx`
+- `sheenappsai/src/components/run/run-notifications-content.tsx`
+
+### Implemented (Backend / Data)
+- `business_events` ingestion + KPI rollups.
+- Run overview endpoint (aggregate KPIs, alerts, trends, last event).
+- Workflow tables, routes, policy service, attribution logic.
+- Digest job and digest service.
+
+**Evidence:**
+- `sheenapps-claude-worker/src/routes/inhouseRunOverview.ts`
+- `sheenapps-claude-worker/src/jobs/businessKpiRollupJob.ts`
+- `sheenapps-claude-worker/src/routes/inhouseWorkflowRuns.ts`
+- `sheenapps-claude-worker/src/services/workflowExecutionService.ts`
+- `sheenapps-claude-worker/src/services/digestService.ts`
+
+### What is **not actually functional end‑to‑end** *(Worker-side - requires verification)*
+
+**⚠️ Note:** These claims are about the worker codebase, not Next.js. They cannot be verified from `sheenappsai` alone.
+
+- **Workflows never execute** (no queue/runner calling `WorkflowExecutionService.execute`).
+  - *Next.js verification:* ✅ Confirmed Next.js proxies to worker endpoint (not a bug)
+  - *Worker verification:* ❓ Needs worker codebase audit to confirm execution wiring
+
+- **Email sending inside workflows is stubbed** (logs only).
+  - *Next.js verification:* N/A (worker responsibility)
+  - *Worker verification:* ❓ Needs worker codebase audit
+
+- **Outcome attribution requires events that are never emitted** (`recovery_email_sent` events are not created).
+  - *Next.js verification:* N/A (events emitted by worker after execution)
+  - *Worker verification:* ❓ Needs worker codebase audit
+
+- **Daily digest uses a non‑existent email template** (`daily_digest`) and will error.
+  - *Next.js verification:* ✅ Confirmed Next.js calls worker digest endpoint correctly
+  - *Worker verification:* ❓ Needs worker email template registry audit
+
+**Evidence (Worker files - not directly inspected):**
+- `sheenapps-claude-worker/src/services/workflowExecutionService.ts` (referenced)
+- `sheenapps-claude-worker/src/services/digestService.ts` (referenced)
+- `sheenapps-claude-worker/src/services/inhouse/InhouseEmailService.ts` (referenced)
+
+---
+
+## 3) Documentation & Plan Drift (Conflicting Sources)
+
+There are **conflicting plan documents** about Phase 4 status:
+- `RUN_HUB_PHASE_4_IMPLEMENTATION_PLAN.md` says Weeks 1–4 are complete.
+- `RUN_HUB_FUTURE_ENHANCEMENTS_PLAN.md` still lists Phase 4 workflow/outcomes/digest as **pending**.
+- `BUILD_VS_MANAGE_DASHBOARDS_ANALYSIS.md` still lists “Real action handlers” as remaining.
+
+This mismatch makes execution unclear and increases risk of shipping broken features. **Docs must reflect actual functionality** (e.g., workflows are not running, digests fail).
+
+---
+
+## 4) Critical Gaps & Limitations (Product + Tech)
+
+### 4.1 Data & Tracking Gaps (Most Impactful)
+
+**Problem:** Run Hub depends on `business_events`, but most business events are never emitted in normal usage.
+
+**⚠️ Note:** This is a worker/SDK architecture issue, not a Next.js bug.
+
+- KPI rollups expect `session_started`, `lead_created`, `signup`, but these are not emitted by the analytics SDK (it writes to `inhouse_analytics_events`, not `business_events`).
+  - *Next.js verification:* ✅ Confirmed UI displays data from worker `/run/overview` endpoint
+  - *Worker/SDK verification:* ❓ Needs audit of event emission sources
+
+- Leads list expects `lead_created`, `signup`, `subscription_started`. Only Stripe subscription checkout emits `signup`; most websites will show **no leads**.
+  - *Next.js verification:* ✅ Confirmed Leads tab queries worker for events (run-leads-content.tsx)
+  - *Worker/SDK verification:* ❓ Needs audit of which integrations emit lead events
+
+- Abandoned checkout alerts require `checkout_started`, but there is no source producing that event.
+  - *Next.js verification:* ✅ Confirmed UI displays alerts from worker
+  - *Worker/SDK verification:* ❓ Needs audit of checkout event emitters
+
+- Notifications for abandoned checkout won't fire without `abandoned_checkout` events, which are never inserted.
+  - *Next.js verification:* ✅ Confirmed settings UI works (overview/route.ts)
+  - *Worker verification:* ❓ Needs audit of notification trigger logic
+
+**Evidence:**
+- KPI rollup: `sheenapps-claude-worker/src/jobs/businessKpiRollupJob.ts` (worker - not verified)
+- Leads list: `sheenappsai/src/components/run/run-leads-content.tsx` (✅ verified)
+- Analytics service: *Not found in Next.js; config-based approach used instead*
+
+**Impact:** The "Run Overview" looks empty for most users, which breaks trust and fails the "one‑click" goal.
+
+---
+
+### 4.2 Actions & Workflows (Trust‑Breaking)
+
+**Problem:** Actions look active but are often no‑ops.
+
+- `isActionImplemented()` always returns `true`, so actions show as available even when the backend can't execute them.
+  - *Verification:* ✅ **CONFIRMED** - function in action-handlers.ts:208-214 returns `true` for all handlers
+  - *Clarification:* Function is **technically honest** (handlers exist) but **misleadingly named** (doesn't check backend execution capability)
+
+- Some actions are handled with "Coming Soon" toasts in the UI while **no "Soon" badge** appears.
+  - *Verification:* ❓ Needs UI audit for toast messages vs. badge consistency
+
+- Backend action registry differs from frontend config; UI does not use `/run/actions`.
+  - *Verification:* ✅ **CONFIRMED** - frontend uses local `ACTION_HANDLERS` object, never calls `/api/projects/[id]/run/actions`
+
+- Workflow runs are queued but never executed; there is no job runner.
+  - *Next.js verification:* ✅ Confirmed Next.js proxies to worker (no local queue)
+  - *Worker verification:* ❓ Needs worker codebase audit
+
+- Workflow send logic is stubbed (logs only).
+  - *Next.js verification:* N/A (worker responsibility)
+  - *Worker verification:* ❓ Needs worker codebase audit
+
+**Evidence:**
+- `sheenappsai/src/lib/run/action-handlers.ts` (✅ verified)
+- `sheenappsai/src/components/run/run-overview-content.tsx` (✅ verified)
+- `sheenapps-claude-worker/src/routes/inhouseWorkflowRuns.ts` (worker - not verified)
+- `sheenapps-claude-worker/src/services/workflowExecutionService.ts` (worker - not verified)
+
+**Impact:** Users click actions expecting results; nothing actually happens. This destroys confidence.
+
+---
+
+### 4.3 User Journey Gaps (Non‑Tech Savvy Experience)
+
+**Problem:** There is no guided setup or integration flow for Run Hub.
+
+- Run Hub is gated on “Deploy”, but deployment alone doesn’t produce tracking signals.
+- No “Connect Payments / Forms / Email / Analytics” onboarding in Run Hub.
+- Actions assume integrations exist (email, payments) but don’t surface setup or errors.
+- The empty state only says “Deploy to get started” (not “connect tracking”).
+
+**Evidence:**
+- `sheenappsai/src/components/run/run-page-content.tsx`
+- `sheenappsai/src/messages/en/run.json` (empty state messaging)
+
+**Impact:** Non‑technical users have no idea why data is missing or how to fix it.
+
+---
+
+### 4.4 Navigation + Context Loss
+
+**Problem:** "Follow up leads/orders" actions build query params, but Run Hub does not read them.
+
+- `handleAction` pushes `/project/:id/run?tab=leads&filter=recent` but `RunPageContent` does not parse `tab`/`filter`.
+  - *Verification:* ✅ **CONFIRMED BUG**
+  - *Details:* ACTION_HANDLERS includes `query: { tab: 'leads', filter: 'recent' }` (action-handlers.ts)
+  - *Details:* RunPageContent uses local state `useState<TabType>('overview')`, never reads `useSearchParams()` (run-page-content.tsx:29)
+
+**Evidence:**
+- `sheenappsai/src/components/run/run-overview-content.tsx` (✅ verified - actions include query params)
+- `sheenappsai/src/components/run/run-page-content.tsx` (✅ verified - doesn't parse query params)
+
+**Impact:** Actions do not land users on the intended tab or filter; the user journey breaks.
+
+**Fix Complexity:** Low - 10-15 lines of code to add `useEffect` parsing `searchParams`
+
+---
+
+### 4.5 Alerts & Accuracy
+
+- Computed alerts use placeholder values for `paymentFailedCount` and `checkoutStartedCount` (always 0), which skews logic.
+  - *Verification:* ✅ **CONFIRMED** - overview/route.ts:109-112 hardcodes `paymentFailedCount: 0, checkoutStartedCount: 0`
+  - *Note:* TODO comment says "fetch from events API when available"
+
+- Industry‑specific alerts use `projects.industry_tag`, while UI updates `config.run_settings.industry_tag` — these may diverge.
+  - *Verification:* ✅ **CONFIRMED** - UI updates `config.run_settings.industry_tag` (overview/route.ts:239-248)
+  - *Worker verification:* ❓ Needs audit to see if worker reads from `industry_tag` or `config.run_settings.industry_tag`
+
+**Evidence:**
+- `sheenappsai/src/app/api/projects/[id]/run/overview/route.ts` (✅ verified)
+- `sheenapps-claude-worker/src/services/runAlertsService.ts` (worker - not verified)
+
+**Impact:** Alerts are inaccurate or missing for real businesses.
+
+---
+
+### 4.6 Digest & Notifications
+
+**⚠️ Note:** These are worker-side issues; Next.js only provides settings UI.
+
+- Digest sending uses `daily_digest` template, which does not exist.
+  - *Next.js verification:* ✅ Confirmed Next.js calls worker endpoint correctly (overview/route.ts:261-307)
+  - *Worker verification:* ❓ Needs worker email template registry audit
+
+- Digest uses project locale, but email templates only support 5 locales (`en`, `ar`, `fr`, `es`, `de`). Variants like `ar-sa`/`ar-eg` will fail or fallback incorrectly.
+  - *Next.js verification:* ✅ Confirmed Next.js stores locale in project settings
+  - *Worker verification:* ❓ Needs worker email service locale handling audit
+  - *Fix needed:* Locale normalization (map `ar-*` → `ar` before sending)
+
+- Notification emails default to English (locale not passed).
+  - *Next.js verification:* ✅ Confirmed Next.js stores notification settings (overview/route.ts:181-217)
+  - *Worker verification:* ❓ Needs worker notification service audit to see if locale is passed
+
+**Evidence:**
+- `sheenappsai/src/app/api/projects/[id]/run/overview/route.ts` (✅ verified - settings UI)
+- `sheenapps-claude-worker/src/services/digestService.ts` (worker - not verified)
+- `sheenapps-claude-worker/src/services/inhouse/InhouseEmailService.ts` (worker - not verified)
+- `sheenapps-claude-worker/src/services/runNotificationService.ts` (worker - not verified)
+
+**Impact:** Digests fail silently; Arabic user experience is inconsistent.
+
+---
+
+### 4.7 Real‑Time & Freshness
+
+- KPI data is derived from **daily rollups** (job runs once daily). "Refresh" does not recompute KPIs.
+  - *Next.js verification:* ✅ Confirmed UI fetches from worker `/run/overview` endpoint
+  - *Worker verification:* ❓ Needs audit of rollup job schedule and refresh behavior
+
+- Data freshness indicator uses last event timestamp, not last rollup time.
+  - *Next.js verification:* ✅ Confirmed UI displays `lastEventAt` (run-overview-content.tsx)
+  - *Worker verification:* ❓ Needs audit to see if `lastRollupAt` is available
+
+**Evidence:**
+- `sheenapps-claude-worker/src/jobs/businessKpiRollupJob.ts` (worker - not verified)
+- `sheenappsai/src/components/run/run-overview-content.tsx` (✅ verified - displays lastEventAt)
+
+**Impact:** Users see "Updated X ago" but data can still be stale for today.
+
+**Potential Fix:** Add `lastRollupAt` to worker response and display it in UI alongside `lastEventAt`
+
+---
+
+## 5) Features That Logically Should Exist (Given the Vision)
+
+These are not just “nice‑to‑haves”; they are **required** for “one‑click / zero‑click” non‑technical use.
+
+### 5.1 Setup & Activation
+- **Run Hub Setup Wizard** (first visit):
+  - Check tracking, payments, email, forms.
+  - One‑click connect (Stripe, domain email, CRM, etc.).
+  - Auto‑seed business events from templates (Easy Mode).
+
+### 5.2 Automatic Business Events
+- Emit business events from analytics pipeline (page views → sessions, form submits → leads).
+- Auto‑emit `checkout_started` from built‑in checkout flows.
+- Auto‑emit `lead_created` from built‑in forms or integrations.
+
+### 5.3 Action Reliability + Outcome Proof
+- Every “Action” must execute or clearly fail with reason + fix guidance.
+- Action cards should show:
+  - last run status
+  - last outcome impact
+  - if blocked: why + how to fix
+
+### 5.4 CRM‑Lite for Non‑Tech Users
+- Leads/Customers view with status labels (“new”, “contacted”, “converted”).
+- Simple bulk actions (mark as contacted, add note).
+
+### 5.5 Proactive Delivery
+- Daily digest actually delivers (template + scheduling works).
+- Slack/WhatsApp/SMS optional for Arabic markets.
+
+---
+
+## 6) Prioritized Recommendations
+
+### P0 — Trust & Functionality (Immediate)
+1. **Wire workflow execution**
+   - Add a worker queue/runner to call `WorkflowExecutionService.execute()`.
+   - Persist workflow status transitions.
+   - Emit `business_events` for workflow sends (e.g., `recovery_email_sent`).
+2. **Make actions honest**
+   - Fix `isActionImplemented()` to reflect real status.
+   - Show “Soon” badges where unavailable.
+   - Use `/run/actions` endpoint to drive UI availability + policy.
+3. **Fix navigation context**
+   - Parse `tab`/`filter` query params in `RunPageContent` and pass to children.
+4. **Fix digest sending**
+   - Add `daily_digest` template.
+   - Pass locale into email sends, with fallback mapping.
+
+### P1 — Data Reliability (High Priority)
+1. **Bridge analytics → business_events**
+   - Convert analytics `page` → `session_started` or derive sessions.
+   - Convert form submits → `lead_created`.
+2. **Emit missing event types**
+   - `checkout_started`, `abandoned_checkout`, `lead_created` for all templates.
+3. **Show rollup freshness**
+   - Include `lastRollupAt` in overview and display it.
+
+### P2 — Smooth Non‑Tech Journey
+1. **Run Hub Onboarding**
+   - Guided setup + “Fix tracking” CTA.
+   - Auto‑connect recommended integrations.
+2. **Unified integration status**
+   - Show “Payments connected”, “Emails verified”, “Tracking active”.
+3. **One‑click recommended actions**
+   - Auto‑fill message content and allow sending in one click.
+
+### P3 — Strategic Enhancements
+1. **Action history & automation** (scheduled workflows, caps, safe defaults).
+2. **Multi‑project overview** (portfolio view for agencies/owners).
+3. **AI summaries + recommendations** (once data is reliable).
+
+---
+
+## 7) Suggested 2‑Week “Stability Sprint”
+
+**Goal:** Make Run Hub trustworthy for real users.
+
+- Day 1–3: workflow execution + queue integration
+- Day 4–5: add daily_digest template + email locale handling
+- Day 6–8: analytics → business_events mapping (sessions/leads)
+- Day 9–10: tab query params + action availability wiring
+- Day 11–14: onboarding/setup UI + “Fix tracking” guidance
+
+---
+
+## 8) Key Files to Update (Shortlist)
+
+**Worker Files** (require worker codebase access):
+- `sheenapps-claude-worker/src/services/workflowExecutionService.ts` - Verify execution wiring
+- `sheenapps-claude-worker/src/jobs/scheduledJobs.ts` - Add workflow runner job
+- `sheenapps-claude-worker/src/services/digestService.ts` - Verify template usage
+- `sheenapps-claude-worker/src/services/inhouse/InhouseEmailService.ts` - Add `daily_digest` template + locale handling
+- `sheenapps-claude-worker/src/routes/inhouseWorkflowRuns.ts` - Verify queue integration
+- `sheenapps-claude-worker/src/routes/inhouseRunOverview.ts` - Add real alert count queries
+- `sheenapps-claude-worker/src/services/inhouse/InhouseAnalyticsService.ts` - Bridge analytics → business_events
+
+**Next.js Files** (verified and ready to fix):
+- `sheenappsai/src/components/run/run-page-content.tsx` - ✅ Add query param parsing
+- `sheenappsai/src/components/run/run-overview-content.tsx` - ✅ Use renamed action functions
+- `sheenappsai/src/lib/run/action-handlers.ts` - ✅ Rename `isActionImplemented` → `hasActionHandler`
+- `sheenappsai/src/app/api/projects/[id]/run/overview/route.ts` - ✅ Add locale normalization
+
+---
+
+## 9) Conclusion
+
+Run Hub is **visually impressive**, but **trust is fragile** unless actions execute and metrics are real. The next wave should not add more UI — it should **make the existing UI true**. That means fixing data flow, real action execution, and a clear setup path for non‑technical users. Without this, Run Hub will feel like a demo; with it, it can become the "business operating system" vision.
+
+---
+
+## 10) Critical Evaluation & Implementation Plan
+
+**Date Updated:** 2026-01-30
+**Analysis By:** Code exploration + architecture review
+
+### 10.1 Known Unknowns: Worker Audit Checklist
+
+**These require worker codebase access to verify.** Each should have a yes/no answer.
+
+#### Workflow Execution
+- [ ] Does a scheduler/queue runner call `WorkflowExecutionService.execute()` in production?
+- [ ] Are workflow status transitions (queued → running → success/fail) persisted to database?
+- [ ] Does workflow execution emit `business_events` for sends (e.g., `recovery_email_sent`)?
+- [ ] Can stuck/expired workflow runs be recovered (lease expiration logic)?
+- [ ] Is there heartbeat/progress tracking during long-running workflows?
+
+#### Email & Digest
+- [ ] Does `daily_digest` template exist in InhouseEmailService template registry?
+- [ ] Are all 5 base locales (en, ar, fr, es, de) implemented for digest?
+- [ ] What happens when project locale is `ar-sa` or `ar-eg`? (Error? Fallback? Silent fail?)
+- [ ] Does notification service receive locale from Next.js settings?
+- [ ] Are digest emails actually sent (not just logged)?
+
+#### Data & Events
+- [ ] Are alert counts (paymentFailedCount, checkoutStartedCount) fetched from real events or hardcoded?
+- [ ] Does analytics SDK emit `session_started`, `lead_created` to business_events table?
+- [ ] Are `checkout_started` and `abandoned_checkout` events emitted anywhere?
+- [ ] Is there a bridge/transformer between `inhouse_analytics_events` and `business_events`?
+- [ ] What's the KPI rollup schedule? (Daily? Hourly? On-demand?)
+
+#### API Contracts
+- [ ] Does `/run/actions` endpoint exist and return action availability + policy rules?
+- [ ] Does overview endpoint include `lastRollupAt` timestamp (or just `lastEventAt`)?
+- [ ] Can alerts receive real event counts via API (not just TODO placeholders)?
+
+**Action:** Schedule worker audit session to answer these questions before Phase 2.
+
+---
+
+### 10.2 Architecture Reality Check
+
+**Finding:** Sections 1-9 assume Next.js owns workflow execution, business events, and email sending. **This is incorrect.**
+
+**Actual Architecture:**
+- **Next.js (`sheenappsai`)**: Proxy layer + UI + settings management
+- **Worker (`sheenapps-claude-worker`)**: Owns all execution, data ingestion, email sending, job scheduling
+
+**What this means:**
+- "Wire workflow execution in Next.js" → **Invalid recommendation** (it's already in worker)
+- "Add InhouseEmailService to Next.js" → **Invalid recommendation** (it's in worker)
+- "Bridge analytics → business_events in Next.js" → **Invalid recommendation** (this is worker's job)
+
+### 10.2 What's Actually True vs. Overengineered
+
+#### ✅ **TRUE ISSUES (Must Fix)**
+
+1. **Navigation query params not parsed** *(4.4)*
+   - **Status:** Confirmed bug in `run-page-content.tsx`
+   - **Evidence:** File uses local state `activeTab`, never reads `searchParams`
+   - **Impact:** Deep-linking broken (clicking "Follow up leads" lands on Overview tab instead of Leads)
+   - **Fix:** Add `useEffect` to parse `tab` query param on mount
+   - **Complexity:** Low (15 lines of code)
+
+2. **isActionImplemented() misleadingly named** *(4.2)*
+   - **Status:** Partially true (function works but name is confusing)
+   - **Evidence:** Always returns `true` for any handler in registry
+   - **Impact:** Name suggests "backend can execute" but only checks "handler exists"
+   - **Fix:** Rename to `hasActionHandler()` and add `canExecuteAction()` that checks backend
+   - **Complexity:** Low (refactor + type updates)
+
+3. **Digest template missing in worker** *(4.6)*
+   - **Status:** **Requires worker codebase check** (can't verify from Next.js)
+   - **Evidence:** `digestService.ts` references `daily_digest` template
+   - **Impact:** Digests will fail silently if template doesn't exist
+   - **Fix:** Add template to worker's `InhouseEmailService`
+   - **Complexity:** Medium (requires worker PR + 5 locale translations)
+
+4. **Locale fallback for digest emails** *(4.6)*
+   - **Status:** True (variants like `ar-sa` will break)
+   - **Evidence:** Templates only support base locales (`en`, `ar`, `fr`, `es`, `de`)
+   - **Impact:** Arabic users in Saudi/Egypt/UAE get errors or English fallback
+   - **Fix:** Map `ar-*` → `ar`, `fr-*` → `fr` before sending
+   - **Complexity:** Low (add locale normalization function)
+
+5. **Alert computation uses placeholder values** *(4.5)*
+   - **Status:** True (TODO comments in code)
+   - **Evidence:** `paymentFailedCount: 0, checkoutStartedCount: 0` hardcoded
+   - **Impact:** Alerts are inaccurate for payment failures and abandoned carts
+   - **Fix:** Fetch real counts from worker (needs new endpoint or expanded overview response)
+   - **Complexity:** Medium (worker API change + client update)
+
+#### ⚠️ **MISLEADING / ARCHITECTURAL**
+
+1. **"Workflows never execute" (no queue/runner)** *(Section 2)*
+   - **Status:** Misleading - worker owns this, not Next.js
+   - **Reality:** Next.js is a proxy; `/api/projects/[id]/run/workflow-runs` forwards to worker
+   - **Action:** Check worker codebase to verify execution logic exists
+   - **If worker is broken:** Fix in worker repo, not Next.js
+
+2. **"Business events never emitted"** *(4.1)*
+   - **Status:** Architectural - worker owns event ingestion, not Next.js
+   - **Reality:** Payments SDK, analytics SDK, form handlers emit to worker
+   - **Action:** Verify event sources in worker, not Next.js
+   - **If events missing:** Add emitters in worker/SDKs, not Next.js proxy
+
+3. **"Email sending stubbed"** *(Section 2)*
+   - **Status:** Unknown - this is in worker service
+   - **Reality:** `InhouseEmailService` is in worker, not accessible from Next.js codebase
+   - **Action:** Audit worker email service separately
+
+#### 🔮 **FUTURE ENHANCEMENTS (Defer Until Core is Solid)**
+
+1. **"Setup Wizard" for Run Hub** *(5.1, P2)*
+   - **Current Priority:** Deferred - too heavy for current maturity level
+   - **Phase 1 Alternative:** Improve empty states with actionable CTAs ("Connect Stripe", "Add tracking code")
+   - **Future Value:** Full wizard makes sense once integrations are stable and we have usage data showing where users get stuck
+   - **Timing:** After P0/P1 are complete and we see real user onboarding patterns
+
+2. **"CRM-Lite" features** *(5.4)*
+   - **Current Priority:** Deferred - not blocking core functionality
+   - **Phase 1 Alternative:** Link to existing Leads tab (already has list + filters)
+   - **Future Value:** Note-taking, status labels, bulk actions would enhance lead management
+   - **Timing:** After we have real lead data flowing and users request these features
+
+3. **"Multi-project overview"** *(P3)*
+   - **Current Priority:** Deferred - need single-project solid first
+   - **Phase 1 Alternative:** Perfect single-project experience
+   - **Future Value:** Essential for agencies managing multiple clients
+   - **Timing:** After Run Hub proves valuable for 1 project, before agency/enterprise push
+
+4. **"AI summaries + recommendations"** *(P3)*
+   - **Current Priority:** Deferred - data must be reliable first
+   - **Phase 1 Alternative:** Focus on data reliability (P0/P1)
+   - **Future Value:** AI insights can dramatically reduce time-to-action for non-technical users
+   - **Timing:** After KPIs are accurate and we have 3+ months of historical data
+
+### 10.3 Revised Implementation Plan
+
+#### **Phase 1: Quick Wins (1-2 days) - Trust Restoration**
+
+These are **Next.js-only** fixes that don't require worker changes:
+
+**Definition of Done:**
+- [ ] `?tab=leads` deep-links correctly on first load and preserves on refresh
+- [ ] Action "Follow up leads" lands on Leads tab with filter applied
+- [ ] `hasClientHandler()` is semantically correct (renamed from `isActionImplemented`)
+- [ ] Email locale normalization maps `ar-*` → `ar`, `fr-*` → `fr` with unit test coverage
+- [ ] Arabic users get correct email templates (not fallback to English)
+
+**Tasks:**
+
+1. **Fix navigation query params** *(P0)*
+   ```typescript
+   // File: src/components/run/run-page-content.tsx
+   const searchParams = useSearchParams()
+   const tab = searchParams.get('tab') as TabType | null
+   const filter = searchParams.get('filter')
+
+   // React to specific param values, not object reference
+   useEffect(() => {
+     if (tab && ['overview', 'transactions', 'leads', 'notifications'].includes(tab)) {
+       setActiveTab(tab)
+     }
+   }, [tab]) // Depend on value, not searchParams object
+
+   // Only apply on initial mount, don't override manual tab switches
+   const hasAppliedInitialTab = useRef(false)
+   useEffect(() => {
+     if (!hasAppliedInitialTab.current && tab) {
+       setActiveTab(tab)
+       hasAppliedInitialTab.current = true
+     }
+   }, [tab])
+   ```
+   - **Impact:** Deep-linking works, actions land users on correct tab, back/forward feels natural
+   - **Complexity:** 15 lines of code
+   - **Nuance:** Depend on specific param values (not searchParams object) to avoid effect churn
+
+2. **Refine action capability checking** *(P0)*
+
+   **Problem:** Current `isActionImplemented()` conflates "client handler exists" with "backend can execute"
+
+   **Solution:**
+   ```typescript
+   // File: src/lib/run/action-handlers.ts
+
+   // Rename: truthful about what it checks
+   export function hasClientHandler(actionId: string): boolean {
+     return !!ACTION_HANDLERS[actionId]
+   }
+
+   // New: checks worker capability (from /run/actions or capabilities endpoint)
+   export function canExecuteAction(actionId: string, availability: ActionAvailability): boolean {
+     if (!hasClientHandler(actionId)) return false
+     return availability.status === 'available'
+   }
+   ```
+
+   **UI states:**
+   - **Available**: Green, clickable (worker confirmed capability)
+   - **Blocked**: Yellow, shows reason + fix CTA (e.g., "Connect Stripe to send promos")
+   - **Coming Soon**: Gray, shows badge (handler exists but feature incomplete)
+
+   **Source of truth:** Worker's `/run/actions` endpoint, not frontend registry
+
+   - **Impact:** Actions only appear available when backend can actually execute them
+   - **Complexity:** Medium (rename + add worker capability check + update UI states)
+
+3. **Add locale normalization for emails** *(P0)*
+   ```typescript
+   // File: src/lib/run/locale-helpers.ts (new)
+   export function normalizeEmailLocale(locale: string): string {
+     // Map ar-sa, ar-eg, ar-ae → ar
+     if (locale.startsWith('ar')) return 'ar'
+     if (locale.startsWith('fr')) return 'fr'
+     // ... etc
+     return locale.split('-')[0] // Fallback: take base
+   }
+   ```
+   - **Impact:** Arabic users get correct templates instead of errors
+   - **Complexity:** 20 lines + update PATCH route
+
+#### **Phase 2: Worker Coordination (3-5 days) - Worker Team**
+
+These require **worker codebase changes** (cannot be done in Next.js):
+
+**Definition of Done:**
+- [ ] Digest job sends successfully in staging for en, ar, fr locales
+- [ ] Alerts display real event counts (not `paymentFailedCount: 0` placeholder)
+- [ ] Workflow status transitions (queued → running → success/fail) are persisted and visible via API
+- [ ] Known Unknowns checklist (Section 10.1) has answers for all 20 questions
+- [ ] Integration smoke tests pass: create workflow run → execute → see outcome in UI
+
+**Tasks:**
+
+1. **Add daily_digest email template** *(P0 - Worker)*
+   - File: `sheenapps-claude-worker/src/services/inhouse/InhouseEmailService.ts`
+   - Add template for 5 locales (en, ar, fr, es, de)
+   - Test digest job sends successfully
+
+2. **Expose real alert counts in overview API** *(P0 - Worker)*
+   - File: `sheenapps-claude-worker/src/routes/inhouseRunOverview.ts`
+   - Add `paymentFailedCount`, `checkoutStartedCount` to response
+   - Query from `business_events` table with date filters
+
+3. **Verify workflow execution** *(P0 - Worker)*
+   - File: `sheenapps-claude-worker/src/services/workflowExecutionService.ts`
+   - Confirm queue/runner calls `execute()` method
+   - Verify status transitions are persisted
+   - Add workflow outcome events (`recovery_email_sent`, etc.)
+
+#### **Phase 3: Data Reliability (5-7 days) - Worker Team**
+
+This is the **biggest gap** but requires worker architecture decisions:
+
+**Definition of Done:**
+- [ ] A project with only analytics SDK + form shows non-zero sessions and leads in Run Overview within 5 minutes of activity
+- [ ] Empty state rate drops from ~80% to <20% of active projects
+- [ ] Abandoned checkout alerts trigger when `checkout_started` event fired 30min ago without payment
+- [ ] Lead event is emitted when built-in form is submitted
+- [ ] KPI data updates at least every 15 minutes (not just daily rollup)
+
+**Tasks:**
+
+1. **Bridge analytics → business_events** *(P1 - Worker/SDK)*
+
+   **Problem:** Analytics SDK writes to `inhouse_analytics_events`, not `business_events`
+
+   **Architecture Decision:** Three options with tradeoffs:
+
+   | Approach | Speed to Ship | Long-term Drift Risk | UX (Staleness) | Migration Effort |
+   |----------|---------------|----------------------|----------------|------------------|
+   | **Dual-write** | Fastest | High (two sources of truth) | Best (real-time) | Low |
+   | **ETL nightly** | Medium | Low (single source) | Worst (24h lag) | Low |
+   | **Unified schema** | Slowest | Lowest | Best | High |
+
+   **Recommended: Materialized View Transformer (hybrid approach)**
+   - Keep `inhouse_analytics_events` as **raw source of truth**
+   - Build **versioned transformer** that writes derived `business_events`
+   - Run near-real-time (every 1-5 minutes), not nightly
+   - Make it idempotent + replayable (store transformer version for debugging)
+   - Benefits:
+     - Single source of truth (analytics_events)
+     - Real-time enough for UI refresh
+     - Can replay/fix historical data by re-running transformer
+     - `business_events` becomes a **product layer**, not equal peer
+
+   **Decision needed:** Approve transformer approach vs. simpler dual-write
+
+2. **Auto-emit lead_created from forms** *(P1 - Worker/SDK)*
+   - Add business event emission to form submission handlers
+   - Include metadata (source, campaign, etc.)
+
+3. **Auto-emit checkout events** *(P1 - Worker/SDK)*
+   - `checkout_started`: When user lands on checkout page
+   - `abandoned_checkout`: 30min timer after checkout_started without payment
+
+#### **Phase 3.5: Observability (1-2 days) - Critical for Debugging**
+
+**Why before Phase 4:** Can't debug what you can't see. Run Hub's core loop is *Signal → Decide → Act → Measure → Learn* — we need metrics at each step.
+
+**Minimum Required Metrics:**
+
+1. **Event Ingestion Metrics**
+   - Event rate (events/min by type)
+   - Ingestion lag (event timestamp vs. processed timestamp)
+   - Error rate by project
+
+2. **Workflow Execution Metrics**
+   - Status distribution (queued/running/success/fail counts)
+   - Median execution time by action_id
+   - Retry count histogram
+   - Stuck workflows (running > 30min)
+
+3. **Digest Delivery Metrics**
+   - Sent/failed counts by template+locale
+   - Delivery time (when scheduled vs. when sent)
+   - Bounce/error reasons
+
+4. **KPI Rollup Health**
+   - Last successful rollup timestamp (per project)
+   - Rollup duration (should be <1min)
+   - Projects with stale KPIs (>24h old)
+
+**Where to surface:**
+- Worker logs (for debugging)
+- Admin dashboard metrics page (for visibility)
+- `lastRollupAt` in overview API response (for user-facing freshness)
+
+**Complexity:** Low (mostly logging + one Postgres query for lastRollupAt)
+
+---
+
+#### **Phase 4: UX Polish (2-3 days) - Next.js**
+
+Only after P0/P1 are solid:
+
+1. **Improve empty states** *(P2 - Next.js)*
+   - Replace "Deploy to get started" with specific CTAs
+   - "No payments yet? Connect Stripe"
+   - "No leads yet? Add tracking code"
+   - Show integration status checkboxes
+
+2. **Add integration status indicators** *(P2 - Next.js)*
+   - Fetch from worker: `{ stripe: true, email: false, analytics: true }`
+   - Display in Run Hub header or settings tab
+
+### 10.4 Architecture Boundaries (Where to Implement What)
+
+Based on architecture analysis, **respect these boundaries**:
+
+1. ⚠️ **Workflow execution belongs in Worker, not Next.js**
+   - Worker owns queues and execution
+   - Next.js is proxy/UI only
+   - **Action:** Fix in worker if broken; don't duplicate in Next.js
+
+2. ⚠️ **Email sending belongs in Worker, not Next.js**
+   - Worker owns InhouseEmailService and templates
+   - Next.js provides settings UI only
+   - **Action:** Add templates to worker; Next.js just configures
+
+3. ⚠️ **Event ingestion belongs in Worker/SDK, not Next.js**
+   - Analytics SDK → worker pipeline
+   - Next.js displays events, doesn't emit them
+   - **Action:** Add event emitters in worker/SDK, not Next.js proxy
+
+4. ⚠️ **Setup wizard should start minimal, then evolve**
+   - Phase 1: Improved empty states with CTAs
+   - Phase 2: One-click integration connections
+   - Phase 3: Full wizard (only if usage data shows it's needed)
+   - **Action:** Start with quick wins, measure, then enhance
+
+5. ⚠️ **CRM features belong in dedicated Leads/Customers experience**
+   - Phase 1: Link to existing Leads tab
+   - Phase 2: Enhance Leads tab with status/notes/bulk actions
+   - Phase 3: Standalone CRM-lite if warranted
+   - **Action:** Don't bloat Run Overview; enhance dedicated views
+
+### 10.5 Immediate Next Steps (Today/Tomorrow)
+
+**Next.js Quick Wins** (can do now, no dependencies):
+1. Fix query param navigation (15min)
+2. Rename `isActionImplemented` → `hasActionHandler` (30min)
+3. Add locale normalization for emails (30min)
+
+**Worker Coordination Required** (schedule with worker team):
+1. Verify `daily_digest` template exists or add it
+2. Add real alert counts to overview endpoint
+3. Confirm workflow execution is wired + working
+
+**Decision Needed**:
+- How to bridge analytics → business_events (dual-write? ETL? unified schema?)
+
+---
+
+## 11) Status Tracking
+
+**Last Updated:** 2026-01-30
+
+| Issue | Category | Status | Owner | Blocker? | Notes |
+|-------|----------|--------|-------|----------|-------|
+| Query param navigation | Next.js | ✅ Ready to fix | Frontend | No | Phase 1 quick win |
+| isActionImplemented naming | Next.js | ✅ Ready to fix | Frontend | No | Phase 1 quick win |
+| Locale normalization | Next.js | ✅ Ready to fix | Frontend | No | Phase 1 quick win |
+| daily_digest template | Worker | ⏳ Needs verification | Worker team | Yes (digests fail) | Phase 2 - verify exists or add |
+| Alert count placeholders | Worker | ⏳ Needs API change | Worker team | Yes (alerts wrong) | Phase 2 - API expansion |
+| Workflow execution wiring | Worker | ❓ Unknown status | Worker team | Yes (workflows don't run) | Phase 2 - audit worker |
+| Analytics → business_events | Architecture | 🔴 Decision needed | Team lead | Yes (no data) | Phase 3 - dual-write vs ETL vs unified |
+| Checkout event emission | Worker/SDK | 🔴 Not implemented | SDK team | Yes (no alerts) | Phase 3 - add to checkout flow |
+| Lead event emission | Worker/SDK | 🔴 Not implemented | SDK team | Yes (no leads) | Phase 3 - add to form handlers |
+| Improved empty states | Next.js | 🔮 Future Phase 4 | Frontend | No | Better CTAs before wizard |
+| Setup wizard | Next.js | 🔮 Future (later) | Frontend | No | After empty states prove insufficient |
+| CRM-Lite features | Next.js | 🔮 Future (later) | Frontend | No | Enhance Leads tab when requested |
+| Multi-project overview | Next.js | 🔮 Future (later) | Frontend | No | After single-project is solid |
+| AI summaries | Next.js | 🔮 Future (later) | AI team | No | After 3+ months of reliable data |
+
+**Legend:**
+- ✅ Ready to implement (no blockers)
+- ⏳ Waiting on dependency/team
+- ❓ Status unknown (needs investigation)
+- 🔴 Major gap (requires design decision)
+- 🔮 Future enhancement (deferred until core is solid)
+
+---
+
+## 12) Phased Roadmap: Core → Enhancements
+
+**Philosophy:** Build trust with core functionality first, then add convenience features.
+
+### **Phase 1: Trust Restoration (Days 1-2)**
+**Goal:** Make existing features work correctly
+
+**Tasks:**
+- ✅ Fix navigation (query params)
+- ✅ Clarify action availability (rename `isActionImplemented` → `hasClientHandler`)
+- ✅ Fix locale handling (Arabic users get correct templates)
+
+**Definition of Done:**
+- [ ] `?tab=leads` deep-links work on first load
+- [ ] Actions land on correct tab with filters
+- [ ] Arabic emails render in Arabic (not English fallback)
+
+**User Impact:** Actions work as expected, deep-linking works, Arabic UX improves
+
+### **Phase 2: Worker Coordination (Days 3-7)**
+**Goal:** Verify/fix execution layer
+
+**Tasks:**
+- ⏳ Confirm digest template exists (or add)
+- ⏳ Add real alert counts to API
+- ❓ Verify workflow execution wiring
+- ❓ Complete Known Unknowns checklist (20 questions)
+
+**Definition of Done:**
+- [ ] Digest sends successfully in staging (en, ar, fr)
+- [ ] Alerts show real counts (not placeholders)
+- [ ] Workflow transitions persist + visible via API
+- [ ] All 20 checklist questions answered
+
+**User Impact:** Digests deliver, alerts are accurate, workflows execute
+
+### **Phase 3: Data Reliability (Days 8-14)**
+**Goal:** Make KPIs show real data
+
+**Tasks:**
+- 🔴 Bridge analytics → business_events (transformer approach recommended)
+- 🔴 Emit checkout events (abandoned cart alerts work)
+- 🔴 Emit lead events (leads list populated)
+- 🔴 Update KPIs every 5-15 minutes (not just daily)
+
+**Definition of Done:**
+- [ ] Projects with analytics SDK show sessions within 5min
+- [ ] Form submissions create `lead_created` events
+- [ ] Checkout page visits create `checkout_started` events
+- [ ] Empty state rate drops from 80% to <20%
+- [ ] KPIs update every 15min or less
+
+**User Impact:** Run Overview shows real numbers, not empty states
+
+### **Phase 3.5: Observability (Days 15-16)**
+**Goal:** Make system debuggable
+
+**Tasks:**
+- 🔮 Add event ingestion metrics (rate, lag, errors)
+- 🔮 Add workflow execution metrics (status, duration, retries)
+- 🔮 Add digest delivery metrics (sent/failed by locale)
+- 🔮 Surface `lastRollupAt` in overview API + UI
+
+**Definition of Done:**
+- [ ] Can see event ingestion rate per project
+- [ ] Can identify stuck workflows (running >30min)
+- [ ] Can diagnose digest failures by locale
+- [ ] Users see "KPIs updated 5min ago" (accurate timestamp)
+
+**User Impact:** Engineers can debug issues; users see accurate freshness
+
+---
+
+### **Phase 4: UX Polish (Days 17-20)**
+**Goal:** Guide non-technical users
+
+**Tasks:**
+- 🔮 Improve empty states (specific CTAs: "Connect Stripe", "Add tracking")
+- 🔮 Add integration status indicators (green checkmarks for connected services)
+- 🔮 Better error messages (why action blocked + how to fix)
+
+**Definition of Done:**
+- [ ] Empty state conversion >30% (users click CTA and connect)
+- [ ] Integration status visible in header/settings
+- [ ] Time to first action <5min from opening Run Hub
+
+**User Impact:** Users know what to do when data is missing
+
+### **Phase 5: Future Enhancements (Post-Launch)**
+**Goal:** Add convenience after core is proven
+
+Triggered by **user requests** or **usage patterns**, not arbitrary timeline:
+
+1. **Setup Wizard** (if onboarding analytics show users stuck)
+   - Multi-step guided flow for first-time setup
+   - Auto-detect missing integrations
+   - One-click fixes for common issues
+
+2. **CRM-Lite Features** (if users manually track leads externally)
+   - Status labels (new, contacted, converted)
+   - Bulk actions (mark as contacted, export)
+   - Notes on individual leads
+
+3. **Multi-Project Overview** (if agencies request it)
+   - Portfolio view across all projects
+   - Aggregated metrics
+   - Quick-switch between projects
+
+4. **AI Summaries** (after 3+ months of reliable data)
+   - "Your revenue is up 20% vs. last month"
+   - "3 abandoned carts in the last hour - send recovery email?"
+   - Proactive recommendations
+
+---
+
+## 13) Success Metrics (How We'll Know It's Working)
+
+### **Phase 1-2 Success (Trust)**
+- Zero navigation bugs reported
+- Digest delivery rate: 95%+
+- Alert accuracy: real counts, not placeholders
+- Workflow completion rate: >80%
+
+### **Phase 3 Success (Data)**
+- Run Overview empty state: <20% of projects (vs. current ~80%)
+- Leads list populated: >50% of projects with forms
+- KPIs update daily: 100% of projects with events
+
+### **Phase 4 Success (UX)**
+- Empty state conversion: >30% click CTA and connect integration
+- Integration status clarity: <10% support tickets about "why no data"
+- Time to first action: <5min from opening Run Hub
+
+### **Phase 5 Success (Enhancements)**
+- Setup wizard: Only build if >40% users abandon during setup
+- CRM features: Only build if >30% users request lead management
+- Multi-project: Only build if >10% users manage 3+ projects
+- AI summaries: Only build after data is 95%+ reliable
+
+---
+
+## 14) Decision Log
+
+| Date | Decision | Rationale | Owner | Status |
+|------|----------|-----------|-------|--------|
+| 2026-01-30 | Defer setup wizard to Phase 5 | Empty states + CTAs should be sufficient; wizard only if data shows users stuck | Product | ✅ Decided |
+| 2026-01-30 | Keep CRM features as future enhancement | Leads tab exists; enhance it before building new CRM | Product | ✅ Decided |
+| 2026-01-30 | Prioritize query params fix | Breaks user journey; easy fix with high impact | Engineering | ✅ Decided |
+| 2026-01-30 | Rename `isActionImplemented` → `hasClientHandler` | Current name conflates "handler exists" with "backend can execute" | Engineering | ✅ Decided |
+| 2026-01-30 | Add observability before UX polish | Can't debug what you can't see; metrics enable faster iteration | Engineering | ✅ Decided |
+| 2026-01-30 | Recommend materialized view transformer | Balance between speed (dual-write) and safety (single source of truth) | Architecture | ⏳ Proposed |
+| TBD | Approve transformer vs. simple dual-write | Transformer = more complexity but cleaner long-term; dual-write = faster | Architecture | 🔴 Needs decision |
+| TBD | Checkout event timing | When to emit `checkout_started`? Page load vs. form interaction? | Product + Eng | 🔴 Needs decision |
+| TBD | KPI update frequency | Every 5min? 15min? 1hr? Balance freshness vs. database load | Engineering | 🔴 Needs decision |
+| TBD | Worker audit timeline | When can we access worker codebase to answer Known Unknowns? | Team lead | 🔴 Blocking Phase 2 |
+
+---
+
+## 15) Summary: From Assessment to Execution
+
+**What This Document Provides:**
+
+1. **Honest Assessment** (Sections 1-9): Initial findings and gaps identified
+2. **Verified Facts** (Section 10): What code exploration actually confirmed vs. what requires worker audit
+3. **Actionable Checklist** (Section 10.1): 20 yes/no questions to make worker audit deterministic
+4. **Clear Phases** (Section 10.3 + Section 12): Quick wins → Trust → Data → Observability → UX
+5. **Definition of Done** (Each phase): Measurable acceptance criteria, not vibes
+6. **Architecture Guidance** (Section 10.4): Where to implement what (Next.js vs. Worker boundaries)
+7. **Decision Tracking** (Section 14): What's decided, what needs approval, what's blocking
+
+**Key Improvements from Expert Feedback:**
+
+- ✅ **Eliminated confusion** about which sections are authoritative (banner at top)
+- ✅ **Made worker audit actionable** (Known Unknowns checklist with 20 concrete questions)
+- ✅ **Tightened action semantics** (`hasClientHandler` + `canExecuteAction` separate concerns)
+- ✅ **Added Definition of Done** to each phase (measurable, not subjective)
+- ✅ **Added observability phase** (can't ship what you can't debug)
+- ✅ **Refined event architecture** (materialized view transformer vs. dual-write tradeoffs)
+- ✅ **Improved query param fix** (handle useSearchParams stability correctly)
+
+**Next Steps:**
+
+1. **Immediate** (Today): Start Phase 1 quick wins (query params, rename, locale - ~2 hours total)
+2. **This Week**: Schedule worker audit session to answer Known Unknowns checklist
+3. **Decide**: Approve transformer approach vs. simpler dual-write for analytics → business_events
+4. **Week 1-2**: Execute Phase 1-2 (trust restoration + worker coordination)
+5. **Week 2-3**: Execute Phase 3 (data reliability - requires architecture decision first)
+
+**The North Star:**
+
+> "Make the UI true. Run Hub is a trust product; fancy cards with no causality underneath are a betrayal generator."
+
+Every phase, every task, every Definition of Done criterion serves this: making Run Hub do what it appears to do.

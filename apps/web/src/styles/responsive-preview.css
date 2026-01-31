@@ -1,0 +1,218 @@
+/* Responsive Preview Controls Styling */
+
+/* Container for the preview area */
+.preview-container {
+  /* Use grid for perfect centering */
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  background: #f8fafc;
+
+  /* Smooth scrolling for better UX */
+  scroll-behavior: smooth;
+}
+
+/* Preview frame with transform scaling */
+.preview-frame {
+  /* Only animate transform for performance (expert recommendation) */
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+
+  /* Prevent layout shift during scaling */
+  will-change: transform;
+
+  /* Ensure proper stacking context */
+  position: relative;
+}
+
+/* Device selector toolbar */
+.device-toolbar {
+  /* RTL support - toolbar button order respects RTL locales */
+  display: flex;
+  gap: 0.25rem;
+  /* Buttons automatically reorder in RTL contexts */
+}
+
+/* Device selector buttons */
+.device-selector-button {
+  /* Touch-friendly sizing */
+  min-height: 44px;
+  min-width: 44px;
+
+  /* Smooth interactions */
+  transition: all 200ms ease;
+
+  /* Focus states for accessibility */
+  outline-offset: 2px;
+}
+
+.device-selector-button:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Orientation toggle animation */
+.orientation-icon {
+  transition: transform 200ms ease;
+}
+
+.orientation-icon.landscape {
+  transform: rotate(90deg);
+}
+
+/* Zoom controls */
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.zoom-button {
+  min-height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dimension chip styling */
+.dimension-chip {
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.dimension-chip:hover {
+  background: hsl(var(--muted) / 0.8);
+}
+
+/* Loading overlay (expert pattern) */
+.preview-loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(2px);
+  transition: opacity 200ms ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid hsl(var(--primary));
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status indicator */
+.preview-status-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preview-status-indicator .status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e; /* Success green */
+}
+
+/* Responsive breakpoints for toolbar */
+@media (max-width: 640px) {
+  .device-toolbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .device-selector-button span {
+    display: none;
+  }
+
+  .zoom-controls {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .preview-frame {
+    outline: 2px solid;
+  }
+
+  .device-selector-button {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .preview-frame {
+    transition: none;
+  }
+
+  .device-selector-button {
+    transition: none;
+  }
+
+  .loading-spinner {
+    animation: none;
+  }
+}
+
+/* RTL layout adjustments */
+[dir="rtl"] .preview-status-indicator {
+  left: auto;
+  right: 1rem;
+}
+
+[dir="rtl"] .device-toolbar {
+  flex-direction: row-reverse;
+}
+
+/* Focus management during transitions */
+.preview-frame:focus-within {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Container query support for toolbar */
+@container (max-width: 480px) {
+  .device-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .device-selector-button {
+    justify-content: center;
+  }
+}

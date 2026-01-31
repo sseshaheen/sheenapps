@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- English -->
+  <url>
+    <loc>https://sheenapps.com/en</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- Arabic - Egypt -->
+  <url>
+    <loc>https://sheenapps.com/ar-eg</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- Arabic - Saudi Arabia -->
+  <url>
+    <loc>https://sheenapps.com/ar-sa</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- Arabic - UAE -->
+  <url>
+    <loc>https://sheenapps.com/ar-ae</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- Arabic - Standard -->
+  <url>
+    <loc>https://sheenapps.com/ar</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- French -->
+  <url>
+    <loc>https://sheenapps.com/fr</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+  <!-- French - Morocco -->
+  <url>
+    <loc>https://sheenapps.com/fr-ma</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar-eg" href="https://sheenapps.com/ar-eg"/>
+    <xhtml:link rel="alternate" hreflang="ar-sa" href="https://sheenapps.com/ar-sa"/>
+    <xhtml:link rel="alternate" hreflang="ar-ae" href="https://sheenapps.com/ar-ae"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sheenapps.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sheenapps.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="fr-ma" href="https://sheenapps.com/fr-ma"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sheenapps.com/en"/>
+  </url>
+  
+</urlset>

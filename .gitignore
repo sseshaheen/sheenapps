@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+.turbo/
+dist/
+
+# Package manager
+pnpm-debug.log*
+.pnpm-store/
+
+# Environment files & secrets (NEVER commit these)
+.env
+.env.local
+.env.*.local
+.env*-unused
+.envrc
+*.pem
+
+# IDE
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Turborepo
+.turbo

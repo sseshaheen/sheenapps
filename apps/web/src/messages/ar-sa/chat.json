@@ -1,0 +1,56 @@
+{
+  "CHAT_CONNECTION_ESTABLISHED": "تم الاتصال بالمساعد الذكي",
+  "CHAT_TOOL_READ_FILE": "جاري قراءة {file}...",
+  "CHAT_TOOL_SEARCH_CODE": "جاري البحث عن '{pattern}'...",
+  "CHAT_TOOL_FIND_FILES": "جاري البحث عن ملفات '{pattern}'...",
+  "CHAT_TOOL_WRITE_FILE": "جاري الكتابة في {file}...",
+  "CHAT_TOOL_EDIT_FILE": "جاري تعديل {file}...",
+  "CHAT_TOOL_GENERIC": "جاري استخدام {tool}...",
+  "CHAT_ANALYZING": "جاري تحليل طلبك...",
+  "CHAT_PROCESSING": "جاري المعالجة...",
+  "CHAT_FINALIZING": "تقريباً خلصنا...",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE": "رصيدك غير كافٍ. تحتاج {required} دقيقة ولديك {available} دقيقة فقط. أضف رصيداً للمتابعة.",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE_SIMPLE": "رصيدك غير كافٍ. أضف رصيداً للمتابعة.",
+  "CHAT_ERROR_TIMEOUT": "استغرقت العملية وقتاً طويلاً. جرب طلب أبسط أو قسّمه لأجزاء صغيرة.",
+  "CHAT_ERROR_GENERAL": "حدث خطأ: {message}",
+  "CHAT_STREAM_ERROR": "حدث خطأ في الاتصال. جرب مرة ثانية.",
+  "STREAM_ERROR": "حدث خطأ في الاتصال. جرب مرة ثانية.",
+  "CHAT_COMPLETE_SUCCESS": "تم!",
+  "composer": {
+    "aiPlaceholder": "اكتب ما تريد تعديله أو إضافته...",
+    "teamPlaceholder": "رسالة لفريقك...",
+    "sendButton": "إرسال",
+    "cannotSendButton": "لا يمكن الإرسال",
+    "buildModeTooltip": "تنفيذ فوري أو مراجعة أولاً",
+    "buildModeLabel": "الوضع: {mode}",
+    "buildImmediatelyOn": "تنفيذ فوري",
+    "planModeOn": "مراجعة أولاً"
+  },
+  "errors": {
+    "BUILD_TIMEOUT": {
+      "title": "استغرق وقتاً طويلاً",
+      "message": "العملية استغرقت وقتاً أطول من المتوقع",
+      "action": "جرب طلب أبسط مثل 'غيّر لون الخلفية' أو 'أضف صفحة تواصل'",
+      "support": "أو تواصل معنا لمساعدتك"
+    },
+    "BUILD_FAILED": {
+      "title": "حدث خطأ",
+      "message": "واجهنا مشكلة أثناء تنفيذ طلبك",
+      "action": "جرب مرة ثانية - أو جرب طلب مختلف",
+      "support": "فريقنا موجود لمساعدتك عبر واتساب"
+    },
+    "INSUFFICIENT_BALANCE": {
+      "title": "أضف رصيد",
+      "message": "رصيدك غير كافٍ لهذه العملية",
+      "action": "أضف رصيد لتكمل بناء موقعك",
+      "support": "أسئلة عن الأسعار؟ تواصل معنا"
+    }
+  },
+  "recovery": {
+    "title": "حدث خطأ - لا تقلق!",
+    "retryButton": "حاول مرة ثانية",
+    "supportButton": "تواصل مع الدعم",
+    "whatHappened": "ما حصل",
+    "suggestion": "ما نقترحه"
+  }
+}

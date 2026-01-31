@@ -1,0 +1,112 @@
+{
+  "banner": {
+    "title": "¡Has sido recomendado por un Amigo de SheenApps!",
+    "description": "Comienza y ellos ganarán comisión cuando te suscribas."
+  },
+  "cta": {
+    "badge": "Nuevo",
+    "title": "Gana con Amigos SheenApps",
+    "subtitle": "Refiere clientes y gana comisiones recurrentes durante 12 meses",
+    "commission": "Comisión",
+    "months": "Meses",
+    "referrals": "Referencias",
+    "joinButton": "Únete a Amigos SheenApps",
+    "terms": "Gratis unirse • Se aplican términos"
+  },
+  "signup": {
+    "title": "Únete a Amigos SheenApps",
+    "companyName": "Nombre de la empresa",
+    "website": "Sitio web/Portafolio",
+    "marketingChannels": "Canales de marketing",
+    "payoutMethod": "Método de pago preferido",
+    "optional": "(Opcional)",
+    "companyNamePlaceholder": "Tu empresa o marca personal",
+    "selectPayout": "Seleccionar método de pago",
+    "termsText": "Acepto los",
+    "termsLink": "Términos y Condiciones de Amigos SheenApps",
+    "termsRequired": "Por favor acepta los Términos y Condiciones",
+    "cancel": "Cancelar",
+    "create": "Crear cuenta de socio",
+    "creating": "Creando...",
+    "success": "¡Cuenta de socio creada! Enlace de referido copiado.",
+    "successWithCopy": "¡Cuenta de socio creada! Enlace de referido copiado.",
+    "error": "Error al crear cuenta de socio. Por favor intenta de nuevo.",
+    "channels": {
+      "blog": "Blog",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "newsletter": "Newsletter",
+      "other": "Otro"
+    },
+    "payout": {
+      "stripe": "Stripe (Transferencia bancaria)",
+      "paypal": "PayPal",
+      "wire": "Transferencia bancaria",
+      "wise": "Wise (Internacional)"
+    }
+  },
+  "success": {
+    "title": "¡Bienvenido a Amigos SheenApps!",
+    "subtitle": "Tu cuenta de referidos ha sido creada exitosamente",
+    "description": "¡Comienza a compartir tu enlace para ganar 15% de comisión en todos los referidos!",
+    "linkLabel": "Tu enlace de referido:",
+    "codeLabel": "Código de socio",
+    "nextStepsTitle": "Próximos pasos:",
+    "nextStep1": "Comparte tu enlace de referido con tu audiencia",
+    "nextStep2": "Rastrea el rendimiento en tu panel de socio",
+    "nextStep3": "Recibe pagos mensuales por referidos exitosos",
+    "goToDashboard": "Ir al Panel",
+    "viewTerms": "Términos"
+  },
+  "dashboard": {
+    "title": "Panel de Amigos SheenApps",
+    "partnerCode": "Código de Socio",
+    "tier": "Nivel",
+    "refresh": "Actualizar",
+    "refreshing": "Actualizando...",
+    "copyLink": "Copiar Enlace de Referido",
+    "linkCopied": "¡Enlace de referido copiado!",
+    "loadError": "Error al cargar el panel",
+    "networkError": "Error de red cargando el panel",
+    "retry": "Reintentar",
+    "stats": {
+      "clicks": "Total de Clics",
+      "signups": "Registros",
+      "pending": "Ganancias Pendientes",
+      "estimated": "Pago Mensual Estimado",
+      "linkVisits": "Visitas del enlace",
+      "conversion": "{rate}% conversión",
+      "awaitingApproval": "Esperando aprobación",
+      "thisMonth": "Proyección del mes actual"
+    },
+    "recentReferrals": "Referidos Recientes",
+    "recentCommissions": "Comisiones Recientes",
+    "userSignup": "Registro de usuario",
+    "bonus": "Bono",
+    "noReferrals": "Aún no hay referidos",
+    "noReferralsDesc": "Comienza a compartir tu enlace de referido para ver actividad aquí.",
+    "noCommissions": "Aún no has ganado comisiones",
+    "noCommissionsDesc": "Cuando tus referidos hagan su primer pago, verás comisiones aquí.",
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "rejected": "Rechazado",
+      "approved": "Aprobado",
+      "paid": "Pagado",
+      "disputed": "En disputa"
+    },
+    "tierDesc": "{referrals} referidos exitosos • {rate}% tasa de comisión",
+    "nextTier": "Siguiente nivel en",
+    "referralsNeeded": "{count} referidos",
+    "complete": "completo",
+    "maxTier": "¡Nivel máximo alcanzado!",
+    "resources": "Ayuda y Recursos",
+    "viewTerms": "Ver Términos",
+    "viewTermsDesc": "Leer los términos y condiciones completos",
+    "help": "Centro de Ayuda",
+    "helpDesc": "Obtén ayuda con el programa de referidos",
+    "contact": "Contactar Soporte",
+    "contactDesc": "Ponte en contacto con nuestro equipo"
+  }
+}

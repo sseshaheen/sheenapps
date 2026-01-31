@@ -1,0 +1,30 @@
+# Build time optimization - reduce deployment file transfer
+# See: docs/BUILD_TIME_OPTIMIZATION_PLAN.md (Phase 3)
+
+# Documentation (not needed at runtime)
+docs/
+
+# Test files (not needed in production)
+tests/
+**/*.spec.ts
+**/*.test.ts
+
+# NOTE: scripts/ is NOT excluded because generate:template-css.js is used during build
+
+# Development files
+*.md
+!README.md
+.env.example
+.env.local
+.env.development
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Type definitions (compiled into build)
+**/*.d.ts.map

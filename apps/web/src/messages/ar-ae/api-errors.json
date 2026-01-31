@@ -1,0 +1,25 @@
+{
+  "trials": {
+    "planRequired": "اسم الخطة مطلوب",
+    "notEligible": "المستخدم غير مؤهل للحصول على نسخة تجريبية",
+    "customerCreationFailed": "فشل في إنشاء سجل العميل",
+    "invalidReferralCode": "رمز الإحالة غير صالح أو منتهي الصلاحية",
+    "cannotUseSelfReferral": "لا يمكنك استخدام رمز الإحالة الخاص بك",
+    "extensionFailed": "فشل في تمديد النسخة التجريبية"
+  },
+  "export": {
+    "invalidProject": "معرف المشروع غير صالح",
+    "serviceUnavailable": "خدمة التصدير غير متاحة"
+  },
+  "general": {
+    "internalError": "حدث خطأ غير متوقع",
+    "authRequired": "مطلوب مصادقة",
+    "invalidRequest": "طلب غير صالح",
+    "serviceUnavailable": "الخدمة غير متاحة مؤقتاً"
+  },
+  "oauth": {
+    "invalidState": "معامل حالة OAuth غير صالح",
+    "missingCode": "رمز التفويض مفقود",
+    "exchangeFailed": "فشل في تبديل رمز التفويض"
+  }
+}

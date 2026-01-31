@@ -1,0 +1,26 @@
+{
+  "name": "@sheenapps/dispatch-worker",
+  "version": "0.1.0",
+  "description": "SheenApps Dispatch Worker - Routes requests to Easy Mode project Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "tail": "wrangler tail",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "sheenapps",
+    "cloudflare",
+    "workers",
+    "dispatch"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.0",
+    "wrangler": "^3.25.0"
+  }
+}

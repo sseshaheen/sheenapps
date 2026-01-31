@@ -1,0 +1,135 @@
+{
+  "title": "اختر خطتك",
+  "subtitle": "أسعار واضحة وبسيطة - بدون مفاجآت",
+  "badge": "بدون رسوم مخفية، ألغِ في أي وقت",
+  "monthlyBilling": "شهري",
+  "yearlyBilling": "سنوي",
+  "yearlyDiscount": "وفر 20%",
+  "currencyNote": "جميع الأسعار بـ {currency}",
+  "loadingPlans": "جاري التحميل...",
+  "errorLoading": "حدثت مشكلة. حاول مرة أخرى.",
+  "retryButton": "حاول مرة أخرى",
+  "popularPlan": "الأكثر شعبية",
+
+  "subscriptions": {
+    "title": "خطط الاشتراك",
+    "description": "اشترك شهرياً أو سنوياً واستخدم جميع مميزات المنصة."
+  },
+
+  "features": {
+    "expand": "عرض جميع المميزات",
+    "collapse": "إخفاء التفاصيل",
+    "included": "كل ما في {planName}:",
+    "unlimited": "بدون حدود",
+    "perMonth": "شهرياً"
+  },
+
+  "plans": {
+    "free": {
+      "dailyBonusWithGift": "تعديلات يومية مجانية + هدية ترحيبية",
+      "welcomeGiftOnly": "هدية ترحيبية مجانية",
+      "welcomeGiftFeature": "رصيد مجاني عند التسجيل"
+    },
+    "advisor": {
+      "communitySupport": "دعم المجتمع",
+      "sessionsIncluded": "{count} جلسات مع خبير",
+      "unlimitedSessions": "جلسات خبير بدون حدود",
+      "dailySessions": "جلسة خبير يومياً"
+    },
+    "descriptions": {
+      "minutesIncluded": "تعديلات يومية على موقعك",
+      "minutesTotal": "جميع التعديلات التي تحتاجها"
+    },
+    "features": {
+      "bonusMinutesDaily": "تعديلات يومية إضافية",
+      "aiMinutesMonthly": "تعديلات غير محدودة/شهر",
+      "rolloverMinutes": "الرصيد ينتقل للشهر التالي"
+    }
+  },
+
+  "packages": {
+    "title": "شراء رصيد إضافي",
+    "description": "تحتاج تعديلات أكثر؟ اشترِ رصيداً إضافياً في أي وقت - لا ينتهي أبداً.",
+    "badges": {
+      "mostPopular": "الأكثر شعبية",
+      "bestValue": "أفضل قيمة"
+    },
+    "names": {
+      "free": "مجاني",
+      "lite": "عادي",
+      "starter": "مبتدئ",
+      "builder": "بناء",
+      "pro": "احترافي",
+      "ultra": "فائق",
+      "mini": "صغير",
+      "plus": "بلاس",
+      "mega": "كبير",
+      "max": "ماكس"
+    },
+    "features": {
+      "baseMinutes": "{baseMinutes} تعديل",
+      "bonusMinutes": "+{bonusMinutes} تعديل إضافي هدية",
+      "costPerMinute": "{cost} لكل تعديل",
+      "creditsNeverExpire": "الرصيد لا ينتهي أبداً"
+    },
+    "savings": {
+      "saveAtLeast": "وفر {discount}% على الأقل"
+    }
+  },
+
+  "cta": {
+    "getStarted": "ابدأ الآن",
+    "choosePlan": "اختر الخطة",
+    "upgrade": "ترقية الآن",
+    "purchase": "شراء أرصدة",
+    "currentPlan": "الخطة الحالية",
+    "contact": "تواصل مع المبيعات"
+  },
+
+  "pricing": {
+    "free": "مجاني",
+    "month": "/شهر",
+    "billedAnnually": " عند الدفع سنوياً"
+  },
+
+  "currencies": {
+    "SAR": "ريال سعودي",
+    "EGP": "جنيه مصري",
+    "AED": "درهم إماراتي",
+    "USD": "دولار أمريكي",
+    "EUR": "يورو",
+    "GBP": "جنيه إسترليني"
+  },
+
+  "guarantees": {
+    "title": "وعدنا لك",
+    "moneyBack": {
+      "title": "استرداد الأموال خلال 30 يوماً",
+      "description": "استرداد كامل إذا لم تكن راضياً"
+    },
+    "cancelAnytime": {
+      "title": "ألغِ في أي وقت",
+      "description": "بدون عقود أو رسوم إلغاء"
+    },
+    "dataExport": {
+      "title": "امتلك بياناتك",
+      "description": "صدّر كل شيء، في أي وقت"
+    }
+  },
+
+  "faq": {
+    "title": "الأسئلة الشائعة",
+    "currency": {
+      "question": "هل يمكنني تغيير عملة الفواتير؟",
+      "answer": "نعم! نحن ندعم عدة عملات. يتم اكتشاف تفضيلك تلقائياً ويمكن تغييره في أي وقت."
+    },
+    "upgrade": {
+      "question": "هل يمكنني الترقية أو التراجع في أي وقت؟",
+      "answer": "بالطبع. التغييرات تسري فوراً وسنحسب أي فروقات بالتناسب."
+    },
+    "credits": {
+      "question": "هل تنتهي صلاحية الأرصدة المشتراة مرة واحدة؟",
+      "answer": "لا، الأرصدة المشتراة من خلال الحزم المباشرة لا تنتهي صلاحيتها ويمكن استخدامها مع أي اشتراك."
+    }
+  }
+}

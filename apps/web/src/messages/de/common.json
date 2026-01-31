@@ -1,0 +1,51 @@
+{
+  "loading": "Laden...",
+  "error": "Etwas ist schiefgelaufen",
+  "retry": "Erneut versuchen",
+  "close": "Schließen",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "continue": "Weiter",
+  "back": "Zurück",
+  "next": "Next",
+  "chooseLanguage": "Sprache wählen",
+  "pricesInLocalCurrency": "Preise in lokaler Währung angezeigt",
+  "comingSoon": "Demnächst",
+  "authLayout": {
+    "backToHome": "Zurück zur Startseite",
+    "brand": {
+      "name": "SheenApps",
+      "tagline": "Erstellen Sie atemberaubende, mehrsprachige Websites mit der Kraft der KI. Keine Programmierung erforderlich."
+    },
+    "features": {
+      "aiPowered": {
+        "title": "KI-gesteuert",
+        "description": "Generieren Sie wunderschöne Websites in Minuten mit fortschrittlicher KI"
+      },
+      "globalReady": {
+        "title": "Global bereit",
+        "description": "Integrierte Internationalisierung für über 7 Sprachen"
+      },
+      "enterpriseSecurity": {
+        "title": "Unternehmenssicherheit",
+        "description": "Bank-niveau Sicherheit mit Ende-zu-Ende-Verschlüsselung"
+      },
+      "lightningFast": {
+        "title": "Blitzschnell",
+        "description": "Für Geschwindigkeit mit Edge-Computing optimiert"
+      }
+    },
+    "socialProof": {
+      "trustedBy": "Vertraut von Erstellern weltweit",
+      "creatorsCount": "2.000+",
+      "creatorsLabel": "Ersteller",
+      "joinCreators": "Schließen Sie sich über 2.000 Erstellern an, die mit KI bauen"
+    },
+    "mobileFeatures": {
+      "aiPowered": "KI-gesteuert",
+      "secure": "Sicher",
+      "fast": "Schnell"
+    }
+  },
+  "advisorDashboard": "Advisor Dashboard"
+}

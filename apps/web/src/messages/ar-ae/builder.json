@@ -1,0 +1,868 @@
+{
+  "floatingButton": "ابنِ فكرتك",
+  "ideaCapture": {
+    "title": "أخبرنا عن فكرتك",
+    "description": "صف مشروعك بكلماتك. كن مفصلاً أو بسيطاً كما تشاء.",
+    "placeholder": "أريد إنشاء...",
+    "signInPlaceholder": "يرجى تسجيل الدخول لبدء بناء مشروعك",
+    "signInRequired": "تسجيل الدخول مطلوب",
+    "signInMessage": "سجّل دخولك لإنشاء مشروعك ومتابعته",
+    "signInToStartBuilding": "سجّل دخولك وابدأ",
+    "submitButton": "ابدأ البناء",
+    "voiceButton": "استخدم الصوت",
+    "attachButton": "إرفاق ملف",
+    "examples": [
+      "موقع لمقهى أو مطعم",
+      "صفحة حجز مواعيد للعيادة",
+      "متجر لبيع ملابس عبر الإنترنت",
+      "موقع للمكتب برقم التواصل والعنوان"
+    ]
+  },
+  "templates": {
+    "title": "أو اختر قالباً جاهزاً",
+    "subtitle": "ابدأ بشكل أسرع بقوالب مخصصة حسب المجال",
+    "viewAll": "عرض جميع القوالب",
+    "skipTemplate": "أو صف فكرتك الخاصة",
+    "allCategories": "الكل",
+    "preview": "معاينة",
+    "useTemplate": "استخدم القالب",
+    "proRequired": "يتطلب الترقية",
+    "features": "المميزات",
+    "categories": {
+      "retail": "تجارة التجزئة",
+      "services": "الخدمات",
+      "technology": "التكنولوجيا",
+      "platform": "المنصة",
+      "food": "المأكولات والضيافة",
+      "creative": "إبداعي",
+      "education": "تعليم",
+      "corporate": "شركات",
+      "health": "صحة ولياقة",
+      "publishing": "نشر",
+      "events": "فعاليات",
+      "real-estate": "عقارات"
+    },
+    "items": {
+      "ecommerce": {
+        "name": "متجر إلكتروني",
+        "description": "بيع المنتجات عبر الإنترنت مع الدفع والمخزون"
+      },
+      "booking": {
+        "name": "نظام الحجوزات",
+        "description": "جدولة المواعيد للشركات الخدمية"
+      },
+      "restaurant": {
+        "name": "مطعم وقائمة طعام",
+        "description": "قائمة إلكترونية، طلبات وحجز طاولات"
+      },
+      "portfolio": {
+        "name": "موقع أعمال",
+        "description": "اعرض أعمالك واجذب العملاء"
+      },
+      "course-platform": {
+        "name": "منصة دورات",
+        "description": "علّم عبر الإنترنت بدروس فيديو واختبارات"
+      },
+      "business-landing": {
+        "name": "صفحة أعمال",
+        "description": "حوّل الزوار إلى عملاء"
+      },
+      "gym-fitness": {
+        "name": "نادي رياضي",
+        "description": "عضويات، حصص وحجز مدربين"
+      },
+      "blog": {
+        "name": "مدونة ومحتوى",
+        "description": "شارك مقالاتك وابنِ جمهورك"
+      },
+      "saas": {
+        "name": "منصة SaaS",
+        "description": "برامج الاشتراك مع إدارة المستخدمين"
+      },
+      "marketplace": {
+        "name": "سوق إلكتروني",
+        "description": "ربط المشترين والبائعين مع العمولات"
+      },
+      "real-estate": {
+        "name": "عقارات",
+        "description": "قوائم عقارية مع بحث متقدم"
+      },
+      "events-ticketing": {
+        "name": "فعاليات وتذاكر",
+        "description": "بيع التذاكر وإدارة الحضور"
+      }
+    }
+  },
+  "form": {
+    "businessIdea": "فكرتك",
+    "tryExamples": "جرب هذه الأمثلة:"
+  },
+  "planStatus": {
+    "plan": "باقة",
+    "unlimitedGenerations": "إنشاء غير محدود",
+    "generationsRemaining": "{count} إنشاء متبقي",
+    "upgrade": "ترقية"
+  },
+  "interface": {
+    "chat": {
+      "title": "المساعد الذكي",
+      "thinking": "جاري التفكير...",
+      "placeholder": "اسأل سؤالاً أو صف ما تريد بناءه...",
+      "buildMode": "وضع البناء",
+      "planMode": "وضع التخطيط",
+      "modes": {
+        "build": "بناء",
+        "plan": "تخطيط"
+      },
+      "startRecording": "بدء التسجيل الصوتي",
+      "stopRecording": "إيقاف التسجيل",
+      "discardRecording": "إلغاء التسجيل",
+      "confirmDiscard": "إلغاء؟",
+      "confirmYes": "نعم، إلغاء",
+      "confirmNo": "لا، استمر",
+      "recording": "جاري التسجيل",
+      "transcribing": "جاري تحويل الصوت إلى نص...",
+      "processingAudio": "جاري المعالجة...",
+      "voiceAddedToMessage": "تمت إضافة الصوت للرسالة",
+      "microphoneAccessDenied": "تم رفض الوصول إلى الميكروفون. يرجى السماح بالوصول إلى الميكروفون.",
+      "noMicrophoneFound": "لم يتم العثور على ميكروفون. يرجى توصيل ميكروفون.",
+      "voiceRecordingError": "فشل التسجيل الصوتي",
+      "transcriptionError": "فشل تحويل الصوت إلى نص"
+    },
+    "preview": {
+      "title": "معاينة مباشرة",
+      "loading": "جاري بناء تطبيقك..."
+    },
+    "buildLog": {
+      "title": "تقدم البناء",
+      "steps": {
+        "analyzing": "تحليل فكرتك",
+        "scaffolding": "إنشاء الهيكل",
+        "generating": "توليد الصفحات",
+        "styling": "تطبيق التصميم",
+        "deploying": "تجهيز النشر"
+      }
+    },
+    "chatPlan": {
+      "modeBadges": {
+        "question": "سؤال",
+        "feature": "تخطيط الميزة",
+        "fix": "إصلاح الأخطاء",
+        "analysis": "تحليل الكود",
+        "general": "عام",
+        "build": "بناء"
+      },
+      "featurePlan": {
+        "title": "خطة الميزة",
+        "description": "الوصف",
+        "steps": "خطوات التنفيذ",
+        "acceptanceCriteria": "معايير القبول",
+        "estimatedTime": "الوقت المقدر",
+        "complexity": "التعقيد",
+        "feasibility": "الجدوى",
+        "convertToBuild": "ابدأ البناء",
+        "complexityLevels": {
+          "simple": "بسيط",
+          "moderate": "متوسط",
+          "complex": "معقد"
+        },
+        "feasibilityLevels": {
+          "easy": "سهل",
+          "moderate": "متوسط",
+          "challenging": "صعب"
+        }
+      },
+      "fixPlan": {
+        "title": "خطة إصلاح الأخطاء",
+        "issueAnalysis": "تحليل المشكلة",
+        "rootCause": "السبب الجذري",
+        "solutions": "الحلول المقترحة",
+        "confidence": "الثقة",
+        "riskLevel": "مستوى المخاطرة",
+        "estimatedTime": "وقت الإصلاح",
+        "selectSolution": "اختر الحل",
+        "confidenceLevels": {
+          "low": "منخفض",
+          "medium": "متوسط",
+          "high": "عالي"
+        },
+        "riskLevels": {
+          "low": "مخاطر منخفضة",
+          "medium": "مخاطر متوسطة",
+          "high": "مخاطر عالية"
+        }
+      },
+      "questionResponse": {
+        "answer": "الإجابة",
+        "codeReferences": "مراجع الكود",
+        "relatedQuestions": "أسئلة ذات صلة",
+        "lineNumber": "السطر",
+        "lines": "الأسطر"
+      },
+      "analysisResults": {
+        "title": "Code Analysis",
+        "findings": "Findings",
+        "category": "Category",
+        "severity": "Severity",
+        "suggestion": "Suggestion",
+        "impact": "Impact",
+        "categories": {
+          "performance": "Performance",
+          "security": "Security",
+          "maintainability": "Maintainability",
+          "best_practices": "Best Practices",
+          "code_quality": "Code Quality"
+        },
+        "severityLevels": {
+          "error": "Error",
+          "warning": "Warning",
+          "info": "Info"
+        }
+      },
+      "convertDialog": {
+        "title": "تحويل الخطة إلى بناء",
+        "description": "حول هذه الخطة إلى تغييرات فعلية في الكود. سيبدأ هذا عملية بناء لتنفيذ الميزات المخططة.",
+        "estimatedCost": "وقت الذكاء الاصطناعي المقدر: {minutes} دقيقة",
+        "confirm": "ابدأ البناء",
+        "cancel": "إلغاء",
+        "cannotCancel": "لا يمكن إلغاء هذه العملية بمجرد بدئها",
+        "insufficientBalance": "تحتاج إلى {minutes} دقيقة إضافية من وقت الذكاء الاصطناعي لإكمال هذا البناء.",
+        "addCredits": "إضافة رصيد"
+      },
+      "usage": {
+        "billedSeconds": "AI Time Used: {seconds}s",
+        "tokensUsed": "Tokens: {tokens}",
+        "sessionId": "Session: {id}"
+      },
+      "errors": {
+        "connectionLost": "Connection lost. Please try again.",
+        "streamError": "Error receiving response. Please retry.",
+        "conversionFailed": "Failed to convert plan to build. Please try again.",
+        "insufficientBalance": "Insufficient AI time credits. Please add more credits to continue.",
+        "projectNotFound": "Project not found or access denied.",
+        "rateLimitExceeded": "Too many requests. Please wait a moment and try again.",
+        "authenticationFailed": "Authentication failed. Please refresh and try again.",
+        "unknownError": "An unexpected error occurred. Please try again."
+      }
+    }
+  },
+  "buildEvents": {
+    "BUILD_DEPENDENCIES_INSTALLING": "جاري تثبيت الحزم... (الخطوة {step} من {total})",
+    "BUILD_FRAMEWORK_DETECTING": "جاري اكتشاف الإطار... (الخطوة {step} من {total})",
+    "BUILD_CODE_GENERATING": "جاري توليد الكود... (الخطوة {step} من {total})",
+    "BUILD_ASSETS_OPTIMIZING": "جاري تحسين الملفات... (الخطوة {step} من {total})",
+    "BUILD_PROJECT_DEPLOYING": "جاري نشر المشروع... (الخطوة {step} من {total})",
+    "BUILD_COMPLETE": "اكتمل البناء!",
+    "BUILD_FAILED": "فشل البناء: {reason}",
+    "BUILD_STARTED": "بدء عملية البناء...",
+    "BUILD_PROGRESS": "تقدم البناء: {progress}%",
+    "BUILD_TIMEOUT": "انتهت مهلة البناء بعد {minutes} دقيقة",
+    "BUILD_QUEUED": "البناء في قائمة الانتظار",
+    "BUILD_VALIDATING": "التحقق من إعدادات المشروع",
+    "BUILD_CODE_REVIEWING": "مراجعة الكود المُولّد",
+    "BUILD_CODE_APPLYING": "تطبيق تغييرات الكود",
+    "BUILD_DEPENDENCIES_ANALYZING": "تحليل الحزم المطلوبة",
+    "BUILD_DEPENDENCIES_CACHED": "استخدام الحزم المخزنة",
+    "BUILD_COMPILING": "ترجمة التطبيق",
+    "BUILD_BUNDLING": "تجميع الملفات",
+    "BUILD_OPTIMIZING": "تحسين الإنتاج",
+    "BUILD_DEPLOY_PREPARING": "تحضير النشر",
+    "BUILD_DEPLOY_UPLOADING": "رفع إلى CDN",
+    "BUILD_DEPLOY_ACTIVATING": "تفعيل المعاينة",
+    "BUILD_CANCELLED": "تم إلغاء البناء",
+    "ROLLBACK_STARTED": "بدء عملية الاستعادة",
+    "ROLLBACK_VALIDATING": "التحقق من الإصدار المستهدف",
+    "ROLLBACK_ARTIFACT_DOWNLOADING": "تحميل ملفات الاستعادة",
+    "ROLLBACK_WORKING_DIR_SYNCING": "مزامنة مجلد العمل",
+    "ROLLBACK_PREVIEW_UPDATING": "تحديث رابط المعاينة",
+    "ROLLBACK_COMPLETED": "اكتملت الاستعادة بنجاح",
+    "ROLLBACK_FAILED": "فشلت الاستعادة: {reason}",
+    "BUILD_DEVELOPMENT_STARTING": "الذكاء الاصطناعي يبدأ العمل على مشروعك",
+    "BUILD_DEVELOPMENT_COMPLETE": "انتهى الذكاء الاصطناعي من إنشاء كود تطبيقك",
+    "BUILD_DEPENDENCIES_COMPLETE": "تم تثبيت الحزم بنجاح",
+    "BUILD_PREVIEW_PREPARING": "جاري تحضير معاينة التطبيق",
+    "BUILD_METADATA_GENERATING": "جاري إنشاء التوصيات والوثائق",
+    "BUILD_METADATA_COMPLETE": "الوثائق والتوصيات جاهزة",
+    "BUILD_RECOMMENDATIONS_GENERATED": "تم إنشاء توصيات للتحسينات",
+    "BUILD_FILE_CREATING": "جاري إنشاء {filename}...",
+    "BUILD_FILE_UPDATING": "جاري تحديث {filename}...",
+    "BUILD_FILE_READING": "جاري قراءة {filename}...",
+    "BUILD_TASK_WORKING": "جاري العمل على: {task} ({completed}/{total})",
+    "BUILD_PLANNING_COMPLETE": "اكتمل التخطيط، جاري بدء التنفيذ...",
+    "BUILD_DEVELOPMENT_PROGRESS": "الذكاء الاصطناعي يعمل على مشروعك",
+    "PROCESSING": "جاري المعالجة..."
+  },
+  "humanProgress": {
+    "header": {
+      "badge": "الذكاء الاصطناعي يبني موقعك",
+      "title": "جاري إنشاء موقعك",
+      "complete": "اكتمل!"
+    },
+    "steps": {
+      "analyzing": {
+        "title": "نفهم فكرتك",
+        "description": "نحلل ما تحتاجه بالضبط"
+      },
+      "researching": {
+        "title": "ندرس مجالك",
+        "description": "نبحث عن أفضل الممارسات لنوع مشروعك"
+      },
+      "planning": {
+        "title": "نخطط الصفحات",
+        "description": "نصمم هيكل موقعك"
+      },
+      "designing": {
+        "title": "نضيف التصميم",
+        "description": "نختار الألوان والتنسيق المناسب"
+      },
+      "optimizing": {
+        "title": "نحسّن السرعة",
+        "description": "نتأكد إن موقعك سريع"
+      },
+      "finalizing": {
+        "title": "اللمسات الأخيرة",
+        "description": "موقعك جاهز تقريباً!"
+      }
+    },
+    "tips": {
+      "analyzing": "نحلل آلاف المواقع الناجحة لنصمم لك الأفضل",
+      "researching": "نبحث عن أحدث الاتجاهات في مجالك",
+      "planning": "المواقع الجيدة تبدأ بتخطيط جيد",
+      "designing": "نختار ألواناً تناسب جمهورك المستهدف",
+      "optimizing": "السرعة مهمة - 53% من الزوار يغادرون إذا تأخر الموقع",
+      "finalizing": "تقريباً خلصنا! موقعك الجديد في الطريق"
+    }
+  },
+  "wizard": {
+    "steps": {
+      "siteType": {
+        "title": "ماذا تريد أن تبني؟",
+        "subtitle": "اختر النوع الذي يصف مشروعك",
+        "options": {
+          "portfolio": {
+            "label": "معرض أعمال",
+            "description": "اعرض أعمالك"
+          },
+          "business": {
+            "label": "موقع أعمال",
+            "description": "موقع للشركة أو الخدمات"
+          },
+          "store": {
+            "label": "متجر إلكتروني",
+            "description": "بيع المنتجات عبر الإنترنت"
+          },
+          "blog": {
+            "label": "مدونة",
+            "description": "شارك قصصك"
+          },
+          "other": {
+            "label": "شيء آخر",
+            "description": "سأصفه"
+          }
+        }
+      },
+      "businessName": {
+        "title": "ما اسمه؟",
+        "subtitle": "أدخل اسم مشروعك أو شركتك",
+        "placeholder": "مشروعي الجديد",
+        "skip": "تخطي الآن"
+      },
+      "industry": {
+        "title": "ما مجال عملك؟",
+        "subtitle": "هذا يساعدنا في تصميم شيء مثالي لك",
+        "options": [
+          "مطاعم ومقاهي",
+          "صحة ورياضة",
+          "جمال وأزياء",
+          "تعليم",
+          "تكنولوجيا",
+          "عقارات",
+          "مالية",
+          "سفر",
+          "ترفيه",
+          "أخرى"
+        ],
+        "skip": "تخطي هذه الخطوة"
+      },
+      "style": {
+        "title": "اختر الطراز",
+        "subtitle": "اختر الشكل الذي يناسب علامتك التجارية",
+        "options": {
+          "modern": {
+            "label": "عصري",
+            "description": "نظيف ومعاصر"
+          },
+          "classic": {
+            "label": "كلاسيكي",
+            "description": "خالد وأنيق"
+          },
+          "bold": {
+            "label": "جريء",
+            "description": "نابض بالحياة ولافت"
+          },
+          "minimal": {
+            "label": "بسيط",
+            "description": "بسيط ومركز"
+          }
+        }
+      }
+    },
+    "progress": {
+      "step": "خطوة",
+      "of": "من"
+    },
+    "actions": {
+      "next": "التالي",
+      "back": "رجوع",
+      "skip": "تخطي المعالج",
+      "startBuilding": "ابدأ البناء"
+    }
+  },
+  "questionFlow": {
+    "questions": {
+      "business_type": {
+        "text": "أحب فكرتك! دعني أساعدك في تحقيقها. أولاً، ما نوع هذا العمل؟",
+        "chips": [
+          "منصة SaaS",
+          "متجر إلكتروني",
+          "سوق إلكتروني",
+          "موقع معرض أعمال",
+          "أخرى"
+        ]
+      },
+      "color_theme": {
+        "text": "اختيار رائع! الآن، ما لوحة الألوان التي تعبر عن علامتك التجارية؟",
+        "chips": [
+          "شغف بنفسجي",
+          "أزرق المحيط",
+          "أخضر الغابة",
+          "برتقالي الغروب",
+          "أسود منتصف الليل"
+        ]
+      },
+      "brand_name": {
+        "text": "يبدو مذهلاً! ماذا يجب أن نسمي عملك؟",
+        "chips": [
+          "استخدام اقتراح الذكي",
+          "سأكتب اسمي الخاص"
+        ]
+      },
+      "features": {
+        "text": "ما الميزات الضرورية للإطلاق؟",
+        "chips": [
+          "مصادقة المستخدم",
+          "معالجة المدفوعات",
+          "إشعارات البريد",
+          "لوحة التحليلات",
+          "تكامل الذكي"
+        ]
+      },
+      "target_audience": {
+        "text": "من هو جمهورك المستهدف الأساسي؟",
+        "chips": [
+          "الشركات الصغيرة",
+          "المؤسسات",
+          "المستهلكون",
+          "المستقلون",
+          "الجميع"
+        ]
+      },
+      "subscription_model": {
+        "text": "ما نموذج التسعير الأنسب لك؟",
+        "chips": [
+          "مجاني جزئي",
+          "تجربة مجانية",
+          "مدفوع فقط",
+          "حسب الاستخدام"
+        ]
+      },
+      "product_type": {
+        "text": "ما نوع المنتجات التي ستبيعها؟",
+        "chips": [
+          "منتجات مادية",
+          "تنزيلات رقمية",
+          "خدمات",
+          "مختلط"
+        ]
+      },
+      "marketplace_type": {
+        "text": "ما نوع السوق الإلكتروني الذي تبنيه؟",
+        "chips": [
+          "B2B",
+          "B2C",
+          "C2C",
+          "سوق خدمات"
+        ]
+      },
+      "portfolio_type": {
+        "text": "ما تركيزك الإبداعي؟",
+        "chips": [
+          "التصميم",
+          "التصوير",
+          "التطوير",
+          "الكتابة",
+          "متعدد التخصصات"
+        ]
+      }
+    },
+    "buildSteps": {
+      "analyzing": [
+        "تحليل فكرة عملك...",
+        "فهم متطلباتك...",
+        "تحديد الميزات الأساسية..."
+      ],
+      "scaffolding": [
+        "إنشاء هيكل تطبيقك...",
+        "إعداد الأساس...",
+        "بناء المكونات الأساسية..."
+      ],
+      "generating": [
+        "إنشاء صفحاتك...",
+        "إنشاء تخطيطات مخصصة...",
+        "بناء واجهات المستخدم..."
+      ],
+      "styling": [
+        "تطبيق ألوان علامتك التجارية...",
+        "إنشاء تصاميم جميلة...",
+        "تحسين التجربة..."
+      ],
+      "features": [
+        "إضافة المصادقة...",
+        "إعداد معالجة المدفوعات...",
+        "تنفيذ الميزات الأساسية..."
+      ]
+    }
+  },
+  "codeViewer": {
+    "search": {
+      "placeholder": "بحث...",
+      "noResults": "لا توجد نتائج",
+      "searching": "جاري البحث...",
+      "matchCount": "{current} من {total}",
+      "previousMatch": "النتيجة السابقة",
+      "nextMatch": "النتيجة التالية",
+      "caseSensitive": "مطابقة حالة الأحرف",
+      "useRegex": "استخدام التعبيرات العادية",
+      "close": "إغلاق البحث"
+    },
+    "fileTree": {
+      "title": "الملفات",
+      "searchPlaceholder": "بحث في الملفات...",
+      "clearSearch": "مسح البحث",
+      "noFiles": "لا توجد ملفات",
+      "collapse": "طي شجرة الملفات",
+      "expand": "توسيع شجرة الملفات",
+      "fileCount": "{count, plural, =0 {لا توجد ملفات} =1 {ملف واحد} two {ملفان} few {# ملفات} many {# ملفاً} other {# ملف}}",
+      "totalSize": "{size}"
+    },
+    "tabs": {
+      "close": "إغلاق {name}"
+    },
+    "panel": {
+      "hideFileTree": "إخفاء شجرة الملفات",
+      "showFileTree": "إظهار شجرة الملفات",
+      "closeFileTree": "إغلاق شجرة الملفات"
+    },
+    "codeDisplay": {
+      "viewModes": {
+        "code": "عرض الكود",
+        "diff": "عرض الفروقات",
+        "preview": "معاينة"
+      },
+      "followMode": {
+        "following": "يتابع المؤشر (انقر للإيقاف)",
+        "notFollowing": "انقر لمتابعة المؤشر",
+        "stopFollowing": "إيقاف متابعة المؤشر",
+        "startFollowing": "متابعة المؤشر"
+      },
+      "emptyState": {
+        "title": "لم يتم اختيار ملف",
+        "description": "اختر ملفاً من شجرة الملفات لعرض محتواه، أو انتظر بدء توليد الكود."
+      },
+      "fileInfo": {
+        "lines": "{count} سطر",
+        "chars": "{count} حرف",
+        "generating": "جاري التوليد...",
+        "generatingProgress": "جاري التوليد... {progress}%",
+        "modified": "معدّل",
+        "new": "جديد"
+      },
+      "actions": {
+        "search": "البحث في الملف",
+        "searchShortcut": "البحث في الملف (Cmd+F)",
+        "copied": "تم النسخ!",
+        "copyFile": "نسخ الملف",
+        "copyAllFiles": "نسخ جميع الملفات",
+        "downloadZip": "تحميل كـ ZIP"
+      },
+      "previewNotAvailable": "المعاينة غير متاحة",
+      "loadingFile": "Loading file..."
+    }
+  },
+  "workspace": {
+    "header": {
+      "logoAlt": "شين أبس - الذهاب إلى لوحة التحكم",
+      "untitledProject": "مشروع بدون عنوان",
+      "soon": "قريباً",
+      "new": "جديد",
+      "comingSoonShare": "قريباً - نعمل على ميزات المشاركة!",
+      "comingSoonSettings": "قريباً - إعدادات المشروع في الطريق!",
+      "exportTitle": "تصدير كود المشروع",
+      "exportNotAvailable": "التصدير غير متاح",
+      "run": "التشغيل",
+      "openRun": "عرض لوحة الأعمال"
+    },
+    "version": {
+      "noVersion": "لا توجد نسخة بعد",
+      "loading": "جارِ التحميل...",
+      "processing": "جارِ المعالجة...",
+      "rollingBack": "جارِ الاستعادة...",
+      "makingLive": "جارِ النشر...",
+      "takingOffline": "جارِ الإيقاف...",
+      "creatingVersion": "جارِ إنشاء نسخة جديدة...",
+      "liveOnSite": "مباشر على موقعك",
+      "readyToPublish": "جاهز للنشر",
+      "errorLoading": "خطأ في التحميل",
+      "finalizingVersion": "جارِ إنهاء النسخة...",
+      "version": "النسخة",
+      "makeItLive": "انشر الآن",
+      "goingLive": "جارِ النشر...",
+      "versionHistory": "تاريخ النسخ",
+      "takeOffline": "إيقاف الموقع",
+      "takingSiteOffline": "جارِ إيقاف الموقع...",
+      "publishFailed": "فشل النشر: {message}",
+      "unpublishFailed": "فشل الإيقاف: {message}",
+      "confirmTakeOffline": "هل تريد إيقاف موقعك؟ سيظهر {domain} صفحة خطأ حتى تنشره مجدداً.",
+      "yourDomains": "نطاقاتك"
+    },
+    "publish": {
+      "noBuild": "لا يوجد بناء بعد",
+      "noBuildShort": "لا بناء",
+      "building": "جارِ البناء...",
+      "buildingShort": "البناء",
+      "publish": "انشر",
+      "publishShort": "انشر",
+      "publishing": "جارِ النشر...",
+      "publishingShort": "النشر",
+      "live": "مباشر",
+      "liveShort": "مباشر",
+      "clickToShare": "اضغط لمشاركة موقعك المباشر",
+      "error": "فشل البناء",
+      "errorShort": "خطأ",
+      "nowLive": "أصبح مباشراً على موقعك!",
+      "publishFailed": "فشل النشر",
+      "confirmTitle": "هل تريد نشر موقعك؟",
+      "confirmDescription": "سيصبح موقعك مباشراً ومتاحاً للجميع.",
+      "cancel": "إلغاء",
+      "confirm": "انشر"
+    },
+    "publishSuccess": {
+      "titleFirst": "موقعك أصبح مباشراً!",
+      "titleSuccess": "تم النشر بنجاح",
+      "copy": "نسخ",
+      "copied": "تم النسخ!",
+      "copyFailed": "فشل النسخ",
+      "qrDescription": "امسح الرمز لتجربة الموقع على هاتفك",
+      "viewSite": "افتح الموقع",
+      "share": "مشاركة",
+      "celebrationMessage": "نحتفل معك لأن هذا إنجاز حقيقي - أول نشر لك!"
+    },
+    "integrations": {
+      "database": "قاعدة البيانات",
+      "git": "جيت",
+      "deploy": "النشر",
+      "cms": "إدارة المحتوى",
+      "notConnected": "غير متصل",
+      "connect": "اتصال",
+      "connected": "متصل",
+      "disconnected": "غير متصل",
+      "warning": "تحذير",
+      "needsAttention": "يحتاج انتباه",
+      "error": "خطأ",
+      "viewDetails": "عرض التفاصيل",
+      "checkStatus": "تحقق من الحالة",
+      "reconnect": "إعادة الاتصال",
+      "statusMayBeOutdated": "قد تكون الحالة قديمة",
+      "statusUnavailable": "الحالة غير متاحة",
+      "overallStatus": "حالة التكاملات: {status}",
+      "executingAction": "جاري التنفيذ...",
+      "databaseIntegration": "تكامل قاعدة البيانات",
+      "configureDatabaseConnection": "تكوين اتصال قاعدة البيانات لمشروعك",
+      "deployIntegration": "تكامل النشر",
+      "configureDeployConnection": "تكوين إعدادات النشر لمشروعك",
+      "cmsIntegration": "تكامل نظام إدارة المحتوى",
+      "configureCmsConnection": "تكوين إدارة المحتوى لمشروعك"
+    },
+    "preview": {
+      "noPreviewAvailable": "لا توجد معاينة متاحة",
+      "projectBuilding": "المشروع قيد البناء. ستظهر المعاينة عند اكتمال البناء.",
+      "projectNotBuilt": "قد لم يُبنَ المشروع بعد. حاول بناء المشروع لرؤية المعاينة.",
+      "buildId": "رقم البناء: {id}",
+      "project": "المشروع: {id}",
+      "build": "البناء: {id}",
+      "viewport": "العرض: {viewport} ({orientation})",
+      "scale": "المقياس: {scale}%",
+      "mode": "الوضع: {mode}",
+      "fit": "ملائم",
+      "pixel": "بكسل"
+    },
+    "devices": {
+      "mobile": "الهاتف",
+      "tablet": "الجهاز اللوحي",
+      "desktop": "الحاسوب",
+      "switchTo": "التبديل إلى عرض {device} ({key})",
+      "portrait": "عمودي",
+      "landscape": "أفقي",
+      "toggleOrientation": "تبديل الاتجاه (R) - حالياً {orientation}",
+      "displayMode": "وضع العرض: {mode}",
+      "fitToContainer": "ملائم للحاوية",
+      "pixelAccurate": "دقة البكسل",
+      "fit": "ملائم",
+      "pixel": "بكسل",
+      "zoomIn": "تكبير (مفتاح ])",
+      "zoomOut": "تصغير (مفتاح [)",
+      "copyDimensions": "انقر لنسخ الأبعاد",
+      "reset": "إعادة التعيين",
+      "resetToDefault": "إعادة التعيين للافتراضي",
+      "ariaLabel": "عرض {viewport}، {width} × {height} بكسل، مقياس {scale} بالمئة، اتجاه {orientation}، وضع {mode}",
+      "updatingPreview": "جاري تحديث المعاينة..."
+    },
+    "chat": {
+      "collapseChat": "تصغير المحادثة",
+      "expandChat": "توسيع المحادثة",
+      "chat": "المحادثة",
+      "building": "جارِ البناء...",
+      "unreadMessages": "{count} غير مقروء",
+      "noUnread": "لا توجد رسائل جديدة",
+      "clickToExpand": "انقر للتوسيع.",
+      "expandSidebar": "توسيع شريط المحادثة",
+      "startConversation": "ابدأ المحادثة",
+      "emptyStateHelp": "أرسل رسالة لفريقك أو اسأل الذكاء الاصطناعي",
+      "loadingConversation": "جاري تحميل المحادثة...",
+      "loadingOlderMessages": "جاري تحميل رسائل أقدم...",
+      "loadOlderMessages": "تحميل رسائل أقدم",
+      "syncing": "جاري المزامنة...",
+      "today": "اليوم",
+      "yesterday": "أمس"
+    },
+    "connection": {
+      "connected": "متصل",
+      "connecting": "جارِ الاتصال...",
+      "disconnected": "غير متصل",
+      "error": "خطأ في الاتصال",
+      "unknown": "غير معروف",
+      "reconnect": "إعادة الاتصال",
+      "connectionLost": "انقطع الاتصال - قد لا تتزامن الرسائل في الوقت الحقيقي",
+      "connectionLostShort": "انقطع الاتصال",
+      "maxReconnectionAttempts": "وصلنا لأقصى عدد محاولات التوصيل"
+    },
+    "composer": {
+      "team": "الفريق",
+      "askAi": "اسأل الذكاء",
+      "buildNow": "ابنِ الآن",
+      "buildModeLabel": "وضع البناء: {mode}",
+      "buildImmediatelyOn": "بناء فوري",
+      "planModeOn": "وضع التخطيط",
+      "buildModeTooltip": "عند التفعيل، سيبني الذكاء تغييراتك فوراً. عند الإيقاف، سيُنشئ خطة أولاً.",
+      "aiPlaceholder": "اسأل الذكاء أي شيء عن مشروعك...",
+      "teamPlaceholder": "أرسل رسالة للفريق...",
+      "sendButton": "إرسال الرسالة",
+      "cannotSendButton": "لا يمكن الإرسال - تحقق من الاتصال",
+      "youAreTyping": "أنت تكتب...",
+      "pressEnterToSend": "اضغط Enter للإرسال، Shift+Enter لسطر جديد",
+      "teamMessageVisible": "رسالتك ستكون مرئية لجميع أعضاء الفريق في هذا المشروع",
+      "aiBuildDescription": "سيحلل الذكاء ويبني تغييراتك فوراً [الافتراضي]",
+      "aiPlanDescription": "سيحلل الذكاء طلبك ويُنشئ خطة أو يجيب على أسئلتك (البناء لاحقاً)",
+      "filters": {
+        "all": "الكل",
+        "team": "الفريق",
+        "ai": "الذكاء",
+        "builds": "البنايات"
+      }
+    },
+    "chatHeader": {
+      "name": "شينا",
+      "subtitle": "شريكك الذكي في البناء"
+    },
+    "chatInput": {
+      "buildInProgress": "البناء جارٍ...",
+      "build": "بناء",
+      "plan": "تخطيط",
+      "discussionMode": "وضع النقاش - استكشاف الأفكار",
+      "buildMode": "وضع البناء - جاهز للتنفيذ",
+      "discussionModeShort": "وضع النقاش",
+      "buildModeShort": "وضع البناء"
+    },
+    "sidebar": {
+      "title": "بانِ الأعمال",
+      "answerQuestions": "أجب على الأسئلة لتحسين تطبيقك",
+      "preparingQuestions": "جارِ تحضير أسئلتك المخصصة",
+      "refineApp": "حسِّن تطبيقك",
+      "answerToCustomize": "أجب على الأسئلة لتخصيص تطبيقك ومشاهدة المعاينة المباشرة",
+      "questionsReady": "الأسئلة جاهزة! لنبنِ تطبيقك المخصص.",
+      "quickActions": "إجراءات سريعة"
+    },
+    "auth": {
+      "loadingChat": "جارِ تحميل المحادثة...",
+      "initializingChat": "جارِ تهيئة المحادثة",
+      "authRequired": "تسجيل الدخول مطلوب",
+      "signInToAccess": "يرجى تسجيل الدخول للوصول للمحادثة"
+    },
+    "mobileChat": {
+      "aiAssistant": "المساعد الذكي",
+      "getHelp": "احصل على مساعدة في بناء تطبيقك",
+      "comingSoon": "محادثة الذكاء قريباً",
+      "premiumFeature": "ميزة مميزة للمساعدة الشخصية"
+    },
+    "buildStatus": {
+      "deployed": "منشور",
+      "building": "قيد البناء",
+      "failed": "فشل",
+      "queued": "في الانتظار"
+    },
+    "firstBuild": {
+      "title": "جارٍ بناء تطبيقك الآن",
+      "description": "ابقَ معنا… سنُجهّز المعاينة ثم يمكنك التعديل بسهولة.",
+      "continue": "متابعة"
+    },
+    "iterationStrip": {
+      "nextStep": "الخطوة التالية:",
+      "guidance": "عدّل الوصف → جرّب المعاينة → انشر التطبيق"
+    }
+  },
+  "buildProgress": {
+    "starting": "جاري بدء البناء...",
+    "building": "جاري البناء",
+    "complete": "اكتمل البناء",
+    "failed": "فشل البناء",
+    "preview": "معاينة",
+    "deploy": "نشر",
+    "deploying": "جاري النشر...",
+    "deployed": "تم النشر",
+    "deployFailed": "فشل النشر",
+    "viewSite": "عرض الموقع",
+    "step": "الخطوة {current} من {total}",
+    "failedDuring": "فشل أثناء: {phase}",
+    "recommendedNextSteps": "الخطوات التالية الموصى بها:",
+    "showBuildSteps": "عرض {count} خطوات البناء",
+    "hideBuildSteps": "إخفاء {count} خطوات البناء",
+    "version": "الإصدار:",
+    "phases": {
+      "setup": "الإعداد",
+      "development": "التطوير",
+      "dependencies": "التبعيات",
+      "build": "البناء",
+      "deploy": "النشر",
+      "metadata": "الإنهاء"
+    }
+  },
+  "pricingModal": {
+    "title": "اختر خطتك",
+    "description": "اختر خطة للمتابعة في البناء",
+    "currentPlan": "الخطة الحالية",
+    "getCredits": "احصل على رصيد",
+    "mostPopular": "الأكثر شعبية",
+    "maybeLater": "ربما لاحقاً",
+    "securePayment": "دفع آمن عبر Stripe • إلغاء في أي وقت"
+  }
+}

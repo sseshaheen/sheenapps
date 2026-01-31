@@ -1,0 +1,30 @@
+{
+  "title": "Todo lo Que Necesitas para Tener Éxito",
+  "subtitle": "No somos solo otro constructor de IA. Somos tu departamento técnico permanente.",
+  "list": [
+    {
+      "title": "Generación Instantánea",
+      "description": "Describe tu idea, mírala construirse en tiempo real con IA + experiencia humana"
+    },
+    {
+      "title": "Tu Equipo Técnico",
+      "description": "Asesores dedicados que conocen tu negocio y crecen contigo"
+    },
+    {
+      "title": "Propiedad Completa",
+      "description": "Exporta tu código y datos cuando quieras. Sin bloqueo de proveedor, nunca"
+    },
+    {
+      "title": "Multi-Idioma",
+      "description": "Árabe (Múltiples dialectos), Francés, Inglés - hablamos tu idioma"
+    },
+    {
+      "title": "Siempre Apoyado",
+      "description": "Humanos reales + IA apoyándote 24/7, no solo un chatbot"
+    },
+    {
+      "title": "Desarrollo Continuo",
+      "description": "Solicita funciones en la mañana, tenlas vivas por la tarde"
+    }
+  ]
+}

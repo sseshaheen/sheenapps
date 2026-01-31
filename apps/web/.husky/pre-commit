@@ -1,0 +1,30 @@
+# Pre-commit checks for sheenappsai
+# Run before every commit to catch issues early
+
+echo "Running pre-commit checks..."
+
+# Security: Check for worker URL exposure (warning mode until existing violations cleaned up)
+# TODO: Change to fail mode once violations in these files are fixed:
+#   - src/app/api/ai/content/route.ts
+#   - src/app/api/ai/components/route.ts
+#   - Various admin client files
+# echo ""
+# echo "=== Security Scan (Worker URL Exposure) ==="
+# npx tsx scripts/validate-worker-lockdown.ts || {
+#   echo ""
+#   echo "WARNING: Security issues found. Please address before merging to main."
+#   echo "         (Pre-commit is in warning mode - commit allowed)"
+#   echo ""
+# }
+
+# Type check (blocks commit on errors)
+echo ""
+echo "=== Type Check ==="
+npm run type-check || {
+  echo ""
+  echo "ERROR: TypeScript errors found. Fix before committing."
+  exit 1
+}
+
+echo ""
+echo "Pre-commit checks passed!"

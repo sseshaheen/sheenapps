@@ -1,0 +1,293 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { createServerSupabaseClientNew } from '@/lib/supabase'
+import { withApiAuth } from '@/lib/auth-middleware'
+import crypto from 'crypto'
+
+interface QuotaCheckOptions {
+  metric: 'ai_generations' | 'exports' | 'projects'
+  amount?: number
+  extractAmount?: (req: NextRequest) => number
+  skipOnError?: boolean
+  enableRateLimit?: boolean // New option for DoS protection
+}
+
+interface QuotaResult {
+  allowed: boolean
+  remaining: number
+  limit_amount: number
+  bonus_used: number
+  already_processed: boolean
+  rate_limited: boolean // New field
+  plan_changed: boolean // New field
+}
+
+export function withQuotaCheckV2(
+  handler: Function,
+  options: QuotaCheckOptions
+) {
+  return withApiAuth(async (
+    request: NextRequest,
+    context: { user: any }
+  ) => {
+    const supabase = await createServerSupabaseClientNew()
+    const amount = options.extractAmount?.(request) || options.amount || 1
+    
+    // Extract client IP for rate limiting
+    const clientIP = getClientIP(request)
+    
+    // Generate idempotency key with enhanced collision detection
+    const idempotencyKey = generateEnhancedIdempotencyKey(request, context.user.id, options.metric)
+    
+    try {
+      // Call enhanced quota function with DoS protection
+      const { data, error } = await supabase.rpc('check_and_consume_quota_v2', {
+        p_user_id: context.user.id,
+        p_metric: options.metric,
+        p_amount: amount,
+        p_idempotency_key: idempotencyKey,
+        p_client_ip: options.enableRateLimit !== false ? clientIP : null
+      })
+      
+      if (error) {
+        console.error('Quota check failed:', error)
+        throw error
+      }
+      
+      const result = data[0] as QuotaResult
+      
+      // Handle rate limiting
+      if (result.rate_limited) {
+        return NextResponse.json({
+          error: 'Rate limit exceeded',
+          code: 'RATE_LIMITED',
+          details: {
+            message: 'Too many requests. Please slow down.',
+            retryAfter: 60 // seconds
+          }
+        }, { 
+          status: 429,
+          headers: {
+            'Retry-After': '60',
+            'X-RateLimit-Limit': '20',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': Math.floor(Date.now() / 1000 + 60).toString()
+          }
+        })
+      }
+      
+      // Handle idempotency (request already processed)
+      if (result.already_processed) {
+        return NextResponse.json({ 
+          success: true, 
+          cached: true,
+          message: 'Request already processed'
+        })
+      }
+      
+      // Handle quota exceeded
+      if (!result.allowed) {
+        const response = NextResponse.json({
+          error: 'Quota exceeded',
+          code: 'QUOTA_EXCEEDED',
+          details: {
+            metric: options.metric,
+            requested: amount,
+            remaining: result.remaining,
+            limit: result.limit_amount,
+            planChanged: result.plan_changed
+          },
+          upgradeUrl: '/dashboard/billing',
+          // Enhanced error context for plan changes
+          ...(result.plan_changed && {
+            planChangeNotice: 'Your plan was recently changed. New limits are now in effect.'
+          })
+        }, { status: 403 })
+        
+        // Add quota headers for client debugging
+        response.headers.set('X-Quota-Limit', result.limit_amount.toString())
+        response.headers.set('X-Quota-Remaining', result.remaining.toString())
+        response.headers.set('X-Quota-Used', (result.limit_amount - result.remaining).toString())
+        
+        return response
+      }
+      
+      // Success: Add enhanced quota context
+      const enrichedContext = {
+        ...context,
+        quota: {
+          consumed: amount,
+          remaining: result.remaining,
+          limit: result.limit_amount,
+          bonusUsed: result.bonus_used,
+          idempotencyKey,
+          planChanged: result.plan_changed,
+          rateLimited: result.rate_limited
+        }
+      }
+      
+      // Add quota headers to successful responses
+      const response = await handler(request, enrichedContext)
+      
+      if (response instanceof NextResponse) {
+        response.headers.set('X-Quota-Limit', result.limit_amount.toString())
+        response.headers.set('X-Quota-Remaining', result.remaining.toString())
+        response.headers.set('X-Quota-Consumed', amount.toString())
+        
+        if (result.plan_changed) {
+          response.headers.set('X-Plan-Changed', 'true')
+        }
+        
+        if (result.bonus_used > 0) {
+          response.headers.set('X-Bonus-Used', result.bonus_used.toString())
+        }
+      }
+      
+      return response
+      
+    } catch (error) {
+      console.error('Quota check failed:', error)
+      
+      // Enhanced error logging for debugging
+      await logQuotaError(supabase, {
+        userId: context.user.id,
+        metric: options.metric,
+        amount,
+        error: error.message,
+        idempotencyKey,
+        clientIP,
+        userAgent: request.headers.get('user-agent'),
+        timestamp: new Date().toISOString()
+      })
+      
+      if (options.skipOnError) {
+        console.warn('Skipping quota check due to error, allowing request to proceed')
+        return handler(request, context)
+      }
+      
+      return NextResponse.json({
+        error: 'Failed to check quota',
+        code: 'QUOTA_CHECK_FAILED',
+        details: {
+          message: 'Internal quota system error'
+        }
+      }, { status: 500 })
+    }
+  })
+}
+
+function getClientIP(request: NextRequest): string | null {
+  // Try various headers for client IP (in order of preference)
+  const ipHeaders = [
+    'cf-connecting-ip', // Cloudflare
+    'x-real-ip',       // Nginx
+    'x-forwarded-for', // Load balancers
+    'x-client-ip',     // Apache
+    'x-forwarded',     // General
+    'forwarded-for',   // RFC 7239
+    'forwarded'        // RFC 7239
+  ]
+  
+  for (const header of ipHeaders) {
+    const ip = request.headers.get(header)
+    if (ip) {
+      // Handle comma-separated IPs (take first one)
+      return ip.split(',')[0].trim()
+    }
+  }
+  
+  // Fallback to connection IP (may not be available in serverless)
+  return request.ip || null
+}
+
+function generateEnhancedIdempotencyKey(
+  request: NextRequest, 
+  userId: string,
+  metric: string
+): string {
+  const method = request.method
+  const url = new URL(request.url)
+  const pathname = url.pathname
+  const searchParams = url.searchParams.toString()
+  
+  // Check for client-provided idempotency key
+  const clientKey = request.headers.get('x-idempotency-key')
+  if (clientKey) {
+    // Enhanced client key validation
+    if (clientKey.length < 8 || clientKey.length > 128) {
+      console.warn('Invalid idempotency key length:', clientKey.length)
+    }
+    
+    // Scope client key to user and metric for security
+    return crypto.createHash('sha256')
+      .update(`client:${userId}:${metric}:${clientKey}`)
+      .digest('hex')
+  }
+  
+  // For GET/DELETE requests, URL alone is sufficient
+  if (method === 'GET' || method === 'DELETE') {
+    const data = `${method}:${pathname}:${searchParams}:${userId}:${metric}`
+    return crypto.createHash('sha256').update(data).digest('hex')
+  }
+  
+  // For POST/PUT, use enhanced time window approach
+  // Reduced window to 30 seconds for better collision detection
+  const timeWindow = Math.floor(Date.now() / 30000) // 30-second windows
+  let data = `${method}:${pathname}:${userId}:${metric}:window-${timeWindow}`
+  
+  // Include important query parameters that differentiate requests
+  const keyParams = ['projectId', 'templateId', 'format', 'version']
+  keyParams.forEach(param => {
+    const value = url.searchParams.get(param)
+    if (value) data += `:${param}-${value}`
+  })
+  
+  // Add user agent hash for additional uniqueness (helps detect automation)
+  const userAgent = request.headers.get('user-agent')
+  if (userAgent) {
+    const uaHash = crypto.createHash('md5').update(userAgent).digest('hex').slice(0, 8)
+    data += `:ua-${uaHash}`
+  }
+  
+  return crypto.createHash('sha256').update(data).digest('hex')
+}
+
+async function logQuotaError(
+  supabase: any,
+  errorData: {
+    userId: string
+    metric: string
+    amount: number
+    error: string
+    idempotencyKey: string
+    clientIP: string | null
+    userAgent: string | null
+    timestamp: string
+  }
+) {
+  try {
+    await supabase
+      .from('quota_audit_log')
+      .insert({
+        user_id: errorData.userId,
+        metric: errorData.metric,
+        attempted_amount: errorData.amount,
+        success: false,
+        reason: 'system_error',
+        context: {
+          error_message: errorData.error,
+          idempotency_key: errorData.idempotencyKey,
+          client_ip: errorData.clientIP,
+          user_agent: errorData.userAgent,
+          timestamp: errorData.timestamp
+        }
+      })
+  } catch (logError) {
+    console.error('Failed to log quota error:', logError)
+  }
+}
+
+// Backward compatibility: export the original function as well
+export { withQuotaCheck } from './with-quota-check'
+
+// Export helper functions for testing
+export { getClientIP, generateEnhancedIdempotencyKey }

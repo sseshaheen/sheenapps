@@ -1,0 +1,88 @@
+{
+  "badge": "De vrais experts inclus dans chaque offre",
+  "title": "Votre équipe tech pour moins qu'un",
+  "titleHighlight": "abonnement de gym",
+  "subtitle": "Les agences traditionnelles facturent 100k DH+ et prennent des mois. Les freelances disparaissent.",
+  "subtitleSecond": "Nous vous donnons une équipe tech permanente qui se soucie vraiment de votre succès.",
+  "billingMonthly": "Mensuel",
+  "billingYearly": "Annuel",
+  "billingSave": "Économisez {percent}%",
+  "periodMonthly": "/mois",
+  "periodYearly": "/an",
+  "plans": {
+    "free": {
+      "name": "Gratuit",
+      "description": "Essayez avant d'acheter",
+      "features": [
+        "Créateur d'entreprise en 60 secondes",
+        "1 heure de conseiller/mois",
+        "2 ajouts de fonctionnalités",
+        "Support communautaire",
+        "Analytics de base",
+        "Sous-domaine sheenapps.com"
+      ],
+      "cta": "Commencer gratuitement"
+    },
+    "starter": {
+      "name": "Débutant",
+      "description": "Parfait pour tester les idées",
+      "features": [
+        "Créateur d'entreprise en 60 secondes",
+        "3 heures de conseiller/mois",
+        "5 ajouts de fonctionnalités",
+        "Support communautaire",
+        "Analytics de base",
+        "Certificat SSL"
+      ],
+      "cta": "Commencer à construire"
+    },
+    "growth": {
+      "name": "Croissance",
+      "description": "Pour les entrepreneurs sérieux",
+      "popular": "LE PLUS POPULAIRE",
+      "features": [
+        "Tout dans Débutant",
+        "10 heures de conseiller/mois",
+        "50 fonctionnalités/mois",
+        "Support prioritaire",
+        "Domaine personnalisé inclus",
+        "Analytics avancées",
+        "Tests A/B",
+        "Accès API"
+      ],
+      "cta": "Passer Pro",
+      "savings": "Économisez {amount}/an"
+    },
+    "scale": {
+      "name": "Scale",
+      "description": "Votre équipe tech dédiée",
+      "features": [
+        "Tout dans Croissance",
+        "Conseiller dédié",
+        "Fonctionnalités illimitées",
+        "Déploiement jour même",
+        "Configuration personnalisée",
+        "Intégrations sur mesure",
+        "Garantie SLA",
+        "Appels stratégiques hebdomadaires"
+      ],
+      "cta": "Scaler maintenant"
+    }
+  },
+  "enterprise": "Contactez-nous pour les tarifs entreprise",
+  "enterpriseDescription": "Besoin de plus ? Vous construisez plusieurs entreprises ? Vous avez des besoins spécifiques ?",
+  "guarantees": {
+    "moneyBack": {
+      "value": "30 jours",
+      "label": "Garantie remboursement"
+    },
+    "cancel": {
+      "value": "Annulation",
+      "label": "À tout moment, sans questions"
+    },
+    "export": {
+      "value": "Export",
+      "label": "Votre code & données toujours"
+    }
+  }
+}

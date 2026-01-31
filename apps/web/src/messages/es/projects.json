@@ -1,0 +1,13 @@
+{
+  "rename": "Renombrar",
+  "duplicate": "Duplicar",
+  "archive": "Archivar",
+  "restore": "Restaurar",
+  "publish": "Publicar",
+  "unpublish": "Despublicar",
+  "openBuilder": "Abrir constructor",
+  "projectRenamed": "Proyecto renombrado exitosamente",
+  "projectDuplicated": "Proyecto duplicado exitosamente",
+  "projectArchived": "Proyecto archivado exitosamente",
+  "projectRestored": "Proyecto restaurado exitosamente"
+}

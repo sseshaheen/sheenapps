@@ -1,0 +1,77 @@
+/* Advisor Mobile Responsive Enhancements */
+
+/* Container queries for advisor workspace */
+@container workspace (max-width: 479px) {
+  .advisor-mobile-optimized {
+    --mobile-padding: 1rem;
+    --mobile-gap: 0.75rem;
+  }
+}
+
+@container workspace (min-width: 480px) and (max-width: 767px) {
+  .advisor-mobile-optimized {
+    --mobile-padding: 1.5rem;
+    --mobile-gap: 1rem;
+  }
+}
+
+/* Safe area handling for mobile devices */
+.advisor-mobile-header {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.advisor-mobile-navigation {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left); 
+  padding-right: env(safe-area-inset-right);
+}
+
+/* RTL-compatible mobile navigation */
+.advisor-mobile-nav-item {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Touch-friendly tap targets (minimum 44px iOS / 48px Android) */
+.advisor-mobile-nav-button {
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile viewport optimizations */
+@supports (height: 100svh) {
+  .advisor-mobile-container {
+    min-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  .advisor-mobile-container {
+    min-height: 100dvh;
+  }
+}
+
+/* Smooth transitions for mobile interactions */
+.advisor-mobile-transition {
+  transition: all 0.2s ease-in-out;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Tablet collapsible sidebar animations */
+.advisor-tablet-sidebar {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+/* Prevent text selection on navigation elements */
+.advisor-navigation {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

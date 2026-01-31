@@ -1,0 +1,98 @@
+# =============================================================================
+# SheenApps Dispatch Worker
+# =============================================================================
+#
+# This is the routing worker for Easy Mode projects.
+# It handles incoming requests and routes them to:
+# - Static assets (from R2)
+# - User project Workers (via Workers for Platforms dispatch namespace)
+#
+# Documentation: https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/
+
+name = "sheenapps-dispatch"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# =============================================================================
+# ENVIRONMENTS
+# =============================================================================
+
+[env.development]
+name = "sheenapps-dispatch-dev"
+workers_dev = true
+[env.development.vars]
+ENVIRONMENT = "development"
+DEFAULT_DOMAIN = "sheenapps.com"
+WFP_ENABLED = "false"
+FALLBACK_ORIGIN = "https://worker.sheenapps.com"
+FALLBACK_AUTH_HEADER = "X-SheenApps-Dispatch-Secret"
+
+[[env.development.kv_namespaces]]
+binding = "HOSTNAME_MAP"
+id = "00a7ffbb1db84bd1834b9b3d65a56c94"
+
+[[env.development.kv_namespaces]]
+binding = "PROJECT_BUILDS"
+id = "a4020377ef714bcb9298502de242d95f"
+
+[[env.development.r2_buckets]]
+binding = "ASSETS"
+bucket_name = "dev-sheenapps-builder-artifacts"
+
+# Production overrides
+[env.production]
+name = "sheenapps-dispatch"
+[env.production.vars]
+ENVIRONMENT = "production"
+DEFAULT_DOMAIN = "sheenapps.com"
+WFP_ENABLED = "false"
+FALLBACK_ORIGIN = "https://worker.sheenapps.com"
+FALLBACK_AUTH_HEADER = "X-SheenApps-Dispatch-Secret"
+
+[[env.production.kv_namespaces]]
+binding = "HOSTNAME_MAP"
+id = "b86016746c3d467c9bb3d4c349ad95d1"
+
+[[env.production.kv_namespaces]]
+binding = "PROJECT_BUILDS"
+id = "4575606bef3248dfbc42727089dca1cf"
+
+[[env.production.r2_buckets]]
+binding = "ASSETS"
+bucket_name = "sheenapps-builder-artifacts"
+
+# Staging overrides
+
+# =============================================================================
+# ROUTES
+# =============================================================================
+
+# Main wildcard route for all *.sheenapps.com subdomains
+routes = [
+  { pattern = "*.sheenapps.com", custom_domain = true }
+]
+
+# Workers for Platforms (enable once your account has WFP)
+[env.wfp]
+name = "sheenapps-dispatch"
+[env.wfp.vars]
+ENVIRONMENT = "production"
+DEFAULT_DOMAIN = "sheenapps.com"
+WFP_ENABLED = "true"
+
+[[env.wfp.kv_namespaces]]
+binding = "HOSTNAME_MAP"
+id = "b86016746c3d467c9bb3d4c349ad95d1"
+
+[[env.wfp.kv_namespaces]]
+binding = "PROJECT_BUILDS"
+id = "4575606bef3248dfbc42727089dca1cf"
+
+[[env.wfp.dispatch_namespaces]]
+binding = "DISPATCH_NAMESPACE"
+namespace = "sheenapps-user-projects"          # TODO: Replace with actual namespace
+
+[[env.wfp.r2_buckets]]
+binding = "ASSETS"
+bucket_name = "sheenapps-builder-artifacts"

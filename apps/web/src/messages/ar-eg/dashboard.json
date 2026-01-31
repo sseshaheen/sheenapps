@@ -1,0 +1,22 @@
+{
+  "title": "لوحة التحكم",
+  "subtitle": "إدارة مشاريعك",
+  "searchPlaceholder": "البحث في المشاريع...",
+  "createProject": "إنشاء مشروع جديد",
+  "createShort": "إنشاء",
+  "noProjects": "لا توجد مشاريع",
+  "noProjectsDescription": "قم بإنشاء مشروعك الأول للبدء",
+  "noArchivedProjects": "لا توجد مشاريع مؤرشفة",
+  "noActiveProjects": "لا توجد مشاريع نشطة",
+  "clearFilters": "مسح المرشحات",
+  "sortBy": "ترتيب حسب",
+  "filterBy": "تصفية حسب",
+  "lastUpdated": "آخر تحديث",
+  "created": "تاريخ الإنشاء",
+  "name": "الاسم",
+  "archived": "مؤرشف",
+  "active": "نشط",
+  "allProjects": "جميع المشاريع",
+  "projectsLabel": "مشاريع",
+  "loading": "جاري التحميل..."
+}

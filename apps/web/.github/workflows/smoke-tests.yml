@@ -1,0 +1,326 @@
+name: Smoke Tests
+
+on: 
+  push:
+    branches: [main, develop]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  packages: read
+  pull-requests: write
+  issues: write
+
+env:
+  NODE_VERSION: '20'
+  STRIPE_CLI_VERSION: '1.19.0'
+
+jobs:
+  smoke:
+    name: Smoke Test Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 8  # Increased for apt operations + Stripe CLI setup
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sheenapps'
+
+      - name: Cache Stripe CLI
+        id: cache-stripe
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/stripe
+          key: stripe-cli-${{ runner.os }}-${{ env.STRIPE_CLI_VERSION }}
+          
+      - name: Install Stripe CLI
+        if: steps.cache-stripe.outputs.cache-hit != 'true'
+        run: |
+          echo "Installing Stripe CLI v${{ env.STRIPE_CLI_VERSION }}..."
+          curl -s https://packages.stripe.dev/api/security/keypair/stripe-cli-gpg/public | gpg --dearmor | sudo tee /usr/share/keyrings/stripe.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/stripe.gpg] https://packages.stripe.dev/stripe-cli-debian-local stable main" | sudo tee -a /etc/apt/sources.list.d/stripe.list
+          sudo apt-get update
+          sudo apt-get install -y stripe
+          
+      - name: Verify Stripe CLI installation
+        run: |
+          stripe --version
+          which stripe
+          
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx playwright install chromium --with-deps
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify no local symlinks in @sheenapps scope
+        run: |
+          if [ -d node_modules/@sheenapps ]; then
+            SYMS=$(find node_modules/@sheenapps -maxdepth 2 -type l 2>/dev/null || true)
+            if [ -n "$SYMS" ]; then
+              echo "::error::Symlinks detected in node_modules/@sheenapps (CI must install from GitHub Packages):"
+              echo "$SYMS"
+              exit 1
+            fi
+          fi
+
+      - name: Check for deprecated usage in src (non-blocking)
+        run: |
+          # Scan src/ only to avoid false positives from dependencies
+          if grep -RIn "@deprecated" src/ 2>/dev/null | head -n 10; then
+            echo "::warning::Potential deprecated usage found in src/. Review warnings above."
+          else
+            echo "✅ No deprecated annotations found in src/"
+          fi
+          
+      - name: Build application
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          
+      - name: Start application
+        run: |
+          npm start &
+          sleep 10
+          curl --retry 5 --retry-delay 5 --retry-connrefused http://localhost:3000 || exit 1
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          
+      - name: Run smoke tests
+        run: npm run test:smoke
+        env:
+          # Test environment configuration
+          BASE_URL: http://localhost:3000
+          ENABLE_EVENT_SYSTEM: 'false'
+          
+          # Supabase configuration
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_TEST_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          
+          # Stripe configuration
+          STRIPE_TEST_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          
+          # Security
+          PLAYWRIGHT_CRYPTO_KEY: ${{ secrets.PLAYWRIGHT_CRYPTO_KEY }}
+          
+          # CI-specific settings
+          CI: true
+          
+      - name: Cleanup Stripe processes
+        if: always()
+        run: |
+          echo "Cleaning up Stripe processes..."
+          pkill -f "stripe listen" || true
+          stripe listen --stop || true
+          
+      - name: Encrypt test results
+        if: always()
+        run: |
+          if [ -f "test-results/smoke-results.json" ]; then
+            echo "Encrypting test results..."
+            openssl enc -aes-256-cbc -salt -in test-results/smoke-results.json \
+              -out test-results/smoke-results.enc \
+              -k "${{ secrets.PLAYWRIGHT_CRYPTO_KEY }}" || echo "Encryption failed, proceeding without"
+          else
+            echo "No test results file found"
+          fi
+          
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+          
+      - name: Send performance data to Grafana
+        if: github.ref == 'refs/heads/main' && always() && success()
+        run: |
+          if [ -f "test-results/smoke-results.enc" ] && [ -n "${{ secrets.GRAFANA_ENDPOINT }}" ]; then
+            echo "Sending performance data to Grafana..."
+            
+            # Decrypt and send to Grafana
+            openssl enc -aes-256-cbc -d -in test-results/smoke-results.enc \
+              -k "${{ secrets.PLAYWRIGHT_CRYPTO_KEY }}" | \
+            curl -X POST "${{ secrets.GRAFANA_ENDPOINT }}" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.GRAFANA_API_KEY }}" \
+              --data-binary @- || echo "Grafana upload failed"
+          else
+            echo "Skipping Grafana upload (missing data or not main branch)"
+          fi
+          
+      - name: Check performance baseline
+        if: github.ref == 'refs/heads/main' && success()
+        run: |
+          if [ -f "scripts/check-smoke-baseline.js" ] && [ -f "test-results/smoke-results.json" ]; then
+            echo "Checking performance baseline..."
+            node scripts/check-smoke-baseline.js test-results/smoke-results.json || echo "Baseline check failed or not configured"
+          else
+            echo "Baseline check script not found, skipping"
+          fi
+          
+      - name: Determine notification owner
+        if: failure()
+        id: failure-owner
+        run: |
+          # Parse test results to find which test failed and assign owner
+          OWNER="platform-team"
+          
+          if [ -f "test-results/smoke-results.json" ]; then
+            # Extract failed test info (basic parsing)
+            if grep -q "auth.smoke.spec" test-results/smoke-results.json; then
+              OWNER="auth-team"
+            elif grep -q "dashboard.smoke.spec" test-results/smoke-results.json; then
+              OWNER="dashboard-team"
+            elif grep -q "builder.smoke.spec" test-results/smoke-results.json; then
+              OWNER="builder-team"
+            elif grep -q "billing.smoke.spec" test-results/smoke-results.json; then
+              OWNER="revenue-team"
+            elif grep -q "i18n.smoke.spec" test-results/smoke-results.json; then
+              OWNER="platform-team"
+            fi
+          fi
+          
+          echo "owner=$OWNER" >> $GITHUB_OUTPUT
+          
+      - name: Notify Slack on failure
+        if: failure() && github.event_name != 'pull_request'
+        run: |
+          OWNER="${{ steps.failure-owner.outputs.owner }}"
+          
+          # Create rich Slack notification
+          cat << EOF > slack-payload.json
+          {
+            "text": "🚨 Smoke tests failed on ${{ github.ref }}!",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "🚨 Smoke Test Failure"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Owner:* <@${OWNER}>"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Branch:* ${{ github.ref_name }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Commit:* <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Workflow:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Failed Run"
+                    },
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Commit"
+                    },
+                    "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
+          
+          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              --data @slack-payload.json || echo "Slack notification failed"
+          else
+            echo "Slack webhook not configured"
+          fi
+          
+      - name: Comment on PR with test results
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'test-results/smoke-results.json';
+            
+            let comment = '## 🧪 Smoke Test Results\n\n';
+            
+            if (fs.existsSync(path)) {
+              try {
+                const results = JSON.parse(fs.readFileSync(path, 'utf8'));
+                const passed = results.stats?.passed || 0;
+                const failed = results.stats?.failed || 0;
+                const total = passed + failed;
+                
+                if (failed === 0) {
+                  comment += '✅ All smoke tests passed!\n\n';
+                } else {
+                  comment += `❌ ${failed} out of ${total} smoke tests failed.\n\n`;
+                }
+                
+                comment += `- **Duration**: ${results.stats?.duration || 'Unknown'}ms\n`;
+                comment += `- **Passed**: ${passed}\n`;
+                comment += `- **Failed**: ${failed}\n\n`;
+                
+                if (failed > 0 && results.failures) {
+                  comment += '### Failed Tests:\n';
+                  results.failures.slice(0, 5).forEach(failure => {
+                    comment += `- ${failure.test || 'Unknown test'}: ${failure.error || 'Unknown error'}\n`;
+                  });
+                }
+              } catch (error) {
+                comment += '⚠️ Could not parse test results.\n';
+              }
+            } else {
+              comment += '⚠️ No test results found.\n';
+            }
+            
+            comment += '\n[View full report in workflow artifacts](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

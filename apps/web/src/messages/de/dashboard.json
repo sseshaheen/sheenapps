@@ -1,0 +1,22 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Verwalten Sie Ihre Projekte",
+  "searchPlaceholder": "Projekte suchen...",
+  "createProject": "Neues Projekt erstellen",
+  "createShort": "Erstellen",
+  "noProjects": "Keine Projekte gefunden",
+  "noProjectsDescription": "Erstellen Sie Ihr erstes Projekt, um zu beginnen",
+  "noArchivedProjects": "Keine archivierten Projekte",
+  "noActiveProjects": "Keine aktiven Projekte",
+  "clearFilters": "Filter löschen",
+  "sortBy": "Sortieren nach",
+  "filterBy": "Filtern nach",
+  "lastUpdated": "Zuletzt aktualisiert",
+  "created": "Erstellt",
+  "name": "Name",
+  "archived": "Archiviert",
+  "active": "Aktiv",
+  "allProjects": "Alle Projekte",
+  "projectsLabel": "Projekte",
+  "loading": "Wird geladen..."
+}

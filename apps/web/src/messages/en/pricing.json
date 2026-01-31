@@ -1,0 +1,88 @@
+{
+  "badge": "Real humans included in every plan",
+  "title": "Your Tech Team for Less Than",
+  "titleHighlight": "A Gym Membership",
+  "subtitle": "Traditional agencies charge $10k+ and take months. Freelancers disappear.",
+  "subtitleSecond": "We give you a permanent tech team that actually cares about your success.",
+  "billingMonthly": "Monthly",
+  "billingYearly": "Yearly",
+  "billingSave": "Save {percent}%",
+  "periodMonthly": "/month",
+  "periodYearly": "/year",
+  "plans": {
+    "free": {
+      "name": "Free",
+      "description": "Try before you buy",
+      "features": [
+        "60-second business builder",
+        "1 advisor hour/month",
+        "2 feature additions",
+        "Community support",
+        "Basic analytics",
+        "sheenapps.com subdomain"
+      ],
+      "cta": "Start Free"
+    },
+    "starter": {
+      "name": "Starter",
+      "description": "Perfect for testing ideas",
+      "features": [
+        "Everything in Free",
+        "3 advisor hours/month",
+        "5 feature additions",
+        "Email support",
+        "SSL certificate",
+        "Basic templates"
+      ],
+      "cta": "Start Building"
+    },
+    "growth": {
+      "name": "Growth",
+      "description": "For serious entrepreneurs",
+      "popular": "MOST POPULAR",
+      "features": [
+        "Everything in Starter",
+        "10 advisor hours/month",
+        "50 features/month",
+        "Priority support",
+        "Custom domain included",
+        "Advanced analytics",
+        "A/B testing",
+        "API access"
+      ],
+      "cta": "Go Pro",
+      "savings": "Save {amount}/year"
+    },
+    "scale": {
+      "name": "Scale",
+      "description": "Your dedicated tech team",
+      "features": [
+        "Everything in Growth",
+        "Dedicated advisor",
+        "Unlimited features",
+        "Same-day deployment",
+        "White-glove onboarding",
+        "Custom integrations",
+        "SLA guarantee",
+        "Weekly strategy calls"
+      ],
+      "cta": "Scale Now"
+    }
+  },
+  "enterprise": "Contact for Enterprise Pricing",
+  "enterpriseDescription": "Need more? Building multiple businesses? Have specific requirements?",
+  "guarantees": {
+    "moneyBack": {
+      "value": "30-day",
+      "label": "Money-back guarantee"
+    },
+    "cancel": {
+      "value": "Cancel",
+      "label": "Anytime, no questions"
+    },
+    "export": {
+      "value": "Export",
+      "label": "Your code & data always"
+    }
+  }
+}

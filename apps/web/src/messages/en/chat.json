@@ -1,0 +1,56 @@
+{
+  "CHAT_CONNECTION_ESTABLISHED": "Connected to AI assistant",
+  "CHAT_TOOL_READ_FILE": "Reading {file}...",
+  "CHAT_TOOL_SEARCH_CODE": "Searching for '{pattern}'...",
+  "CHAT_TOOL_FIND_FILES": "Finding files matching '{pattern}'...",
+  "CHAT_TOOL_WRITE_FILE": "Writing to {file}...",
+  "CHAT_TOOL_EDIT_FILE": "Editing {file}...",
+  "CHAT_TOOL_GENERIC": "Using {tool}...",
+  "CHAT_ANALYZING": "Analyzing your request...",
+  "CHAT_PROCESSING": "Processing...",
+  "CHAT_FINALIZING": "Finalizing response...",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE": "Insufficient AI time balance. You need {required} minutes but only have {available} minutes available. Please purchase more AI time to continue.",
+  "CHAT_ERROR_INSUFFICIENT_BALANCE_SIMPLE": "Insufficient AI time balance. Please purchase more AI time to continue.",
+  "CHAT_ERROR_TIMEOUT": "The request timed out. Please try again with a simpler request or break it into smaller parts.",
+  "CHAT_ERROR_GENERAL": "An error occurred: {message}",
+  "CHAT_STREAM_ERROR": "Connection error occurred. Please try again.",
+  "STREAM_ERROR": "Connection error occurred. Please try again.",
+  "CHAT_COMPLETE_SUCCESS": "Response complete",
+  "composer": {
+    "aiPlaceholder": "Ask the AI assistant for help...",
+    "teamPlaceholder": "Message your team...",
+    "sendButton": "Send message",
+    "cannotSendButton": "Cannot send message",
+    "buildModeTooltip": "Build immediately vs plan-only mode",
+    "buildModeLabel": "Build mode: {mode}",
+    "buildImmediatelyOn": "Build immediately on",
+    "planModeOn": "Plan mode on"
+  },
+  "errors": {
+    "BUILD_TIMEOUT": {
+      "title": "Taking Too Long",
+      "message": "The operation took longer than expected",
+      "action": "Try a simpler request like 'change the background color' or 'add a contact page'",
+      "support": "Or contact us for help"
+    },
+    "BUILD_FAILED": {
+      "title": "Something Went Wrong",
+      "message": "We encountered an issue while processing your request",
+      "action": "Try again - or try a different request",
+      "support": "Our team is here to help"
+    },
+    "INSUFFICIENT_BALANCE": {
+      "title": "Add Credits",
+      "message": "You don't have enough credits for this operation",
+      "action": "Add credits to continue building your site",
+      "support": "Questions about pricing? Contact us"
+    }
+  },
+  "recovery": {
+    "title": "Something went wrong - don't worry!",
+    "retryButton": "Try again",
+    "supportButton": "Contact support",
+    "whatHappened": "What happened",
+    "suggestion": "Suggestion"
+  }
+}

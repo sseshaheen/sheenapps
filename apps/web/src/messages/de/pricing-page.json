@@ -1,0 +1,106 @@
+{
+  "title": "Wählen Sie Ihren Plan",
+  "subtitle": "Transparente Preise, die mit Ihrem Business wachsen",
+  "badge": "Keine versteckten Gebühren, jederzeit kündbar",
+  "monthlyBilling": "Monatlich",
+  "yearlyBilling": "Jährlich",
+  "yearlyDiscount": "20% sparen",
+  "currencyNote": "Alle Preise in {currency}",
+  "loadingPlans": "Preispläne werden geladen...",
+  "errorLoading": "Preispläne konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+  "retryButton": "Erneut versuchen",
+  "popularPlan": "Beliebtester Plan",
+  "subscriptions": {
+    "title": "Abonnement-Pläne",
+    "description": "Monatliche oder jährliche Abrechnung mit vollem Zugang zu allen Plattform-Features."
+  },
+  "packages": {
+    "title": "Einmalige Aufladungen",
+    "description": "Kaufen Sie jederzeit zusätzliche Credits. Credits verfallen nie.",
+    "badges": {
+      "mostPopular": "Beliebteste",
+      "bestValue": "Bester Wert"
+    },
+    "features": {
+      "baseMinutes": "{baseMinutes} Basis-KI-Minuten",
+      "bonusMinutes": "+{bonusMinutes} Bonus-KI-Minuten",
+      "costPerMinute": "{cost} pro KI-Minute",
+      "creditsNeverExpire": "Credits verfallen nie"
+    },
+    "savings": {
+      "saveAtLeast": "Sparen Sie mindestens {discount}%"
+    }
+  },
+  "features": {
+    "expand": "Alle Features anzeigen",
+    "collapse": "Wesentliche Features anzeigen",
+    "included": "Alles in {planName}:",
+    "unlimited": "Unbegrenzt",
+    "perMonth": "pro Monat"
+  },
+  "plans": {
+    "free": {
+      "dailyBonusWithGift": "{bonusDaily} kostenlose KI-Minuten täglich + Willkommensgeschenk",
+      "welcomeGiftOnly": "Willkommensgeschenk enthalten",
+      "welcomeGiftFeature": "Willkommensgeschenk bei Anmeldung"
+    },
+    "advisor": {
+      "communitySupport": "Community-Support",
+      "sessionsIncluded": "{count} Beratungssitzungen enthalten",
+      "unlimitedSessions": "Unbegrenzte Beratungssitzungen",
+      "dailySessions": "Daily advisor session"
+    },
+    "descriptions": {
+      "minutesIncluded": "{minutes} KI-Minuten enthalten",
+      "minutesTotal": "{totalMinutes} KI-Minuten insgesamt"
+    },
+    "features": {
+      "bonusMinutesDaily": "{bonusDaily} Bonus-KI-Minuten/Tag",
+      "aiMinutesMonthly": "{minutes} KI-Minuten/Monat",
+      "rolloverMinutes": "Bis zu {rolloverCap} KI-Minuten Übertrag"
+    }
+  },
+  "cta": {
+    "getStarted": "Jetzt starten",
+    "choosePlan": "Plan wählen",
+    "upgrade": "Jetzt upgraden",
+    "purchase": "Credits kaufen",
+    "currentPlan": "Aktueller Plan",
+    "contact": "Vertrieb kontaktieren"
+  },
+  "pricing": {
+    "free": "Kostenlos",
+    "month": "/Monat",
+    "billedAnnually": " jährlich abgerechnet"
+  },
+  "guarantees": {
+    "title": "Unser Versprechen",
+    "moneyBack": {
+      "title": "30 Tage Geld-zurück",
+      "description": "Volle Erstattung bei Unzufriedenheit"
+    },
+    "cancelAnytime": {
+      "title": "Jederzeit kündbar",
+      "description": "Keine Verträge oder Kündigungsgebühren"
+    },
+    "dataExport": {
+      "title": "Ihre Daten gehören Ihnen",
+      "description": "Alles jederzeit exportieren"
+    }
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "currency": {
+      "question": "Kann ich meine Rechnungswährung ändern?",
+      "answer": "Ja! Wir unterstützen mehrere Währungen. Ihre Präferenz wird automatisch erkannt."
+    },
+    "upgrade": {
+      "question": "Kann ich jederzeit up- oder downgraden?",
+      "answer": "Absolut. Änderungen werden sofort wirksam mit anteiliger Verrechnung."
+    },
+    "credits": {
+      "question": "Verfallen einmalige Credits?",
+      "answer": "Nein, über einmalige Pakete gekaufte Credits verfallen nie."
+    }
+  }
+}

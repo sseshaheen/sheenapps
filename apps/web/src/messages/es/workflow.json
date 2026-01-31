@@ -1,0 +1,54 @@
+{
+  "badge": "Funciones entregadas el mismo día",
+  "title": "Solicita en la Mañana.",
+  "titleHighlight": "Vive al mediodía.",
+  "subtitle": "Mira cómo las solicitudes reales de clientes se convierten en funciones vivas en horas, no semanas.",
+  "steps": [
+    {
+      "time": "9:00 AM",
+      "title": "Tú Solicitas",
+      "description": "Necesito integración WhatsApp para mi tienda",
+      "output": "Solicitud recibida ✓"
+    },
+    {
+      "time": "9:15 AM",
+      "title": "Nosotros Construimos",
+      "description": "Sarah comienza a implementar la API de WhatsApp Business",
+      "output": "En progreso..."
+    },
+    {
+      "time": "10:30 AM",
+      "title": "Tú Pruebas",
+      "description": "Link de vista previa listo - prueba en tu teléfono",
+      "output": "¡Listo para probar!"
+    },
+    {
+      "time": "11:00 AM",
+      "title": "¡Está Vivo!",
+      "description": "Pedidos de WhatsApp ahora llegan a tu panel",
+      "output": "Función desplegada 🎉"
+    }
+  ],
+  "stats": [
+    {
+      "value": "247",
+      "label": "Funciones Hoy",
+      "trend": "+12%"
+    },
+    {
+      "value": "1h 47m",
+      "label": "Entrega Prom.",
+      "trend": "-23%"
+    },
+    {
+      "value": "94%",
+      "label": "Tasa de Éxito",
+      "trend": "+2%"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Calificación Cliente",
+      "trend": "★★★★★"
+    }
+  ]
+}

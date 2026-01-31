@@ -1,0 +1,25 @@
+{
+  "trials": {
+    "planRequired": "El nombre del plan es obligatorio",
+    "notEligible": "El usuario no es elegible para una prueba gratuita",
+    "customerCreationFailed": "Error al crear el registro del cliente",
+    "invalidReferralCode": "Código de referencia inválido o caducado",
+    "cannotUseSelfReferral": "No puedes usar tu propio código de referencia",
+    "extensionFailed": "Error al extender la prueba gratuita"
+  },
+  "export": {
+    "invalidProject": "ID de proyecto inválido",
+    "serviceUnavailable": "Servicio de exportación no disponible"
+  },
+  "general": {
+    "internalError": "Ocurrió un error inesperado",
+    "authRequired": "Autenticación requerida",
+    "invalidRequest": "Solicitud inválida",
+    "serviceUnavailable": "Servicio temporalmente no disponible"
+  },
+  "oauth": {
+    "invalidState": "Parámetro de estado OAuth inválido",
+    "missingCode": "Código de autorización faltante",
+    "exchangeFailed": "Error al intercambiar el código de autorización"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "actions": {
+    "undo": "Deshacer",
+    "undoing": "Deshaciendo...",
+    "dismiss": "Cerrar"
+  },
+  "projectRenamed": "Proyecto renombrado",
+  "projectDuplicated": "Proyecto duplicado",
+  "projectArchived": "Proyecto archivado",
+  "projectRestored": "Proyecto restaurado",
+  "renameUndone": "Se deshizo el cambio de nombre",
+  "archiveUndone": "Se deshizo el archivado",
+  "restoreUndone": "Se deshizo la restauración",
+  "failedToRename": "Error al renombrar el proyecto",
+  "failedToDuplicate": "Error al duplicar el proyecto",
+  "failedToArchive": "Error al archivar el proyecto",
+  "failedToRestore": "Error al restaurar el proyecto",
+  "copiedPrefix": "Copia de"
+}

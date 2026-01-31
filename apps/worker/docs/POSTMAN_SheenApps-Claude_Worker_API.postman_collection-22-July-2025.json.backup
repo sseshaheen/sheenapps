@@ -1,0 +1,623 @@
+{
+  "info": {
+    "_postman_id": "claude-worker-api-v1",
+    "name": "Claude Worker API",
+    "description": "API collection for Claude Worker microservice - generates code with Claude AI, builds and deploys to Cloudflare Pages.\n\n✨ NEW FEATURES:\n- Real-time progress tracking with polling API\n- Webhook integration with HMAC signatures\n- Build status monitoring and event streaming\n\n⚠️ IMPORTANT - AUTHENTICATION SETUP:\n\n1. The collection defaults to sharedSecret = 'your-shared-secret'\n2. You MUST override this in Postman:\n   - Click the gear icon → Manage Environments\n   - Create/select an environment OR use Globals\n   - Add: sharedSecret = [your actual secret]\n   - Select that environment in the top-right dropdown\n\n3. Alternative: Edit collection variables directly:\n   - Click collection name → Variables tab\n   - Change sharedSecret from 'your-shared-secret' to your actual secret\n\n4. To verify: Send the 'Debug Signature' request and check:\n   - Postman Console (View → Show Postman Console)\n   - Look for: pm.variables.get(\"sharedSecret\") = [your secret]\n   - Response should show: \"signatureMatch\": true\n\n🚀 PROGRESS TRACKING WORKFLOW:\n1. Start a build with 'Build Preview (New Project)' or 'Rebuild Preview'\n2. Copy the jobId from the response\n3. Use 'Get Build Status' or 'Get Build Events' with jobId as buildId\n4. Poll for progress or set up webhooks for real-time updates\n\nThe signature is generated using: HMAC-SHA256(rawBody, sharedSecret) as hex",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "noauth"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "sharedSecret",
+      "value": "your-shared-secret-here",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "user123",
+      "type": "string"
+    },
+    {
+      "key": "projectId",
+      "value": "my-app",
+      "type": "string"
+    },
+    {
+      "key": "versionId",
+      "value": "01HX...",
+      "type": "string"
+    },
+    {
+      "key": "cfWebhookSecret",
+      "value": "cloudflare-webhook-secret",
+      "type": "string"
+    },
+    {
+      "key": "buildId",
+      "value": "27",
+      "type": "string",
+      "description": "Build ID for progress tracking (same as jobId from build endpoints)"
+    },
+    {
+      "key": "lastEventId",
+      "value": "0",
+      "type": "string",
+      "description": "Last event ID for incremental polling"
+    },
+    {
+      "key": "lastPreviewUrl",
+      "value": "",
+      "type": "string",
+      "description": "Latest preview URL from completed builds (auto-set by test scripts)"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Generate HMAC signature for authenticated endpoints",
+          "const needsSignature = pm.request.method === 'POST' && (",
+          "    pm.request.url.path.includes('generate') || ",
+          "    pm.request.url.path.includes('build-preview-for-new-project') ||",
+          "    pm.request.url.path.includes('rebuild-preview') ||",
+          "    pm.request.url.path.includes('rollback') ||",
+          "    pm.request.url.path.includes('rebuild') ||",
+          "    pm.request.url.path.includes('debug-signature'));",
+          "",
+          "if (needsSignature) {",
+          "    // 1) Grab the exact raw body (no JSON.parse/stringify)",
+          "    // 2) Pull in your sharedSecret variable",
+          "    // 3) Force hex output from CryptoJS",
+          "    ",
+          "    const CryptoJS = require('crypto-js');",
+          "    const secret   = pm.variables.get('sharedSecret');   // e.g. \"123\"",
+          "    ",
+          "    // Resolve variables in the payload before signing",
+          "    let payload = pm.request.body.raw;",
+          "    console.log('Raw payload before replaceIn:', payload);",
+          "    payload = pm.variables.replaceIn(payload);           // This resolves {{variables}}",
+          "    console.log('Payload after replaceIn:', payload);",
+          "    ",
+          "    // Also update the request body with the resolved payload",
+          "    pm.request.body.raw = payload;",
+          "    ",
+          "    // Debug: Show what secret we're actually using",
+          "    console.log('=== SIGNATURE DEBUG ===');",
+          "    console.log('pm.variables.get(\"sharedSecret\") =', secret);",
+          "    if (secret === 'your-shared-secret') {",
+          "        console.warn('⚠️  USING DEFAULT SECRET! Update sharedSecret in Postman environment/globals');",
+          "    }",
+          "    ",
+          "    const signature = CryptoJS",
+          "      .HmacSHA256(payload, secret)",
+          "      .toString(CryptoJS.enc.Hex);",
+          "    ",
+          "    pm.request.headers.upsert({",
+          "      key:   'x-sheen-signature',",
+          "      value: signature",
+          "    });",
+          "    ",
+          "    console.log('=== FULL DEBUG ===');",
+          "    console.log('Signing payload:', payload);",
+          "    console.log('Payload length:', payload.length);",
+          "    console.log('Payload as JSON:', JSON.stringify(payload));",
+          "    console.log('With secret:', secret);",
+          "    console.log('Secret length:', secret.length);",
+          "    console.log('Generated signature:', signature);",
+          "    console.log('==================');",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Monitoring",
+      "item": [
+        {
+          "name": "Main Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/myhealthz",
+              "host": ["{{baseUrl}}"],
+              "path": ["myhealthz"]
+            },
+            "description": "Check the overall health of the service"
+          }
+        },
+        {
+          "name": "Claude Executor Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/claude-executor/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["claude-executor", "health"]
+            },
+            "description": "Check Claude executor health and metrics"
+          }
+        },
+        {
+          "name": "Debug Signature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test\":\"hello\",\"userId\":\"{{userId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/debug-signature",
+              "host": ["{{baseUrl}}"],
+              "path": ["debug-signature"]
+            },
+            "description": "Debug endpoint to test signature generation"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core Operations",
+      "item": [
+        {
+          "name": "Generate Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Create a React todo list app with TypeScript\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate"]
+            },
+            "description": "Generate code using Claude AI. Returns streaming JSON response."
+          }
+        },
+        {
+          "name": "Build Preview (New Project)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Create a React todo list app\",\"framework\":\"react\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/build-preview-for-new-project",
+              "host": ["{{baseUrl}}"],
+              "path": ["build-preview-for-new-project"]
+            },
+            "description": "Initial build for a new project - triggers build and deployment to Cloudflare Pages"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 🧪 Smart Test Script for Build Progress Tracking",
+                  "",
+                  "pm.test(\"Build started successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.success).to.be.true;",
+                  "    pm.expect(response.jobId).to.exist;",
+                  "    ",
+                  "    // Auto-set buildId for progress tracking",
+                  "    pm.collectionVariables.set(\"buildId\", response.jobId);",
+                  "    ",
+                  "    console.log(\"🚀 BUILD STARTED SUCCESSFULLY!\");",
+                  "    console.log(\"📊 Response:\", JSON.stringify(response, null, 2));",
+                  "    console.log(\"✅ jobId extracted:\", response.jobId);",
+                  "    console.log(\"🔧 buildId variable set automatically:\", response.jobId);",
+                  "    console.log(\"\");",
+                  "    console.log(\"📋 NEXT STEPS:\");",
+                  "    console.log(\"1. Use 'Get Build Status' to monitor progress\");",
+                  "    console.log(\"2. Use 'Get Build Events' to see detailed events\");",
+                  "    console.log(\"3. Watch for status: planning → executing → deploying → completed\");",
+                  "    console.log(\"4. Final build will have previewUrl in the response\");",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏰ Expected completion time: 60-120 seconds\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response has required fields\", function () {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('jobId');",
+                  "    pm.expect(response).to.have.property('status');",
+                  "    pm.expect(response).to.have.property('versionId');",
+                  "    pm.expect(response.status).to.equal('queued');",
+                  "});",
+                  "",
+                  "// Set up automatic progress checking reminder",
+                  "setTimeout(() => {",
+                  "    console.log(\"\");",
+                  "    console.log(\"⏰ REMINDER: Check build progress now!\");",
+                  "    console.log(\"   → Send 'Get Build Status' request\");",
+                  "    console.log(\"   → buildId is already set to:\", pm.collectionVariables.get('buildId'));",
+                  "}, 5000);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rebuild Preview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Add ability to mark todos as complete\",\"baseVersionId\":\"{{versionId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rebuild-preview",
+              "host": ["{{baseUrl}}"],
+              "path": ["rebuild-preview"]
+            },
+            "description": "Update an existing project - uses the latest version if baseVersionId is not provided"
+          }
+        },
+        {
+          "name": "Get Latest Version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/preview/{{userId}}/{{projectId}}/latest",
+              "host": ["{{baseUrl}}"],
+              "path": ["preview", "{{userId}}", "{{projectId}}", "latest"]
+            },
+            "description": "Get the latest version information for a project"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Version Management",
+      "item": [
+        {
+          "name": "List Project Versions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/versions/{{userId}}/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "{{userId}}", "{{projectId}}"]
+            },
+            "description": "List all versions for a project (up to 200)"
+          }
+        },
+        {
+          "name": "Get Version Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/versions/{{versionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "{{versionId}}"]
+            },
+            "description": "Get detailed information about a specific version"
+          }
+        },
+        {
+          "name": "Version Diff (Stats)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/versions/{{versionId}}/diff/01HY123456789?mode=stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "{{versionId}}", "diff", "01HY123456789"],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "stats",
+                  "description": "stats or patch"
+                }
+              ]
+            },
+            "description": "Get statistics about changes between two versions"
+          }
+        },
+        {
+          "name": "Version Diff (Patch)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/versions/{{versionId}}/diff/01HY123456789?mode=patch",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "{{versionId}}", "diff", "01HY123456789"],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "patch"
+                }
+              ]
+            },
+            "description": "Get the git diff patch between two versions"
+          }
+        },
+        {
+          "name": "Rollback Version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"targetVersionId\":\"{{versionId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/versions/rollback",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "rollback"]
+            },
+            "description": "Rollback to a previous version by redeploying its artifact"
+          }
+        },
+        {
+          "name": "Rebuild Version",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/versions/{{versionId}}/rebuild",
+              "host": ["{{baseUrl}}"],
+              "path": ["versions", "{{versionId}}", "rebuild"]
+            },
+            "description": "Trigger a rebuild of a specific version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Progress Tracking ⭐ NEW",
+      "item": [
+        {
+          "name": "Get Build Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/builds/{{buildId}}/events?lastEventId={{lastEventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "builds", "{{buildId}}", "events"],
+              "query": [
+                {
+                  "key": "lastEventId",
+                  "value": "{{lastEventId}}",
+                  "description": "Optional - only return events after this ID"
+                }
+              ]
+            },
+            "description": "Get build progress events with incremental polling support. Use jobId from build endpoints as buildId."
+          }
+        },
+        {
+          "name": "Get Build Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/builds/{{buildId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "builds", "{{buildId}}", "status"]
+            },
+            "description": "Get aggregated build status and progress percentage. Use jobId from build endpoints as buildId."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 📊 Build Status Monitor with Smart Progress Tracking",
+                  "",
+                  "pm.test(\"Status response is valid\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('buildId');",
+                  "    pm.expect(response).to.have.property('status');",
+                  "    pm.expect(response).to.have.property('progress');",
+                  "});",
+                  "",
+                  "const response = pm.response.json();",
+                  "const { buildId, status, progress, previewUrl, error, eventCount } = response;",
+                  "",
+                  "// Visual progress indicator",
+                  "const progressBar = '█'.repeat(Math.floor(progress/5)) + '░'.repeat(20 - Math.floor(progress/5));",
+                  "console.log(\"📊 BUILD STATUS REPORT\");",
+                  "console.log(\"═\".repeat(50));",
+                  "console.log(`🏗️  Build ID: ${buildId}`);",
+                  "console.log(`📈 Progress: [${progressBar}] ${progress}%`);",
+                  "console.log(`🎯 Status: ${status.toUpperCase()}`);",
+                  "console.log(`📝 Events: ${eventCount} total`);",
+                  "",
+                  "// Status-specific guidance",
+                  "switch(status) {",
+                  "    case 'planning':",
+                  "        console.log('🔄 Claude is analyzing your requirements...');",
+                  "        console.log('⏱️  Expected: ~10-20 seconds');",
+                  "        break;",
+                  "    case 'executing':",
+                  "        console.log('⚙️  Creating files and implementing features...');",
+                  "        console.log('⏱️  Expected: ~30-60 seconds');",
+                  "        break;",
+                  "    case 'deploying':",
+                  "        console.log('🚀 Building and deploying to Cloudflare...');",
+                  "        console.log('⏱️  Expected: ~20-40 seconds');",
+                  "        break;",
+                  "    case 'completed':",
+                  "        console.log('✅ BUILD COMPLETED!');",
+                  "        if (previewUrl) {",
+                  "            console.log(`🌐 Preview URL: ${previewUrl}`);",
+                  "            pm.collectionVariables.set('lastPreviewUrl', previewUrl);",
+                  "        }",
+                  "        break;",
+                  "    case 'failed':",
+                  "        console.log('❌ BUILD FAILED');",
+                  "        if (error) console.log(`🐛 Error: ${error}`);",
+                  "        break;",
+                  "    default:",
+                  "        console.log('⏳ Waiting for build to start...');",
+                  "}",
+                  "",
+                  "console.log(\"═\".repeat(50));",
+                  "",
+                  "if (status !== 'completed' && status !== 'failed') {",
+                  "    console.log('💡 TIP: Send this request again in 10-15 seconds to check progress');",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Webhook Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/webhooks/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhooks", "status"]
+            },
+            "description": "Get webhook delivery statistics and configuration status."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Cloudflare Pages Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "cf-webhook-auth",
+                "value": "{{cfWebhookSecret}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deployment\": {\n    \"id\": \"deploy-123\",\n    \"environment\": \"production\",\n    \"url\": \"https://abc123.pages.dev\",\n    \"aliases\": [],\n    \"created_on\": \"2025-01-21T12:00:00Z\",\n    \"latest_stage\": {\n      \"name\": \"deploy\",\n      \"status\": \"success\",\n      \"ended_on\": \"2025-01-21T12:01:00Z\"\n    }\n  },\n  \"project\": {\n    \"id\": \"proj-123\",\n    \"name\": \"my-app\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cf-pages-callback",
+              "host": ["{{baseUrl}}"],
+              "path": ["cf-pages-callback"]
+            },
+            "description": "Webhook endpoint for Cloudflare Pages deployment status updates"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Examples",
+      "item": [
+        {
+          "name": "Invalid Signature (401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-sheen-signature",
+                "value": "invalid-signature",
+                "description": "Intentionally invalid signature"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\",\"projectId\":\"{{projectId}}\",\"prompt\":\"Test invalid signature\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate"]
+            },
+            "description": "Example of invalid signature error"
+          }
+        },
+        {
+          "name": "Missing Parameters (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"{{userId}}\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate"]
+            },
+            "description": "Example of missing required parameters"
+          }
+        }
+      ]
+    }
+  ]
+}

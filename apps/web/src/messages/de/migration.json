@@ -1,0 +1,168 @@
+{
+  "page": {
+    "title": "Website Migration",
+    "description": "Transform your existing website into a modern, high-performance Next.js application powered by AI. Preserve your content while upgrading to the latest web technologies.",
+    "features": {
+      "aiAnalysis": {
+        "title": "AI-Powered Analysis",
+        "description": "Our AI analyzes your website's structure, content, and design to create an optimal migration plan."
+      },
+      "modernTech": {
+        "title": "Modern Technologies",
+        "description": "Upgrade to Next.js 14, Tailwind CSS, and modern web standards for better performance and maintainability."
+      },
+      "seamlessIntegration": {
+        "title": "Seamless Integration",
+        "description": "Migrated projects appear instantly in your workspace, ready for further customization and deployment."
+      }
+    },
+    "startForm": {
+      "title": "Start Your Migration",
+      "urlLabel": "Website URL",
+      "urlPlaceholder": "https://example.com",
+      "urlDescription": "Enter the URL of the website you want to migrate. Must be publicly accessible.",
+      "migrationStyleLabel": "Migration Style",
+      "customInstructions": "Custom Instructions",
+      "customInstructionsOptional": "(optional)",
+      "customInstructionsPlaceholder": "Describe any specific requirements, design preferences, or features you want to preserve or modify...",
+      "customInstructionsDescription": "Provide specific instructions to customize the migration process.",
+      "estimatedTimeLabel": "Estimated Time",
+      "estimatedTimeActual": "Actual time may vary based on website complexity and size.",
+      "submitButton": "Start Migration",
+      "submittingButton": "Starting Migration...",
+      "pasteButton": "Paste",
+      "urlDetectedToast": "URL detected from clipboard!",
+      "urlPastedToast": "URL pasted from clipboard!",
+      "urlRequiredError": "Please enter a website URL",
+      "urlInvalidError": "Please enter a valid URL (including http:// or https://)",
+      "rateLimitError": "Rate limit exceeded. Please try again in {seconds} seconds.",
+      "migrationStartedToast": "Migration started! Redirecting to progress page...",
+      "migrationFailedToast": "Failed to start migration",
+      "disclaimers": {
+        "usesAiTime": "Migration uses AI time from your current plan",
+        "publicAccess": "The website must be publicly accessible for analysis",
+        "manualAdjustment": "Complex functionality may require manual adjustment after migration"
+      },
+      "presets": {
+        "exactCopy": {
+          "name": "Exact Copy",
+          "description": "Preserve everything as-is, modernize code only"
+        },
+        "modernRefresh": {
+          "name": "Modern Refresh",
+          "description": "Keep design, improve UX and performance"
+        },
+        "completeOverhaul": {
+          "name": "Complete Overhaul",
+          "description": "Reimagine with modern design trends"
+        }
+      }
+    },
+    "whatGetsMigrated": {
+      "title": "What Gets Migrated?",
+      "items": {
+        "content": "Content and text from all pages",
+        "images": "Images and media assets",
+        "navigation": "Navigation structure and menus",
+        "seo": "SEO metadata and schema",
+        "forms": "Contact forms and basic functionality"
+      }
+    },
+    "pricingTime": {
+      "title": "Pricing & Time",
+      "typicalMigration": "Typical Migration",
+      "typicalTime": "9-19 minutes",
+      "usesAiTime": "Uses AI time from your current plan. Most websites migrate in under 15 minutes.",
+      "phases": {
+        "analysis": "Analysis Phase:",
+        "planning": "Planning Phase:",
+        "transformation": "Transformation:",
+        "deployment": "Deployment:"
+      },
+      "times": {
+        "analysis": "~1 minute",
+        "planning": "~2 minutes",
+        "transformation": "5-15 minutes",
+        "deployment": "~1 minute"
+      }
+    }
+  },
+  "progress": {
+    "title": "Migration Progress",
+    "migrationId": "Migration ID:",
+    "connection": {
+      "connected": "Connected",
+      "connecting": "Connecting...",
+      "disconnected": "Disconnected",
+      "error": "Connection Error",
+      "authRequired": "Authentication Required",
+      "retryButton": "Retry"
+    },
+    "status": {
+      "pending": "pending",
+      "analyzing": "analyzing",
+      "processing": "processing",
+      "completed": "completed",
+      "failed": "failed",
+      "cancelled": "cancelled"
+    },
+    "phases": {
+      "verification": {
+        "title": "Domain Verification",
+        "description": "Verifying domain ownership and accessibility"
+      },
+      "analysis": {
+        "title": "Website Analysis",
+        "description": "Analyzing website structure and content"
+      },
+      "planning": {
+        "title": "Migration Planning",
+        "description": "Creating migration strategy and component mapping"
+      },
+      "transformation": {
+        "title": "Content Transformation",
+        "description": "Converting content to modern Next.js components"
+      },
+      "deployment": {
+        "title": "Project Deployment",
+        "description": "Finalizing project and preparing for workspace"
+      },
+      "completed": {
+        "title": "Migration Complete",
+        "description": "Your website has been successfully migrated"
+      }
+    },
+    "phaseTimeline": {
+      "title": "Migration Phases",
+      "complete": "Complete",
+      "inProgress": "In Progress"
+    },
+    "actions": {
+      "viewProject": "View Project in Builder",
+      "cancelMigration": "Cancel Migration",
+      "startNew": "Start New Migration",
+      "copySupportId": "Copy"
+    },
+    "messages": {
+      "initializing": "Initializing migration...",
+      "domainVerificationRequired": "Domain verification required",
+      "domainVerificationCompleted": "Domain verification completed",
+      "migrationCompleted": "Migration completed successfully!",
+      "migrationFailed": "Migration failed",
+      "migrationCancelled": "Migration cancelled",
+      "supportId": "Support ID:",
+      "projectNotReady": "Project creation in progress, try again in a moment",
+      "cancellationFailed": "Failed to cancel migration",
+      "cancellationSuccess": "Migration cancelled"
+    },
+    "eventLog": {
+      "title": "Event Log (Development)"
+    }
+  },
+  "common": {
+    "minutes": "minutes",
+    "minute": "minute",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  }
+}

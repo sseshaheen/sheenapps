@@ -1,0 +1,133 @@
+{
+  "advisorMatching": {
+    "pageTitle": "Advisor Matching Dashboard",
+    "description": "Monitor and manage the intelligent advisor matching system",
+    "overview": "Overview",
+    "systemHealth": "System Health",
+    "activeMatches": "Active Matches",
+    "emergencyAssignment": "Emergency Assignment",
+    "quickActions": "Quick Actions",
+
+    "poolStatus": {
+      "title": "Advisor Pool Status",
+      "totalAdvisors": "Total Advisors",
+      "activeAdvisors": "Active Advisors",
+      "availableAdvisors": "Available Advisors",
+      "atCapacity": "At Capacity",
+      "onBreak": "On Break",
+      "utilizationRate": "Utilization Rate",
+      "averageResponseTime": "Avg Response Time",
+      "refreshData": "Refresh Data",
+      "lastUpdated": "Last updated",
+      "advisorDistribution": "Advisor Distribution",
+      "status": {
+        "healthy": "Healthy",
+        "warning": "Warning",
+        "critical": "Critical"
+      },
+      "metrics": {
+        "totalProjects": "Total Projects",
+        "avgProjectsPerAdvisor": "Avg Projects/Advisor",
+        "peakHours": "Peak Hours",
+        "offPeakHours": "Off-Peak Hours"
+      }
+    },
+
+    "systemHealth": {
+      "title": "System Health Monitor",
+      "systemStatus": "System Status",
+      "uptime": "Uptime",
+      "queueDepth": "Queue Depth",
+      "avgResponseTime": "Avg Response Time",
+      "errorRate": "Error Rate",
+      "lastCheck": "Last Check",
+      "refreshData": "Refresh Data",
+      "criticalAlerts": "Critical Alerts",
+      "warningAlerts": "Warning Alerts",
+      "performance": "Performance Metrics",
+      "metrics": {
+        "healthy": "Healthy",
+        "warning": "Warning",
+        "critical": "Critical"
+      },
+      "alerts": {
+        "highQueueDepth": "High queue depth detected",
+        "slowResponseTime": "Response times are slower than normal",
+        "highErrorRate": "Error rate is above normal threshold",
+        "systemOverload": "System is experiencing high load"
+      }
+    },
+
+    "activeMatches": {
+      "title": "Active Matches",
+      "searchPlaceholder": "Search matches...",
+      "filterByStatus": "Filter by Status",
+      "allStatuses": "All Statuses",
+      "refresh": "Refresh",
+      "noMatches": "No active matches found",
+      "project": "Project",
+      "advisor": "Advisor",
+      "client": "Client",
+      "status": "Status",
+      "created": "Created",
+      "expires": "Expires",
+      "actions": "Actions",
+      "viewDetails": "View Details",
+      "columns": {
+        "matchId": "Match ID",
+        "projectName": "Project",
+        "clientName": "Client",
+        "advisorName": "Advisor",
+        "status": "Status",
+        "createdAt": "Created",
+        "expiresAt": "Expires"
+      },
+      "statusLabels": {
+        "pending": "Pending",
+        "matched": "Matched",
+        "client_approved": "Client Approved",
+        "client_declined": "Client Declined",
+        "advisor_accepted": "Advisor Accepted",
+        "advisor_declined": "Advisor Declined",
+        "finalized": "Finalized",
+        "expired": "Expired"
+      },
+      "timings": {
+        "justNow": "just now",
+        "minutesAgo": "min ago",
+        "hoursAgo": "h ago",
+        "daysAgo": "d ago"
+      }
+    },
+
+    "manualAssignment": {
+      "title": "Emergency Manual Assignment",
+      "selectProject": "Select Project",
+      "selectAdvisor": "Select Advisor",
+      "assignmentReason": "Assignment Reason",
+      "reasonPlaceholder": "Explain why this manual assignment is necessary...",
+      "bypassAvailability": "Bypass Availability Rules",
+      "bypassDescription": "Override advisor availability and capacity restrictions",
+      "warnings": "Warnings",
+      "violations": "Rule Violations",
+      "assign": "Create Assignment",
+      "cancel": "Cancel",
+      "assignmentSuccess": "Assignment created successfully",
+      "assignmentFailed": "Assignment failed",
+      "validationErrors": {
+        "projectRequired": "Please select a project",
+        "advisorRequired": "Please select an advisor",
+        "reasonTooShort": "Reason must be at least 20 characters",
+        "hasViolations": "Cannot assign due to rule violations"
+      },
+      "eligibility": {
+        "available": "Available",
+        "atCapacity": "At Capacity",
+        "unavailable": "Unavailable",
+        "cooldown": "In Cooldown",
+        "neverAssign": "Never Assign",
+        "preferred": "Preferred"
+      }
+    }
+  }
+}

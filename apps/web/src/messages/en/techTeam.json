@@ -1,0 +1,58 @@
+{
+  "badge": "Real humans, real support",
+  "title": "Meet Your Tech Team",
+  "subtitle": "Dedicated advisors who know your business. Available in your language.",
+  "subtitleSecond": "Building your features while you sleep.",
+  "advisors": {
+    "ahmed": {
+      "name": "Ahmed Hassan",
+      "role": "Arabic Tech Lead",
+      "language": "العربية",
+      "specialties": [
+        "RTL Development",
+        "MENA Market",
+        "Payment Gateways"
+      ],
+      "availability": "Available now"
+    },
+    "sarah": {
+      "name": "Sarah Chen",
+      "role": "Feature Specialist",
+      "language": "English",
+      "specialties": [
+        "E-commerce",
+        "SaaS",
+        "API Integrations"
+      ],
+      "availability": "Next slot: 2:00 PM"
+    },
+    "pierre": {
+      "name": "Pierre Dubois",
+      "role": "Growth Advisor",
+      "language": "Français",
+      "specialties": [
+        "Scaling",
+        "Performance",
+        "Analytics"
+      ],
+      "availability": "Next slot: 3:30 PM"
+    }
+  },
+  "howItWorks": {
+    "title": "How Your Tech Team Works",
+    "instantChat": {
+      "title": "Instant Chat",
+      "description": "Message your team anytime. Get responses in minutes, not hours."
+    },
+    "scheduledCalls": {
+      "title": "Scheduled Calls",
+      "description": "Book 10-minute strategy sessions. Plan features, solve problems."
+    },
+    "proactiveUpdates": {
+      "title": "Proactive Updates",
+      "description": "We suggest improvements and new features to grow your business."
+    }
+  },
+  "scheduleCall": "Schedule Your First Call",
+  "includedInPlans": "Included in all plans • No extra charge"
+}

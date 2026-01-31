@@ -1,0 +1,33 @@
+/* Dark mode fixes for streaming status and other components */
+
+/* Default light mode colors */
+:root {
+  --streaming-bg-from: rgb(239, 246, 255); /* blue-50 */
+  --streaming-bg-to: rgb(243, 232, 255); /* purple-50 */
+  --streaming-border: rgb(191, 219, 254); /* blue-200 */
+  --streaming-text-primary: rgb(17, 24, 39); /* gray-900 */
+  --streaming-text-secondary: rgb(75, 85, 99); /* gray-600 */
+}
+
+/* Dark mode colors */
+.dark {
+  --streaming-bg-from: rgba(31, 41, 55, 0.8); /* gray-800 */
+  --streaming-bg-to: rgba(55, 65, 81, 0.8); /* gray-700 */
+  --streaming-border: rgb(75, 85, 99); /* gray-600 */
+  --streaming-text-primary: rgb(243, 244, 246); /* gray-100 */
+  --streaming-text-secondary: rgb(156, 163, 175); /* gray-400 */
+}
+
+/* Apply to streaming status component */
+.streaming-status-box {
+  background: linear-gradient(to right, var(--streaming-bg-from), var(--streaming-bg-to));
+  border-color: var(--streaming-border);
+}
+
+.streaming-status-box .text-primary {
+  color: var(--streaming-text-primary);
+}
+
+.streaming-status-box .text-secondary {
+  color: var(--streaming-text-secondary);
+}

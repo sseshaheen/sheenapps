@@ -1,0 +1,168 @@
+{
+  "page": {
+    "title": "نقل موقعك",
+    "description": "حوّل موقعك الإلكتروني الحالي إلى تطبيق Next.js حديث وعالي الأداء بدعم الذكاء الاصطناعي. احتفظ بمحتواك مع الترقية إلى أحدث تقنيات الويب.",
+    "features": {
+      "aiAnalysis": {
+        "title": "تحليل مدعوم بالذكاء الاصطناعي",
+        "description": "يقوم الذكاء الاصطناعي لدينا بتحليل بنية موقعك ومحتواه وتصميمه لإنشاء خطة نقل مثالية."
+      },
+      "modernTech": {
+        "title": "تقنيات حديثة",
+        "description": "الترقية إلى Next.js 14 و Tailwind CSS ومعايير الويب الحديثة للحصول على أداء وصيانة أفضل."
+      },
+      "seamlessIntegration": {
+        "title": "تكامل سلس",
+        "description": "تظهر المشاريع المنقولة فورًا في مساحة العمل الخاصة بك، جاهزة لمزيد من التخصيص والنشر."
+      }
+    },
+    "startForm": {
+      "title": "ابدأ عملية النقل",
+      "urlLabel": "رابط الموقع",
+      "urlPlaceholder": "https://example.com",
+      "urlDescription": "أدخل رابط الموقع الذي تريد نقله. يجب أن يكون متاحًا للوصول العام.",
+      "migrationStyleLabel": "نمط النقل",
+      "customInstructions": "تعليمات مخصصة",
+      "customInstructionsOptional": "(اختياري)",
+      "customInstructionsPlaceholder": "صف أي متطلبات محددة أو تفضيلات تصميم أو ميزات تريد الاحتفاظ بها أو تعديلها...",
+      "customInstructionsDescription": "قدم تعليمات محددة لتخصيص عملية النقل.",
+      "estimatedTimeLabel": "الوقت المقدر",
+      "estimatedTimeActual": "قد يختلف الوقت الفعلي بناءً على تعقيد الموقع وحجمه.",
+      "submitButton": "بدء النقل",
+      "submittingButton": "جارٍ بدء النقل...",
+      "pasteButton": "لصق",
+      "urlDetectedToast": "تم اكتشاف الرابط من الحافظة!",
+      "urlPastedToast": "تم لصق الرابط من الحافظة!",
+      "urlRequiredError": "الرجاء إدخال رابط الموقع",
+      "urlInvalidError": "الرجاء إدخال رابط صالح (بما في ذلك http:// أو https://)",
+      "rateLimitError": "تم تجاوز الحد الأقصى. الرجاء المحاولة مرة أخرى بعد {seconds} ثانية.",
+      "migrationStartedToast": "بدأ النقل! جارٍ التوجيه إلى صفحة التقدم...",
+      "migrationFailedToast": "فشل بدء النقل",
+      "disclaimers": {
+        "usesAiTime": "يستخدم النقل وقت الذكاء الاصطناعي من خطتك الحالية",
+        "publicAccess": "يجب أن يكون الموقع متاحًا للوصول العام للتحليل",
+        "manualAdjustment": "قد تتطلب الوظائف المعقدة تعديلًا يدويًا بعد النقل"
+      },
+      "presets": {
+        "exactCopy": {
+          "name": "نسخة طبق الأصل",
+          "description": "الاحتفاظ بكل شيء كما هو، تحديث الكود فقط"
+        },
+        "modernRefresh": {
+          "name": "تحديث",
+          "description": "الاحتفاظ بالتصميم، تحسين تجربة المستخدم والأداء"
+        },
+        "completeOverhaul": {
+          "name": "إصلاح شامل",
+          "description": "إعادة التصور باتجاهات التصميم الحديثة"
+        }
+      }
+    },
+    "whatGetsMigrated": {
+      "title": "ما الذي يتم نقله؟",
+      "items": {
+        "content": "المحتوى والنصوص من جميع الصفحات",
+        "images": "الصور وملفات الوسائط",
+        "navigation": "بنية التنقل والقوائم",
+        "seo": "بيانات تحسين محركات البحث والمخططات",
+        "forms": "نماذج الاتصال والوظائف الأساسية"
+      }
+    },
+    "pricingTime": {
+      "title": "السعر والوقت",
+      "typicalMigration": "النقل النموذجي",
+      "typicalTime": "٩-١٩ دقيقة",
+      "usesAiTime": "يستخدم وقت الذكاء الاصطناعي من خطتك الحالية. معظم المواقع تنتقل في أقل من 15 دقيقة.",
+      "phases": {
+        "analysis": "مرحلة التحليل:",
+        "planning": "مرحلة التخطيط:",
+        "transformation": "التحويل:",
+        "deployment": "النشر:"
+      },
+      "times": {
+        "analysis": "~١ دقيقة",
+        "planning": "~٢ دقيقة",
+        "transformation": "٥-١٥ دقيقة",
+        "deployment": "~١ دقيقة"
+      }
+    }
+  },
+  "progress": {
+    "title": "تقدم النقل",
+    "migrationId": "معرف النقل:",
+    "connection": {
+      "connected": "متصل",
+      "connecting": "جارٍ الاتصال...",
+      "disconnected": "غير متصل",
+      "error": "خطأ في الاتصال",
+      "authRequired": "المصادقة مطلوبة",
+      "retryButton": "إعادة المحاولة"
+    },
+    "status": {
+      "pending": "قيد الانتظار",
+      "analyzing": "جارٍ التحليل",
+      "processing": "جارٍ المعالجة",
+      "completed": "مكتمل",
+      "failed": "فشل",
+      "cancelled": "ملغى"
+    },
+    "phases": {
+      "verification": {
+        "title": "التحقق من النطاق",
+        "description": "التحقق من ملكية النطاق وإمكانية الوصول"
+      },
+      "analysis": {
+        "title": "تحليل الموقع",
+        "description": "تحليل بنية الموقع والمحتوى"
+      },
+      "planning": {
+        "title": "تخطيط النقل",
+        "description": "إنشاء استراتيجية النقل وتعيين المكونات"
+      },
+      "transformation": {
+        "title": "تحويل المحتوى",
+        "description": "تحويل المحتوى إلى مكونات Next.js حديثة"
+      },
+      "deployment": {
+        "title": "نشر المشروع",
+        "description": "إنهاء المشروع والإعداد لمساحة العمل"
+      },
+      "completed": {
+        "title": "اكتمل النقل",
+        "description": "تم نقل موقعك بنجاح"
+      }
+    },
+    "phaseTimeline": {
+      "title": "مراحل النقل",
+      "complete": "مكتمل",
+      "inProgress": "قيد التنفيذ"
+    },
+    "actions": {
+      "viewProject": "عرض المشروع في أداة البناء",
+      "cancelMigration": "إلغاء النقل",
+      "startNew": "بدء نقل جديد",
+      "copySupportId": "نسخ"
+    },
+    "messages": {
+      "initializing": "جارٍ تهيئة النقل...",
+      "domainVerificationRequired": "التحقق من النطاق مطلوب",
+      "domainVerificationCompleted": "اكتمل التحقق من النطاق",
+      "migrationCompleted": "اكتمل النقل بنجاح!",
+      "migrationFailed": "فشل النقل",
+      "migrationCancelled": "تم إلغاء النقل",
+      "supportId": "معرف الدعم:",
+      "projectNotReady": "إنشاء المشروع قيد التقدم، حاول مرة أخرى بعد لحظة",
+      "cancellationFailed": "فشل إلغاء النقل",
+      "cancellationSuccess": "تم إلغاء النقل"
+    },
+    "eventLog": {
+      "title": "سجل الأحداث (التطوير)"
+    }
+  },
+  "common": {
+    "minutes": "دقائق",
+    "minute": "دقيقة",
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ"
+  }
+}

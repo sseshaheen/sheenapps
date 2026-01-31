@@ -1,0 +1,168 @@
+{
+  "page": {
+    "title": "Migration de site",
+    "description": "Transformez votre site Web existant en une application Next.js moderne et performante alimentée par l'IA. Préservez votre contenu tout en passant aux dernières technologies Web.",
+    "features": {
+      "aiAnalysis": {
+        "title": "Analyse alimentée par l'IA",
+        "description": "Notre IA analyse la structure, le contenu et le design de votre site Web pour créer un plan de migration optimal."
+      },
+      "modernTech": {
+        "title": "Technologies modernes",
+        "description": "Passez à Next.js 14, Tailwind CSS et aux standards Web modernes pour de meilleures performances et maintenabilité."
+      },
+      "seamlessIntegration": {
+        "title": "Intégration transparente",
+        "description": "Les projets migrés apparaissent instantanément dans votre espace de travail, prêts pour une personnalisation et un déploiement supplémentaires."
+      }
+    },
+    "startForm": {
+      "title": "Commencez votre migration",
+      "urlLabel": "URL du site Web",
+      "urlPlaceholder": "https://example.com",
+      "urlDescription": "Entrez l'URL du site Web que vous souhaitez migrer. Doit être accessible publiquement.",
+      "migrationStyleLabel": "Style de migration",
+      "customInstructions": "Instructions personnalisées",
+      "customInstructionsOptional": "(optionnel)",
+      "customInstructionsPlaceholder": "Décrivez les exigences spécifiques, les préférences de design ou les fonctionnalités que vous souhaitez préserver ou modifier...",
+      "customInstructionsDescription": "Fournissez des instructions spécifiques pour personnaliser le processus de migration.",
+      "estimatedTimeLabel": "Temps estimé",
+      "estimatedTimeActual": "Le temps réel peut varier en fonction de la complexité et de la taille du site Web.",
+      "submitButton": "Démarrer la migration",
+      "submittingButton": "Démarrage de la migration...",
+      "pasteButton": "Coller",
+      "urlDetectedToast": "URL détectée depuis le presse-papiers!",
+      "urlPastedToast": "URL collée depuis le presse-papiers!",
+      "urlRequiredError": "Veuillez entrer une URL de site Web",
+      "urlInvalidError": "Veuillez entrer une URL valide (incluant http:// ou https://)",
+      "rateLimitError": "Limite de débit dépassée. Veuillez réessayer dans {seconds} secondes.",
+      "migrationStartedToast": "Migration démarrée! Redirection vers la page de progression...",
+      "migrationFailedToast": "Échec du démarrage de la migration",
+      "disclaimers": {
+        "usesAiTime": "La migration utilise le temps d'IA de votre plan actuel",
+        "publicAccess": "Le site Web doit être accessible publiquement pour l'analyse",
+        "manualAdjustment": "Les fonctionnalités complexes peuvent nécessiter un ajustement manuel après la migration"
+      },
+      "presets": {
+        "exactCopy": {
+          "name": "Copie exacte",
+          "description": "Préserver tout tel quel, moderniser uniquement le code"
+        },
+        "modernRefresh": {
+          "name": "Rafraîchissement moderne",
+          "description": "Conserver le design, améliorer l'UX et les performances"
+        },
+        "completeOverhaul": {
+          "name": "Refonte complète",
+          "description": "Réinventer avec les tendances de design modernes"
+        }
+      }
+    },
+    "whatGetsMigrated": {
+      "title": "Qu'est-ce qui est migré?",
+      "items": {
+        "content": "Contenu et texte de toutes les pages",
+        "images": "Images et médias",
+        "navigation": "Structure de navigation et menus",
+        "seo": "Métadonnées SEO et schémas",
+        "forms": "Formulaires de contact et fonctionnalités de base"
+      }
+    },
+    "pricingTime": {
+      "title": "Prix et durée",
+      "typicalMigration": "Migration typique",
+      "typicalTime": "9-19 minutes",
+      "usesAiTime": "Utilise le temps d'IA de votre plan actuel. La plupart des sites migrent en moins de 15 minutes.",
+      "phases": {
+        "analysis": "Phase d'analyse:",
+        "planning": "Phase de planification:",
+        "transformation": "Transformation:",
+        "deployment": "Déploiement:"
+      },
+      "times": {
+        "analysis": "~1 minute",
+        "planning": "~2 minutes",
+        "transformation": "5-15 minutes",
+        "deployment": "~1 minute"
+      }
+    }
+  },
+  "progress": {
+    "title": "Progression de la migration",
+    "migrationId": "ID de migration:",
+    "connection": {
+      "connected": "Connecté",
+      "connecting": "Connexion...",
+      "disconnected": "Déconnecté",
+      "error": "Erreur de connexion",
+      "authRequired": "Authentification requise",
+      "retryButton": "Réessayer"
+    },
+    "status": {
+      "pending": "en attente",
+      "analyzing": "analyse en cours",
+      "processing": "traitement en cours",
+      "completed": "terminé",
+      "failed": "échoué",
+      "cancelled": "annulé"
+    },
+    "phases": {
+      "verification": {
+        "title": "Vérification du domaine",
+        "description": "Vérification de la propriété et de l'accessibilité du domaine"
+      },
+      "analysis": {
+        "title": "Analyse du site Web",
+        "description": "Analyse de la structure et du contenu du site Web"
+      },
+      "planning": {
+        "title": "Planification de la migration",
+        "description": "Création de la stratégie de migration et mappage des composants"
+      },
+      "transformation": {
+        "title": "Transformation du contenu",
+        "description": "Conversion du contenu en composants Next.js modernes"
+      },
+      "deployment": {
+        "title": "Déploiement du projet",
+        "description": "Finalisation du projet et préparation pour l'espace de travail"
+      },
+      "completed": {
+        "title": "Migration terminée",
+        "description": "Votre site Web a été migré avec succès"
+      }
+    },
+    "phaseTimeline": {
+      "title": "Phases de migration",
+      "complete": "Terminé",
+      "inProgress": "En cours"
+    },
+    "actions": {
+      "viewProject": "Voir le projet dans le constructeur",
+      "cancelMigration": "Annuler la migration",
+      "startNew": "Démarrer une nouvelle migration",
+      "copySupportId": "Copier"
+    },
+    "messages": {
+      "initializing": "Initialisation de la migration...",
+      "domainVerificationRequired": "Vérification du domaine requise",
+      "domainVerificationCompleted": "Vérification du domaine terminée",
+      "migrationCompleted": "Migration terminée avec succès!",
+      "migrationFailed": "Échec de la migration",
+      "migrationCancelled": "Migration annulée",
+      "supportId": "ID de support:",
+      "projectNotReady": "Création du projet en cours, réessayez dans un moment",
+      "cancellationFailed": "Échec de l'annulation de la migration",
+      "cancellationSuccess": "Migration annulée"
+    },
+    "eventLog": {
+      "title": "Journal des événements (Développement)"
+    }
+  },
+  "common": {
+    "minutes": "minutes",
+    "minute": "minute",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite"
+  }
+}

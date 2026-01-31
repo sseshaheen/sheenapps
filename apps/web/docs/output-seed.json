@@ -1,0 +1,21 @@
+{
+  "name": "{project-name}",
+  "slug": "{project-slug}",
+  "description": "description",
+  "version": "0.1.0",
+  "author": "TemplateSeed",
+  "repository": "",
+  "license": "MIT",
+  "tech_stack": [],
+  "metadata": {
+    "tags": [],
+    "industry_tags": [],
+    "style_tags": [],
+    "core_pages": {},
+    "components": [],
+    "design_tokens": {},
+    "rsc_path": ""
+  },
+  "templateFiles": [],
+  "files": []
+}

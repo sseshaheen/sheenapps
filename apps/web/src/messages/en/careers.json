@@ -1,0 +1,150 @@
+{
+  "title": "Available Jobs",
+  "subtitle": "Join our team and help build the future",
+  "search": {
+    "placeholder": "Search jobs...",
+    "button": "Search"
+  },
+  "filters": {
+    "title": "Filter Jobs",
+    "all_departments": "All Departments",
+    "all_locations": "All Locations",
+    "all_types": "All Types",
+    "all_levels": "All Levels",
+    "remote_only": "Remote Only",
+    "clear": "Clear Filters"
+  },
+  "employment_types": {
+    "full_time": "Full Time",
+    "part_time": "Part Time",
+    "contract": "Contract",
+    "internship": "Internship"
+  },
+  "experience_levels": {
+    "entry": "Entry Level",
+    "mid": "Mid Level",
+    "senior": "Senior Level",
+    "executive": "Executive"
+  },
+  "labels": {
+    "featured": "Featured",
+    "remote_available": "Remote OK",
+    "apply_now": "Apply Now",
+    "view_details": "View Details",
+    "posted_on": "Posted on",
+    "deadline": "Deadline",
+    "department": "Department",
+    "location": "Location",
+    "type": "Type",
+    "experience": "Experience",
+    "salary": "Salary"
+  },
+  "results": {
+    "showing": "Showing {count} of {total} jobs",
+    "no_jobs": "No jobs available at the moment",
+    "error": "An error occurred while loading jobs. Please try again later."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "showing": "Showing {start}-{end} of {total} advisors"
+  },
+  "application": {
+    "title": "Apply for {jobTitle}",
+    "personal_info": "Personal Information",
+    "full_name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "experience_years": "Years of Experience",
+    "cover_letter": "Cover Letter",
+    "resume": "Resume/CV",
+    "resume_help": "PDF, DOC, DOCX - Max 5MB",
+    "linkedin_url": "LinkedIn Profile",
+    "portfolio_url": "Portfolio URL",
+    "submit": "Submit Application",
+    "submitting": "Submitting...",
+    "success": "Application submitted successfully!",
+    "errors": {
+      "duplicate": "You have already applied for this position",
+      "rate_limit": "Too many applications. Please try again later.",
+      "captcha": "Please complete the CAPTCHA verification",
+      "network": "Network error. Please try again.",
+      "general": "An error occurred. Please try again."
+    },
+    "required_fields": "* Required fields"
+  },
+  "job_detail": {
+    "description": "Job Description",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "about_role": "About the Role",
+    "what_we_offer": "What We Offer",
+    "how_to_apply": "How to Apply"
+  },
+  "hero_subtitle": "Help us democratize software development with AI. Build tools that empower millions of creators worldwide.",
+  "hiring_badge": "We're Hiring",
+  "open_positions": "Open Positions", 
+  "positions_subtitle": "We're looking for talented individuals who share our vision of making app development accessible to everyone.",
+  "no_positions": "No Open Positions",
+  "no_positions_subtitle": "We're not actively hiring right now, but we're always open to exceptional talent.",
+  "stats": {
+    "active_users": "Active Users",
+    "apps_built": "Apps Built", 
+    "uptime": "Uptime",
+    "remote": "Remote"
+  },
+  "why_sheenapps": "Why SheenApps?",
+  "why_subtitle": "Join a team that's reshaping how the world builds software. Here's what makes working with us special.",
+  "our_values": "Our Values",
+  "values_subtitle": "These principles guide everything we do, from product development to how we treat each other.",
+  "join_team": "Ready to Join Our Team?",
+  "join_team_desc": "We're always looking for exceptional talent. Even if we don't have an open position that matches your skills, we'd love to hear from you.",
+  "view_positions": "View Open Positions",
+  "send_resume": "Send Your Resume",
+  "questions": "Have questions?",
+  "email_us": "Email Us", 
+  "view_all_positions": "View All Positions",
+  "general_application": "General Application",
+  "perks": {
+    "remote_first": "Remote First",
+    "remote_first_desc": "Work from anywhere in the world. We trust our team to deliver great results.",
+    "cutting_edge": "Cutting-Edge Tech", 
+    "cutting_edge_desc": "Work with the latest AI tools and technologies. Push the boundaries of what's possible.",
+    "rapid_growth": "Rapid Growth",
+    "rapid_growth_desc": "Join a fast-growing startup. Your work directly impacts millions of users.",
+    "competitive_pay": "Competitive Package",
+    "competitive_pay_desc": "Attractive salary, equity, health benefits, and flexible time off.",
+    "learning": "Learning & Growth",
+    "learning_desc": "Conference budget, courses, mentorship. We invest in your professional development.",
+    "impact": "Meaningful Impact",
+    "impact_desc": "Build tools that democratize app development for creators worldwide."
+  },
+  "values": {
+    "innovation": "Innovation First",
+    "innovation_desc": "We constantly push boundaries and challenge the status quo.",
+    "transparency": "Radical Transparency", 
+    "transparency_desc": "Open communication, honest feedback, and shared decision-making.",
+    "ownership": "Ownership Mindset",
+    "ownership_desc": "Take initiative, own outcomes, and drive results.",
+    "diversity": "Diversity & Inclusion",
+    "diversity_desc": "Different perspectives make us stronger and more creative."
+  },
+  "advisor_badge": "Alternative Path",
+  "advisor_title": "Join Our Advisor Network",
+  "advisor_subtitle": "Prefer flexible work? Join our network of expert advisors and work with startups on your own terms.",
+  "advisor_cta": "Join Network",
+  "advisor_browse": "Browse Advisors",
+  "advisor_benefits": {
+    "flexible": "Flexible Schedule",
+    "choose_projects": "Choose Projects", 
+    "set_rates": "Set Your Rates",
+    "remote_work": "Work Remotely"
+  },
+  "advisor_stats": {
+    "active": "1,200+ Active Advisors",
+    "earnings": "$50-200/hour Average",
+    "projects": "5,000+ Projects Completed"
+  }
+}

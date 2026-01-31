@@ -1,0 +1,312 @@
+'use client';
+
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Icon } from '@/components/ui/icon';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+
+interface AdvisorSettingsContentProps {
+  translations: {
+    advisor: {
+      dashboard: {
+        settings: {
+          title: string;
+          pricing: string;
+          consultations: string;
+          pricingModel: {
+            title: string;
+            description: string;
+            platformFixed: {
+              title: string;
+              description: string;
+            };
+            freeOnly: {
+              title: string;
+              description: string;
+            };
+            hybrid: {
+              title: string;
+              description: string;
+            };
+          };
+          freeConsultations: {
+            title: string;
+            description: string;
+            duration15: string;
+            duration30: string;
+            duration60: string;
+            note: string;
+          };
+        };
+      };
+    };
+    common: {
+      loading: string;
+      save: string;
+      cancel: string;
+      saving: string;
+      saved: string;
+    };
+  };
+  locale: string;
+}
+
+export function AdvisorSettingsContent({ translations, locale }: AdvisorSettingsContentProps) {
+  const [pricingModel, setPricingModel] = useState<'platform_fixed' | 'free_only' | 'hybrid'>('platform_fixed');
+  const [freeDurations, setFreeDurations] = useState<string[]>(['30']);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const t = translations.advisor.dashboard.settings;
+  const common = translations.common;
+
+  // Mock platform pricing data
+  const platformPricing = [
+    { duration: '15 min', price: '$25', feature: 'Quick consultation' },
+    { duration: '30 min', price: '$45', feature: 'Standard consultation' },
+    { duration: '60 min', price: '$80', feature: 'Deep dive session' }
+  ];
+
+  const handleFreeDurationChange = (duration: string, checked: boolean) => {
+    if (checked) {
+      setFreeDurations([...freeDurations, duration]);
+    } else {
+      setFreeDurations(freeDurations.filter(d => d !== duration));
+    }
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Here would be the actual API call to save settings
+      console.log('Saving settings:', { pricingModel, freeDurations });
+      
+    } catch (error) {
+      console.error('Failed to save settings:', error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold">{t.title}</h1>
+        <p className="text-muted-foreground mt-1">
+          Configure your pricing model and consultation settings
+        </p>
+      </div>
+
+      {/* Pricing Model Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Icon name="credit-card" className="h-5 w-5" />
+            {t.pricingModel.title}
+          </CardTitle>
+          <CardDescription>
+            {t.pricingModel.description}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-6">
+            {/* Platform Fixed */}
+            <div className="flex items-start space-x-3">
+              <input 
+                type="radio" 
+                value="platform_fixed" 
+                id="platform_fixed" 
+                name="pricing_model"
+                checked={pricingModel === 'platform_fixed'}
+                onChange={(e) => setPricingModel(e.target.value as typeof pricingModel)}
+                className="mt-1" 
+              />
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="platform_fixed" className="text-base font-medium cursor-pointer">
+                  {t.pricingModel.platformFixed.title}
+                </Label>
+                <p className="text-sm text-muted-foreground">
+                  {t.pricingModel.platformFixed.description}
+                </p>
+                
+                {pricingModel === 'platform_fixed' && (
+                  <div className="mt-4 p-4 bg-muted/50 rounded-lg border">
+                    <h4 className="font-medium mb-3">Platform Pricing Structure:</h4>
+                    <div className="space-y-2">
+                      {platformPricing.map((item, index) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <span className="text-sm">{item.duration} - {item.feature}</span>
+                          <Badge variant="secondary">{item.price}</Badge>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-3">
+                      Platform takes 15% commission. You earn 85% of each consultation.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Free Only */}
+            <div className="flex items-start space-x-3">
+              <input 
+                type="radio" 
+                value="free_only" 
+                id="free_only" 
+                name="pricing_model"
+                checked={pricingModel === 'free_only'}
+                onChange={(e) => setPricingModel(e.target.value as typeof pricingModel)}
+                className="mt-1" 
+              />
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="free_only" className="text-base font-medium cursor-pointer">
+                  {t.pricingModel.freeOnly.title}
+                </Label>
+                <p className="text-sm text-muted-foreground">
+                  {t.pricingModel.freeOnly.description}
+                </p>
+                
+                {pricingModel === 'free_only' && (
+                  <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="info" className="h-4 w-4 text-blue-600" />
+                      <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                        Free Model Benefits
+                      </span>
+                    </div>
+                    <ul className="text-sm text-blue-600 dark:text-blue-400 space-y-1">
+                      <li>• Build trust and reputation quickly</li>
+                      <li>• Attract more clients initially</li>
+                      <li>• Focus on relationship building</li>
+                      <li>• Can switch to paid model later</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Hybrid */}
+            <div className="flex items-start space-x-3">
+              <input 
+                type="radio" 
+                value="hybrid" 
+                id="hybrid" 
+                name="pricing_model"
+                checked={pricingModel === 'hybrid'}
+                onChange={(e) => setPricingModel(e.target.value as typeof pricingModel)}
+                className="mt-1" 
+              />
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="hybrid" className="text-base font-medium cursor-pointer">
+                  {t.pricingModel.hybrid.title}
+                </Label>
+                <p className="text-sm text-muted-foreground">
+                  {t.pricingModel.hybrid.description}
+                </p>
+                
+                {pricingModel === 'hybrid' && (
+                  <div className="mt-4 p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon name="zap" className="h-4 w-4 text-green-600" />
+                      <span className="text-sm font-medium text-green-700 dark:text-green-300">
+                        Recommended: Best of Both Worlds
+                      </span>
+                    </div>
+                    <p className="text-sm text-green-600 dark:text-green-400 mb-3">
+                      Offer some consultations for free to build trust, while charging for longer or specialized sessions.
+                    </p>
+                    <div className="text-xs text-green-600 dark:text-green-400">
+                      Configure your free durations below ↓
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Free Consultation Durations */}
+      {(pricingModel === 'free_only' || pricingModel === 'hybrid') && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Icon name="clock" className="h-5 w-5" />
+              {t.freeConsultations.title}
+            </CardTitle>
+            <CardDescription>
+              {t.freeConsultations.description}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              {[
+                { value: '15', label: t.freeConsultations.duration15 },
+                { value: '30', label: t.freeConsultations.duration30 },
+                { value: '60', label: t.freeConsultations.duration60 }
+              ].map((duration) => (
+                <div key={duration.value} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id={`duration-${duration.value}`}
+                    checked={freeDurations.includes(duration.value)}
+                    onChange={(e) => 
+                      handleFreeDurationChange(duration.value, e.target.checked)
+                    }
+                  />
+                  <Label 
+                    htmlFor={`duration-${duration.value}`} 
+                    className="text-sm font-normal cursor-pointer"
+                  >
+                    {duration.label}
+                  </Label>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-3 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
+              <div className="flex items-center gap-2 mb-1">
+                <Icon name="lightbulb" className="h-4 w-4 text-blue-600" />
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                  Pro Tip
+                </span>
+              </div>
+              <p className="text-sm text-blue-600 dark:text-blue-400">
+                {t.freeConsultations.note}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      <Separator />
+
+      {/* Save Button */}
+      <div className="flex justify-end gap-4">
+        <Button variant="outline">
+          {common.cancel}
+        </Button>
+        <Button onClick={handleSave} disabled={isSaving}>
+          {isSaving ? (
+            <>
+              <Icon name="loader-2" className="h-4 w-4 mr-2 animate-spin" />
+              {common.saving}
+            </>
+          ) : (
+            <>
+              <Icon name="save" className="h-4 w-4 mr-2" />
+              {common.save}
+            </>
+          )}
+        </Button>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,81 @@
+/* 
+ * Workspace Layout CSS - Expert Production Fix
+ * Ensures critical classes ship to production and aren't purged
+ */
+
+/* Container query root - CRITICAL for @container rules to work */
+.cq-workspace { 
+  container-type: inline-size; 
+}
+
+/* Hide sidebar on small containers, show on larger - PREVENTS preview-under-chat */
+.cq-workspace .hide-on-mobile { 
+  display: none; 
+}
+
+@container (min-width: 720px) {
+  .cq-workspace .hide-on-mobile { 
+    display: flex; 
+  }
+}
+
+/* Sidebar responsive states for container queries */
+.cq-workspace .sidebar-auto-collapse {
+  /* Base state - no special behavior on small containers */
+}
+
+@container (min-width: 960px) {
+  .cq-workspace .sidebar-auto-expand {
+    /* Presence hook for JS - expanded state on large containers */
+  }
+}
+
+/* Sidebar state classes - ensure they exist even if not detected by Tailwind */
+.sidebar-collapsed {
+  /* Handled by Tailwind width classes, but ensure class exists */
+}
+
+.sidebar-expanded {
+  /* Handled by Tailwind width classes, but ensure class exists */
+}
+
+/* Mobile workspace safety - prevent any lingering 100vh conflicts */
+.mobile-workspace {
+  /* Ensure mobile workspace uses container-relative sizing */
+  height: 100%;
+  min-height: 0;
+  /* MODERN 2024 SOLUTION: Global scroll-padding for anchor links */
+  scroll-padding-top: var(--header-height, 56px);
+}
+
+.mobile-workspace .main-content {
+  /* Override any potential 100vh dependencies */
+  height: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* EXPERT FIX: iOS viewport quirks - future-proof viewport units */
+.min-h-app {
+  min-height: 100dvh; /* modern dynamic viewport */
+  min-height: 100svh; /* small viewport (iOS safe) */
+  min-height: 100vh;  /* fallback */
+}
+
+/* CRITICAL FIX: Fixed height for workspace containers */
+.h-app {
+  height: 100dvh; /* modern dynamic viewport */
+  height: 100svh; /* small viewport (iOS safe) */  
+  height: 100vh;  /* fallback */
+}
+
+/* Container query debugging (dev only) */
+@media (prefers-reduced-motion: no-preference) {
+  .cq-workspace[data-debug="true"] {
+    outline: 2px dashed rgba(0, 255, 0, 0.5);
+  }
+  
+  .cq-workspace[data-debug="true"] .hide-on-mobile {
+    outline: 1px solid rgba(255, 165, 0, 0.7);
+  }
+}

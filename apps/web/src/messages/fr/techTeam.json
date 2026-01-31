@@ -1,0 +1,58 @@
+{
+  "badge": "De vrais experts, un vrai support",
+  "title": "Rencontrez votre équipe technique",
+  "subtitle": "Des conseillers dédiés qui connaissent votre entreprise. Disponibles dans votre langue.",
+  "subtitleSecond": "Ils développent vos fonctionnalités pendant que vous dormez.",
+  "advisors": {
+    "ahmed": {
+      "name": "Ahmed Hassan",
+      "role": "Responsable technique arabe",
+      "language": "العربية",
+      "specialties": [
+        "Développement RTL",
+        "Marché MENA",
+        "Passerelles de paiement"
+      ],
+      "availability": "Disponible maintenant"
+    },
+    "sarah": {
+      "name": "Sarah Chen",
+      "role": "Spécialiste des fonctionnalités",
+      "language": "English",
+      "specialties": [
+        "E-commerce",
+        "SaaS",
+        "Intégrations API"
+      ],
+      "availability": "Prochain créneau : 14h00"
+    },
+    "pierre": {
+      "name": "Pierre Dubois",
+      "role": "Conseiller en croissance",
+      "language": "Français",
+      "specialties": [
+        "Mise à l'échelle",
+        "Performance",
+        "Analytique"
+      ],
+      "availability": "Prochain créneau : 15h30"
+    }
+  },
+  "howItWorks": {
+    "title": "Comment fonctionne votre équipe technique",
+    "instantChat": {
+      "title": "Chat instantané",
+      "description": "Contactez votre équipe à tout moment. Obtenez des réponses en minutes, pas en heures."
+    },
+    "scheduledCalls": {
+      "title": "Appels programmés",
+      "description": "Réservez des sessions stratégiques de 10 minutes. Planifiez les fonctionnalités, résolvez les problèmes."
+    },
+    "proactiveUpdates": {
+      "title": "Mises à jour proactives",
+      "description": "Nous suggérons des améliorations et de nouvelles fonctionnalités pour faire croître votre entreprise."
+    }
+  },
+  "scheduleCall": "Planifiez votre premier appel",
+  "includedInPlans": "Inclus dans tous les forfaits • Aucun frais supplémentaire"
+}

@@ -1,0 +1,26 @@
+{
+  "description": "Ihr permanentes Tech-Team für den Preis einer Fitnessstudio-Mitgliedschaft. Bauen, wachsen und skalieren Sie Ihr Geschäft ohne technische Probleme.",
+  "product": "Produkt",
+  "support": "Support",
+  "company": "Unternehmen",
+  "links": {
+    "howItWorks": "Wie es funktioniert",
+    "pricing": "Preise",
+    "features": "Features",
+    "templates": "Templates",
+    "integrations": "Integrationen",
+    "talkToAdvisor": "Mit Berater sprechen",
+    "helpCenter": "Hilfe-Center",
+    "community": "Community",
+    "status": "Status",
+    "bookCall": "Anruf buchen",
+    "about": "Über uns",
+    "blog": "Blog",
+    "careers": "Karriere",
+    "privacy": "Datenschutz",
+    "terms": "AGB"
+  },
+  "copyright": "© 2025 SheenApps. Alle Rechte vorbehalten.",
+  "systemsOperational": "Alle Systeme funktionsfähig",
+  "supportAvailable": "24/7 Support verfügbar"
+}

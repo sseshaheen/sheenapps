@@ -1,0 +1,112 @@
+{
+  "banner": {
+    "title": "اتحولت من صاحب SheenApps!",
+    "description": "ابدأ وهيحصلوا على عمولة لما تشترك."
+  },
+  "cta": {
+    "badge": "جديد",
+    "title": "اكسب مع صحاب SheenApps",
+    "subtitle": "حول العملاء واحصل على عمولات متكررة لمدة 12 شهر",
+    "commission": "العمولة",
+    "months": "شهور",
+    "referrals": "إحالات",
+    "joinButton": "انضم لصحاب SheenApps",
+    "terms": "انضمام مجاني • تطبق الشروط"
+  },
+  "signup": {
+    "title": "انضم لصحاب SheenApps",
+    "companyName": "اسم الشركة",
+    "website": "الموقع/المعرض",
+    "marketingChannels": "قنوات التسويق",
+    "payoutMethod": "طريقة الدفع المفضلة",
+    "optional": "(اختياري)",
+    "companyNamePlaceholder": "شركتك أو علامتك الشخصية",
+    "selectPayout": "اختار طريقة الدفع",
+    "termsText": "أوافق على",
+    "termsLink": "شروط وأحكام صحاب SheenApps",
+    "termsRequired": "من فضلك وافق على الشروط والأحكام",
+    "cancel": "إلغاء",
+    "create": "اعمل حساب شريك",
+    "creating": "بيتعمل...",
+    "success": "اتعمل حساب الشريك! اتنسخ لينك الإحالة.",
+    "successWithCopy": "اتعمل حساب الشريك! اتنسخ لينك الإحالة.",
+    "error": "مقدرناش نعمل حساب شريك. حاول تاني.",
+    "channels": {
+      "blog": "مدونة",
+      "youtube": "يوتيوب",
+      "twitter": "تويتر",
+      "linkedin": "لينكد إن",
+      "newsletter": "النشرة",
+      "other": "تاني"
+    },
+    "payout": {
+      "stripe": "Stripe (تحويل بنكي)",
+      "paypal": "PayPal",
+      "wire": "تحويل مصرفي",
+      "wise": "Wise (دولي)"
+    }
+  },
+  "success": {
+    "title": "أهلاً بيك في صحاب SheenApps!",
+    "subtitle": "اتعمل حساب الإحالة بنجاح",
+    "description": "ابدأ شارك لينكك واحصل على 15% عمولة على كل الإحالات!",
+    "linkLabel": "لينك الإحالة بتاعك:",
+    "codeLabel": "كود الشريك",
+    "nextStepsTitle": "الخطوات اللي جاية:",
+    "nextStep1": "شارك لينك الإحالة مع جمهورك",
+    "nextStep2": "تابع الأداء في لوحة الشريك",
+    "nextStep3": "اقبض شهري للإحالات الناجحة",
+    "goToDashboard": "روح للوحة التحكم",
+    "viewTerms": "الشروط"
+  },
+  "dashboard": {
+    "title": "لوحة تحكم صحاب SheenApps",
+    "partnerCode": "كود الشريك",
+    "tier": "المستوى",
+    "refresh": "حديث",
+    "refreshing": "بيتحديث...",
+    "copyLink": "انسخ لينك الإحالة",
+    "linkCopied": "اتنسخ لينك الإحالة!",
+    "loadError": "مقدرناش نحمل اللوحة",
+    "networkError": "مشكلة في النت وإحنا بنحمل اللوحة",
+    "retry": "حاول تاني",
+    "stats": {
+      "clicks": "إجمالي النقرات",
+      "signups": "التسجيلات",
+      "pending": "الفلوس المعلقة",
+      "estimated": "الدفع الشهري المتوقع",
+      "linkVisits": "زيارات اللينك",
+      "conversion": "{rate}% معدل التحويل",
+      "awaitingApproval": "مستنية الموافقة",
+      "thisMonth": "توقع الشهر ده"
+    },
+    "recentReferrals": "الإحالات الأخيرة",
+    "recentCommissions": "العمولات الأخيرة",
+    "userSignup": "تسجيل يوزر",
+    "bonus": "مكافأة",
+    "noReferrals": "مفيش إحالات لسة",
+    "noReferralsDesc": "ابدأ شارك لينك الإحالة عشان تشوف النشاط هنا.",
+    "noCommissions": "مكسبتش عمولات لسة",
+    "noCommissionsDesc": "لما المحولين يدفعوا أول مرة، هتشوف العمولات هنا.",
+    "status": {
+      "pending": "معلق",
+      "confirmed": "متأكد",
+      "rejected": "مرفوض",
+      "approved": "موافق عليه",
+      "paid": "اتدفع",
+      "disputed": "فيه خلاف عليه"
+    },
+    "tierDesc": "{referrals} إحالة ناجحة • {rate}% معدل العمولة",
+    "nextTier": "المستوى اللي جاي في",
+    "referralsNeeded": "{count} إحالة",
+    "complete": "كامل",
+    "maxTier": "وصلت لأقصى مستوى!",
+    "resources": "المساعدة والموارد",
+    "viewTerms": "شوف الشروط",
+    "viewTermsDesc": "اقرا الشروط والأحكام كاملة",
+    "help": "مركز المساعدة",
+    "helpDesc": "خد مساعدة في برنامج الإحالة",
+    "contact": "اتصل بالدعم",
+    "contactDesc": "تواصل مع فريقنا"
+  }
+}

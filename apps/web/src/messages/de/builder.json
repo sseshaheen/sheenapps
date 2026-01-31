@@ -1,0 +1,869 @@
+{
+  "floatingButton": "Ihre Idee bauen",
+  "ideaCapture": {
+    "title": "Erzählen Sie uns Ihre Idee",
+    "description": "Beschreiben Sie Ihr Geschäft in Ihren eigenen Worten. Seien Sie so detailliert oder einfach wie Sie möchten.",
+    "placeholder": "Ich möchte erstellen...",
+    "signInPlaceholder": "Bitte melden Sie sich an, um Ihr Projekt zu starten",
+    "submitButton": "Bauen starten",
+    "voiceButton": "Sprache verwenden",
+    "attachButton": "Datei anhängen",
+    "examples": [
+      "Ein Online-Shop für handgemachte Crafts",
+      "Ein Buchungssystem für meinen Salon",
+      "Food-Delivery-App für mein Restaurant",
+      "Portfolio-Website für meine Agentur",
+      "SaaS-Tool für Projektmanagement"
+    ],
+    "signInRequired": "Sign In Required",
+    "signInMessage": "Please sign in to create and manage your projects",
+    "signInToStartBuilding": "Sign In to Start Building"
+  },
+  "templates": {
+    "title": "Oder wählen Sie eine Vorlage",
+    "subtitle": "Starten Sie schneller mit branchenspezifischen Vorlagen",
+    "viewAll": "Alle Vorlagen anzeigen",
+    "skipTemplate": "Oder beschreiben Sie Ihre eigene Idee",
+    "allCategories": "Alle",
+    "preview": "Vorschau",
+    "useTemplate": "Vorlage verwenden",
+    "proRequired": "Upgrade erforderlich",
+    "features": "Funktionen",
+    "categories": {
+      "retail": "Einzelhandel",
+      "services": "Dienstleistungen",
+      "technology": "Technologie",
+      "platform": "Plattform",
+      "food": "Gastronomie",
+      "creative": "Kreativ",
+      "education": "Bildung",
+      "corporate": "Unternehmen",
+      "health": "Gesundheit & Fitness",
+      "publishing": "Veröffentlichung",
+      "events": "Veranstaltungen",
+      "real-estate": "Immobilien"
+    },
+    "items": {
+      "ecommerce": {
+        "name": "Online-Shop",
+        "description": "Verkaufen Sie Produkte online mit Zahlungen und Inventar"
+      },
+      "booking": {
+        "name": "Buchungssystem",
+        "description": "Terminplanung für Dienstleistungsunternehmen"
+      },
+      "restaurant": {
+        "name": "Restaurant & Menü",
+        "description": "Online-Menü, Bestellungen und Tischreservierungen"
+      },
+      "portfolio": {
+        "name": "Portfolio-Website",
+        "description": "Präsentieren Sie Ihre Arbeit und gewinnen Sie Kunden"
+      },
+      "course-platform": {
+        "name": "Kursplattform",
+        "description": "Online lehren mit Videos und Quizzen"
+      },
+      "business-landing": {
+        "name": "Unternehmensseite",
+        "description": "Verwandeln Sie Besucher in Kunden"
+      },
+      "gym-fitness": {
+        "name": "Fitnessstudio",
+        "description": "Mitgliedschaften, Kurse und Trainer-Buchung"
+      },
+      "blog": {
+        "name": "Blog & Inhalte",
+        "description": "Teilen Sie Artikel und bauen Sie Ihr Publikum auf"
+      },
+      "saas": {
+        "name": "SaaS-Plattform",
+        "description": "Abonnement-Software mit Benutzerverwaltung"
+      },
+      "marketplace": {
+        "name": "Marktplatz",
+        "description": "Käufer und Verkäufer mit Provisionen verbinden"
+      },
+      "real-estate": {
+        "name": "Immobilien",
+        "description": "Immobilienangebote mit erweiterter Suche"
+      },
+      "events-ticketing": {
+        "name": "Events & Ticketing",
+        "description": "Verkaufen Sie Tickets und verwalten Sie Teilnehmer"
+      }
+    }
+  },
+  "form": {
+    "businessIdea": "Geschäftsidee",
+    "tryExamples": "Probieren Sie diese Beispiele:"
+  },
+  "planStatus": {
+    "plan": "Plan",
+    "unlimitedGenerations": "Unbegrenzte Generierungen",
+    "generationsRemaining": "{count} Generierungen verbleibend",
+    "upgrade": "Upgrade"
+  },
+  "interface": {
+    "chat": {
+      "title": "KI-Assistent",
+      "thinking": "Denkt nach...",
+      "placeholder": "Stellen Sie eine Frage oder beschreiben Sie, was Sie erstellen möchten...",
+      "buildMode": "Baumodus",
+      "planMode": "Planungsmodus",
+      "modes": {
+        "build": "Bauen",
+        "plan": "Planen"
+      },
+      "startRecording": "Sprachaufnahme starten",
+      "stopRecording": "Aufnahme stoppen",
+      "discardRecording": "Aufnahme verwerfen",
+      "confirmDiscard": "Verwerfen?",
+      "confirmYes": "Ja, verwerfen",
+      "confirmNo": "Nein, fortfahren",
+      "recording": "Aufnahme läuft",
+      "transcribing": "Audio wird transkribiert...",
+      "processingAudio": "Wird verarbeitet...",
+      "voiceAddedToMessage": "Sprache zur Nachricht hinzugefügt",
+      "microphoneAccessDenied": "Mikrofonzugriff verweigert. Bitte erlauben Sie den Mikrofonzugriff.",
+      "noMicrophoneFound": "Kein Mikrofon gefunden. Bitte schließen Sie ein Mikrofon an.",
+      "voiceRecordingError": "Sprachaufnahme fehlgeschlagen",
+      "transcriptionError": "Transkription fehlgeschlagen"
+    },
+    "preview": {
+      "title": "Live-Vorschau",
+      "loading": "Baue Ihre App..."
+    },
+    "buildLog": {
+      "title": "Build-Fortschritt",
+      "steps": {
+        "analyzing": "Analysiere Ihre Idee",
+        "scaffolding": "Erstelle Struktur",
+        "generating": "Generiere Seiten",
+        "styling": "Wende Design an",
+        "deploying": "Bereite Bereitstellung vor"
+      }
+    },
+    "chatPlan": {
+      "modeBadges": {
+        "question": "Frage",
+        "feature": "Feature-Planung",
+        "fix": "Fehlerbehebung",
+        "analysis": "Code-Analyse",
+        "general": "Allgemein",
+        "build": "Erstellen"
+      },
+      "featurePlan": {
+        "title": "Feature-Plan",
+        "description": "Beschreibung",
+        "steps": "Implementierungsschritte",
+        "acceptanceCriteria": "Akzeptanzkriterien",
+        "estimatedTime": "Geschätzte Zeit",
+        "complexity": "Komplexität",
+        "feasibility": "Machbarkeit",
+        "convertToBuild": "Erstellung starten",
+        "complexityLevels": {
+          "simple": "Einfach",
+          "moderate": "Mittel",
+          "complex": "Komplex"
+        },
+        "feasibilityLevels": {
+          "easy": "Einfach",
+          "moderate": "Mäßig",
+          "challenging": "Herausfordernd"
+        }
+      },
+      "fixPlan": {
+        "title": "Bug Fix Plan",
+        "issueAnalysis": "Issue Analysis",
+        "rootCause": "Root Cause",
+        "solutions": "Proposed Solutions",
+        "confidence": "Confidence",
+        "riskLevel": "Risk Level",
+        "estimatedTime": "Time to Fix",
+        "selectSolution": "Select Solution",
+        "confidenceLevels": {
+          "low": "Low",
+          "medium": "Medium",
+          "high": "High"
+        },
+        "riskLevels": {
+          "low": "Geringes Risiko",
+          "medium": "Mittleres Risiko",
+          "high": "Hohes Risiko"
+        }
+      },
+      "questionResponse": {
+        "answer": "Answer",
+        "codeReferences": "Code References",
+        "relatedQuestions": "Related Questions",
+        "lineNumber": "Line",
+        "lines": "Lines"
+      },
+      "analysisResults": {
+        "title": "Code Analysis",
+        "findings": "Findings",
+        "category": "Category",
+        "severity": "Severity",
+        "suggestion": "Suggestion",
+        "impact": "Impact",
+        "categories": {
+          "performance": "Performance",
+          "security": "Security",
+          "maintainability": "Maintainability",
+          "best_practices": "Best Practices",
+          "code_quality": "Code Quality"
+        },
+        "severityLevels": {
+          "error": "Error",
+          "warning": "Warning",
+          "info": "Info"
+        }
+      },
+      "convertDialog": {
+        "title": "Plan in Build umwandeln",
+        "description": "Wandeln Sie diesen Plan in tatsächliche Code-Änderungen um.",
+        "estimatedCost": "Geschätzte KI-Zeit: {minutes} Minuten",
+        "confirm": "Erstellung starten",
+        "cancel": "Abbrechen",
+        "cannotCancel": "Einmal gestartet, kann dieser Vorgang nicht abgebrochen werden",
+        "insufficientBalance": "Sie benötigen {minutes} weitere KI-Zeit-Minuten, um diesen Build abzuschließen.",
+        "addCredits": "Guthaben hinzufügen"
+      },
+      "usage": {
+        "billedSeconds": "AI Time Used: {seconds}s",
+        "tokensUsed": "Tokens: {tokens}",
+        "sessionId": "Session: {id}"
+      },
+      "errors": {
+        "connectionLost": "Connection lost. Please try again.",
+        "streamError": "Error receiving response. Please retry.",
+        "conversionFailed": "Failed to convert plan to build. Please try again.",
+        "insufficientBalance": "Insufficient AI time credits. Please add more credits to continue.",
+        "projectNotFound": "Project not found or access denied.",
+        "rateLimitExceeded": "Too many requests. Please wait a moment and try again.",
+        "authenticationFailed": "Authentication failed. Please refresh and try again.",
+        "unknownError": "An unexpected error occurred. Please try again."
+      }
+    }
+  },
+  "questionFlow": {
+    "questions": {
+      "business_type": {
+        "text": "Ich liebe Ihre Idee! Lassen Sie mich Ihnen helfen, sie zum Leben zu erwecken. Zuerst, welche Art von Geschäft ist das?",
+        "chips": [
+          "SaaS-Plattform",
+          "E-Commerce-Shop",
+          "Marktplatz",
+          "Portfolio-Site",
+          "Andere"
+        ]
+      },
+      "color_theme": {
+        "text": "Ausgezeichnete Wahl! Welche Farbpalette spricht Ihre Marke an?",
+        "chips": [
+          "Lila Leidenschaft",
+          "Ozean Blau",
+          "Wald Grün",
+          "Sonnenuntergang Orange",
+          "Mitternacht Dunkel"
+        ]
+      },
+      "brand_name": {
+        "text": "Sieht fantastisch aus! Wie sollen wir Ihr Unternehmen nennen?",
+        "chips": [
+          "KI-Vorschlag verwenden",
+          "Ich schreibe meinen eigenen"
+        ]
+      },
+      "features": {
+        "text": "Welche Features sind für den Launch unverzichtbar?",
+        "chips": [
+          "Benutzer-Authentifizierung",
+          "Zahlungsabwicklung",
+          "E-Mail-Benachrichtigungen",
+          "Analytics-Dashboard",
+          "KI-Integration"
+        ]
+      },
+      "target_audience": {
+        "text": "Wer ist Ihre primäre Zielgruppe?",
+        "chips": [
+          "Kleine Unternehmen",
+          "Großunternehmen",
+          "Verbraucher",
+          "Freelancer",
+          "Alle"
+        ]
+      },
+      "subscription_model": {
+        "text": "Welches Preismodell funktioniert am besten für Sie?",
+        "chips": [
+          "Freemium",
+          "Kostenlose Testversion",
+          "Nur Bezahlt",
+          "Nutzungsbasiert"
+        ]
+      },
+      "product_type": {
+        "text": "Welche Art von Produkten werden Sie verkaufen?",
+        "chips": [
+          "Physische Produkte",
+          "Digitale Downloads",
+          "Dienstleistungen",
+          "Gemischt"
+        ]
+      },
+      "marketplace_type": {
+        "text": "Welche Art von Marktplatz bauen Sie?",
+        "chips": [
+          "B2B",
+          "B2C",
+          "C2C",
+          "Service-Marktplatz"
+        ]
+      },
+      "portfolio_type": {
+        "text": "Was ist Ihr kreativer Fokus?",
+        "chips": [
+          "Design",
+          "Fotografie",
+          "Entwicklung",
+          "Schreiben",
+          "Multi-disziplinär"
+        ]
+      }
+    },
+    "buildSteps": {
+      "analyzing": [
+        "Analysiere Ihre Geschäftsidee...",
+        "Verstehe Ihre Anforderungen...",
+        "Identifiziere Schlüssel-Features..."
+      ],
+      "scaffolding": [
+        "Erstelle Ihre App-Struktur...",
+        "Richte das Fundament ein...",
+        "Baue Kern-Komponenten..."
+      ],
+      "generating": [
+        "Generiere Ihre Seiten...",
+        "Erstelle benutzerdefinierte Layouts...",
+        "Baue Benutzeroberflächen..."
+      ],
+      "styling": [
+        "Wende Ihre Markenfarben an...",
+        "Erstelle schöne Designs...",
+        "Verfeinere das Erlebnis..."
+      ],
+      "features": [
+        "Füge Authentifizierung hinzu...",
+        "Richte Zahlungsabwicklung ein...",
+        "Implementiere Kern-Features..."
+      ]
+    }
+  },
+  "buildEvents": {
+    "BUILD_DEPENDENCIES_INSTALLING": "Abhängigkeiten werden installiert... (Schritt {step} von {total})",
+    "BUILD_FRAMEWORK_DETECTING": "Framework wird erkannt... (Schritt {step} von {total})",
+    "BUILD_CODE_GENERATING": "Code wird generiert... (Schritt {step} von {total})",
+    "BUILD_ASSETS_OPTIMIZING": "Assets werden optimiert... (Schritt {step} von {total})",
+    "BUILD_PROJECT_DEPLOYING": "Projekt wird bereitgestellt... (Schritt {step} von {total})",
+    "BUILD_COMPLETE": "Build abgeschlossen!",
+    "BUILD_FAILED": "Build fehlgeschlagen: {reason}",
+    "BUILD_STARTED": "Build wird gestartet...",
+    "BUILD_PROGRESS": "Fortschritt: {progress}%",
+    "BUILD_TIMEOUT": "Zeitüberschreitung nach {minutes} Minuten",
+    "BUILD_QUEUED": "Build in Warteschlange",
+    "BUILD_VALIDATING": "Konfiguration wird validiert",
+    "BUILD_CODE_REVIEWING": "Generierter Code wird überprüft",
+    "BUILD_CODE_APPLYING": "Code-Änderungen werden angewendet",
+    "BUILD_DEPENDENCIES_ANALYZING": "Abhängigkeiten werden analysiert",
+    "BUILD_DEPENDENCIES_CACHED": "Cache wird verwendet",
+    "BUILD_COMPILING": "Anwendung wird kompiliert",
+    "BUILD_BUNDLING": "Assets werden gebündelt",
+    "BUILD_OPTIMIZING": "Produktions-Optimierung",
+    "BUILD_DEPLOY_PREPARING": "Bereitstellung wird vorbereitet",
+    "BUILD_DEPLOY_UPLOADING": "Upload zu CDN",
+    "BUILD_DEPLOY_ACTIVATING": "Vorschau wird aktiviert",
+    "BUILD_CANCELLED": "Build vom Benutzer abgebrochen",
+    "ROLLBACK_STARTED": "Rollback-Prozess gestartet",
+    "ROLLBACK_VALIDATING": "Zielversion wird validiert",
+    "ROLLBACK_ARTIFACT_DOWNLOADING": "Rollback-Artefakte werden heruntergeladen",
+    "ROLLBACK_WORKING_DIR_SYNCING": "Arbeitsverzeichnis wird synchronisiert",
+    "ROLLBACK_PREVIEW_UPDATING": "Vorschau-URL wird aktualisiert",
+    "ROLLBACK_COMPLETED": "Rollback erfolgreich abgeschlossen",
+    "ROLLBACK_FAILED": "Rollback fehlgeschlagen: {reason}",
+    "BUILD_DEVELOPMENT_STARTING": "KI beginnt mit der Arbeit an Ihrem Projekt",
+    "BUILD_DEVELOPMENT_COMPLETE": "KI hat die Erstellung Ihres Anwendungscodes abgeschlossen",
+    "BUILD_DEPENDENCIES_COMPLETE": "Abhängigkeiten erfolgreich installiert",
+    "BUILD_PREVIEW_PREPARING": "Anwendungsvorschau wird vorbereitet",
+    "BUILD_METADATA_GENERATING": "Empfehlungen und Dokumentation werden generiert",
+    "BUILD_METADATA_COMPLETE": "Dokumentation und Empfehlungen bereit",
+    "BUILD_RECOMMENDATIONS_GENERATED": "Verbesserungsempfehlungen generiert",
+    "BUILD_FILE_CREATING": "Erstelle {filename}...",
+    "BUILD_FILE_UPDATING": "Aktualisiere {filename}...",
+    "BUILD_FILE_READING": "Lese {filename}...",
+    "BUILD_TASK_WORKING": "Arbeite an: {task} ({completed}/{total})",
+    "BUILD_PLANNING_COMPLETE": "Planung abgeschlossen, Implementierung beginnt...",
+    "BUILD_DEVELOPMENT_PROGRESS": "KI arbeitet an Ihrem Projekt",
+    "PROCESSING": "Verarbeitung..."
+  },
+  "codeViewer": {
+    "search": {
+      "placeholder": "Suchen...",
+      "noResults": "Keine Ergebnisse",
+      "searching": "Suche läuft...",
+      "matchCount": "{current} von {total}",
+      "previousMatch": "Vorheriges Ergebnis",
+      "nextMatch": "Nächstes Ergebnis",
+      "caseSensitive": "Groß-/Kleinschreibung beachten",
+      "useRegex": "Regulären Ausdruck verwenden",
+      "close": "Suche schließen"
+    },
+    "fileTree": {
+      "title": "Dateien",
+      "searchPlaceholder": "Dateien suchen...",
+      "clearSearch": "Suche löschen",
+      "noFiles": "Keine Dateien",
+      "collapse": "Dateibaum einklappen",
+      "expand": "Dateibaum ausklappen",
+      "fileCount": "{count, plural, =0 {Keine Dateien} =1 {1 Datei} other {# Dateien}}",
+      "totalSize": "{size}"
+    },
+    "tabs": {
+      "close": "{name} schließen"
+    },
+    "panel": {
+      "hideFileTree": "Dateibaum ausblenden",
+      "showFileTree": "Dateibaum einblenden",
+      "closeFileTree": "Dateibaum schließen"
+    },
+    "codeDisplay": {
+      "viewModes": {
+        "code": "Code-Ansicht",
+        "diff": "Diff-Ansicht",
+        "preview": "Vorschau"
+      },
+      "followMode": {
+        "following": "Folgt dem Cursor (klicken zum Stoppen)",
+        "notFollowing": "Klicken um dem Cursor zu folgen",
+        "stopFollowing": "Cursor-Verfolgung stoppen",
+        "startFollowing": "Cursor folgen"
+      },
+      "emptyState": {
+        "title": "Keine Datei ausgewählt",
+        "description": "Wählen Sie eine Datei aus dem Dateibaum aus, um deren Inhalt anzuzeigen, oder warten Sie, bis die Code-Generierung beginnt."
+      },
+      "fileInfo": {
+        "lines": "{count} Zeilen",
+        "chars": "{count} Zeichen",
+        "generating": "Wird generiert...",
+        "generatingProgress": "Wird generiert... {progress}%",
+        "modified": "Geändert",
+        "new": "Neu"
+      },
+      "actions": {
+        "search": "In Datei suchen",
+        "searchShortcut": "In Datei suchen (Cmd+F)",
+        "copied": "Kopiert!",
+        "copyFile": "Datei kopieren",
+        "copyAllFiles": "Alle Dateien kopieren",
+        "downloadZip": "Als ZIP herunterladen"
+      },
+      "previewNotAvailable": "Vorschau nicht verfügbar",
+      "loadingFile": "Loading file..."
+    }
+  },
+  "workspace": {
+    "header": {
+      "logoAlt": "SheenApps - Zum Dashboard",
+      "untitledProject": "Unbenanntes Projekt",
+      "soon": "Bald",
+      "new": "Neu",
+      "comingSoonShare": "Bald verfügbar - Wir arbeiten an Teilen-Funktionen!",
+      "comingSoonSettings": "Bald verfügbar - Projekteinstellungen kommen!",
+      "exportTitle": "Projekt-Quellcode exportieren",
+      "exportNotAvailable": "Export nicht verfügbar",
+      "run": "Ausführen",
+      "openRun": "Dashboard anzeigen"
+    },
+    "version": {
+      "noVersion": "Noch keine Version",
+      "loading": "Wird geladen...",
+      "processing": "Wird verarbeitet...",
+      "rollingBack": "Wird zurückgesetzt...",
+      "makingLive": "Wird veröffentlicht...",
+      "takingOffline": "Wird offline genommen...",
+      "creatingVersion": "Neue Version wird erstellt...",
+      "liveOnSite": "Live auf Ihrer Website",
+      "readyToPublish": "Bereit zur Veröffentlichung",
+      "errorLoading": "Ladefehler",
+      "finalizingVersion": "Version wird finalisiert...",
+      "version": "Version",
+      "makeItLive": "Veröffentlichen",
+      "goingLive": "Wird veröffentlicht...",
+      "versionHistory": "Versionsverlauf",
+      "takeOffline": "Offline nehmen",
+      "takingSiteOffline": "Website wird offline genommen...",
+      "publishFailed": "Veröffentlichung fehlgeschlagen: {message}",
+      "unpublishFailed": "Offline-Nehmen fehlgeschlagen: {message}",
+      "confirmTakeOffline": "Website offline nehmen? {domain} zeigt einen Fehler bis zur nächsten Veröffentlichung.",
+      "yourDomains": "Ihre Domains"
+    },
+    "publish": {
+      "noBuild": "Noch kein Build",
+      "noBuildShort": "Kein Build",
+      "building": "Wird gebaut...",
+      "buildingShort": "Baut",
+      "publish": "Veröffentlichen",
+      "publishShort": "Veröffentlichen",
+      "publishing": "Wird veröffentlicht...",
+      "publishingShort": "Veröffentlicht",
+      "live": "Live",
+      "liveShort": "Live",
+      "clickToShare": "Klicken Sie, um Ihre Live-Website zu teilen",
+      "error": "Build fehlgeschlagen",
+      "errorShort": "Fehler",
+      "nowLive": "ist jetzt live auf Ihrer Website!",
+      "publishFailed": "Veröffentlichung fehlgeschlagen",
+      "confirmTitle": "Website veröffentlichen?",
+      "confirmDescription": "Ihre Website wird live und für alle zugänglich sein.",
+      "cancel": "Abbrechen",
+      "confirm": "Veröffentlichen"
+    },
+    "publishSuccess": {
+      "titleFirst": "Ihre Website ist live!",
+      "titleSuccess": "Erfolgreich veröffentlicht",
+      "copy": "Kopieren",
+      "copied": "Kopiert!",
+      "copyFailed": "Kopieren fehlgeschlagen",
+      "qrDescription": "Scannen Sie zum Testen auf Ihrem Handy",
+      "viewSite": "Website ansehen",
+      "share": "Teilen",
+      "celebrationMessage": "Wir feiern, weil dies ein echter Meilenstein ist - Ihre erste Veröffentlichung!"
+    },
+    "integrations": {
+      "database": "Datenbank",
+      "git": "Git",
+      "deploy": "Bereitstellung",
+      "cms": "CMS",
+      "notConnected": "Nicht verbunden",
+      "connect": "Verbinden",
+      "connected": "verbunden",
+      "disconnected": "getrennt",
+      "warning": "Warnung",
+      "needsAttention": "benötigt Aufmerksamkeit",
+      "error": "Fehler",
+      "viewDetails": "Details anzeigen",
+      "checkStatus": "Status prüfen",
+      "reconnect": "Neu verbinden",
+      "statusMayBeOutdated": "Status möglicherweise veraltet",
+      "statusUnavailable": "Status nicht verfügbar",
+      "overallStatus": "Gesamtstatus der Integrationen: {status}",
+      "executingAction": "Aktion wird ausgeführt...",
+      "databaseIntegration": "Datenbankintegration",
+      "configureDatabaseConnection": "Datenbankverbindung für Ihr Projekt konfigurieren",
+      "deployIntegration": "Deployment-Integration",
+      "configureDeployConnection": "Deployment-Einstellungen für Ihr Projekt konfigurieren",
+      "cmsIntegration": "CMS-Integration",
+      "configureCmsConnection": "Content-Management für Ihr Projekt konfigurieren"
+    },
+    "preview": {
+      "noPreviewAvailable": "Keine Vorschau verfügbar",
+      "projectBuilding": "Ihr Projekt wird erstellt. Die Vorschau erscheint nach Abschluss.",
+      "projectNotBuilt": "Das Projekt wurde möglicherweise noch nicht erstellt. Versuchen Sie, das Projekt zu erstellen, um die Vorschau zu sehen.",
+      "buildId": "Build-ID: {id}",
+      "project": "Projekt: {id}",
+      "build": "Build: {id}",
+      "viewport": "Ansicht: {viewport} ({orientation})",
+      "scale": "Skalierung: {scale}%",
+      "mode": "Modus: {mode}",
+      "fit": "Anpassen",
+      "pixel": "Pixel"
+    },
+    "devices": {
+      "mobile": "Mobil",
+      "tablet": "Tablet",
+      "desktop": "Desktop",
+      "switchTo": "Zur {device}-Ansicht wechseln ({key})",
+      "portrait": "Hochformat",
+      "landscape": "Querformat",
+      "toggleOrientation": "Ausrichtung umschalten (R) - Aktuell {orientation}",
+      "displayMode": "Anzeigemodus: {mode}",
+      "fitToContainer": "An Container anpassen",
+      "pixelAccurate": "Pixelgenau",
+      "fit": "Anpassen",
+      "pixel": "Pixel",
+      "zoomIn": "Vergrößern (Taste ])",
+      "zoomOut": "Verkleinern (Taste [)",
+      "copyDimensions": "Klicken um Abmessungen zu kopieren",
+      "reset": "Zurücksetzen",
+      "resetToDefault": "Auf Standard zurücksetzen",
+      "ariaLabel": "{viewport}-Ansicht, {width} mal {height} Pixel, {scale} Prozent Skalierung, {orientation} Ausrichtung, {mode} Modus",
+      "updatingPreview": "Vorschau wird aktualisiert..."
+    },
+    "chat": {
+      "collapseChat": "Chat minimieren",
+      "expandChat": "Chat erweitern",
+      "chat": "Chat",
+      "building": "Wird erstellt...",
+      "unreadMessages": "{count} ungelesen",
+      "noUnread": "keine ungelesenen Nachrichten",
+      "clickToExpand": "Klicken zum Erweitern.",
+      "expandSidebar": "Chat-Seitenleiste erweitern",
+      "startConversation": "Gespräch starten",
+      "emptyStateHelp": "Senden Sie eine Nachricht an Ihr Team oder fragen Sie die KI",
+      "loadingConversation": "Konversation wird geladen...",
+      "loadingOlderMessages": "Ältere Nachrichten werden geladen...",
+      "loadOlderMessages": "Ältere Nachrichten laden",
+      "syncing": "Synchronisierung...",
+      "today": "Heute",
+      "yesterday": "Gestern"
+    },
+    "connection": {
+      "connected": "Verbunden",
+      "connecting": "Verbindung wird hergestellt...",
+      "disconnected": "Getrennt",
+      "error": "Verbindungsfehler",
+      "unknown": "Unbekannt",
+      "reconnect": "Neu verbinden",
+      "connectionLost": "Verbindung verloren - Nachrichten werden möglicherweise nicht in Echtzeit synchronisiert",
+      "connectionLostShort": "Verbindung verloren",
+      "maxReconnectionAttempts": "Maximale Anzahl von Wiederverbindungsversuchen erreicht"
+    },
+    "composer": {
+      "team": "Team",
+      "askAi": "KI fragen",
+      "buildNow": "Jetzt erstellen",
+      "buildModeLabel": "Build-Modus: {mode}",
+      "buildImmediatelyOn": "Sofort erstellen",
+      "planModeOn": "Planungsmodus",
+      "buildModeTooltip": "Wenn aktiviert, wird die KI Ihre Änderungen sofort umsetzen. Wenn deaktiviert, erstellt die KI zuerst einen Plan.",
+      "aiPlaceholder": "Fragen Sie die KI alles über Ihr Projekt...",
+      "teamPlaceholder": "Nachricht an Ihr Team senden...",
+      "sendButton": "Nachricht senden",
+      "cannotSendButton": "Senden nicht möglich - Verbindung prüfen",
+      "youAreTyping": "Sie tippen...",
+      "pressEnterToSend": "Enter zum Senden, Shift+Enter für neue Zeile",
+      "teamMessageVisible": "Ihre Nachricht ist für alle Teammitglieder in diesem Projekt sichtbar",
+      "aiBuildDescription": "Die KI analysiert und setzt Ihre Änderungen sofort um [Standard]",
+      "aiPlanDescription": "Die KI analysiert Ihre Anfrage und erstellt einen Plan oder beantwortet Ihre Fragen (später erstellen)",
+      "filters": {
+        "all": "Alle",
+        "team": "Team",
+        "ai": "KI",
+        "builds": "Builds"
+      }
+    },
+    "chatHeader": {
+      "name": "Sheena",
+      "subtitle": "Ihr KI-Baupartner"
+    },
+    "chatInput": {
+      "buildInProgress": "Build läuft...",
+      "build": "Erstellen",
+      "plan": "Planen",
+      "discussionMode": "Diskussionsmodus - Ideen erkunden",
+      "buildMode": "Build-Modus - bereit zur Umsetzung",
+      "discussionModeShort": "Diskussionsmodus",
+      "buildModeShort": "Build-Modus"
+    },
+    "sidebar": {
+      "title": "Business-Builder",
+      "answerQuestions": "Beantworten Sie Fragen, um Ihre App zu verfeinern",
+      "preparingQuestions": "Ihre personalisierten Fragen werden vorbereitet",
+      "refineApp": "App verfeinern",
+      "answerToCustomize": "Beantworten Sie Fragen, um Ihre App anzupassen und die Live-Vorschau zu sehen",
+      "questionsReady": "Fragen bereit! Lassen Sie uns Ihre maßgeschneiderte App erstellen.",
+      "quickActions": "Schnellaktionen"
+    },
+    "auth": {
+      "loadingChat": "Chat wird geladen...",
+      "initializingChat": "Chat wird initialisiert",
+      "authRequired": "Authentifizierung erforderlich",
+      "signInToAccess": "Bitte melden Sie sich an, um auf den Chat zuzugreifen"
+    },
+    "mobileChat": {
+      "aiAssistant": "KI-Assistent",
+      "getHelp": "Hilfe beim Erstellen Ihrer App",
+      "comingSoon": "KI-Chat bald verfügbar",
+      "premiumFeature": "Premium-Funktion für personalisierte Unterstützung"
+    },
+    "buildStatus": {
+      "deployed": "bereitgestellt",
+      "building": "wird erstellt",
+      "failed": "fehlgeschlagen",
+      "queued": "in Warteschlange"
+    },
+    "firstBuild": {
+      "title": "Ihre App wird erstellt",
+      "description": "Bleiben Sie dran... Ihre Vorschau ist bald bereit und Sie können leicht Änderungen vornehmen.",
+      "continue": "Weiter"
+    },
+    "iterationStrip": {
+      "nextStep": "Nächster Schritt:",
+      "guidance": "Beschreibung bearbeiten → Vorschau testen → App veröffentlichen"
+    }
+  },
+  "buildProgress": {
+    "starting": "Build wird gestartet...",
+    "building": "Build läuft",
+    "complete": "Build abgeschlossen",
+    "failed": "Build fehlgeschlagen",
+    "preview": "Vorschau",
+    "deploy": "Bereitstellen",
+    "deploying": "Bereitstellung...",
+    "deployed": "Bereitgestellt",
+    "deployFailed": "Bereitstellung fehlgeschlagen",
+    "viewSite": "Website ansehen",
+    "step": "Schritt {current} von {total}",
+    "failedDuring": "Fehlgeschlagen bei: {phase}",
+    "recommendedNextSteps": "Empfohlene nächste Schritte:",
+    "showBuildSteps": "{count} Build-Schritte anzeigen",
+    "hideBuildSteps": "{count} Build-Schritte ausblenden",
+    "version": "Version:",
+    "phases": {
+      "setup": "Einrichtung",
+      "development": "Entwicklung",
+      "dependencies": "Abhängigkeiten",
+      "build": "Build",
+      "deploy": "Bereitstellung",
+      "metadata": "Abschluss"
+    }
+  },
+  "humanProgress": {
+    "header": {
+      "badge": "AI is building your website",
+      "title": "Creating Your Website",
+      "complete": "Done!"
+    },
+    "steps": {
+      "analyzing": {
+        "title": "Understanding your idea",
+        "description": "Analyzing exactly what you need"
+      },
+      "researching": {
+        "title": "Researching your industry",
+        "description": "Finding best practices for your project type"
+      },
+      "planning": {
+        "title": "Planning the pages",
+        "description": "Designing your site structure"
+      },
+      "designing": {
+        "title": "Adding the design",
+        "description": "Choosing the right colors and layout"
+      },
+      "optimizing": {
+        "title": "Optimizing speed",
+        "description": "Making sure your site loads fast"
+      },
+      "finalizing": {
+        "title": "Final touches",
+        "description": "Your site is almost ready!"
+      }
+    },
+    "tips": {
+      "analyzing": "We analyze thousands of successful sites to design the best for you",
+      "researching": "Researching the latest trends in your industry",
+      "planning": "Great sites start with great planning",
+      "designing": "Choosing colors that resonate with your audience",
+      "optimizing": "Speed matters - 53% of visitors leave if a site takes over 3 seconds",
+      "finalizing": "Almost there! Your new website is on its way"
+    }
+  },
+  "wizard": {
+    "steps": {
+      "siteType": {
+        "title": "What do you want to build?",
+        "subtitle": "Pick the type that best describes your project",
+        "options": {
+          "portfolio": {
+            "label": "Portfolio",
+            "description": "Showcase your work"
+          },
+          "business": {
+            "label": "Business Website",
+            "description": "Company or service site"
+          },
+          "store": {
+            "label": "Online Store",
+            "description": "Sell products online"
+          },
+          "blog": {
+            "label": "Blog",
+            "description": "Share your stories"
+          },
+          "other": {
+            "label": "Something Else",
+            "description": "I'll describe it"
+          }
+        }
+      },
+      "businessName": {
+        "title": "What should we call it?",
+        "subtitle": "Enter your business or project name",
+        "placeholder": "My Awesome Project",
+        "skip": "Skip for now"
+      },
+      "industry": {
+        "title": "What's your business about?",
+        "subtitle": "This helps us design something perfect for you",
+        "options": [
+          "Food & Restaurant",
+          "Health & Fitness",
+          "Beauty & Fashion",
+          "Education",
+          "Technology",
+          "Real Estate",
+          "Finance",
+          "Travel",
+          "Entertainment",
+          "Other"
+        ],
+        "skip": "Skip this step"
+      },
+      "style": {
+        "title": "Pick a style",
+        "subtitle": "Choose the vibe that matches your brand",
+        "options": {
+          "modern": {
+            "label": "Modern",
+            "description": "Clean and contemporary"
+          },
+          "classic": {
+            "label": "Classic",
+            "description": "Timeless and elegant"
+          },
+          "bold": {
+            "label": "Bold",
+            "description": "Vibrant and eye-catching"
+          },
+          "minimal": {
+            "label": "Minimal",
+            "description": "Simple and focused"
+          }
+        }
+      }
+    },
+    "progress": {
+      "step": "Step",
+      "of": "of"
+    },
+    "actions": {
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip wizard",
+      "startBuilding": "Start Building"
+    }
+  },
+  "pricingModal": {
+    "title": "Wählen Sie Ihren Plan",
+    "description": "Wählen Sie einen Plan, um fortzufahren",
+    "currentPlan": "Aktueller Plan",
+    "getCredits": "Guthaben erhalten",
+    "mostPopular": "Am beliebtesten",
+    "maybeLater": "Vielleicht später",
+    "securePayment": "Sichere Zahlung über Stripe • Jederzeit kündbar"
+  }
+}

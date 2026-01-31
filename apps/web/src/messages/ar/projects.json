@@ -1,0 +1,13 @@
+{
+  "rename": "إعادة تسمية",
+  "duplicate": "نسخ",
+  "archive": "أرشفة",
+  "restore": "استعادة",
+  "publish": "نشر",
+  "unpublish": "إلغاء النشر",
+  "openBuilder": "فتح المنشئ",
+  "projectRenamed": "تم إعادة تسمية المشروع بنجاح",
+  "projectDuplicated": "تم نسخ المشروع بنجاح",
+  "projectArchived": "تم أرشفة المشروع بنجاح",
+  "projectRestored": "تم استعادة المشروع بنجاح"
+}

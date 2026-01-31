@@ -1,0 +1,22 @@
+{
+  "title": "Panel de control",
+  "subtitle": "Gestiona tus proyectos",
+  "searchPlaceholder": "Buscar proyectos...",
+  "createProject": "Crear nuevo proyecto",
+  "createShort": "Crear",
+  "noProjects": "No se encontraron proyectos",
+  "noProjectsDescription": "Crea tu primer proyecto para comenzar",
+  "noArchivedProjects": "No hay proyectos archivados",
+  "noActiveProjects": "No hay proyectos activos",
+  "clearFilters": "Limpiar filtros",
+  "sortBy": "Ordenar por",
+  "filterBy": "Filtrar por",
+  "lastUpdated": "Última actualización",
+  "created": "Creado",
+  "name": "Nombre",
+  "archived": "Archivado",
+  "active": "Activo",
+  "allProjects": "Todos los proyectos",
+  "projectsLabel": "proyectos",
+  "loading": "Cargando..."
+}

@@ -1,0 +1,12 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/myhealthz"
+healthcheckTimeout = 30
+restartPolicyType = "always"
+restartPolicyMaxRetries = 10
+
+[env]
+NODE_ENV = "production"

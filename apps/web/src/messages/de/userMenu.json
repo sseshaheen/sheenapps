@@ -1,0 +1,14 @@
+{
+  "profile": "Profil",
+  "settings": "Paramètres",
+  "billing": "Abrechnung",
+  "upgrade": "Auf Pro upgraden",
+  "logout": "Abmelden",
+  "clickToLogout": "Klicken zum Abmelden",
+  "plan": "plan",
+  "planCapitalized": "Plan",
+  "freePlan": "Kostenloser Plan",
+  "starterPlan": "Starter Plan",
+  "growthPlan": "Growth Plan",
+  "scalePlan": "Scale Plan"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Tableau de bord",
+  "subtitle": "Gérer vos projets",
+  "searchPlaceholder": "Rechercher des projets...",
+  "createProject": "Créer un nouveau projet",
+  "createShort": "Créer",
+  "noProjects": "Aucun projet trouvé",
+  "noProjectsDescription": "Créez votre premier projet pour commencer",
+  "noArchivedProjects": "Aucun projet archivé",
+  "noActiveProjects": "Aucun projet actif",
+  "clearFilters": "Effacer les filtres",
+  "sortBy": "Trier par",
+  "filterBy": "Filtrer par",
+  "lastUpdated": "Dernière mise à jour",
+  "created": "Créé",
+  "name": "Nom",
+  "archived": "Archivé",
+  "active": "Actif",
+  "allProjects": "Tous les projets",
+  "projectsLabel": "projets",
+  "loading": "Chargement..."
+}

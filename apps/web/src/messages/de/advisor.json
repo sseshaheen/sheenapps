@@ -1,0 +1,895 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Débloquez-vous en 15 minutes",
+      "subtitle": "Gagnez en guidant les développeurs avec votre expertise",
+      "cta": "Devenir Conseiller",
+      "badge": "Treten Sie unserem Netzwerk von Experten-Beratern bei"
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "steps": [
+        "Postulez avec votre expertise",
+        "Obtenez l'approbation de notre équipe",
+        "Donnez des consultations payées"
+      ]
+    },
+    "earnings": {
+      "title": "Gagnez 70% de chaque session",
+      "rates": "6,30€ / 13,30€ / 24,50€",
+      "description": "Vous gagnez 70% de chaque session",
+      "sessionTypes": {
+        "quick": "Schnelle Fragen",
+        "review": "Code-Review",
+        "deep": "Tiefgehende Beratung"
+      }
+    },
+    "trust": {
+      "payments": "Paiements Stripe sécurisés",
+      "calendar": "Intégration calendrier",
+      "policy": "Tous les paiements passent par SheenApps ; aucun paiement direct",
+      "paymentsDescription": "Sichere Zahlungen über Stripe mit wöchentlichen Auszahlungen",
+      "calendarDescription": "Nahtlose Buchung durch Cal.com Integration",
+      "policyTitle": "Plattform-Richtlinie"
+    },
+    "cta": {
+      "title": "Bereit, Geld zu verdienen?",
+      "description": "Treten Sie unserem Netzwerk von Experten-Beratern bei und helfen Sie Bauherren beim Erfolg, während Sie gutes Geld verdienen",
+      "quickApplication": "Schneller Bewerbungsprozess"
+    },
+    "dashboard": {
+      "buttonText": "Berater-Dashboard"
+    },
+    "auth": {
+      "signInRequired": "Sie müssen sich anmelden oder ein Konto erstellen, um sich zu bewerben"
+    }
+  },
+  "profile": {
+    "title": "Modifier le Profil",
+    "subtitle": "Mettez à jour votre profil de conseiller et vos préférences",
+    "about": "À propos",
+    "skills": "Compétences et Technologies",
+    "specialties": "Domaines d'Expertise",
+    "languages": "Langues",
+    "experience": "Expérience",
+    "reviews": "Avis et Évaluations",
+    "portfolio": "Portfolio",
+    "availability": "Disponibilité",
+    "personalInfo": {
+      "title": "Informations Personnelles",
+      "displayName": "Nom d'Affichage",
+      "displayNamePlaceholder": "Votre nom professionnel",
+      "bio": "Biographie Professionnelle",
+      "bioPlaceholder": "Parlez aux clients de votre expérience et expertise...",
+      "avatar": "Photo de Profil",
+      "location": "Emplacement",
+      "languages": "Langues"
+    },
+    "expertise": {
+      "title": "Expertise et Compétences",
+      "skills": "Compétences Techniques",
+      "skillsPlaceholder": "Ajoutez vos compétences techniques...",
+      "specialties": "Spécialités",
+      "specialtiesPlaceholder": "Quels sont vos domaines d'expertise?",
+      "experience": "Années d'Expérience",
+      "experienceHelp": "Expérience professionnelle en développement logiciel"
+    },
+    "pricing": {
+      "title": "Tarification et Disponibilité",
+      "hourlyRate": "Tarif Horaire",
+      "hourlyRateHelp": "Votre tarif de consultation en USD",
+      "availability": "Disponibilité",
+      "availabilityHelp": "Quand êtes-vous typiquement disponible pour les consultations?",
+      "timezone": "Fuseau Horaire"
+    },
+    "integrations": {
+      "title": "Intégrations",
+      "calcom": "Intégration Cal.com",
+      "calcomUrl": "URL d'Événement Cal.com",
+      "calcomPlaceholder": "https://cal.com/votre-nom-utilisateur/consultation",
+      "calcomHelp": "Les clients utiliseront ce lien pour réserver des consultations",
+      "stripe": "Compte Stripe",
+      "stripeStatus": "Statut des Paiements",
+      "connectStripe": "Connecter le Compte Stripe",
+      "stripeConnected": "Connecté"
+    },
+    "actions": {
+      "save": "Enregistrer les Modifications",
+      "saving": "Enregistrement...",
+      "cancel": "Annuler",
+      "preview": "Aperçu du Profil Public"
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de Bord Conseiller",
+    "welcome": "Bon retour",
+    "earnings": {
+      "title": "Revenus",
+      "thisMonth": "Ce Mois",
+      "lastMonth": "Mois Dernier",
+      "lifetime": "Total à Vie",
+      "pendingPayout": "Paiement en Attente",
+      "nextPayout": "Prochain Paiement",
+      "consultations": "Consultations"
+    },
+    "availability": {
+      "title": "Statut de Disponibilité",
+      "schedule": "Weekly Schedule",
+      "timezone": "Timezone",
+      "blackoutDates": "Blackout Dates",
+      "preferences": "Booking Preferences",
+      "calendarSync": "Calendar Sync",
+      "days": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "fields": {
+        "minNoticeHours": "Mindestvorlaufzeit (Stunden)",
+        "maxAdvanceDays": "Maximale Vorlaufzeit (Tage)",
+        "bufferMinutes": "Puffer zwischen Beratungen (Minuten)",
+        "addTimeSlot": "Zeitfenster hinzufügen",
+        "removeTimeSlot": "Entfernen",
+        "startTime": "Startzeit",
+        "endTime": "Endzeit",
+        "addBlackoutDate": "Sperrdatum hinzufügen",
+        "selectTimezone": "Zeitzone auswählen"
+      },
+      "sync": {
+        "lastSynced": "Zuletzt synchronisiert",
+        "status": "Status",
+        "success": "Erfolgreich",
+        "failed": "Fehlgeschlagen",
+        "pending": "Ausstehend",
+        "syncNow": "Jetzt synchronisieren"
+      },
+      "validation": {
+        "invalidTime": "Ungültiges Zeitformat",
+        "overlappingSlots": "Zeitfenster dürfen sich nicht überschneiden",
+        "startAfterEnd": "Startzeit muss vor Endzeit liegen"
+      },
+      "accepting": "Accepte les Réservations",
+      "paused": "En Pause",
+      "toggle": "Basculer la Disponibilité"
+    },
+    "onboarding": {
+      "title": "Complétez votre Configuration",
+      "stripe": "Connecter Stripe pour les Paiements",
+      "calcom": "Connecter Cal.com pour la Planification",
+      "profile": "Complétez votre Profil"
+    },
+    "consultations": {
+      "title": "Consultations à Venir",
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "all": "All",
+      "empty": "Aucune consultation à venir",
+      "viewAll": "Voir Toutes les Consultations",
+      "client": "Client",
+      "duration": "Duration",
+      "status": "Status",
+      "scheduled": "Scheduled",
+      "free": "Free",
+      "paid": "Paid",
+      "viewDetails": "View Details",
+      "notes": "Notes",
+      "addNotes": "Add Notes",
+      "loadMore": "Load More"
+    },
+    "navigation": {
+      "overview": "Overview",
+      "consultations": "Consultations",
+      "analytics": "Analytics",
+      "availability": "Availability",
+      "settings": "Settings",
+      "more": "Mehr"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "overview": "Performance Overview",
+      "consultations": "Consultations",
+      "earnings": "Earnings",
+      "performance": "Performance",
+      "trends": "Trends",
+      "period": {
+        "30d": "Last 30 Days",
+        "90d": "Last 90 Days",
+        "1y": "Last Year"
+      },
+      "metrics": {
+        "totalConsultations": "Total Consultations",
+        "totalEarnings": "Total Earnings",
+        "averageRating": "Average Rating",
+        "profileViews": "Profile Views",
+        "conversionRate": "Conversion Rate",
+        "freeConsultations": "Free Consultations",
+        "paidConsultations": "Paid Consultations",
+        "consultationGrowth": "Consultation Growth",
+        "earningsGrowth": "Earnings Growth"
+      },
+      "charts": {
+        "consultationsByDuration": "Consultations by Duration",
+        "consultationsByType": "Consultations by Type",
+        "earningsOverTime": "Earnings Over Time",
+        "ratingsTrend": "Ratings Trend"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "pricing": "Pricing Settings",
+      "consultations": "Consultation Settings",
+      "pricingModel": {
+        "title": "Pricing Model",
+        "description": "Choose how you want to price your consultations",
+        "platformFixed": {
+          "title": "Platform Fixed",
+          "description": "Use platform-set prices for all consultations"
+        },
+        "freeOnly": {
+          "title": "Free Only",
+          "description": "Offer only free consultations"
+        },
+        "hybrid": {
+          "title": "Hybrid",
+          "description": "Mix of free and paid consultations"
+        }
+      },
+      "freeConsultations": {
+        "title": "Free Consultation Durations",
+        "description": "Select which consultation durations you want to offer for free",
+        "duration15": "15 minutes",
+        "duration30": "30 minutes",
+        "duration60": "60 minutes",
+        "note": "Free consultations help build trust and can lead to paid sessions"
+      }
+    }
+  },
+  "application": {
+    "title": "Postuler pour Devenir Conseiller",
+    "subtitle": "Partagez votre expertise et aidez les autres à construire des projets incroyables",
+    "steps": {
+      "personal": {
+        "title": "Informations Personnelles",
+        "description": "Parlez-nous de vous et de votre parcours professionnel",
+        "fields": {
+          "displayName": {
+            "label": "Nom d'Affichage",
+            "placeholder": "Comment vous aimeriez être présenté aux clients",
+            "help": "C'est ainsi que les clients verront votre nom"
+          },
+          "bio": {
+            "label": "Biographie Professionnelle",
+            "placeholder": "Parlez aux clients de votre parcours et de votre expertise...",
+            "help": "Décrivez votre expérience, vos spécialités et ce qui fait de vous un excellent conseiller"
+          },
+          "experience": {
+            "label": "Années d'Expérience",
+            "help": "Combien d'années d'expérience professionnelle en développement logiciel avez-vous ?"
+          },
+          "portfolio": {
+            "label": "URL du Portfolio (Optionnel)",
+            "placeholder": "https://votreportfolio.com",
+            "help": "Lien vers vos travaux, GitHub ou site web professionnel"
+          }
+        }
+      },
+      "professional": {
+        "title": "Compétences & Expertise",
+        "description": "Aidez les clients à vous trouver en présentant vos compétences techniques et domaines d'expertise",
+        "fields": {
+          "skills": {
+            "label": "Compétences Techniques",
+            "help": "Listez les technologies et frameworks que vous maîtrisez"
+          },
+          "specialties": {
+            "label": "Domaines d'Expertise",
+            "help": "Dans quels types de projets vous spécialisez-vous ?"
+          },
+          "languages": {
+            "label": "Langues de Communication",
+            "help": "Dans quelles langues pouvez-vous communiquer avec les clients ?",
+            "placeholder": "Sprache hinzufügen..."
+          },
+          "linkedin": {
+            "label": "URL LinkedIn (Optionnel)",
+            "placeholder": "https://linkedin.com/in/votre-profil",
+            "help": "Votre profil LinkedIn pour la vérification professionnelle"
+          },
+          "github": {
+            "label": "URL GitHub (Optionnel)",
+            "placeholder": "https://github.com/votrenom",
+            "help": "Votre profil GitHub pour présenter votre code"
+          }
+        }
+      },
+      "consultation": {
+        "title": "Préférences de Consultation",
+        "description": "Définissez votre disponibilité et préférences de consultation pour aider les clients à réserver des sessions",
+        "fields": {
+          "availability": {
+            "label": "Jours Disponibles",
+            "help": "Quels jours de la semaine êtes-vous disponible pour les consultations ?"
+          },
+          "consultationTypes": {
+            "label": "Types de Consultation",
+            "help": "Quels types de services de consultation offrez-vous ?"
+          },
+          "timeZones": {
+            "label": "Fuseaux Horaires Préférés",
+            "help": "Quels fuseaux horaires vous conviennent le mieux ?",
+            "placeholder": "Zeitzone hinzufügen..."
+          },
+          "maxSessions": {
+            "label": "Sessions Max par Semaine",
+            "help": "Combien de sessions de consultation pouvez-vous gérer par semaine ?",
+            "placeholder": "10"
+          }
+        }
+      }
+    },
+    "navigation": {
+      "next": "Étape Suivante",
+      "previous": "Précédent",
+      "submit": "Soumettre la Candidature",
+      "saveDraft": "Enregistrer le Brouillon",
+      "cancel": "Annuler"
+    },
+    "progress": {
+      "step": "Étape",
+      "of": "sur",
+      "complete": "Terminé"
+    },
+    "draft": {
+      "saved": "Brouillon enregistré",
+      "saving": "Enregistrement...",
+      "autoSave": "Enregistrement automatique activé"
+    },
+    "auth": {
+      "guestMessage": "Sie können mit dem Ausfüllen des Formulars beginnen - Authentifizierung nur beim Absenden erforderlich",
+      "authenticatedMessage": "Authentifiziert - Sie können Ihre Bewerbung einreichen"
+    }
+  },
+  "client": {
+    "hero": {
+      "title": "Erhalten Sie Hilfe in 15-60 Minuten von erfahrenen Ingenieuren",
+      "subtitle": "Architekturentscheidungen, Code-Reviews und Debugging - gelöst in fokussierten Sitzungen",
+      "badge": "Experten-Software-Engineering-Hilfe",
+      "trustBar": "Geprüfte Senior-Ingenieure • Stripe-gesicherte Zahlungen • 4,8/5 Bewertung",
+      "findExpert": "Finden Sie jetzt einen Experten",
+      "describeChalenge": "Beschreiben Sie Ihre Herausforderung",
+      "pricing": "15 Min 9€ · 30 Min 19€ · 60 Min 35€ — sicher abgerechnet von SheenApps"
+    },
+    "problems": {
+      "title": "Kommt Ihnen Das Bekannt Vor?",
+      "scenarios": [
+        "Seit Tagen bei einer komplexen Architekturentscheidung festgefahren?",
+        "Code-Review-Backlog blockiert Ihr ganzes Team?",
+        "Brauchen jemanden, der Ihren Ansatz prüft?",
+        "Deadline nähert sich, aber unsicher, ob Sie auf dem richtigen Weg sind?"
+      ]
+    },
+    "solutions": {
+      "title": "So Helfen Unsere Experten",
+      "services": [
+        {
+          "title": "Architektur-Reviews",
+          "description": "Lassen Sie Ihr Systemdesign von Ingenieuren validieren, die im großen Maßstab gebaut haben",
+          "example": "Sarah sparte 3 Wochen, indem sie früh ein Skalierungsproblem erkannte"
+        },
+        {
+          "title": "Code-Reviews",
+          "description": "Professionelle Code-Reviews, die Ihnen Muster lehren, nicht nur Korrekturen",
+          "example": "Technische Schulden in einer Sitzung um 40% reduziert"
+        },
+        {
+          "title": "Debugging-Sitzungen",
+          "description": "Arbeiten Sie mit Experten zusammen, die Probleme erkennen, die Sie übersehen haben",
+          "example": "Ein Memory-Leak behoben, der 2000€/Monat an Serverkosten kostete"
+        },
+        {
+          "title": "Technologie-Beratung",
+          "description": "Wählen Sie die richtigen Tools und Frameworks für Ihr Projekt",
+          "example": "6 Monate Refactoring mit der richtigen Tech-Wahl vermieden"
+        }
+      ]
+    },
+    "advisorShowcase": {
+      "title": "Treffen Sie Ihre Potenziellen Berater",
+      "subtitle": "Premium-Beraterprofile",
+      "error": "Berater können momentan nicht geladen werden.",
+      "browseAll": "Alle Berater Durchsuchen",
+      "noAdvisors": "Momentan sind keine Berater verfügbar.",
+      "checkBack": "Wir arbeiten daran, Ihnen die besten Experten zu bringen. Schauen Sie bald wieder vorbei!"
+    },
+    "process": {
+      "title": "Wie Es Funktioniert",
+      "steps": [
+        {
+          "title": "Beschreiben Sie Ihre Herausforderung",
+          "description": "Intelligentes Matching-Formular"
+        },
+        {
+          "title": "Werden Sie Mit Experten Gematcht",
+          "description": "KI-gestützte Empfehlungen"
+        },
+        {
+          "title": "Buchen Sie Ihre Sitzung",
+          "description": "Kalender-Integration"
+        },
+        {
+          "title": "Kommen Sie Schnell Voran",
+          "description": "Bildschirmfreigabe, Code-Review oder Workspace-Zusammenarbeit"
+        },
+        {
+          "title": "Follow-Up-Ressourcen",
+          "description": "Sitzungsnotizen, Empfehlungen"
+        }
+      ]
+    },
+    "trust": {
+      "title": "Warum Entwickler Unseren Professionellen Beratern Vertrauen",
+      "points": [
+        {
+          "title": "Geprüfte Experten",
+          "description": "Alle Berater bestehen technische Interviews"
+        },
+        {
+          "title": "Sichere Zahlungen",
+          "description": "Stripe-unterstützt mit Geld-zurück-Garantie"
+        },
+        {
+          "title": "24/7 Support",
+          "description": "Menschlicher Support für alle Probleme"
+        },
+        {
+          "title": "Qualitätsgarantie",
+          "description": "Nicht zufrieden? Erste Sitzung kostenlos"
+        },
+        {
+          "title": "Erfolgsbilanz",
+          "description": "95% der Sitzungen mit 5 Sternen bewertet"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Häufig Gestellte Fragen",
+      "items": [
+        {
+          "question": "Was, wenn ich mein Problem nicht klar erklären kann?",
+          "answer": "Unsere Berater sind geschickt darin, technische Herausforderungen zu verstehen. Sie stellen die richtigen Fragen, um Ihre Situation zu klären und gezielte Anleitung zu geben."
+        },
+        {
+          "question": "Woher weiß ich, ob der Berater qualifiziert ist?",
+          "answer": "Alle unsere Berater bestehen technische Interviews und haben nachgewiesene Branchenerfahrung. Sie können ihre Hintergründe, Spezialisierungen und Bewertungen vor der Buchung sehen."
+        },
+        {
+          "question": "Was, wenn wir in der zugeteilten Zeit nicht fertig werden?",
+          "answer": "Sitzungen können verlängert werden, wenn beide Parteien einverstanden sind, oder Sie können eine Follow-up-Sitzung buchen. Wir sind flexibel, um sicherzustellen, dass Sie die Hilfe erhalten, die Sie benötigen."
+        },
+        {
+          "question": "Kann ich eine Rückerstattung erhalten, wenn ich nicht zufrieden bin?",
+          "answer": "Ja, wir bieten eine Zufriedenheitsgarantie. Wenn Sie mit Ihrer Sitzung nicht zufrieden sind, kontaktieren Sie unser Support-Team innerhalb von 24 Stunden für eine vollständige Rückerstattung."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Bereit, Nicht Mehr Festzustecken?",
+      "subtitle": "Schließen Sie sich 5.000+ Entwicklern an, die schneller vorankommen",
+      "guarantee": "Probieren Sie Ihre erste Sitzung risikofrei aus"
+    },
+    "recruitment": {
+      "text": "Sind Sie ein Senior-Ingenieur, der gerne anderen Entwicklern hilft?",
+      "cta": "Treten Sie unserem Berater-Netzwerk bei"
+    },
+    "quickMatcher": {
+      "title": "Finden Sie Ihren Perfekten Berater",
+      "challengeSelection": {
+        "title": "Was ist Ihre Hauptherausforderung?",
+        "subtitle": "Wählen Sie die Kategorie, die am besten beschreibt, womit Sie feststecken",
+        "challenges": {
+          "architecture": {
+            "title": "Systemarchitektur-Entscheidung",
+            "description": "Benötigen Anleitung beim Design skalierbarer Systeme, Auswahl der richtigen Architekturmuster oder Refactoring vorhandenen Codes"
+          },
+          "performance": {
+            "title": "Performance-Probleme",
+            "description": "Anwendung ist langsam, Memory Leaks, Datenbankabfragen dauern zu lang, oder benötigen Optimierungsanleitung"
+          },
+          "debugging": {
+            "title": "Komplexe Fehleruntersuchung",
+            "description": "Bei einem kniffligen Fehler feststecken, intermittierende Probleme, oder benötigen Hilfe bei Debugging-Strategien und -Tools"
+          },
+          "code-review": {
+            "title": "Code-Review & Best Practices",
+            "description": "Möchten Experten-Feedback zu Code-Qualität, Design Patterns, Sicherheit oder Team-Entwicklungspraktiken"
+          },
+          "technology": {
+            "title": "Technologie-Auswahl",
+            "description": "Wahl zwischen Frameworks, Datenbanken, Cloud-Anbietern oder anderen Technologie-Stack-Entscheidungen"
+          },
+          "career": {
+            "title": "Karriere & Technisches Wachstum",
+            "description": "Anleitung zu Karrierefortschritt, Skill-Entwicklung, technischer Führung oder Branchen-Best-Practices"
+          }
+        },
+        "urgentBadge": "Dringend"
+      },
+      "challengeDetails": {
+        "backButton": "Zurück",
+        "subtitle": "Erzählen Sie uns mehr über Ihre spezifische Situation",
+        "descriptionLabel": "Beschreiben Sie Ihre Herausforderung (optional)",
+        "descriptionPlaceholder": "Z.B.: Ich baue eine React-App mit 100k Nutzern und das Dashboard lädt langsam. Ich habe grundlegende Optimierungen versucht, brauche aber Experten-Anleitung zu fortgeschrittenen Performance-Techniken...",
+        "descriptionHelp": "Optional: Mehr Details helfen uns, bessere Übereinstimmungen zu finden, aber Sie können dies auch direkt mit Beratern besprechen",
+        "timelineLabel": "Wann benötigen Sie Hilfe?",
+        "timelineOptions": {
+          "urgent": {
+            "label": "ASAP",
+            "description": "Heute/Morgen"
+          },
+          "week": {
+            "label": "Diese Woche",
+            "description": "Innerhalb von 7 Tagen"
+          },
+          "month": {
+            "label": "Diesen Monat",
+            "description": "Innerhalb von 30 Tagen"
+          }
+        },
+        "recommendedSkills": "Empfohlene Berater-Fähigkeiten:",
+        "findMatchesButton": "Passende Berater Finden"
+      },
+      "matches": {
+        "loading": {
+          "title": "Finde Ihre perfekten Übereinstimmungen...",
+          "subtitle": "Analysiere Berater-Fähigkeiten und Verfügbarkeit"
+        },
+        "backButton": "Zurück",
+        "resultsTitle": "{count} Berater passen zu Ihrer Herausforderung",
+        "resultsSubtitle": "Experten in {challenge}",
+        "noMatches": {
+          "title": "Keine Übereinstimmungen gefunden",
+          "subtitle": "Versuchen Sie, einen anderen Herausforderungstyp zu wählen oder durchsuchen Sie alle Berater",
+          "browseButton": "Alle Berater Durchsuchen"
+        },
+        "advisorCard": {
+          "availableNow": "Jetzt verfügbar",
+          "notAccepting": "Nimmt keine Buchungen an",
+          "yearsExperience": "{years}+ Jahre",
+          "bookButton": "Sitzung Buchen",
+          "moreSkills": "+{count} weitere"
+        },
+        "seeAllButton": "Alle Berater Sehen"
+      }
+    }
+  },
+  "advisors": {
+    "title": "Conseillers Experts",
+    "subtitle": "Obtenez des conseils personnalisés d'ingénieurs logiciels expérimentés",
+    "meta": {
+      "title": "Conseillers Experts - SheenApps",
+      "description": "Connectez-vous avec des ingénieurs logiciels expérimentés pour des conseils personnalisés assistés par IA et des consultations."
+    },
+    "search": {
+      "placeholder": "Rechercher des conseillers par nom, compétences ou spécialité...",
+      "filters": {
+        "skills": "Compétences",
+        "specialties": "Spécialités",
+        "languages": "Langues",
+        "rating": "Note Minimale",
+        "availability": "Disponible Maintenant",
+        "allSpecialties": "All Specialties",
+        "anyExperience": "Any Experience",
+        "specialtyOptions": {
+          "web-development": "Web Development",
+          "mobile-development": "Mobile Development",
+          "backend-development": "Backend Development",
+          "devops": "DevOps",
+          "data-science": "Data Science",
+          "ui-ux": "UI/UX Design"
+        },
+        "experienceOptions": {
+          "1": "1+ Years",
+          "3": "3+ Years",
+          "5": "5+ Years",
+          "10": "10+ Years"
+        }
+      }
+    },
+    "cards": {
+      "rating": "note",
+      "reviews": "avis",
+      "review": "avis",
+      "bookNow": "Réserver une Consultation",
+      "viewProfile": "Voir le Profil",
+      "available": "Disponible",
+      "busy": "Occupé"
+    },
+    "empty": {
+      "title": "Aucun conseiller trouvé",
+      "description": "Essayez d'ajuster vos filtres de recherche pour trouver plus de conseillers"
+    },
+    "navTitle": "Advisors"
+  },
+  "consultations": {
+    "title": "Consultations",
+    "book": {
+      "title": "Book Consultation",
+      "selectDuration": "Select Duration",
+      "selectTime": "Select Time",
+      "pricing": {
+        "15min": "15-minütige Beratung",
+        "30min": "30-minütige Beratung",
+        "60min": "60-minütige Beratung",
+        "clientPays": "Sie zahlen",
+        "advisorEarns": "Berater verdient (70%)",
+        "descriptions": {
+          "15min": "Perfekt für schnelle Fragen",
+          "30min": "Perfekt für fokussierte Diskussionen",
+          "60min": "Perfekt für tiefgehende Anleitung"
+        }
+      },
+      "policies": {
+        "title": "Booking Policies",
+        "cancellation": "Free cancellation up to 24 hours before consultation",
+        "ownership": "You own all code and assets produced during consultation",
+        "refund": "Refunds are automatic for cancellations more than 24 hours in advance"
+      },
+      "form": {
+        "notes": {
+          "label": "Consultation Notes (Optional)",
+          "placeholder": "What would you like to discuss or get help with?",
+          "help": "Help your advisor prepare by sharing details about your project or questions"
+        },
+        "project": {
+          "label": "Related Project (Optional)",
+          "help": "Link this consultation to one of your SheenApps projects"
+        }
+      },
+      "payment": {
+        "title": "Payment Details",
+        "secure": "Secure payment powered by Stripe",
+        "processing": "Processing payment...",
+        "success": "Payment successful!"
+      },
+      "confirmation": {
+        "title": "Consultation Booked!",
+        "details": "Consultation Details",
+        "advisor": "Advisor",
+        "duration": "Duration",
+        "dateTime": "Date & Time",
+        "price": "Price",
+        "videoLink": "Video Link",
+        "calendar": "Add to Calendar",
+        "email": "You'll receive a confirmation email with all the details"
+      }
+    },
+    "list": {
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "all": "All Consultations",
+      "empty": {
+        "upcoming": "No upcoming consultations",
+        "completed": "No completed consultations",
+        "cancelled": "No cancelled consultations"
+      }
+    },
+    "card": {
+      "duration": "Duration",
+      "status": {
+        "scheduled": "Scheduled",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "no_show": "No Show"
+      },
+      "actions": {
+        "join": "Join Call",
+        "cancel": "Cancel",
+        "reschedule": "Reschedule",
+        "review": "Leave Review",
+        "viewRecording": "View Recording"
+      }
+    },
+    "cancel": {
+      "title": "Cancel Consultation",
+      "reason": "Reason for cancellation",
+      "reasons": {
+        "schedule_conflict": "Schedule conflict",
+        "no_longer_needed": "No longer needed",
+        "technical_issue": "Technical issue",
+        "other": "Other"
+      },
+      "refundInfo": "Cancelled more than 24 hours in advance? You'll receive a full refund automatically.",
+      "noRefundInfo": "Cancelled within 24 hours? No refund will be issued per our policy.",
+      "confirm": "Yes, Cancel Consultation",
+      "success": {
+        "title": "Consultation Cancelled",
+        "withRefund": "Your consultation has been cancelled and a full refund will be processed within 3-5 business days.",
+        "noRefund": "Your consultation has been cancelled. No refund will be issued as per our 24-hour policy."
+      }
+    },
+    "review": {
+      "title": "Rate Your Consultation",
+      "rating": {
+        "label": "Overall Rating",
+        "help": "How would you rate this consultation overall?"
+      },
+      "detailed": {
+        "expertise": "Technical Expertise",
+        "communication": "Communication",
+        "helpfulness": "Helpfulness"
+      },
+      "comment": {
+        "label": "Review (Optional)",
+        "placeholder": "Share your experience to help other clients...",
+        "help": "Your review will be public and help other clients choose advisors"
+      },
+      "submit": "Submit Review",
+      "success": {
+        "title": "Review Submitted!",
+        "description": "Thank you for your feedback. Your review helps other clients find great advisors."
+      }
+    }
+  },
+  "pricing": {
+    "from": "From",
+    "consultation": "consultation",
+    "perConsultation": "per consultation",
+    "currency": {
+      "usd": "$",
+      "eur": "€",
+      "gbp": "£",
+      "egp": "EGP",
+      "sar": "SAR",
+      "aed": "AED",
+      "mad": "MAD"
+    }
+  },
+  "admin": {
+    "advisors": {
+      "title": "Advisor Applications",
+      "subtitle": "Review and manage advisor applications",
+      "tabs": {
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "all": "All Applications"
+      },
+      "table": {
+        "applicant": "Applicant",
+        "appliedDate": "Applied",
+        "experience": "Experience",
+        "skills": "Skills",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "viewProfile": "View Profile",
+        "addNotes": "Add Notes"
+      },
+      "stats": {
+        "total": "Total Applications",
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "review": {
+        "title": "Review Application",
+        "approveConfirm": "Approve this advisor application?",
+        "rejectConfirm": "Reject this advisor application?",
+        "adminNotes": "Admin Notes",
+        "adminNotesPlaceholder": "Add notes about this application..."
+      },
+      "empty": {
+        "title": "No Applications Found",
+        "description": "No advisor applications match the current filter."
+      },
+      "applications": {
+        "title": "Advisor Applications",
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "review": "Review Application",
+        "approve": "Approve",
+        "reject": "Reject",
+        "notes": {
+          "label": "Admin Notes",
+          "placeholder": "Notes about this application..."
+        }
+      },
+      "list": {
+        "title": "All Advisors",
+        "active": "Active",
+        "suspended": "Suspended",
+        "actions": {
+          "suspend": "Suspend",
+          "reactivate": "Reactivate",
+          "viewProfile": "View Profile",
+          "editProfile": "Edit Profile"
+        }
+      }
+    },
+    "consultations": {
+      "title": "Consultation Management",
+      "list": "All Consultations",
+      "filters": {
+        "status": "Status",
+        "advisor": "Advisor",
+        "dateRange": "Date Range"
+      },
+      "actions": {
+        "refund": "Issue Refund",
+        "markNoShow": "Mark No-Show",
+        "viewDetails": "View Details"
+      }
+    },
+    "finance": {
+      "title": "Finance Dashboard",
+      "revenue": {
+        "title": "Platform Revenue",
+        "thisMonth": "This Month",
+        "lastMonth": "Last Month",
+        "growth": "Growth"
+      },
+      "payouts": {
+        "title": "Advisor Payouts",
+        "pending": "Pending Payouts",
+        "processed": "Processed This Month",
+        "export": "Export Payout CSV"
+      }
+    }
+  },
+  "labels": {
+    "yearsExperience": "{years, plural, =0 {Neuer Berater} one {# Jahr Erfahrung} other {# Jahre Erfahrung}}",
+    "reviewCount": "{count, plural, =0 {(Keine Bewertungen)} one {(# Bewertung)} other {(# Bewertungen)}}",
+    "softwareEngineer": "Software-Ingenieur",
+    "expert": "{specialty}-Experte",
+    "free": "Kostenlos",
+    "minutes": "Minuten"
+  },
+  "availability": {
+    "usually1Day": "Normalerweise innerhalb 1 Tages",
+    "notAcceptingBookings": "Nimmt keine Buchungen an",
+    "available": "Verfügbar",
+    "unavailable": "Nicht verfügbar"
+  },
+  "placeholders": {
+    "noSpecificReviews": "Bereit für {skill}-Projekte zu helfen",
+    "loadingReviews": "Bewertungen werden geladen...",
+    "noReviewsYet": "Noch keine Bewertungen.",
+    "reviewSummary": "Dieser Berater hat {count, plural, =0 {keine Bewertungen} one {# Bewertung} other {# Bewertungen}} mit einer durchschnittlichen Bewertung von {rating} Sternen."
+  },
+  "errors": {
+    "advisor_not_found": "Advisor not found",
+    "consultation_not_found": "Consultation not found",
+    "booking_failed": "Failed to book consultation",
+    "payment_failed": "Payment failed",
+    "insufficient_credits": "Insufficient credits to book consultation",
+    "advisor_unavailable": "Advisor is not currently accepting bookings",
+    "invalid_duration": "Invalid consultation duration",
+    "cancellation_too_late": "Cannot cancel within 24 hours of consultation",
+    "generic_error": "An error occurred. Please try again."
+  },
+  "success": {
+    "application_submitted": "Advisor application submitted successfully",
+    "profile_updated": "Profile updated successfully",
+    "consultation_booked": "Consultation booked successfully",
+    "consultation_cancelled": "Consultation cancelled successfully",
+    "review_submitted": "Review submitted successfully",
+    "availability_updated": "Availability status updated"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "showing": "Showing {start}-{end} of {total} advisors"
+  }
+}

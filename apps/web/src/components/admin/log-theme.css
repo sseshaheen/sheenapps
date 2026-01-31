@@ -1,0 +1,75 @@
+/* Log Theme - Calm, readable syntax highlighting */
+:root {
+  /* Neutrals tuned for dark UI */
+  --log-fg: #d7d9e0;
+  --log-muted: #9aa4b2;
+
+  /* Softer accents (WCAG-friendly on #1e1e1e) */
+  --log-accent: #8ec5ff;      /* links/paths */
+  --log-success: #7cc4a1;
+  --log-warn: #e8cf86;
+  --log-error: #e79aa0;
+
+  /* New balanced highlighting */
+  --log-key: #b7d8ff;   /* soft blue for JSON keys */
+  --log-id:  #ccbfff;   /* soft violet for IDs/UUIDs */
+
+  /* badge backgrounds (very low-alpha) */
+  --log-success-bg: rgba(124, 196, 161, 0.12);
+  --log-warn-bg:    rgba(232, 207, 134, 0.14);
+  --log-error-bg:   rgba(231, 154, 160, 0.14);
+}
+
+.log {
+  color: var(--log-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.log__muted {
+  color: var(--log-muted);
+}
+
+.log__link  {
+  color: var(--log-accent);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.log__path  {
+  color: var(--log-accent);
+}
+
+.log__num   {
+  color: var(--log-muted);
+}
+
+.log__key {
+  color: var(--log-key);
+  font-weight: 500;
+}
+
+.log__id  {
+  color: var(--log-id);
+}
+
+.log-badge {
+  font-weight: 600;
+  padding: 0 .35em;
+  border-radius: .35rem;
+  line-height: 1.2;
+}
+
+.log-badge--error   {
+  color: var(--log-error);
+  background: var(--log-error-bg);
+}
+
+.log-badge--warn    {
+  color: var(--log-warn);
+  background: var(--log-warn-bg);
+}
+
+.log-badge--success {
+  color: var(--log-success);
+  background: var(--log-success-bg);
+}

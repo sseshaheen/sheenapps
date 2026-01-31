@@ -1,0 +1,88 @@
+{
+  "badge": "Humanos reales incluidos en cada plan",
+  "title": "Tu Equipo Técnico por Menos Que",
+  "titleHighlight": "Una Membresía de Gimnasio",
+  "subtitle": "Las agencias tradicionales cobran $10k+ y toman meses. Los freelancers desaparecen.",
+  "subtitleSecond": "Te damos un equipo técnico permanente que realmente se preocupa por tu éxito.",
+  "billingMonthly": "Mensual",
+  "billingYearly": "Anual",
+  "billingSave": "Ahorra {percent}%",
+  "periodMonthly": "/mes",
+  "periodYearly": "/año",
+  "plans": {
+    "free": {
+      "name": "Gratis",
+      "description": "Prueba antes de comprar",
+      "features": [
+        "Constructor de negocio de 60 segundos",
+        "1 hora de asesor/mes",
+        "2 adiciones de funciones",
+        "Soporte comunitario",
+        "Analíticas básicas",
+        "Subdominio sheenapps.com"
+      ],
+      "cta": "Empezar Gratis"
+    },
+    "starter": {
+      "name": "Inicial",
+      "description": "Perfecto para probar ideas",
+      "features": [
+        "Todo en Gratis",
+        "3 horas de asesor/mes",
+        "5 adiciones de funciones",
+        "Soporte por email",
+        "Certificado SSL",
+        "Plantillas básicas"
+      ],
+      "cta": "Empezar a Construir"
+    },
+    "growth": {
+      "name": "Crecimiento",
+      "description": "Para emprendedores serios",
+      "popular": "MÁS POPULAR",
+      "features": [
+        "Todo en Inicial",
+        "10 horas de asesor/mes",
+        "50 funciones/mes",
+        "Soporte prioritario",
+        "Dominio personalizado incluido",
+        "Analíticas avanzadas",
+        "Pruebas A/B",
+        "Acceso API"
+      ],
+      "cta": "Ir Pro",
+      "savings": "Ahorra {amount}/año"
+    },
+    "scale": {
+      "name": "Escala",
+      "description": "Tu equipo técnico dedicado",
+      "features": [
+        "Todo en Crecimiento",
+        "Asesor dedicado",
+        "Funciones ilimitadas",
+        "Despliegue el mismo día",
+        "Onboarding personalizado",
+        "Integraciones personalizadas",
+        "Garantía SLA",
+        "Llamadas estratégicas semanales"
+      ],
+      "cta": "Escalar Ahora"
+    }
+  },
+  "enterprise": "Contactar para Precios Empresariales",
+  "enterpriseDescription": "¿Necesitas más? ¿Construyendo múltiples negocios? ¿Tienes requerimientos específicos?",
+  "guarantees": {
+    "moneyBack": {
+      "value": "30 días",
+      "label": "Garantía de devolución"
+    },
+    "cancel": {
+      "value": "Cancelar",
+      "label": "En cualquier momento, sin preguntas"
+    },
+    "export": {
+      "value": "Exportar",
+      "label": "Tu código y datos siempre"
+    }
+  }
+}

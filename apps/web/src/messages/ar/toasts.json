@@ -1,0 +1,19 @@
+{
+  "actions": {
+    "undo": "تراجع",
+    "undoing": "جاري التراجع...",
+    "dismiss": "إغلاق"
+  },
+  "projectRenamed": "تمت إعادة تسمية المشروع",
+  "projectDuplicated": "تم نسخ المشروع",
+  "projectArchived": "تمت أرشفة المشروع",
+  "projectRestored": "تمت استعادة المشروع",
+  "renameUndone": "تم التراجع عن إعادة التسمية",
+  "archiveUndone": "تم التراجع عن الأرشفة",
+  "restoreUndone": "تم التراجع عن الاستعادة",
+  "failedToRename": "فشلت إعادة تسمية المشروع",
+  "failedToDuplicate": "فشل نسخ المشروع",
+  "failedToArchive": "فشلت أرشفة المشروع",
+  "failedToRestore": "فشلت استعادة المشروع",
+  "copiedPrefix": "نسخة من"
+}

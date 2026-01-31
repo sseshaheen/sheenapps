@@ -1,0 +1,112 @@
+{
+  "banner": {
+    "title": "You've been referred by a SheenApps Friend!",
+    "description": "Get started and they'll earn commission when you subscribe."
+  },
+  "cta": {
+    "badge": "New",
+    "title": "Earn with SheenApps Friends",
+    "subtitle": "Refer customers and earn recurring commissions for 12 months",
+    "commission": "Commission",
+    "months": "Months",
+    "referrals": "Referrals",
+    "joinButton": "Join SheenApps Friends",
+    "terms": "Free to join • Terms apply"
+  },
+  "signup": {
+    "title": "Join SheenApps Friends",
+    "companyName": "Company Name",
+    "website": "Website/Portfolio",
+    "marketingChannels": "Marketing Channels",
+    "payoutMethod": "Preferred Payout Method",
+    "optional": "(Optional)",
+    "companyNamePlaceholder": "Your company or personal brand",
+    "selectPayout": "Select payout method",
+    "termsText": "I accept the",
+    "termsLink": "SheenApps Friends Terms & Conditions",
+    "termsRequired": "Please accept the Terms & Conditions",
+    "cancel": "Cancel",
+    "create": "Create Partner Account",
+    "creating": "Creating...",
+    "success": "Partner account created! Referral link copied to clipboard.",
+    "successWithCopy": "Partner account created! Referral link copied to clipboard.",
+    "error": "Failed to create partner account. Please try again.",
+    "channels": {
+      "blog": "Blog",
+      "youtube": "YouTube", 
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "newsletter": "Newsletter",
+      "other": "Other"
+    },
+    "payout": {
+      "stripe": "Stripe (Bank Transfer)",
+      "paypal": "PayPal",
+      "wire": "Wire Transfer", 
+      "wise": "Wise (International)"
+    }
+  },
+  "success": {
+    "title": "Welcome to SheenApps Friends!",
+    "subtitle": "Your referral account has been created successfully",
+    "description": "Start sharing your link to earn 15% commission on all referrals!",
+    "linkLabel": "Your referral link:",
+    "codeLabel": "Partner Code",
+    "nextStepsTitle": "Next Steps:",
+    "nextStep1": "Share your referral link with your audience",
+    "nextStep2": "Track performance in your partner dashboard",
+    "nextStep3": "Get paid monthly for successful referrals",
+    "goToDashboard": "Go to Dashboard",
+    "viewTerms": "Terms"
+  },
+  "dashboard": {
+    "title": "SheenApps Friends Dashboard",
+    "partnerCode": "Partner Code",
+    "tier": "Tier",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing...",
+    "copyLink": "Copy Referral Link",
+    "linkCopied": "Referral link copied to clipboard!",
+    "loadError": "Failed to load dashboard",
+    "networkError": "Network error loading dashboard",
+    "retry": "Retry",
+    "stats": {
+      "clicks": "Total Clicks",
+      "signups": "Signups", 
+      "pending": "Pending Earnings",
+      "estimated": "Estimated Monthly Payout",
+      "linkVisits": "Link visits",
+      "conversion": "{rate}% conversion",
+      "awaitingApproval": "Awaiting approval",
+      "thisMonth": "Current month projection"
+    },
+    "recentReferrals": "Recent Referrals",
+    "recentCommissions": "Recent Commissions",
+    "userSignup": "User signup",
+    "bonus": "Bonus",
+    "noReferrals": "No referrals yet",
+    "noReferralsDesc": "Start sharing your referral link to see activity here.",
+    "noCommissions": "No commissions earned yet",
+    "noCommissionsDesc": "When your referrals make their first payment, you'll see commissions here.",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "rejected": "Rejected",
+      "approved": "Approved",
+      "paid": "Paid",
+      "disputed": "Disputed"
+    },
+    "tierDesc": "{referrals} successful referrals • {rate}% commission rate",
+    "nextTier": "Next tier in",
+    "referralsNeeded": "{count} referrals",
+    "complete": "complete",
+    "maxTier": "Maximum tier achieved!",
+    "resources": "Help & Resources",
+    "viewTerms": "View Terms",
+    "viewTermsDesc": "Read the full terms and conditions",
+    "help": "Help Center",
+    "helpDesc": "Get help with the referral program",
+    "contact": "Contact Support",
+    "contactDesc": "Get in touch with our team"
+  }
+}

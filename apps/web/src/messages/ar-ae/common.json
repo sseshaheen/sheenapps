@@ -1,0 +1,58 @@
+{
+  "loading": "جاري التحميل...",
+  "error": "حدث خطأ ما",
+  "retry": "إعادة المحاولة",
+  "close": "إغلاق",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "continue": "متابعة",
+  "back": "رجوع",
+  "next": "التالي",
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي", 
+    "page": "صفحة",
+    "of": "من",
+    "showing": "عرض {start}-{end} من {total} مستشار"
+  },
+  "advisorDashboard": "لوحة المستشار",
+  "chooseLanguage": "اختر اللغة",
+  "pricesInLocalCurrency": "الأسعار معروضة بالعملة المحلية",
+  "comingSoon": "قريباً",
+  "authLayout": {
+    "backToHome": "العودة إلى الرئيسية",
+    "brand": {
+      "name": "شين أبس",
+      "tagline": "ابني مواقع ويب جميلة ومتعددة اللغات بقوة الذكاء الاصطناعي. لا حاجة للبرمجة."
+    },
+    "features": {
+      "aiPowered": {
+        "title": "مدعوم بالذكاء الاصطناعي",
+        "description": "إنشاء مواقع ويب جميلة في دقائق مع الذكاء الاصطناعي المتقدم"
+      },
+      "globalReady": {
+        "title": "جاهز عالمياً",
+        "description": "الترجمة المدمجة لأكثر من 7 لغات"
+      },
+      "enterpriseSecurity": {
+        "title": "أمان المؤسسات",
+        "description": "أمان بمستوى البنوك مع التشفير الشامل"
+      },
+      "lightningFast": {
+        "title": "سريع كالبرق",
+        "description": "محسن للسرعة مع الحوسبة الطرفية"
+      }
+    },
+    "socialProof": {
+      "trustedBy": "موثوق به من قبل المبدعين حول العالم",
+      "creatorsCount": "2,000+",
+      "creatorsLabel": "مبدع",
+      "joinCreators": "انضم إلى أكثر من 2,000 مبدع يبنون بالذكاء الاصطناعي"
+    },
+    "mobileFeatures": {
+      "aiPowered": "مدعوم بالذكاء الاصطناعي",
+      "secure": "آمن",
+      "fast": "سريع"
+    }
+  }
+}

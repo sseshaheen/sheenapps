@@ -1,0 +1,117 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  packages: read
+  pull-requests: write
+  issues: write
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  topology-leak-check:
+    name: Worker URL Exposure Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sheenapps'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify no local symlinks in @sheenapps scope
+        run: |
+          if [ -d node_modules/@sheenapps ]; then
+            SYMS=$(find node_modules/@sheenapps -maxdepth 2 -type l 2>/dev/null || true)
+            if [ -n "$SYMS" ]; then
+              echo "::error::Symlinks detected in node_modules/@sheenapps (CI must install from GitHub Packages):"
+              echo "$SYMS"
+              exit 1
+            fi
+          fi
+
+      - name: Run topology leak scanner
+        run: |
+          echo "Checking for worker URL exposure..."
+          npx tsx scripts/validate-worker-lockdown.ts
+
+      - name: Comment on PR if violations found
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔴 Security Check Failed: Worker URL Exposure
+
+            The topology leak scanner found potential security issues with worker URL exposure.
+
+            ### Common causes:
+            - \`NEXT_PUBLIC_WORKER_*\` variables exposed to browser
+            - Worker URLs in client components
+            - Fallback patterns using public env vars
+
+            ### Required fixes:
+            1. Remove all \`NEXT_PUBLIC_WORKER_*\` from \`.env\` files
+            2. Use \`WORKER_BASE_URL\` only (server-side)
+            3. All worker calls must go through Next.js API routes
+
+            See the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
+            });
+
+  env-var-audit:
+    name: Environment Variable Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for leaked secrets patterns
+        run: |
+          echo "🔍 Scanning for potential secret leaks..."
+
+          # Check for NEXT_PUBLIC with sensitive keywords
+          VIOLATIONS=""
+
+          # Check .env files for NEXT_PUBLIC with sensitive words
+          for pattern in "SECRET" "KEY" "TOKEN" "PASSWORD" "CREDENTIAL" "PRIVATE"; do
+            if grep -rn "NEXT_PUBLIC.*${pattern}" --include=".env*" . 2>/dev/null; then
+              VIOLATIONS="${VIOLATIONS}Found NEXT_PUBLIC with ${pattern}\n"
+            fi
+          done
+
+          # Check for hardcoded worker URLs in source
+          if grep -rn "sheenapps-worker\|claude-worker" --include="*.tsx" --include="*.ts" src/ 2>/dev/null | grep -v "// " | grep -v ".md"; then
+            VIOLATIONS="${VIOLATIONS}Found hardcoded worker URLs in source\n"
+          fi
+
+          if [ -n "$VIOLATIONS" ]; then
+            echo "❌ Security violations found:"
+            echo -e "$VIOLATIONS"
+            exit 1
+          fi
+
+          echo "✅ No obvious secret leaks detected"

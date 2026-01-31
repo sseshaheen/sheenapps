@@ -1,0 +1,31 @@
+{
+  "title": "Conseillers Experts",
+  "subtitle": "Obtenez des conseils personnalisés d'ingénieurs logiciels expérimentés",
+  "meta": {
+    "title": "Conseillers Experts - SheenApps",
+    "description": "Connectez-vous avec des ingénieurs logiciels expérimentés pour des conseils personnalisés assistés par IA et des consultations."
+  },
+  "search": {
+    "placeholder": "Rechercher des conseillers par nom, compétences ou spécialité...",
+    "filters": {
+      "skills": "Compétences",
+      "specialties": "Spécialités",
+      "languages": "Langues",
+      "rating": "Note Minimale",
+      "availability": "Disponible Maintenant"
+    }
+  },
+  "cards": {
+    "rating": "note",
+    "reviews": "avis",
+    "review": "avis",
+    "bookNow": "Réserver une Consultation",
+    "viewProfile": "Voir le Profil",
+    "available": "Disponible",
+    "busy": "Occupé"
+  },
+  "empty": {
+    "title": "Aucun conseiller trouvé",
+    "description": "Essayez d'ajuster vos filtres de recherche pour trouver plus de conseillers"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Tout ce dont vous avez besoin pour réussir",
+  "subtitle": "Nous ne sommes pas juste un autre constructeur IA. Nous sommes votre département technique permanent.",
+  "list": [
+    {
+      "title": "Génération instantanée",
+      "description": "Décrivez votre idée, regardez-la se construire en temps réel avec l'IA + l'expertise humaine"
+    },
+    {
+      "title": "Votre équipe technique",
+      "description": "Des conseillers dédiés qui connaissent votre entreprise et grandissent avec vous"
+    },
+    {
+      "title": "Propriété complète",
+      "description": "Exportez votre code et vos données à tout moment. Aucun enfermement propriétaire, jamais"
+    },
+    {
+      "title": "Multi-langues",
+      "description": "Arabe (dialectes multiples), Français, Anglais - nous parlons votre langue"
+    },
+    {
+      "title": "Toujours supporté",
+      "description": "De vrais humains + IA vous soutiennent 24/7, pas juste un chatbot"
+    },
+    {
+      "title": "Développement continu",
+      "description": "Demandez des fonctionnalités le matin, obtenez-les en direct l'après-midi"
+    }
+  ]
+}

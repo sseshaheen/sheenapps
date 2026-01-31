@@ -1,0 +1,626 @@
+'use client'
+
+import { useState, useEffect } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useAuthStore } from '@/store';
+import { 
+  useAdvisorAvailabilityQuery, 
+  useUpdateAdvisorAvailabilityMutation 
+} from '@/hooks/use-advisor-dashboard-query';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Icon } from '@/components/ui/icon';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
+import { validateTimeSlot, hasTimeSlotOverlap, isValidTimezone } from '@/lib/dashboard-utils';
+import type { AdvisorAvailability, TimeSlot } from '@/types/advisor-dashboard';
+
+// Timezone list (common ones - in production would be more comprehensive)
+const COMMON_TIMEZONES = [
+  'UTC',
+  'America/New_York',
+  'America/Chicago',
+  'America/Denver',
+  'America/Los_Angeles',
+  'America/Toronto',
+  'Europe/London',
+  'Europe/Paris',
+  'Europe/Berlin',
+  'Asia/Tokyo',
+  'Asia/Shanghai',
+  'Asia/Kolkata',
+  'Australia/Sydney'
+];
+
+const DAYS_OF_WEEK = [
+  'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+] as const;
+
+// Form validation schema
+const timeSlotSchema = z.object({
+  start: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+  end: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)')
+}).refine((data) => {
+  const result = validateTimeSlot(data.start, data.end, 'UTC');
+  return result.valid;
+}, { message: 'Invalid time slot configuration' });
+
+const availabilityFormSchema = z.object({
+  timezone: z.string().min(1, 'Timezone is required'),
+  weekly_schedule: z.object({
+    monday: z.array(timeSlotSchema).optional(),
+    tuesday: z.array(timeSlotSchema).optional(),
+    wednesday: z.array(timeSlotSchema).optional(),
+    thursday: z.array(timeSlotSchema).optional(),
+    friday: z.array(timeSlotSchema).optional(),
+    saturday: z.array(timeSlotSchema).optional(),
+    sunday: z.array(timeSlotSchema).optional()
+  }),
+  blackout_dates: z.array(z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format (YYYY-MM-DD)')),
+  booking_preferences: z.object({
+    min_notice_hours: z.number().min(1).max(168),
+    max_advance_days: z.number().min(1).max(365),
+    buffer_minutes: z.number().min(0).max(120)
+  }),
+  cal_com_sync: z.object({
+    last_synced_at: z.string().optional(),
+    last_sync_status: z.enum(['success', 'failed', 'pending']).optional()
+  })
+});
+
+type AvailabilityForm = z.infer<typeof availabilityFormSchema>;
+
+interface AdvisorAvailabilityContentProps {
+  translations: {
+    advisor: {
+      dashboard: {
+        availability: {
+          title: string;
+          schedule: string;
+          timezone: string;
+          blackoutDates: string;
+          preferences: string;
+          calendarSync: string;
+          days: {
+            monday: string;
+            tuesday: string;
+            wednesday: string;
+            thursday: string;
+            friday: string;
+            saturday: string;
+            sunday: string;
+          };
+          fields: {
+            minNoticeHours: string;
+            maxAdvanceDays: string;
+            bufferMinutes: string;
+            addTimeSlot: string;
+            removeTimeSlot: string;
+            startTime: string;
+            endTime: string;
+            addBlackoutDate: string;
+            selectTimezone: string;
+          };
+          sync: {
+            lastSynced: string;
+            status: string;
+            success: string;
+            failed: string;
+            pending: string;
+            syncNow: string;
+          };
+          validation: {
+            invalidTime: string;
+            overlappingSlots: string;
+            startAfterEnd: string;
+          };
+        };
+        navigation: {
+          overview: string;
+          consultations: string;
+          analytics: string;
+          availability: string;
+          settings: string;
+        };
+      };
+    };
+    common: {
+      loading: string;
+      error: string;
+      retry: string;
+      save: string;
+      cancel: string;
+      saving: string;
+      saved: string;
+    };
+  };
+  locale: string;
+}
+
+export function AdvisorAvailabilityContent({ translations, locale }: AdvisorAvailabilityContentProps) {
+  const { user, isAuthenticated } = useAuthStore();
+  const [newBlackoutDate, setNewBlackoutDate] = useState('');
+
+  // Data fetching
+  const {
+    data: availability,
+    isLoading,
+    error,
+    refetch
+  } = useAdvisorAvailabilityQuery(user?.id, locale);
+
+  // Mutation for updating availability
+  const updateAvailabilityMutation = useUpdateAdvisorAvailabilityMutation(locale);
+
+  // Form setup
+  const form = useForm<AvailabilityForm>({
+    resolver: zodResolver(availabilityFormSchema),
+    defaultValues: {
+      timezone: 'UTC',
+      weekly_schedule: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+      },
+      blackout_dates: [],
+      booking_preferences: {
+        min_notice_hours: 24,
+        max_advance_days: 30,
+        buffer_minutes: 15
+      },
+      cal_com_sync: {}
+    }
+  });
+
+  // Update form when data is loaded
+  useEffect(() => {
+    if (availability) {
+      form.reset(availability);
+    }
+  }, [availability, form]);
+
+  // Helper functions
+  const formatDateTime = (dateString: string) => {
+    return new Date(dateString).toLocaleString(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    });
+  };
+
+  const addTimeSlot = (day: keyof typeof availability.weekly_schedule) => {
+    const currentSlots = form.getValues(`weekly_schedule.${day}`) || [];
+    form.setValue(`weekly_schedule.${day}`, [
+      ...currentSlots,
+      { start: '09:00', end: '17:00' }
+    ]);
+  };
+
+  const removeTimeSlot = (day: keyof typeof availability.weekly_schedule, index: number) => {
+    const currentSlots = form.getValues(`weekly_schedule.${day}`) || [];
+    form.setValue(`weekly_schedule.${day}`, currentSlots.filter((_, i) => i !== index));
+  };
+
+  const addBlackoutDate = () => {
+    if (!newBlackoutDate) return;
+    
+    const currentDates = form.getValues('blackout_dates');
+    if (!currentDates.includes(newBlackoutDate)) {
+      form.setValue('blackout_dates', [...currentDates, newBlackoutDate].sort());
+    }
+    setNewBlackoutDate('');
+  };
+
+  const removeBlackoutDate = (dateToRemove: string) => {
+    const currentDates = form.getValues('blackout_dates');
+    form.setValue('blackout_dates', currentDates.filter(date => date !== dateToRemove));
+  };
+
+  const onSubmit = async (data: AvailabilityForm) => {
+    try {
+      // Validate time slots for overlaps
+      for (const [day, slots] of Object.entries(data.weekly_schedule)) {
+        if (slots && hasTimeSlotOverlap(slots)) {
+          form.setError(`weekly_schedule.${day}` as any, {
+            message: translations.advisor.dashboard.availability.validation.overlappingSlots
+          });
+          return;
+        }
+      }
+
+      await updateAvailabilityMutation.mutateAsync(data);
+    } catch (error) {
+      console.error('Failed to update availability:', error);
+    }
+  };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-center h-32">
+          <div className="flex flex-col items-center gap-4">
+            <Icon name="loader-2" className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-muted-foreground">{translations.common.loading}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-12">
+            <Icon name="alert-circle" className="h-12 w-12 text-destructive mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Unable to load availability</h2>
+            <p className="text-muted-foreground mb-6 text-center">{error.toString()}</p>
+            <Button onClick={() => refetch()}>
+              {translations.common.retry}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header with Navigation */}
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <a href={`/${locale}/advisor/dashboard`} className="hover:text-foreground">
+            {translations.advisor.dashboard.navigation.overview}
+          </a>
+          <Icon name="chevron-right" className="h-4 w-4" />
+          <span className="text-foreground">{translations.advisor.dashboard.navigation.availability}</span>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">
+              {translations.advisor.dashboard.availability.title}
+            </h1>
+            <p className="text-muted-foreground">
+              Manage your calendar and booking preferences
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Timezone and Preferences */}
+            <div className="space-y-6">
+              {/* Timezone Selection */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="globe" className="h-5 w-5" />
+                    {translations.advisor.dashboard.availability.timezone}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <FormField
+                    control={form.control}
+                    name="timezone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{translations.advisor.dashboard.availability.fields.selectTimezone}</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {COMMON_TIMEZONES.map(tz => (
+                              <SelectItem key={tz} value={tz}>{tz}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Booking Preferences */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="settings" className="h-5 w-5" />
+                    {translations.advisor.dashboard.availability.preferences}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="booking_preferences.min_notice_hours"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{translations.advisor.dashboard.availability.fields.minNoticeHours}</FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="number" 
+                            min="1" 
+                            max="168"
+                            {...field} 
+                            onChange={(e) => field.onChange(parseInt(e.target.value))}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="booking_preferences.max_advance_days"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{translations.advisor.dashboard.availability.fields.maxAdvanceDays}</FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="number" 
+                            min="1" 
+                            max="365"
+                            {...field} 
+                            onChange={(e) => field.onChange(parseInt(e.target.value))}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="booking_preferences.buffer_minutes"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{translations.advisor.dashboard.availability.fields.bufferMinutes}</FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="number" 
+                            min="0" 
+                            max="120"
+                            {...field} 
+                            onChange={(e) => field.onChange(parseInt(e.target.value))}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Calendar Sync Status */}
+              {availability?.cal_com_sync && Object.keys(availability.cal_com_sync).length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Icon name="calendar-sync" className="h-5 w-5" />
+                      {translations.advisor.dashboard.availability.calendarSync}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">
+                        {translations.advisor.dashboard.availability.sync.status}
+                      </span>
+                      <Badge variant={
+                        availability.cal_com_sync.last_sync_status === 'success' ? 'default' :
+                        availability.cal_com_sync.last_sync_status === 'failed' ? 'destructive' : 
+                        'secondary'
+                      }>
+                        {availability.cal_com_sync.last_sync_status === 'success' 
+                          ? translations.advisor.dashboard.availability.sync.success
+                          : availability.cal_com_sync.last_sync_status === 'failed'
+                          ? translations.advisor.dashboard.availability.sync.failed
+                          : translations.advisor.dashboard.availability.sync.pending}
+                      </Badge>
+                    </div>
+                    {availability.cal_com_sync.last_synced_at && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">
+                          {translations.advisor.dashboard.availability.sync.lastSynced}
+                        </span>
+                        <span className="text-sm">
+                          {formatDateTime(availability.cal_com_sync.last_synced_at)}
+                        </span>
+                      </div>
+                    )}
+                    <Button variant="outline" size="sm" className="w-full">
+                      <Icon name="refresh-cw" className="h-4 w-4 me-2" />
+                      {translations.advisor.dashboard.availability.sync.syncNow}
+                    </Button>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+
+            {/* Weekly Schedule */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="calendar" className="h-5 w-5" />
+                  {translations.advisor.dashboard.availability.schedule}
+                </CardTitle>
+                <CardDescription>
+                  Set your available hours for each day of the week
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {DAYS_OF_WEEK.map((day) => {
+                  const daySlots = form.watch(`weekly_schedule.${day}`) || [];
+                  const dayTranslation = translations.advisor.dashboard.availability.days[day];
+                  
+                  return (
+                    <div key={day} className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Label className="font-medium">{dayTranslation}</Label>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addTimeSlot(day)}
+                        >
+                          <Icon name="plus" className="h-4 w-4 me-2" />
+                          {translations.advisor.dashboard.availability.fields.addTimeSlot}
+                        </Button>
+                      </div>
+                      
+                      {daySlots.length === 0 ? (
+                        <div className="text-center py-6 border-2 border-dashed border-muted-foreground/25 rounded-lg">
+                          <p className="text-sm text-muted-foreground">No availability set</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {daySlots.map((slot, index) => (
+                            <div key={index} className="flex items-center gap-3">
+                              <div className="flex items-center gap-2 flex-1">
+                                <FormField
+                                  control={form.control}
+                                  name={`weekly_schedule.${day}.${index}.start`}
+                                  render={({ field }) => (
+                                    <FormItem className="flex-1">
+                                      <FormControl>
+                                        <Input 
+                                          type="time" 
+                                          {...field}
+                                          className="text-center"
+                                        />
+                                      </FormControl>
+                                    </FormItem>
+                                  )}
+                                />
+                                <span className="text-muted-foreground">to</span>
+                                <FormField
+                                  control={form.control}
+                                  name={`weekly_schedule.${day}.${index}.end`}
+                                  render={({ field }) => (
+                                    <FormItem className="flex-1">
+                                      <FormControl>
+                                        <Input 
+                                          type="time" 
+                                          {...field}
+                                          className="text-center"
+                                        />
+                                      </FormControl>
+                                    </FormItem>
+                                  )}
+                                />
+                              </div>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => removeTimeSlot(day, index)}
+                                className="text-destructive hover:text-destructive"
+                              >
+                                <Icon name="trash-2" className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Blackout Dates */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Icon name="calendar-x" className="h-5 w-5" />
+                {translations.advisor.dashboard.availability.blackoutDates}
+              </CardTitle>
+              <CardDescription>
+                Dates when you are not available for consultations
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex gap-2">
+                <Input
+                  type="date"
+                  value={newBlackoutDate}
+                  onChange={(e) => setNewBlackoutDate(e.target.value)}
+                  min={new Date().toISOString().split('T')[0]}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addBlackoutDate}
+                  disabled={!newBlackoutDate}
+                >
+                  {translations.advisor.dashboard.availability.fields.addBlackoutDate}
+                </Button>
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                {form.watch('blackout_dates').map((date) => (
+                  <Badge key={date} variant="secondary" className="flex items-center gap-1">
+                    {new Date(date).toLocaleDateString(locale)}
+                    <button
+                      type="button"
+                      onClick={() => removeBlackoutDate(date)}
+                      className="hover:text-destructive"
+                    >
+                      <Icon name="x" className="h-3 w-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Save Button */}
+          <div className="flex justify-end gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => form.reset(availability)}
+            >
+              {translations.common.cancel}
+            </Button>
+            <Button
+              type="submit"
+              disabled={updateAvailabilityMutation.isPending}
+            >
+              {updateAvailabilityMutation.isPending ? (
+                <>
+                  <Icon name="loader-2" className="h-4 w-4 me-2 animate-spin" />
+                  {translations.common.saving}
+                </>
+              ) : (
+                translations.common.save
+              )}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
+  );
+}

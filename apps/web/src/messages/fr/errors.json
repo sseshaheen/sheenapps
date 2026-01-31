@@ -1,0 +1,360 @@
+{
+  "404": {
+    "title": "Page non trouvée",
+    "description": "La page que vous cherchez n'existe pas.",
+    "goHome": "Retour à l'accueil"
+  },
+  "generic": {
+    "title": "Quelque chose s'est mal passé",
+    "description": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "tryAgain": "Veuillez réessayer",
+    "goHome": "Retour à l'accueil",
+    "somethingWrong": "Quelque chose s'est mal passé",
+    "unexpectedError": "Une erreur inattendue s'est produite",
+    "networkError": "Erreur de connexion réseau",
+    "timeoutError": "Délai d'attente de la requête dépassé"
+  },
+  "api": {
+    "serverError": "Erreur serveur. Veuillez réessayer plus tard.",
+    "notFound": "Ressource introuvable",
+    "unauthorized": "Non autorisé à effectuer cette action",
+    "forbidden": "Accès refusé",
+    "rateLimited": "Trop de requêtes. Veuillez patienter un moment."
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "invalidFormat": "Format invalide",
+    "tooShort": "Valeur trop courte",
+    "tooLong": "Valeur trop longue",
+    "invalidEmail": "Veuillez entrer un e-mail valide",
+    "invalidUrl": "Veuillez entrer une URL valide"
+  },
+  "loading": {
+    "failed": "Échec du chargement",
+    "timeout": "Délai de chargement dépassé",
+    "retry": "Réessayer"
+  },
+  "AI_LIMIT_REACHED": "Notre service IA est temporairement à pleine capacité. Veuillez réessayer dans {minutes} minutes.",
+  "NETWORK_TIMEOUT": "Délai de connexion dépassé. Vérifiez votre connexion internet et réessayez.",
+  "RATE_LIMITED": "Trop de requêtes. Veuillez patienter un moment.",
+  "AUTH_FAILED": "Authentification requise. Veuillez vous connecter pour continuer.",
+  "PROVIDER_UNAVAILABLE": "Notre service IA est temporairement indisponible. Nous travaillons à le restaurer rapidement.",
+  "INTERNAL_ERROR": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+  "titles": {
+    "AI_LIMIT_REACHED": "Service IA à pleine capacité",
+    "NETWORK_TIMEOUT": "Problème de connexion",
+    "RATE_LIMITED": "Veuillez patienter",
+    "AUTH_FAILED": "Authentification requise",
+    "PROVIDER_UNAVAILABLE": "Service temporairement indisponible",
+    "INTERNAL_ERROR": "Une erreur s'est produite",
+    "AUTH_EXPIRED": "Session expirée",
+    "INSUFFICIENT_BALANCE": "Solde insuffisant",
+    "BUILD_TIMEOUT": "Délai expiré",
+    "BUILD_FAILED": "Échec de construction",
+    "INVALID_INPUT": "Entrée invalide",
+    "VALIDATION_FAILED": "Échec de validation"
+  },
+  "retryButtons": {
+    "AI_LIMIT_REACHED": "Réessayer maintenant",
+    "NETWORK_TIMEOUT": "Réessayer",
+    "RATE_LIMITED": "Réessayer",
+    "AUTH_FAILED": "Se connecter",
+    "PROVIDER_UNAVAILABLE": "Réessayer",
+    "INTERNAL_ERROR": "Réessayer",
+    "AUTH_EXPIRED": "Se reconnecter",
+    "INSUFFICIENT_BALANCE": "Recharger",
+    "BUILD_TIMEOUT": "Réessayer",
+    "BUILD_FAILED": "Réessayer",
+    "INVALID_INPUT": "Corriger",
+    "VALIDATION_FAILED": "Vérifier"
+  },
+  "countdown": {
+    "availableIn": "Disponible dans {time}",
+    "availableNow": "Disponible maintenant",
+    "minute": "minute",
+    "minutes": "minutes",
+    "second": "seconde",
+    "seconds": "secondes"
+  },
+  "AUTH_EXPIRED": "Votre session a expiré. Veuillez vous reconnecter.",
+  "INSUFFICIENT_BALANCE": "Solde insuffisant. Veuillez recharger votre compte.",
+  "BUILD_TIMEOUT": "Le délai de construction a expiré. Veuillez réessayer.",
+  "BUILD_FAILED": "La construction a échoué. Veuillez réessayer.",
+  "INVALID_INPUT": "Entrée invalide. Veuillez vérifier les données.",
+  "VALIDATION_FAILED": "La validation a échoué. Veuillez vérifier les données.",
+  "actionable": {
+    "AI_LIMIT_REACHED": {
+      "message": "Our service is currently at capacity",
+      "action": "Try again in a few minutes or try a simpler request",
+      "support": "Or contact us via support"
+    },
+    "NETWORK_TIMEOUT": {
+      "message": "Connection is slow or interrupted",
+      "action": "Check your internet connection and try again",
+      "support": "If the problem persists, contact us"
+    },
+    "RATE_LIMITED": {
+      "message": "Too many requests in a short time",
+      "action": "Wait a moment then try again",
+      "support": "Our team is here for you"
+    },
+    "AUTH_FAILED": {
+      "message": "You need to sign in to continue",
+      "action": "Sign in to continue building your site",
+      "support": "Having trouble? Contact us"
+    },
+    "PROVIDER_UNAVAILABLE": {
+      "message": "Service is temporarily down for maintenance",
+      "action": "Try again in a few minutes",
+      "support": "Our team is working on it"
+    },
+    "INTERNAL_ERROR": {
+      "message": "An unexpected error occurred",
+      "action": "Try again or try a different request",
+      "support": "Our team has been notified - contact us for follow-up"
+    },
+    "AUTH_EXPIRED": {
+      "message": "Your session expired for security reasons",
+      "action": "Sign in again to continue",
+      "support": "Our team is here for you"
+    },
+    "INSUFFICIENT_BALANCE": {
+      "message": "You don't have enough credits for this operation",
+      "action": "Add credits to continue building your site",
+      "support": "Questions about pricing? Contact us"
+    },
+    "BUILD_TIMEOUT": {
+      "message": "The operation took too long",
+      "action": "Try a simpler request like 'add a contact page'",
+      "support": "Or contact us for help"
+    },
+    "BUILD_FAILED": {
+      "message": "An error occurred while building your site",
+      "action": "Try again - or try a different request",
+      "support": "Our team is here to help"
+    },
+    "INVALID_INPUT": {
+      "message": "The input data is invalid",
+      "action": "Review the data and make sure it's correct",
+      "support": "Need help? Contact us"
+    },
+    "VALIDATION_FAILED": {
+      "message": "Some data needs correction",
+      "action": "Review the highlighted fields and fix them",
+      "support": "Our team is here for you"
+    }
+  },
+  "supportButtons": {
+    "general": "Contact us",
+    "whatsapp": "WhatsApp",
+    "help": "Help"
+  },
+  "recovery": {
+    "dontWorry": "Pas de panique !",
+    "tryAgain": "Réessayer",
+    "contactSupport": "Contacter le support",
+    "whatHappened": "Ce qui s'est passé",
+    "suggestion": "Suggestion"
+  },
+
+  "easyMode": {
+    "domain": {
+      "DOMAIN_SEARCH_FAILED": {
+        "title": "Recherche indisponible",
+        "message": "Impossible de rechercher des domaines pour le moment",
+        "action": "Réessayez dans un instant",
+        "support": "Besoin d'aide ? Contactez-nous"
+      },
+      "DOMAIN_UNAVAILABLE": {
+        "title": "Domaine pris",
+        "message": "Ce domaine est déjà enregistré par quelqu'un d'autre",
+        "action": "Essayez un nom ou une extension différente",
+        "support": "Nous pouvons vous aider à trouver des alternatives"
+      },
+      "DOMAIN_PURCHASE_FAILED": {
+        "title": "Échec de l'achat",
+        "message": "Nous n'avons pas pu finaliser votre achat de domaine",
+        "action": "Vérifiez votre moyen de paiement et réessayez",
+        "support": "Contactez-nous pour obtenir de l'aide"
+      },
+      "DOMAIN_VERIFICATION_PENDING": {
+        "title": "Vérification en cours",
+        "message": "Votre domaine est en cours de vérification",
+        "action": "Cela prend généralement quelques minutes",
+        "support": "Nous vous informerons quand ce sera prêt"
+      },
+      "DOMAIN_VERIFICATION_TIMEOUT": {
+        "title": "Vérification longue",
+        "message": "La vérification du domaine prend plus de temps que prévu",
+        "action": "Vérifiez vos paramètres DNS ou patientez un peu",
+        "support": "Contactez-nous si cela persiste"
+      },
+      "DOMAIN_VERIFICATION_FAILED": {
+        "title": "Échec de la vérification",
+        "message": "Nous n'avons pas pu vérifier la propriété de votre domaine",
+        "action": "Vérifiez que vos paramètres DNS correspondent exactement",
+        "support": "Nous pouvons vous aider à configurer cela"
+      },
+      "DOMAIN_ALREADY_REGISTERED": {
+        "title": "Déjà enregistré",
+        "message": "Ce domaine est déjà connecté à un autre projet",
+        "action": "Utilisez un autre domaine ou retirez-le de l'autre projet",
+        "support": "Besoin d'aide ? Contactez-nous"
+      }
+    },
+    "email": {
+      "EMAIL_QUOTA_EXCEEDED": {
+        "title": "Limite d'emails atteinte",
+        "message": "Vous avez atteint le maximum d'emails pour ce mois",
+        "action": "Passez à un forfait supérieur pour plus d'emails",
+        "support": "Questions sur les limites ? Contactez-nous"
+      },
+      "EMAIL_SEND_FAILED": {
+        "title": "Email non envoyé",
+        "message": "Nous n'avons pas pu envoyer votre email",
+        "action": "Réessayez dans un instant",
+        "support": "Si cela continue, contactez-nous"
+      },
+      "EMAIL_DOMAIN_NOT_VERIFIED": {
+        "title": "Domaine non vérifié",
+        "message": "Votre domaine n'est pas encore vérifié pour l'email",
+        "action": "Complétez d'abord la vérification du domaine",
+        "support": "Nous pouvons vous aider à vérifier"
+      },
+      "MAILBOX_CREATE_FAILED": {
+        "title": "Création de boîte mail échouée",
+        "message": "Nous n'avons pas pu créer votre boîte mail",
+        "action": "Assurez-vous que votre domaine est vérifié d'abord",
+        "support": "Contactez-nous pour obtenir de l'aide"
+      },
+      "MAILBOX_LIMIT_REACHED": {
+        "title": "Limite de boîtes mail",
+        "message": "Vous avez atteint le maximum de boîtes mail pour votre forfait",
+        "action": "Passez à un forfait supérieur pour plus de boîtes mail",
+        "support": "Contactez-nous à propos des forfaits"
+      },
+      "MAILBOX_NAME_TAKEN": {
+        "title": "Nom déjà utilisé",
+        "message": "Cette adresse email existe déjà",
+        "action": "Choisissez un nom différent",
+        "support": "Besoin de suggestions ? Contactez-nous"
+      }
+    },
+    "cms": {
+      "CMS_CONTENT_TYPE_CREATE_FAILED": {
+        "title": "Impossible de créer le type de contenu",
+        "message": "Un problème est survenu lors de la création de votre type de contenu",
+        "action": "Essayez avec un nom différent",
+        "support": "Contactez-nous si cela continue"
+      },
+      "CMS_CONTENT_TYPE_NOT_FOUND": {
+        "title": "Type de contenu introuvable",
+        "message": "Ce type de contenu n'existe pas",
+        "action": "Créez-le d'abord ou vérifiez le nom",
+        "support": "Besoin d'aide ? Contactez-nous"
+      },
+      "CMS_ENTRY_CREATE_FAILED": {
+        "title": "Impossible d'ajouter le contenu",
+        "message": "Un problème est survenu lors de l'ajout de votre contenu",
+        "action": "Vérifiez les champs requis et réessayez",
+        "support": "Contactez-nous pour obtenir de l'aide"
+      },
+      "CMS_ENTRY_UPDATE_FAILED": {
+        "title": "Impossible d'enregistrer",
+        "message": "Vos modifications n'ont pas pu être enregistrées",
+        "action": "Réessayez dans un instant",
+        "support": "Contactez-nous si cela continue"
+      },
+      "CMS_MEDIA_UPLOAD_FAILED": {
+        "title": "Échec du téléchargement",
+        "message": "Nous n'avons pas pu télécharger votre fichier",
+        "action": "Vérifiez le fichier et réessayez",
+        "support": "Des problèmes ? Contactez-nous"
+      },
+      "CMS_MEDIA_TOO_LARGE": {
+        "title": "Fichier trop volumineux",
+        "message": "Ce fichier dépasse la limite de taille",
+        "action": "Utilisez un fichier plus petit (max {maxSize})",
+        "support": "Besoin de téléchargements plus grands ? Passez à un forfait supérieur"
+      }
+    },
+    "deploy": {
+      "DEPLOY_R2_UPLOAD_FAILED": {
+        "title": "Problème de téléchargement",
+        "message": "Impossible de télécharger les fichiers de votre site",
+        "action": "Nous réessaierons automatiquement dans un instant",
+        "support": "Contactez-nous si cela persiste"
+      },
+      "DEPLOY_WORKERS_FAILED": {
+        "title": "Problème de déploiement",
+        "message": "Impossible de déployer votre site pour le moment",
+        "action": "Nous réessaierons automatiquement",
+        "support": "Contactez-nous pour connaître le statut"
+      },
+      "DEPLOY_DNS_FAILED": {
+        "title": "Problème DNS",
+        "message": "Impossible de mettre à jour les paramètres de votre domaine",
+        "action": "Attendez quelques minutes et réessayez",
+        "support": "Nous pouvons vous aider à résoudre cela"
+      },
+      "DEPLOY_CERTIFICATE_PENDING": {
+        "title": "Certificat de sécurité en attente",
+        "message": "Votre certificat SSL est en préparation",
+        "action": "Cela prend généralement quelques minutes",
+        "support": "Il sera bientôt prêt"
+      },
+      "DEPLOY_CERTIFICATE_FAILED": {
+        "title": "Problème de certificat",
+        "message": "Impossible de configurer votre certificat de sécurité",
+        "action": "Vérifiez les paramètres de votre domaine",
+        "support": "Contactez-nous pour obtenir de l'aide"
+      }
+    },
+    "payment": {
+      "PAYMENT_FAILED": {
+        "title": "Échec du paiement",
+        "message": "Nous n'avons pas pu traiter votre paiement",
+        "action": "Vérifiez vos informations de paiement et réessayez",
+        "support": "Contactez-nous pour l'aide à la facturation"
+      },
+      "PAYMENT_METHOD_REQUIRED": {
+        "title": "Moyen de paiement requis",
+        "message": "Ajoutez un moyen de paiement pour continuer",
+        "action": "Ajoutez une carte pour continuer",
+        "support": "Questions sur le paiement ? Contactez-nous"
+      },
+      "PAYMENT_CARD_DECLINED": {
+        "title": "Carte refusée",
+        "message": "Votre carte a été refusée",
+        "action": "Essayez une autre carte ou contactez votre banque",
+        "support": "Des difficultés ? Nous pouvons vous aider"
+      },
+      "PAYMENT_3DS_REQUIRED": {
+        "title": "Vérification requise",
+        "message": "Votre banque nécessite une vérification supplémentaire",
+        "action": "Complétez la vérification dans la fenêtre popup",
+        "support": "Contactez votre banque si bloqué"
+      }
+    },
+    "project": {
+      "PROJECT_NOT_FOUND": {
+        "title": "Projet introuvable",
+        "message": "Ce projet n'existe pas ou vous n'y avez pas accès",
+        "action": "Vérifiez l'URL ou allez sur votre tableau de bord",
+        "support": "Contactez-nous si vous pensez qu'il s'agit d'une erreur"
+      },
+      "PROJECT_LIMIT_REACHED": {
+        "title": "Limite de projets",
+        "message": "Vous avez atteint le maximum de projets pour votre forfait",
+        "action": "Passez à un forfait supérieur pour plus de projets",
+        "support": "Contactez-nous à propos des forfaits"
+      },
+      "PROJECT_SUSPENDED": {
+        "title": "Projet suspendu",
+        "message": "Ce projet a été suspendu",
+        "action": "Vérifiez votre email pour les détails",
+        "support": "Contactez-nous pour résoudre cela"
+      }
+    }
+  }
+}

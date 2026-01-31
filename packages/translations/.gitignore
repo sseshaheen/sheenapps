@@ -1,0 +1,6 @@
+# Build output
+dist/
+
+# Generated locale bundles (rebuilt on each build)
+src/generated/*.json
+!src/generated/.gitkeep

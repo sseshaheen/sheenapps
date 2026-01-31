@@ -1,0 +1,94 @@
+{
+  "viewTabs": {
+    "preview": "Preview",
+    "code": "Code"
+  },
+  "header": {
+    "back": "Back",
+    "unsavedChanges": "Unsaved changes",
+    "justNow": "Just now",
+    "minutesAgo": "{minutes}m ago",
+    "share": "Share",
+    "export": "Export",
+    "settings": "Settings",
+    "undo": "Undo",
+    "redo": "Redo",
+    "undoTooltip": "Undo last change",
+    "redoTooltip": "Redo last change",
+    "nothingToUndo": "Nothing to undo",
+    "nothingToRedo": "Nothing to redo",
+    "undoShortcut": "Ctrl+Z",
+    "redoShortcut": "Ctrl+Shift+Z"
+  },
+  "saveStatus": {
+    "saving": "Saving...",
+    "saved": "Saved",
+    "unsaved": "Unsaved changes",
+    "autoSave": "Auto-save enabled",
+    "lastSaved": "Last saved: {time}"
+  },
+  "mobile": {
+    "tabs": {
+      "build": "Build",
+      "preview": "Preview",
+      "code": "Code",
+      "humanHelp": "Human Help",
+      "more": "More"
+    },
+    "disabled": {
+      "signInRequired": "Sign in required",
+      "upgradeRequired": "Upgrade required"
+    },
+    "header": {
+      "unlockPremium": "Unlock Premium Features",
+      "premiumDescription": "AI chat, advanced exports & more",
+      "upgrade": "Upgrade",
+      "signInToSave": "Sign in to save your work",
+      "signInDescription": "Unlock AI features and project history",
+      "signIn": "Sign In",
+      "comingSoon": "Coming Soon"
+    },
+    "panels": {
+      "previewTitle": "Preview",
+      "previewDescription": "App preview will appear here",
+      "codeTitle": "Generated Code",
+      "codeDescription": "View and explore the generated source code",
+      "aiHelpTitle": "Advanced AI Help",
+      "aiHelpDescription": "Premium feature coming soon",
+      "settingsTitle": "Settings",
+      "settingsDescription": "Project settings coming soon"
+    }
+  },
+  "advisorMatching": {
+    "match": {
+      "matchedTitle": "Advisor Matched!",
+      "matchedDescription": "We found a great match for your project",
+      "advisorDetails": "Specialized in your project's tech stack",
+      "matchScore": "Match Score",
+      "yearsExperience": "Years Experience",
+      "rating": "Rating",
+      "reviews": "Reviews",
+      "skills": "Skills",
+      "approve": "Approve Match",
+      "decline": "Decline",
+      "dismiss": "Dismiss"
+    },
+    "decline": {
+      "title": "Match Declined",
+      "description": "Would you like to:",
+      "retryLabel": "Find a different advisor",
+      "retryDescription": "We'll search for another expert",
+      "browseLabel": "Browse all advisors",
+      "browseDescription": "Choose from our full expert directory",
+      "laterLabel": "Maybe later",
+      "laterDescription": "You can request an advisor anytime"
+    },
+    "banner": {
+      "advisorJoined": "Your advisor has joined the workspace and is ready to help!",
+      "dismiss": "Dismiss"
+    }
+  },
+  "chat": {
+    "advisorJoined": "Advisor has joined the workspace and is ready to help!"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "badge": "Invite Only",
+  "title": "We're Live — For Select Users",
+  "titleHighlight": "Select Users",
+  "subtitle": "We're onboarding new users gradually to ensure everyone gets the best experience.",
+  "subtitleSecond": "Request access to secure your spot.",
+  "waitlist": {
+    "title": "Request Access",
+    "subtitle": "We're adding new users every week",
+    "placeholder": "Enter your email address",
+    "button": "Request Access",
+    "submitting": "Submitting...",
+    "success": "Request Received!",
+    "successSubtitle": "We'll reach out when your spot opens up.",
+    "error": "Something went wrong. Please try again.",
+    "alreadyJoined": "You've already requested access!",
+    "spots": "Limited spots opening weekly",
+    "privacy": "We respect your privacy. No spam, ever."
+  },
+  "features": {
+    "title": "What You Get",
+    "ai": {
+      "title": "AI-Powered Builder",
+      "description": "Describe your vision, watch it come to life"
+    },
+    "speed": {
+      "title": "Lightning Fast",
+      "description": "From idea to deployed website in minutes"
+    },
+    "team": {
+      "title": "Expert Support",
+      "description": "Real humans ready to help you succeed"
+    }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Plans for every stage of your journey",
+    "launching": "Full pricing details upon approval"
+  },
+  "footer": {
+    "launching": "Now Live",
+    "copyright": "© 2025 SheenApps. All rights reserved."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "title": "Choose Your Plan",
+  "subtitle": "Transparent pricing that grows with your business",
+  "badge": "No hidden fees, cancel anytime",
+  "monthlyBilling": "Monthly",
+  "yearlyBilling": "Yearly",
+  "yearlyDiscount": "Save 20%",
+  "currencyNote": "All prices shown in {currency}",
+  "loadingPlans": "Loading pricing plans...",
+  "errorLoading": "Unable to load pricing plans. Please try again.",
+  "retryButton": "Try Again",
+  "popularPlan": "Most Popular",
+  "subscriptions": {
+    "title": "Subscription Plans",
+    "description": "Monthly or yearly billing with full access to all platform features and continuous updates."
+  },
+  "packages": {
+    "title": "One-Time Top-Ups",
+    "description": "Purchase additional credits anytime. Credits never expire and work with any subscription plan.",
+    "badges": {
+      "mostPopular": "Más Popular",
+      "bestValue": "Mejor Valor"
+    },
+    "features": {
+      "baseMinutes": "{baseMinutes} minutos de IA base",
+      "bonusMinutes": "+{bonusMinutes} minutos de IA bonus",
+      "costPerMinute": "{cost} por minuto de IA",
+      "creditsNeverExpire": "Los créditos nunca expiran"
+    },
+    "savings": {
+      "saveAtLeast": "Ahorra al menos {discount}%"
+    }
+  },
+  "features": {
+    "expand": "View all features",
+    "collapse": "Show essential features",
+    "included": "Everything in {planName}:",
+    "unlimited": "Unlimited",
+    "perMonth": "per month"
+  },
+  "plans": {
+    "free": {
+      "dailyBonusWithGift": "{bonusDaily} minutos de IA gratuitos diarios + regalo de bienvenida",
+      "welcomeGiftOnly": "Regalo de bienvenida incluido",
+      "welcomeGiftFeature": "Regalo de bienvenida al registrarse"
+    },
+    "advisor": {
+      "communitySupport": "Soporte de la comunidad",
+      "sessionsIncluded": "{count} sesiones de asesoramiento incluidas",
+      "unlimitedSessions": "Sesiones de asesoramiento ilimitadas",
+      "dailySessions": "Daily advisor session"
+    },
+    "descriptions": {
+      "minutesIncluded": "{minutes} minutos de IA incluidos",
+      "minutesTotal": "{totalMinutes} minutos de IA en total"
+    },
+    "features": {
+      "bonusMinutesDaily": "{bonusDaily} minutos de IA bonus/día",
+      "aiMinutesMonthly": "{minutes} minutos de IA/mes",
+      "rolloverMinutes": "Hasta {rolloverCap} minutos de IA acumulables"
+    }
+  },
+  "cta": {
+    "getStarted": "Get Started",
+    "choosePlan": "Choose Plan",
+    "upgrade": "Upgrade Now",
+    "purchase": "Purchase Credits",
+    "currentPlan": "Current Plan",
+    "contact": "Contact Sales"
+  },
+  "pricing": {
+    "free": "Gratis",
+    "month": "/mes",
+    "billedAnnually": " facturado anualmente"
+  },
+  "guarantees": {
+    "title": "Our Promise to You",
+    "moneyBack": {
+      "title": "30-Day Money Back",
+      "description": "Full refund if you're not satisfied"
+    },
+    "cancelAnytime": {
+      "title": "Cancel Anytime",
+      "description": "No contracts or cancellation fees"
+    },
+    "dataExport": {
+      "title": "Own Your Data",
+      "description": "Export everything, anytime"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "currency": {
+      "question": "Can I change my billing currency?",
+      "answer": "Yes! We support multiple currencies. Your preference is automatically detected and can be changed anytime."
+    },
+    "upgrade": {
+      "question": "Can I upgrade or downgrade anytime?",
+      "answer": "Absolutely. Changes take effect immediately and we'll prorate any differences."
+    },
+    "credits": {
+      "question": "Do one-time credits expire?",
+      "answer": "No, credits purchased through one-time packages never expire and can be used alongside any subscription."
+    }
+  }
+}

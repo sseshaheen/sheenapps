@@ -1,0 +1,77 @@
+/**
+ * Example of how to migrate a page component to use next-intl properly.
+ * This shows the pattern for:
+ * 1. Server component that handles locale validation
+ * 2. Client component that uses useTranslations hook
+ * 3. Transitional pattern while migrating from props to hooks
+ */
+
+import { useTranslations } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
+import { HomeContent } from './home-content'
+import { locales, type Locale } from '@/i18n/config'
+import { notFound } from 'next/navigation'
+
+export default async function HomePage({ 
+  params 
+}: { 
+  params: Promise<{ locale: string }> 
+}) {
+  const { locale } = await params
+  
+  // Enable static rendering
+  setRequestLocale(locale)
+  
+  if (!locales.includes(locale as Locale)) {
+    notFound()
+  }
+
+  return <HomePageContent />
+}
+
+// Client component that uses translations
+function HomePageContent() {
+  const t = useTranslations('hero')
+  const tNav = useTranslations('navigation')
+  
+  // Get business ideas array from translations
+  const businessIdeas = (t.raw('businessIdeas') as string[]).map((idea: string) => ({
+    text: idea,
+    duration: 2000,
+    pauseAfter: 1500
+  }))
+
+  // Build translations object for HomeContent
+  // This is a temporary pattern while migrating from props to hooks
+  const translations = {
+    navigation: {
+      howItWorks: tNav('howItWorks'),
+      yourTeam: tNav('yourTeam'),
+      pricing: tNav('pricing'),
+      features: tNav('features'),
+      talkToAdvisor: tNav('talkToAdvisor'),
+      startBuilding: tNav('startBuilding'),
+    },
+    hero: {
+      badge: t('badge', { count: '1,832' }),
+      title: t('title'),
+      titleHighlight: t('titleHighlight'),
+      subtitle: t('subtitle'),
+      subtitleSecond: t('subtitleSecond'),
+      demoPrompt: t('demoPrompt'),
+      buildingText: t('buildingText'),
+      buildingTextShort: t('buildingTextShort'),
+      startBuilding: t('startBuilding'),
+      startBuildingShort: t('startBuildingShort'),
+      useVoice: t('useVoice'),
+      noCreditCard: t('noCreditCard'),
+      demoTime: t('demoTime'),
+      businessIdeas: businessIdeas,
+      floatingBadges: t.raw('floatingBadges') as any,
+      trustBar: t.raw('trustBar') as any,
+    },
+    // Add other sections as needed...
+  }
+
+  return <HomeContent translations={translations} />
+}

@@ -1,0 +1,97 @@
+{
+  "contact": {
+    "title": "Add Contact Form",
+    "description": "Let visitors reach you easily with a professional contact form",
+    "prompt": "Add a contact form with name, email, and message fields"
+  },
+  "pricing": {
+    "title": "Add Pricing Section",
+    "description": "Show your pricing plans to help customers decide",
+    "prompt": "Add a pricing section with different plan options"
+  },
+  "faq": {
+    "title": "Add FAQ Section",
+    "description": "Answer common questions to reduce support inquiries",
+    "prompt": "Add a frequently asked questions section"
+  },
+  "testimonials": {
+    "title": "Add Testimonials",
+    "description": "Build trust with customer reviews and testimonials",
+    "prompt": "Add a testimonials section with customer reviews"
+  },
+  "about": {
+    "title": "Add About Section",
+    "description": "Tell your story and connect with visitors",
+    "prompt": "Add an about section describing the company or team"
+  },
+  "services": {
+    "title": "Add Services Section",
+    "description": "Showcase what you offer to potential clients",
+    "prompt": "Add a services section highlighting key offerings"
+  },
+  "portfolio": {
+    "title": "Add Portfolio",
+    "description": "Display your best work to attract new clients",
+    "prompt": "Add a portfolio section showcasing previous projects"
+  },
+  "team": {
+    "title": "Add Team Section",
+    "description": "Introduce your team to build personal connections",
+    "prompt": "Add a team section with member profiles"
+  },
+  "booking": {
+    "title": "Add Booking System",
+    "description": "Let customers schedule appointments online",
+    "prompt": "Add a booking or appointment scheduling feature"
+  },
+  "payment": {
+    "title": "Add Payment Options",
+    "description": "Accept payments directly on your website",
+    "prompt": "Add payment processing with checkout functionality"
+  },
+  "gallery": {
+    "title": "Add Image Gallery",
+    "description": "Showcase photos in an attractive gallery layout",
+    "prompt": "Add an image gallery with lightbox functionality"
+  },
+  "newsletter": {
+    "title": "Add Newsletter Signup",
+    "description": "Build your email list with a signup form",
+    "prompt": "Add a newsletter subscription form"
+  },
+  "blog": {
+    "title": "Add Blog Section",
+    "description": "Share updates and improve SEO with a blog",
+    "prompt": "Add a blog section for articles and updates"
+  },
+  "social": {
+    "title": "Add Social Links",
+    "description": "Connect your social media profiles",
+    "prompt": "Add social media links and sharing buttons"
+  },
+  "seo": {
+    "title": "Improve SEO",
+    "description": "Optimize for search engines to get more visitors",
+    "prompt": "Add proper meta tags, structured data, and SEO optimization"
+  },
+  "analytics": {
+    "title": "Add Analytics",
+    "description": "Track visitor behavior and measure performance",
+    "prompt": "Add analytics tracking to monitor website traffic"
+  },
+  "mobile": {
+    "title": "Optimize for Mobile",
+    "description": "Ensure great experience on all devices",
+    "prompt": "Improve mobile responsiveness and touch interactions"
+  },
+  "accessibility": {
+    "title": "Improve Accessibility",
+    "description": "Make the site usable for everyone",
+    "prompt": "Add proper accessibility features and ARIA labels"
+  },
+  "darkMode": {
+    "title": "Add Dark Mode",
+    "description": "Let users switch between light and dark themes",
+    "prompt": "Add a dark mode toggle with theme switching"
+  }
+}

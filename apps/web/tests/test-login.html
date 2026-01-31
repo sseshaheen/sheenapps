@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Debug Test</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Authentication Debug Test</h1>
+    
+    <h2>Login Form</h2>
+    <form action="http://localhost:3000/api/auth/sign-in" method="POST">
+        <input type="hidden" name="locale" value="en">
+        <input type="hidden" name="returnTo" value="/en/dashboard">
+        
+        <p>
+            <label>Email:</label><br>
+            <input type="email" name="email" value="shady.anwar1@gmail.com" required>
+        </p>
+        
+        <p>
+            <label>Password:</label><br>
+            <input type="password" name="password" required>
+        </p>
+        
+        <button type="submit">Sign In</button>
+    </form>
+    
+    <h2>Test Links</h2>
+    <ul>
+        <li><a href="http://localhost:3000/api/auth/me" target="_blank">Check Auth Status (/api/auth/me)</a></li>
+        <li><a href="http://localhost:3000/api/auth/debugauth" target="_blank">Debug Auth Info</a></li>
+        <li><a href="http://localhost:3000/en/dashboard" target="_blank">Dashboard (Protected)</a></li>
+        <li><a href="http://localhost:3000/en" target="_blank">Homepage</a></li>
+    </ul>
+
+    <h2>Instructions</h2>
+    <p>1. Fill in your password and click "Sign In"</p>
+    <p>2. Watch the server console for detailed authentication logs</p>
+    <p>3. After login, try refreshing the dashboard page to see if auth persists</p>
+    <p>4. Check the auth status endpoints to verify state</p>
+    
+    <script>
+        // Log page interactions
+        console.log('🔍 [DEBUG] Test page loaded at:', new Date().toISOString());
+        
+        // Log form submissions
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('🔍 [DEBUG] Form submitted at:', new Date().toISOString());
+            console.log('🔍 [DEBUG] Form data:', new FormData(this));
+        });
+        
+        // Log all clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                console.log('🔍 [DEBUG] Link clicked:', e.target.href);
+            }
+        });
+    </script>
+</body>
+</html>

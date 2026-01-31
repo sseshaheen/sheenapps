@@ -1,0 +1,14 @@
+{
+  "profile": "الملف الشخصي",
+  "settings": "الإعدادات",
+  "billing": "الفواتير",
+  "upgrade": "ارقى لبرو",
+  "logout": "اطلع",
+  "clickToLogout": "اضغط تطلع",
+  "plan": "باقة",
+  "planCapitalized": "الباقة",
+  "freePlan": "الباقة المجانية",
+  "starterPlan": "باقة البداية",
+  "growthPlan": "باقة النمو",
+  "scalePlan": "باقة التوسع"
+}
