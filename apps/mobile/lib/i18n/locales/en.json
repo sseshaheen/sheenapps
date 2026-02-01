@@ -1,0 +1,60 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "done": "Done",
+    "offline": "You are offline"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Enter your email to sign in",
+      "emailPlaceholder": "your@email.com",
+      "sendCode": "Send Code",
+      "sending": "Sending..."
+    },
+    "verify": {
+      "title": "Enter code",
+      "subtitle": "We sent a 6-digit code to {{email}}",
+      "resend": "Resend code",
+      "resendIn": "Resend in {{seconds}}s",
+      "verifying": "Verifying...",
+      "wrongCode": "Invalid code. Please try again.",
+      "codeExpired": "Code expired. Please request a new one."
+    },
+    "logout": "Log out"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "todaySummary": "Today's Summary",
+    "revenue": "Revenue",
+    "newLeads": "New Leads",
+    "orders": "Orders",
+    "siteStatus": "Site Status",
+    "live": "Live",
+    "offline": "Offline",
+    "lastUpdated": "Last updated {{time}}",
+    "openSite": "Open Site",
+    "shareLink": "Share Link"
+  },
+  "projects": {
+    "title": "Projects",
+    "noProjects": "No projects yet",
+    "createFirst": "Create your first project on the web"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "about": "About",
+    "version": "Version {{version}}"
+  },
+  "tabs": {
+    "home": "Home",
+    "projects": "Projects",
+    "settings": "Settings"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ ما",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "done": "تم",
+    "offline": "أنت غير متصل بالإنترنت"
+  },
+  "auth": {
+    "login": {
+      "title": "مرحباً بعودتك",
+      "subtitle": "أدخل بريدك الإلكتروني لتسجيل الدخول",
+      "emailPlaceholder": "بريدك@الإلكتروني.com",
+      "sendCode": "إرسال الرمز",
+      "sending": "جاري الإرسال..."
+    },
+    "verify": {
+      "title": "أدخل الرمز",
+      "subtitle": "أرسلنا رمزاً مكوناً من 6 أرقام إلى {{email}}",
+      "resend": "إعادة إرسال الرمز",
+      "resendIn": "إعادة الإرسال خلال {{seconds}} ثانية",
+      "verifying": "جاري التحقق...",
+      "wrongCode": "رمز غير صالح. يرجى المحاولة مرة أخرى.",
+      "codeExpired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد."
+    },
+    "logout": "تسجيل الخروج"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "todaySummary": "ملخص اليوم",
+    "revenue": "الإيرادات",
+    "newLeads": "العملاء المحتملون",
+    "orders": "الطلبات",
+    "siteStatus": "حالة الموقع",
+    "live": "نشط",
+    "offline": "غير متصل",
+    "lastUpdated": "آخر تحديث {{time}}",
+    "openSite": "فتح الموقع",
+    "shareLink": "مشاركة الرابط"
+  },
+  "projects": {
+    "title": "المشاريع",
+    "noProjects": "لا توجد مشاريع بعد",
+    "createFirst": "أنشئ مشروعك الأول من الموقع"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "notifications": "الإشعارات",
+    "about": "حول التطبيق",
+    "version": "الإصدار {{version}}"
+  },
+  "tabs": {
+    "home": "الرئيسية",
+    "projects": "المشاريع",
+    "settings": "الإعدادات"
+  }
+}

@@ -50,31 +50,29 @@ Key Decisions
 
 ---
 
-## Current Status - 1 Feb 2026 - 01:00 AM
-What Exists (Backend Infrastructure) ✅
-┌────────────────────┬─────────────────────────────────────────────────┬─────────────────────────────────────────────────┐
-│     Component      │                    Location                     │                     Status                      │
-├────────────────────┼─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
-│ Gateway route      │ apps/web/src/app/api/gateway/[...path]/route.ts │ ✅ Exists                                       │
-├────────────────────┼─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
-│ Mobile auth routes │ apps/web/src/app/api/mobile/auth/               │ ✅ 3 endpoints exist                            │
-├────────────────────┼─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
-│ Worker mobile auth │ apps/worker/src/routes/platformMobileAuth.ts    │ ✅ Exists                                       │
-├────────────────────┼─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
-│ Workspace packages │ packages/                                       │ ✅ api-contracts, platform-tokens, capabilities │
-└────────────────────┴─────────────────────────────────────────────────┴─────────────────────────────────────────────────┘
-What Needs Attention
-┌──────────────────────┬─────────────────────────────────┬─────────────────────────────────────────┐
-│        Issue         │          Current State          │             Required Action             │
-├──────────────────────┼─────────────────────────────────┼─────────────────────────────────────────┤
-│ Mobile app location  │ Standalone at /sheenapps-mobile │ Move to apps/mobile/ in monorepo        │
-├──────────────────────┼─────────────────────────────────┼─────────────────────────────────────────┤
-│ Package name         │ sheenapps-mobile                │ Rename to @sheenapps/mobile             │
-├──────────────────────┼─────────────────────────────────┼─────────────────────────────────────────┤
-│ Workspace deps       │ None (standalone npm)           │ Add workspace:* for shared packages     │
-├──────────────────────┼─────────────────────────────────┼─────────────────────────────────────────┤
-│ Translations adapter │ Skeleton only                   │ Add i18next adapter when mobile resumes │
-└──────────────────────┴─────────────────────────────────┴─────────────────────────────────────────┘
+## Current Status - 1 Feb 2026 - Updated
+
+### What Exists (All Infrastructure) ✅
+
+| Component | Location | Status |
+|-----------|----------|--------|
+| Gateway route | apps/web/src/app/api/gateway/[...path]/route.ts | ✅ Exists |
+| Mobile auth routes | apps/web/src/app/api/mobile/auth/ | ✅ 3 endpoints exist |
+| Worker mobile auth | apps/worker/src/routes/platformMobileAuth.ts | ✅ Exists |
+| Workspace packages | packages/ | ✅ api-contracts, platform-tokens, capabilities |
+| **Mobile app** | **apps/mobile/** | ✅ **Created in monorepo** |
+| **i18n with RTL** | **apps/mobile/lib/i18n/** | ✅ **En/Ar with platform-tokens** |
+| **Auth screens** | **apps/mobile/app/(auth)/** | ✅ **Login + OTP verify** |
+| **Tab screens** | **apps/mobile/app/(tabs)/** | ✅ **Dashboard, Projects, Settings** |
+
+### Previously Needed - Now Complete ✅
+
+| Issue | Previous State | Resolution |
+|-------|----------------|------------|
+| Mobile app location | Standalone at /sheenapps-mobile | ✅ Created fresh in apps/mobile/ |
+| Package name | sheenapps-mobile | ✅ @sheenapps/mobile |
+| Workspace deps | None (standalone npm) | ✅ workspace:* for shared packages |
+| Translations adapter | Skeleton only | ✅ i18next with platform-tokens integration |
 Strategy Assessment
 
 No major strategy change needed. The plan is well-aligned with the monorepo architecture. The key items are:
@@ -1616,39 +1614,40 @@ If any answer is "no" → consider Notifications Platform or Thin Operator App f
 
 ### 11.1 Phase 1A Progress
 
-**Status**: 🟡 In Progress
+**Status**: 🟢 Foundation Complete (Week 1-2)
 
-#### Week 1: Foundation
+#### Week 1: Foundation ✅ COMPLETE
 
 | Task | Status | Notes |
 |------|--------|-------|
-| Expo project setup | ✅ Done | Created in `/sheenapps-mobile` (will move to `apps/mobile/`) |
+| Expo project setup | ✅ Done | Created directly in `apps/mobile/` with monorepo support |
 | Navigation structure (Expo Router) | ✅ Done | `app/` structure with (auth) and (tabs) groups |
 | OTP-first auth flow | ✅ Done | Login + OTP verify screens with 6-digit input |
-| Thin BFF gateway (`/api/gateway/[...path]`) | ✅ Done | Created gateway + auth endpoints in `apps/web` |
-| API client with @sheenapps/api-contracts | 🟡 Partial | Client created, but using mock data; contracts not integrated |
+| Thin BFF gateway (`/api/gateway/[...path]`) | ✅ Done | Gateway + auth endpoints in `apps/web` |
+| API client with @sheenapps/api-contracts | ✅ Done | Client created with gateway API functions |
 | Secure token storage (expo-secure-store) | ✅ Done | Auth store with SecureStore |
-| Arabic + English i18n setup | ✅ Done | i18next with RTL support |
-| Crash reporting (Sentry) | ✅ Done | Sentry integration configured |
+| Arabic + English i18n setup | ✅ Done | i18next with @sheenapps/platform-tokens RTL detection |
+| Metro workspace config | ✅ Done | watchFolders for workspace packages |
 
-#### Week 2: Dashboard
+#### Week 2: Dashboard ✅ COMPLETE
 
 | Task | Status | Notes |
 |------|--------|-------|
-| Project list screen | ✅ Done | Basic list with mock data |
-| Dashboard screen (KPIs, status) | ✅ Done | KPI cards, site status, mock data |
-| Site status card with "Open Site" action | ✅ Done | Opens URL with Linking |
+| Project list screen | ✅ Done | FlatList with project cards |
+| Dashboard screen (KPIs, status) | ✅ Done | KPI cards, site status, action buttons |
+| Site status card with "Open Site" action | ✅ Done | Opens URL with Linking, Share link support |
 | Pull-to-refresh | ✅ Done | RefreshControl integrated |
-| Error states + offline detection | ✅ Done | NetInfo for offline, error UI |
+| Settings screen | ✅ Done | Language switch, logout |
 
 #### Week 3: Polish & Internal Testing
 
 | Task | Status | Notes |
 |------|--------|-------|
+| Connect to real gateway APIs | ⬜ Pending | Replace mock data |
 | RTL testing on real Arabic devices | ⬜ Pending | |
 | Performance optimization | ⬜ Pending | |
 | TestFlight (iOS) + Internal testing (Android) | ⬜ Pending | |
-| App store assets (icons, screenshots) | ⬜ Pending | |
+| App store assets (icons, screenshots) | ⬜ Pending | Need design assets |
 | Basic analytics | ⬜ Pending | |
 
 ### 11.2 Discoveries & Improvements
@@ -1820,3 +1819,4 @@ Next steps:
 | 2026-01-30 | Initial document created |
 | 2026-01-31 | Updated after expert review, added implementation progress |
 | 2026-02-01 | **Monorepo alignment**: Updated all references for Turborepo monorepo migration. Mobile will live at `apps/mobile/`, consuming workspace packages (`@sheenapps/api-contracts`, `@sheenapps/platform-tokens`, `@sheenapps/capabilities`). Added section 3.1.1 "Monorepo Integration". See [MONOREPO_ANALYSIS_AND_PLAN.md](./MONOREPO_ANALYSIS_AND_PLAN.md) for full monorepo details. |
+| 2026-02-01 | **Mobile app created**: Created Expo app directly in `apps/mobile/` with: Metro workspace config, i18n with platform-tokens RTL detection, auth screens (login/OTP verify), tab navigation (dashboard/projects/settings), API client for gateway. Phase 1A Weeks 1-2 complete. |

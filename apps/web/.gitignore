@@ -49,3 +49,4 @@ tmp/
 /tmp/
 packages/i18n-core/node_modules
 packages-idea-was-not-used/
+.env*.local

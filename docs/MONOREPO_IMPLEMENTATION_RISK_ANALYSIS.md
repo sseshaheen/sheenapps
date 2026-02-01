@@ -382,6 +382,48 @@ Successfully pushed monorepo to personal GitHub repo:
 
 **Note:** Old SheenApps org repo should be deleted or archived to avoid confusion.
 
+#### 2026-02-01: Mobile App Created in Monorepo ✅
+
+Created Expo mobile app at `apps/mobile/` with full monorepo integration:
+
+**Features implemented:**
+- Expo SDK 52 with TypeScript
+- Expo Router navigation (file-based routing)
+- Metro config for workspace symlinks (`watchFolders` for packages)
+- Workspace dependencies: `@sheenapps/api-contracts`, `@sheenapps/platform-tokens`, `@sheenapps/capabilities`
+- i18n setup with i18next + RTL support using `@sheenapps/platform-tokens`
+- Auth flow: Login screen + OTP verify screen
+- Tab navigation: Dashboard, Projects, Settings
+- API client for gateway endpoints
+- Auth store with SecureStore for tokens
+
+**Files created:**
+```
+apps/mobile/
+├── app/
+│   ├── _layout.tsx       # Root layout with providers
+│   ├── index.tsx         # Auth redirect
+│   ├── (auth)/
+│   │   ├── _layout.tsx
+│   │   ├── login.tsx     # Email input
+│   │   └── verify.tsx    # OTP verification
+│   └── (tabs)/
+│       ├── _layout.tsx   # Tab navigation
+│       ├── index.tsx     # Dashboard
+│       ├── projects.tsx  # Project list
+│       └── settings.tsx  # Settings + logout
+├── lib/
+│   ├── api/client.ts     # Gateway API client
+│   └── i18n/             # i18n setup + locales
+├── stores/auth.ts        # Zustand auth store
+├── package.json          # workspace:* deps
+├── metro.config.js       # Workspace resolution
+├── app.config.ts         # Expo config
+└── tsconfig.json
+```
+
+**Type check:** ✅ Passes (`pnpm --filter @sheenapps/mobile type-check`)
+
 ---
 
 ## Improvement Opportunities
